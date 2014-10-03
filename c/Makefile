@@ -1,7 +1,5 @@
 #Definitions
 
-ECL_RUN := $(ECL_HOME)/run
-
 ALL_C := $(wildcard *.c)
 
 ALL_DEPS := $(subst .c,.d,$(ALL_C))
@@ -108,5 +106,9 @@ ALL_EXE += 019_day_count
 
 020_factorial: 020_factorial.o bignum.o utils.o
 ALL_EXE += 020_factorial
+
+021_amicable_numbers: LDFLAGS += -lm
+021_amicable_numbers: utils.o
+ALL_EXE += 021_amicable_numbers
 
 build:  $(ALL_EXE)

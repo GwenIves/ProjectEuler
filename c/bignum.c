@@ -43,10 +43,8 @@ bignum_t * get_bignum_str (char * value) {
 	while (isblank (*value))
 		value++;
 
-	if (*value == '-') {
-		value++;
+	if (*value == '-')
 		num->sign = 1;
-	}
 
 	char * tail_ptr = NULL;
 

@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 		unsigned long upper_limit = sqrt (triangle_num);
 		for (unsigned long i = 1; i <= upper_limit; i++)
 			if (triangle_num % i == 0) {
-				if (i == upper_limit)
+				if (i * i == triangle_num)
 					divisors++;
 				else
 					divisors += 2;

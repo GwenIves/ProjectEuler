@@ -1,6 +1,6 @@
 /*
  * Find the value of the maximum path from the top to the bottom of a numeric triangle read from stdin
- * The triangle is read in a format <N = rows count> followed by all the numbers under a diagonal
+ * The triangle is read in a format <N = rows count> followed by all the numbers on and under a diagonal
  * of an N x N square one row at a time left to right
  */
 
