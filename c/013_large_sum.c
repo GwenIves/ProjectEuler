@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "bignum.h"
 
-int main (int argc, char ** argv) {
+int main () {
 	char * line = NULL;
 	size_t len = 0;
 

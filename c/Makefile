@@ -111,4 +111,7 @@ ALL_EXE += 020_factorial
 021_amicable_numbers: utils.o
 ALL_EXE += 021_amicable_numbers
 
+022_name_scoring: 022_name_scoring.o utils.o
+ALL_EXE += 022_name_scoring
+
 build:  $(ALL_EXE)
