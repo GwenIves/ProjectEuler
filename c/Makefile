@@ -118,4 +118,6 @@ ALL_EXE += 022_name_scoring
 023_non_abundant: math_utils.o utils.o
 ALL_EXE += 023_non_abundant
 
+ALL_EXE += 024_permutations
+
 build:  $(ALL_EXE)

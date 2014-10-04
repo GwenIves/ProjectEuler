@@ -28,7 +28,7 @@ int main (int argc, char ** argv) {
 }
 
 static void printout_number (int N) {
-	if (N < 1000000)
+	if (N >= 0 && N < 1000000)
 		printout_number_under1000000 (N, 1);
 
 	printf ("\n");
