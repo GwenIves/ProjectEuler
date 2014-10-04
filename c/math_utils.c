@@ -16,3 +16,21 @@ char * eratosthenes_sieve (int size) {
 
 	return sieve;
 }
+
+int divisors_sum (int num) {
+	int sum = 1;
+
+	int upper_limit = sqrt (num);
+
+	for (int i = 2; i <= upper_limit; i++)
+		if (num % i == 0) {
+			int div = num / i;
+
+			if (i == div)
+				sum += i;
+			else
+				sum += i + div;
+		}
+
+	return sum;
+}

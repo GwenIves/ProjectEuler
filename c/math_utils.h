@@ -5,4 +5,6 @@
 
 char * eratosthenes_sieve (int);
 
+int divisors_sum (int);
+
 #endif

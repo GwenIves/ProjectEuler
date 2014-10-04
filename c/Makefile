@@ -61,57 +61,61 @@ ALL_EXE += 003_prime_factor
 ALL_EXE += 004_palindrome
 
 005_multiple: LDFLAGS += -lm
-005_multiple: 005_multiple.o math_utils.o utils.o
+005_multiple: math_utils.o utils.o
 ALL_EXE += 005_multiple
 
 ALL_EXE += 006_square_difference
 
 007_prime: LDFLAGS += -lm
-007_prime: 007_prime.o math_utils.o utils.o
+007_prime: math_utils.o utils.o
 ALL_EXE += 007_prime
 
 ALL_EXE += 008_series
 ALL_EXE += 009_pythagorean_triplet
 
 010_primes_sum: LDFLAGS += -lm
-010_primes_sum: 010_primes_sum.o math_utils.o utils.o
+010_primes_sum: math_utils.o utils.o
 ALL_EXE += 010_primes_sum
 
 011_grid_product: LDFLAGS += -lm
-011_grid_product: 011_grid_product.o math_utils.o utils.o
+011_grid_product: math_utils.o utils.o
 ALL_EXE += 011_grid_product
 
 012_triangular_number: LDFLAGS += -lm
 ALL_EXE += 012_triangular_number
 
-013_large_sum: 013_large_sum.o bignum.o utils.o
+013_large_sum: bignum.o utils.o
 ALL_EXE += 013_large_sum
 
-014_collatz_sequence: 014_collatz_sequence.o utils.o
+014_collatz_sequence: utils.o
 ALL_EXE += 014_collatz_sequence
 
-015_lattice_paths: 015_lattice_paths.o utils.o
+015_lattice_paths: utils.o
 ALL_EXE += 015_lattice_paths
 
-016_power_digit_sum: 016_power_digit_sum.o bignum.o utils.o
+016_power_digit_sum: bignum.o utils.o
 ALL_EXE += 016_power_digit_sum
 
 ALL_EXE += 017_number_letters
 
 018_maximum_path: LDFLAGS += -lm
-018_maximum_path: 018_maximum_path.o math_utils.o utils.o
+018_maximum_path: math_utils.o utils.o
 ALL_EXE += 018_maximum_path
 
 ALL_EXE += 019_day_count
 
-020_factorial: 020_factorial.o bignum.o utils.o
+020_factorial: bignum.o utils.o
 ALL_EXE += 020_factorial
 
 021_amicable_numbers: LDFLAGS += -lm
-021_amicable_numbers: utils.o
+021_amicable_numbers: utils.o math_utils.o
 ALL_EXE += 021_amicable_numbers
 
-022_name_scoring: 022_name_scoring.o utils.o
+022_name_scoring: utils.o
 ALL_EXE += 022_name_scoring
+
+023_non_abundant: LDFLAGS += -lm
+023_non_abundant: math_utils.o utils.o
+ALL_EXE += 023_non_abundant
 
 build:  $(ALL_EXE)
