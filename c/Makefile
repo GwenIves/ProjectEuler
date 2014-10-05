@@ -126,4 +126,8 @@ ALL_EXE += 025_fibonacci
 026_recurring_cycles: utils.o
 ALL_EXE += 026_recurring_cycles
 
+027_quadratic_primes: LDFLAGS += -lm
+027_quadratic_primes: utils.o math_utils.o
+ALL_EXE += 027_quadratic_primes
+
 build:  $(ALL_EXE)

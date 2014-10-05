@@ -1,0 +1,61 @@
+/*
+ * Find the product of a and b where |a| < N and |b| < N
+ * for which the quadratic formula x^2 + a*x + b, x>= 0, produces the largest number of consecutive primes
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "math_utils.h"
+
+int main (int argc, char ** argv) {
+	if (argc != 2) {
+		fprintf (stderr, "usage: %s <N>\n", argv[0]);
+		return 1;
+	}
+
+	int N = atoi (argv[1]);
+
+	// When x reaches b, the formula cannot certainly produce a prime
+	int formula_maximum = (2 * N - 1) * (N - 1) + 1;
+
+	char * primes = eratosthenes_sieve (formula_maximum);
+
+	int max_primes = 0;
+	int max_a = 0;
+	int max_b = 0;
+
+	for (int a = -N + 1; a <= N - 1; a++) {
+		for (int b = -N + 1; b <= N - 1; b++) {
+			int x = 0;
+			int value = 0;
+			int primes_count = 0;
+
+			// b must be a prime or the formula will certainly not produce a prime for x = 0
+			if (!primes[ABS (b)])
+				continue;
+
+			while (1) {
+				value = x * (x + a) + b;
+
+				if (primes[ABS (value)]) {
+					primes_count++;
+					x++;
+				} else {
+					if (primes_count >= max_primes) {
+						max_primes = primes_count;
+						max_a = a;
+						max_b = b;
+					}
+
+					break;
+				}
+			}
+		}
+	}
+
+	printf ("%d\n", max_a * max_b);
+
+	free (primes);
+
+	return 0;
+}
