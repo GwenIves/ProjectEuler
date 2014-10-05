@@ -135,4 +135,7 @@ ALL_EXE += 028_number_spiral
 029_powers: bignum.o utils.o
 ALL_EXE += 029_powers
 
+030_digit_powers: LDFLAGS += -lm
+ALL_EXE += 030_digit_powers
+
 build:  $(ALL_EXE)
