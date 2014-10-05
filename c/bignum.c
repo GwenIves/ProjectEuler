@@ -97,14 +97,14 @@ bignum_t * bignum_mult (bignum_t * a, bignum_t * b) {
 
 	for (int i = 0; i < b->used; i++) {
 		for (int j = 0; j < a->used; j++) {
-			int partial_mult = b->digits[i] * a->digits[j] + carry;
-
 			if (c->used <= i + j) {
 				ensure_allocation (c);
 				c->digits[c->used++] = 0;
 			}
 
-			c->digits[i + j] += partial_mult % 10;
+			int partial_mult = c->digits[i + j] + b->digits[i] * a->digits[j] + carry;
+
+			c->digits[i + j] = partial_mult % 10;
 			carry = partial_mult / 10;
 		}
 
@@ -189,6 +189,15 @@ bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
 	}
 
 	return c;
+}
+
+int bignum_cmp (bignum_t * a, bignum_t * b) {
+	if (b->sign && !a->sign)
+		return 1;
+	else if (a->sign && !b->sign)
+		return -1;
+	else
+		return bignum_magnitude_cmp (a, b);
 }
 
 /*

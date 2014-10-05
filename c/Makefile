@@ -132,4 +132,7 @@ ALL_EXE += 027_quadratic_primes
 
 ALL_EXE += 028_number_spiral
 
+029_powers: bignum.o utils.o
+ALL_EXE += 029_powers
+
 build:  $(ALL_EXE)
