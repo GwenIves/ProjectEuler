@@ -72,8 +72,10 @@ bignum_t * get_bignum_str (char * value) {
 }
 
 void delete_bignum (bignum_t * num) {
-	free (num->digits);
-	free (num);
+	if (num) {
+		free (num->digits);
+		free (num);
+	}
 }
 
 void print_bignum (bignum_t * num) {

@@ -120,4 +120,10 @@ ALL_EXE += 023_non_abundant
 
 ALL_EXE += 024_permutations
 
+025_fibonacci: bignum.o utils.o
+ALL_EXE += 025_fibonacci
+
+026_recurring_cycles: utils.o
+ALL_EXE += 026_recurring_cycles
+
 build:  $(ALL_EXE)
