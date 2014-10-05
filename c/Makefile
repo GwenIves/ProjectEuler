@@ -130,4 +130,6 @@ ALL_EXE += 026_recurring_cycles
 027_quadratic_primes: utils.o math_utils.o
 ALL_EXE += 027_quadratic_primes
 
+ALL_EXE += 028_number_spiral
+
 build:  $(ALL_EXE)
