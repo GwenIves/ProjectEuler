@@ -14,22 +14,12 @@ fraction_t fraction_get (unsigned long nom, unsigned long denom) {
 }
 
 void fraction_reduce (fraction_t * f) {
-	int len = MAX (f->denominator, f->nominator);
+	int factor = gcd (f->nominator, f->denominator);
 
-	if (!len)
-		return;
-
-	char * primes = eratosthenes_sieve (len + 1);
-
-	for (int i = 2; i <= len; i++)
-		if (primes[i]) {
-			while (f->nominator % i == 0 && f->denominator % i == 0) {
-				f->nominator /= i;
-				f->denominator /= i;
-			}
-		}
-
-	free (primes);
+	if (factor) {
+		f->nominator /= factor;
+		f->denominator /= factor;
+	}
 }
 
 fraction_t fraction_mult (fraction_t * a, fraction_t * b) {

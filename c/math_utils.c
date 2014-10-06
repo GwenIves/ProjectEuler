@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "utils.h"
+#include "math_utils.h"
 
 char * eratosthenes_sieve (int size) {
 	char * sieve = x_malloc (size);
@@ -33,4 +34,16 @@ int divisors_sum (int num) {
 		}
 
 	return sum;
+}
+
+int gcd (int val_a, int val_b) {
+	int a = MAX (val_a, val_b);
+	int b = MIN (val_a, val_b);
+
+	while (b > 0) {
+		int rem = a % b;
+
+		a = b;
+		b = rem;
+	}
 }
