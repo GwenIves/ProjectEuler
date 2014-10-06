@@ -50,6 +50,7 @@ endif
 
 bignum.o: utils.o
 math_utils.o: utils.o
+fraction.o: math_utils.o
 
 ALL_EXE += 001_multiples
 ALL_EXE += 002_fibonacci
@@ -143,5 +144,9 @@ ALL_EXE += 031_coins
 032_pandigital: LDFLAGS += -lm
 032_pandigital: utils.o
 ALL_EXE += 032_pandigital
+
+033_digit_cancelling: LDFLAGS += -lm
+033_digit_cancelling: utils.o fraction.o math_utils.o
+ALL_EXE += 033_digit_cancelling
 
 build:  $(ALL_EXE)
