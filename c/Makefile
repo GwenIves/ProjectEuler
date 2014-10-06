@@ -138,4 +138,6 @@ ALL_EXE += 029_powers
 030_digit_powers: LDFLAGS += -lm
 ALL_EXE += 030_digit_powers
 
+ALL_EXE += 031_coins
+
 build:  $(ALL_EXE)
