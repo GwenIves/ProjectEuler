@@ -140,4 +140,8 @@ ALL_EXE += 030_digit_powers
 
 ALL_EXE += 031_coins
 
+032_pandigital: LDFLAGS += -lm
+032_pandigital: utils.o
+ALL_EXE += 032_pandigital
+
 build:  $(ALL_EXE)
