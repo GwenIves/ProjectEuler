@@ -160,4 +160,8 @@ ALL_EXE += 035_circular_primes
 036_palindromes: math_utils.o utils.o
 ALL_EXE += 036_palindromes
 
+037_truncatable_primes: LDFLAGS += -lm
+037_truncatable_primes: math_utils.o utils.o
+ALL_EXE += 037_truncatable_primes
+
 build:  $(ALL_EXE)
