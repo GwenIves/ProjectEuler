@@ -143,7 +143,7 @@ ALL_EXE += 030_digit_powers
 ALL_EXE += 031_coins
 
 032_pandigital: LDFLAGS += -lm
-032_pandigital: utils.o
+032_pandigital: utils.o math_utils.o
 ALL_EXE += 032_pandigital
 
 033_digit_cancelling: LDFLAGS += -lm
@@ -163,5 +163,9 @@ ALL_EXE += 036_palindromes
 037_truncatable_primes: LDFLAGS += -lm
 037_truncatable_primes: math_utils.o utils.o
 ALL_EXE += 037_truncatable_primes
+
+038_pandigital: LDFLAGS += -lm
+038_pandigital: math_utils.o utils.o
+ALL_EXE += 038_pandigital
 
 build:  $(ALL_EXE)

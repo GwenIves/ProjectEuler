@@ -62,3 +62,31 @@ int is_palindrome (int num, int base) {
 
 	return rev_num == orig_num;
 }
+
+int pandigital_test_and_set_digits (char * digits, int value) {
+	while (value > 0) {
+		int digit = value % 10;
+		value /= 10;
+
+		if (digit == 0)
+			return 0;
+		else if (digits[digit])
+			return 0;
+		else
+			digits[digit] = 1;
+	}
+
+	return 1;
+}
+
+int pandigital_test_digits (char * digits, int N) {
+	for (int i = 1; i <= N; i++)
+		if (digits[i] == 0)
+			return 0;
+
+	for (int i = N + 1; i < DIGITS_COUNT; i++)
+		if (digits[i] == 1)
+			return 0;
+
+	return 1;
+}

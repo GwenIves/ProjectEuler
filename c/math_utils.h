@@ -5,10 +5,15 @@
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define ABS(a) ((a)>0?(a):-(a))
 
+#define DIGITS_COUNT	10
+
 char * eratosthenes_sieve (int);
 
 int divisors_sum (int);
 int gcd (int, int);
 int is_palindrome (int, int);
+
+int pandigital_test_and_set_digits (char *, int);
+int pandigital_test_digits (char *, int);
 
 #endif
