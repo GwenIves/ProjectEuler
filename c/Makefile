@@ -151,4 +151,8 @@ ALL_EXE += 033_digit_cancelling
 
 ALL_EXE += 034_digit_factorials
 
+035_circular_primes: LDFLAGS += -lm
+035_circular_primes: math_utils.o utils.o
+ALL_EXE += 035_circular_primes
+
 build:  $(ALL_EXE)
