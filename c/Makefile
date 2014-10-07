@@ -168,4 +168,6 @@ ALL_EXE += 037_truncatable_primes
 038_pandigital: math_utils.o utils.o
 ALL_EXE += 038_pandigital
 
+ALL_EXE += 039_triangles
+
 build:  $(ALL_EXE)
