@@ -49,3 +49,16 @@ int gcd (int val_a, int val_b) {
 
 	return a;
 }
+
+int is_palindrome (int num, int base) {
+	int orig_num = num;
+	int rev_num = 0;
+
+	while (num > 0) {
+		rev_num *= base;
+		rev_num += num % base;
+		num /= base;
+	}
+
+	return rev_num == orig_num;
+}

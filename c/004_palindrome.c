@@ -5,8 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-static int is_palindrome (int);
+#include "math_utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -24,24 +23,11 @@ int main (int argc, char ** argv) {
 		for (int j = i; j <= stop; j++) {
 			int product = i * j;
 
-			if (product > max_product && is_palindrome (product))
+			if (product > max_product && is_palindrome (product, 10))
 				max_product = product;
 		}
 
 	printf ("%d\n", max_product);
 
 	return 0;
-}
-
-static int is_palindrome (int num) {
-	int orig_num = num;
-	int rev_num = 0;
-
-	while (num > 0) {
-		rev_num *= 10;
-		rev_num += num % 10;
-		num /= 10;
-	}
-
-	return rev_num == orig_num;
 }

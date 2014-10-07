@@ -59,6 +59,7 @@ ALL_EXE += 002_fibonacci
 ALL_EXE += 003_prime_factor
 
 004_palindrome: LDFLAGS += -lm
+004_palindrome: math_utils.o utils.o
 ALL_EXE += 004_palindrome
 
 005_multiple: LDFLAGS += -lm
@@ -154,5 +155,9 @@ ALL_EXE += 034_digit_factorials
 035_circular_primes: LDFLAGS += -lm
 035_circular_primes: math_utils.o utils.o
 ALL_EXE += 035_circular_primes
+
+036_palindromes: LDFLAGS += -lm
+036_palindromes: math_utils.o utils.o
+ALL_EXE += 036_palindromes
 
 build:  $(ALL_EXE)

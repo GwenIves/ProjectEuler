@@ -9,5 +9,6 @@ char * eratosthenes_sieve (int);
 
 int divisors_sum (int);
 int gcd (int, int);
+int is_palindrome (int, int);
 
 #endif
