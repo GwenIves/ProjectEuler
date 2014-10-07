@@ -14,6 +14,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N < 0)
+		return 1;
+
 	bignum_t * val2 = get_bignum_int (2);
 	bignum_t * power = get_bignum_int (1);
 

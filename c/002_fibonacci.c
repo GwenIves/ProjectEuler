@@ -11,13 +11,14 @@ int main (int argc, char ** argv) {
 		return 1;
 	}
 
-	unsigned long N = atol (argv[1]);
-	unsigned long sum = 0;
-	unsigned long fib1 = 1;
-	unsigned long fib2 = 1;
+	long N = atol (argv[1]);
+
+	long sum = 0;
+	long fib1 = 1;
+	long fib2 = 1;
 
 	while (1) {
-		unsigned long fib = fib1 + fib2;
+		long fib = fib1 + fib2;
 
 		if (fib > N)
 			break;
@@ -30,7 +31,7 @@ int main (int argc, char ** argv) {
 	}
 		
 
-	printf ("%lu\n", sum);
+	printf ("%ld\n", sum);
 
 	return 0;
 }

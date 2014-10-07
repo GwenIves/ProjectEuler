@@ -13,18 +13,25 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	char * series = NULL;
 	size_t series_size = 0;
 
 	if (getline (&series, &series_size, stdin) == -1)
 		return 1;
-	else if (series_size > 0)
-		series[--series_size] = '\0';
+	else
+		for (int i = 0; i < series_size; i++) 
+			if (series[i] == '\n' || series[i] == '\0') {
+				series[i] = '\0';
+				series_size = i;
+			}
 
 	unsigned long prev_product = 0;
 	unsigned long max_product = 0;
 
-	for (int i = 0; i < series_size - N; i++) {
+	for (int i = 0; i <= series_size - N; i++) {
 		unsigned long product = 0;
 
 		if (i == 0 || series[i - 1] == '0') {

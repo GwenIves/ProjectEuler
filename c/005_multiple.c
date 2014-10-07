@@ -15,12 +15,15 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	unsigned long num = 1;
-	char * primes = eratosthenes_sieve (N);
+	char * primes = eratosthenes_sieve (N + 1);
 
 	double log_N = log (N);
 
-	for (int i = 2; i < N; i++)
+	for (int i = 2; i <= N; i++)
 		if (primes[i]) {
 			int pow = log_N / log (i);
 

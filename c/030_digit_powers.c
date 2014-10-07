@@ -14,6 +14,11 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N < 0) {
+		printf ("0\n");
+		return 0;
+	}
+
 	int digit_powers[10];
 
 	for (int i = 0; i < 10; i++)

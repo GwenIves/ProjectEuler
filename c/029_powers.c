@@ -15,6 +15,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N < 2)
+		return 1;
+
 	bignum_t ** powers = x_malloc ((N - 1) * (N - 1) * sizeof (bignum_t *));
 	int powers_count = 0;
 

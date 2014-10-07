@@ -22,6 +22,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	int start = pow (10, N - 1);
 	int stop = start * 10 - 1;
 

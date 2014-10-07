@@ -5,7 +5,7 @@ ALL_C := $(wildcard *.c)
 ALL_DEPS := $(subst .c,.d,$(ALL_C))
 ALL_EXE :=
 
-CFLAGS := --pedantic -Wall -std=gnu99 -O3
+CFLAGS := --pedantic -Wall -std=gnu99 -O3 -Werror
 LDFLAGS :=
 
 #Top level targets

@@ -15,6 +15,11 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N < 0) {
+		printf ("0\n");
+		return 0;
+	}
+
 	unsigned long sum3 = sum_of_multiples (3, N);
 	unsigned long sum5 = sum_of_multiples (5, N);
 	unsigned long sum15 = sum_of_multiples (15, N);

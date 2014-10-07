@@ -15,6 +15,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	int * divisors_sums = x_malloc (N * sizeof (int));
 
 	for (int i = 1; i < N; i++)

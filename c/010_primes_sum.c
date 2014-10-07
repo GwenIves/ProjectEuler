@@ -14,6 +14,11 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0) {
+		printf ("0\n");
+		return 0;
+	}
+
 	char * sieve = eratosthenes_sieve (N);
 
 	unsigned long sum = 0;

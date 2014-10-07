@@ -46,4 +46,6 @@ int gcd (int val_a, int val_b) {
 		a = b;
 		b = rem;
 	}
+
+	return a;
 }

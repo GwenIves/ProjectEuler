@@ -21,6 +21,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N < 1)
+		return 1;
+
 	rem_t * remainders = x_malloc (N * sizeof (rem_t));
 
 	int longest_cycle = 0;

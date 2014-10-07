@@ -14,6 +14,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	unsigned long ** grid_paths = x_malloc (N * sizeof (unsigned long *));
 
 	for (int i = 0; i < N; i++)

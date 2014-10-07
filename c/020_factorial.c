@@ -14,6 +14,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	bignum_t * fact = get_bignum_int (1);
 
 	for (int i = 2; i <= N; i++) {

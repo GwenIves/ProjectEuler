@@ -16,9 +16,12 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 1)
+		return 1;
+
 	int * lengths = x_malloc (N * sizeof (int));
 
-	int starting_num = 0;
+	int starting_num = 1;
 	int max_length = 0;
 
 	lengths[1] = 1;

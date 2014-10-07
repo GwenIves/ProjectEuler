@@ -20,6 +20,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	int rows = 0;
 	int columns = 0;
 
