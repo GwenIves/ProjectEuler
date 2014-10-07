@@ -24,18 +24,17 @@ int main (int argc, char ** argv) {
 	for (int i = 0; i < 10; i++)
 		digit_powers[i] = pow (i, N);
 
-	// Find the smallest power of 10 that certainly cannot be represented as a sum of its digit's powers
-	int upper_limit = 1;
+	int lowest_pow10 = 1;
 	int max_representable = digit_powers[9];
 
-	while (upper_limit < max_representable) {
-		upper_limit *= 10;
+	while (lowest_pow10 < max_representable) {
+		lowest_pow10 *= 10;
 		max_representable += digit_powers[9];
 	}
 
 	int sum = 0;
 
-	for (int i = 10; i < upper_limit; i++) {
+	for (int i = 10; i <= max_representable; i++) {
 		int digit_sum = 0;
 		int num = i;
 

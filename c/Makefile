@@ -149,4 +149,6 @@ ALL_EXE += 032_pandigital
 033_digit_cancelling: utils.o fraction.o math_utils.o
 ALL_EXE += 033_digit_cancelling
 
+ALL_EXE += 034_digit_factorials
+
 build:  $(ALL_EXE)
