@@ -120,6 +120,8 @@ ALL_EXE += 022_name_scoring
 023_non_abundant: math_utils.o utils.o
 ALL_EXE += 023_non_abundant
 
+024_permutations: LDFLAGS += -lm
+024_permutations: utils.o math_utils.o
 ALL_EXE += 024_permutations
 
 025_fibonacci: bignum.o utils.o
@@ -170,5 +172,9 @@ ALL_EXE += 038_pandigital
 
 ALL_EXE += 039_triangles
 ALL_EXE += 040_champernowne
+
+041_pandigital_prime: LDFLAGS += -lm
+041_pandigital_prime: utils.o math_utils.o
+ALL_EXE += 041_pandigital_prime
 
 build:  $(ALL_EXE)

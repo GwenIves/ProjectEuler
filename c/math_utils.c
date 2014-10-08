@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "utils.h"
 #include "math_utils.h"
 
@@ -16,6 +17,16 @@ char * eratosthenes_sieve (int size) {
 				sieve[j] = 0;
 
 	return sieve;
+}
+
+int is_prime (char * primes, int num) {
+	int limit = sqrt (num);
+
+	for (int i = 2; i <= limit; i++)
+		if (primes[i] && num % i == 0)
+			return 0;
+
+	return 1;
 }
 
 int divisors_sum (int num) {
@@ -87,6 +98,78 @@ int pandigital_test_digits (char * digits, int N) {
 	for (int i = N + 1; i < DIGITS_COUNT; i++)
 		if (digits[i] == 1)
 			return 0;
+
+	return 1;
+}
+
+/*
+ * Inplace produce the next lexicographically ordered permutation of a given sequence and return 1
+ * Returns 0 and leaves the sequence unchanged when given the already largest possible sequence
+ *
+ * 1. Find the least significant digit to increase, the one with a less significant and larger digit
+ * 2. Swap it with the smallest larger, less significant digit, thus increasing the lexicographical value as little as possible
+ * 3. Reverse all the less significant digits, changing them to increasing order, thus starting to permute the tail from the lowest possible value
+ */
+int next_permutation (char * seq) {
+	size_t len = strlen (seq);
+
+	int first_digit_to_increase = -1;
+
+	for (int i = len - 1; i > 0; i--)
+		if (seq[i - 1] < seq[i]) {
+			first_digit_to_increase = i - 1;
+			break;
+		}
+
+	if (first_digit_to_increase < 0)
+		return 0;
+
+	for (int i = len - 1; i > 0; i--)
+		if (seq[i] > seq[first_digit_to_increase]) {
+			swap_chars (seq, i, first_digit_to_increase);
+			break;
+		}
+
+	int i = first_digit_to_increase + 1;
+	int j = len - 1;
+
+	while (i < j) {
+		swap_chars (seq, i, j);
+		i++;
+		j--;
+	}
+
+	return 1;
+}
+
+int prev_permutation (char * seq) {
+	size_t len = strlen (seq);
+
+	int first_digit_to_decrease = -1;
+
+	for (int i = len - 1; i > 0; i--)
+		if (seq[i - 1] > seq[i]) {
+			first_digit_to_decrease = i - 1;
+			break;
+		}
+
+	if (first_digit_to_decrease < 0)
+		return 0;
+
+	for (int i = len - 1; i > 0; i--)
+		if (seq[i] < seq[first_digit_to_decrease]) {
+			swap_chars (seq, i, first_digit_to_decrease);
+			break;
+		}
+
+	int i = first_digit_to_decrease + 1;
+	int j = len - 1;
+
+	while (i < j) {
+		swap_chars (seq, i, j);
+		i++;
+		j--;
+	}
 
 	return 1;
 }

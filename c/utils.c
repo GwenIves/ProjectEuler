@@ -33,3 +33,10 @@ void * x_realloc (void * ptr, size_t size) {
 
 	return mem;
 }
+
+
+void swap_chars (char * seq, int a, int b) {
+	char t = seq[a];
+	seq[a] = seq[b];
+	seq[b] = t;
+}
