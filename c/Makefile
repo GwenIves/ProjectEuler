@@ -177,4 +177,6 @@ ALL_EXE += 040_champernowne
 041_pandigital_prime: utils.o math_utils.o
 ALL_EXE += 041_pandigital_prime
 
+ALL_EXE += 042_triangle_words
+
 build:  $(ALL_EXE)
