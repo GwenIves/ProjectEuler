@@ -5,8 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-static unsigned long next_triangle_num ();
+#include "math_utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -36,14 +35,4 @@ int main (int argc, char ** argv) {
 	}
 
 	return 0;
-}
-
-static unsigned long next_triangle_num () {
-	static unsigned long last_natural_num = 0;
-	static unsigned long last_triangle_num = 0;
-
-	last_natural_num++;
-	last_triangle_num += last_natural_num;
-
-	return last_triangle_num;
 }

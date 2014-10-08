@@ -21,4 +21,8 @@ int pandigital_test_digits (char *, int);
 int next_permutation (char *);
 int prev_permutation (char *);
 
+unsigned long next_triangle_num ();
+unsigned long next_pentagonal_num ();
+unsigned long next_hexagonal_num ();
+
 #endif

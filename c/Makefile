@@ -84,6 +84,7 @@ ALL_EXE += 010_primes_sum
 ALL_EXE += 011_grid_product
 
 012_triangular_number: LDFLAGS += -lm
+012_triangular_number: utils.o math_utils.o
 ALL_EXE += 012_triangular_number
 
 013_large_sum: bignum.o utils.o
@@ -185,5 +186,9 @@ ALL_EXE += 043_substrings
 
 044_pentagon_numbers: LDFLAGS += -lm
 ALL_EXE += 044_pentagon_numbers
+
+045_geometric_numbers: LDFLAGS += -lm
+045_geometric_numbers: utils.o math_utils.o
+ALL_EXE += 045_geometric_numbers
 
 build:  $(ALL_EXE)

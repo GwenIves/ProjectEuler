@@ -173,3 +173,33 @@ int prev_permutation (char * seq) {
 
 	return 1;
 }
+
+unsigned long next_triangle_num () {
+	static unsigned long last_index = 0;
+	static unsigned long last_num = 0;
+
+	last_num += last_index + 1;
+	last_index++;
+
+	return last_num;
+}
+
+unsigned long next_pentagonal_num () {
+	static unsigned long last_index = 0;
+	static unsigned long last_num = 0;
+
+	last_num += 3 * last_index + 1;
+	last_index++;
+
+	return last_num;
+}
+
+unsigned long next_hexagonal_num () {
+	static unsigned long last_index = 0;
+	static unsigned long last_num = 0;
+
+	last_num += 4 * last_index + 1;
+	last_index++;
+
+	return last_num;
+}

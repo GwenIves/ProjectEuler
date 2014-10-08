@@ -70,7 +70,7 @@ static unsigned long search_solutions (int limit, unsigned long current_minimum)
 	return minimum;
 }
 
-// If val is pentagonal there is a positive integer n solving n * (3n - 1) = val
+// If val is pentagonal there is a positive integer n solving n * (3n - 1) = 2 * val
 static int is_pentagonal (unsigned long val) {
 	unsigned long discrim = 1 + 24 * val;
 	unsigned long larger_root = ROUND ((1 + sqrt (discrim)) / 6);
