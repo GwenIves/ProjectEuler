@@ -191,4 +191,8 @@ ALL_EXE += 044_pentagon_numbers
 045_geometric_numbers: utils.o math_utils.o
 ALL_EXE += 045_geometric_numbers
 
+046_goldbach: LDFLAGS += -lm
+046_goldbach: utils.o math_utils.o
+ALL_EXE += 046_goldbach
+
 build:  $(ALL_EXE)
