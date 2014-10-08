@@ -169,5 +169,6 @@ ALL_EXE += 037_truncatable_primes
 ALL_EXE += 038_pandigital
 
 ALL_EXE += 039_triangles
+ALL_EXE += 040_champernowne
 
 build:  $(ALL_EXE)
