@@ -179,4 +179,8 @@ ALL_EXE += 041_pandigital_prime
 
 ALL_EXE += 042_triangle_words
 
+043_substrings: LDFLAGS += -lm
+043_substrings: utils.o math_utils.o
+ALL_EXE += 043_substrings
+
 build:  $(ALL_EXE)
