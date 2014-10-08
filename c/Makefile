@@ -183,4 +183,7 @@ ALL_EXE += 042_triangle_words
 043_substrings: utils.o math_utils.o
 ALL_EXE += 043_substrings
 
+044_pentagon_numbers: LDFLAGS += -lm
+ALL_EXE += 044_pentagon_numbers
+
 build:  $(ALL_EXE)
