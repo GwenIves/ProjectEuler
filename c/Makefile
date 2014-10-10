@@ -205,4 +205,8 @@ ALL_EXE += 048_self_powers
 049_permutations: utils.o math_utils.o
 ALL_EXE += 049_permutations
 
+050_prime_sum: LDFLAGS += -lm
+050_prime_sum: utils.o math_utils.o
+ALL_EXE += 050_prime_sum
+
 build:  $(ALL_EXE)

@@ -13,7 +13,7 @@ char * eratosthenes_sieve (int size) {
 		sieve[i] = 1;
 
 	int upper_limit = sqrt (size);
-	for (int i = 2; i < upper_limit; i++)
+	for (int i = 2; i <= upper_limit; i++)
 		if (sieve[i])
 			for (int j = i * i; j < size; j += i)
 				sieve[j] = 0;
