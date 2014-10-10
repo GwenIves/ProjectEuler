@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-int factor_count (int);
+static int factor_count (int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -41,7 +41,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-int factor_count (int num) {
+static int factor_count (int num) {
 	int upper_limit = sqrt (num);
 	int factor = 2;
 	int count = 0;

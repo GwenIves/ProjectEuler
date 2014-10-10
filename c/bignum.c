@@ -16,6 +16,7 @@ bignum_t * get_bignum_int (int value) {
 	num->sign = 0;
 	num->allocated = 0;
 	num->used = 0;
+	num->significant = 0;
 
 	if (value < 0) {
 		value *= -1;
@@ -39,6 +40,7 @@ bignum_t * get_bignum_str (char * value) {
 	num->sign = 0;
 	num->allocated = 0;
 	num->used = 0;
+	num->significant = 0;
 
 	while (isblank (*value))
 		value++;
@@ -90,13 +92,24 @@ void print_bignum (bignum_t * num) {
 
 bignum_t * bignum_mult (bignum_t * a, bignum_t * b) {
 	bignum_t * c = get_bignum_int (0);
+	c-> significant = MAX (a->significant, b->significant);
 
 	c->sign = a->sign ^ b->sign;
 
 	char carry = 0;
 
 	for (int i = 0; i < b->used; i++) {
+		if (c->significant && i >= c->significant) {
+			carry = 0;
+			break;
+		}
+
 		for (int j = 0; j < a->used; j++) {
+			if (c->significant && i + j >= c->significant) {
+				carry = 0;
+				break;
+			}
+
 			if (c->used <= i + j) {
 				ensure_allocation (c);
 				c->digits[c->used++] = 0;
@@ -133,6 +146,7 @@ bignum_t * bignum_mult (bignum_t * a, bignum_t * b) {
 
 bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
 	bignum_t * c = get_bignum_int (0);
+	c->significant = MAX (a->significant, b->significant);
 
 	if ((a->sign ^ b->sign) == 0) {
 		c->sign = a->sign;
@@ -167,6 +181,11 @@ bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
 	int partial_sum = 0;
 
 	for (int i = 0; i < used; i++) {
+		if (c->significant && i >= c->significant) {
+			carry = 0;
+			break;
+		}
+
 		ensure_allocation (c);
 
 		partial_sum = 0;
@@ -207,11 +226,15 @@ int bignum_cmp (bignum_t * a, bignum_t * b) {
  */
 static bignum_t * bignum_sub_aux (bignum_t * a, bignum_t * b) {
 	bignum_t * c = get_bignum_int (0);
+	c->significant = MAX (a->significant, b->significant);
 	c->used = 0;
 
 	int carry = 0;
 
 	for (int i = 0; i < a->used; i++) {
+		if (c->significant && i >= c->significant)
+			break;
+
 		int partial_sub = 0;
 
 		ensure_allocation (c);

@@ -6,6 +6,7 @@ typedef struct {
 	char sign;
 	int allocated;
 	int used;
+	int significant;
 } bignum_t;
 
 bignum_t * get_bignum_int (int);
