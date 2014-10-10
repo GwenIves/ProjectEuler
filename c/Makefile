@@ -195,4 +195,7 @@ ALL_EXE += 045_geometric_numbers
 046_goldbach: utils.o math_utils.o
 ALL_EXE += 046_goldbach
 
+047_prime_factors: LDFLAGS += -lm
+ALL_EXE += 047_prime_factors
+
 build:  $(ALL_EXE)
