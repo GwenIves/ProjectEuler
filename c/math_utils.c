@@ -4,6 +4,8 @@
 #include "utils.h"
 #include "math_utils.h"
 
+static void set_digits (char *, int);
+
 char * eratosthenes_sieve (int size) {
 	char * sieve = x_malloc (size);
 
@@ -72,6 +74,31 @@ int is_palindrome (int num, int base) {
 	}
 
 	return rev_num == orig_num;
+}
+
+int is_permutation (int a, int b) {
+	char digits[DIGITS_COUNT];
+
+	for (int i = 0; i < DIGITS_COUNT; i++)
+		digits[i] = 0;
+
+	set_digits (digits, a);
+	set_digits (digits, b);
+
+	for (int i = 0; i < DIGITS_COUNT; i++)
+		if (digits[i] == 1)
+			return 0;
+
+	return 1;
+}
+
+static void set_digits (char * digits, int num) {
+	while (num > 0) {
+		int digit = num % 10;
+		num /= 10;
+
+		digits[digit] += 1;
+	}
 }
 
 int pandigital_test_and_set_digits (char * digits, int value) {

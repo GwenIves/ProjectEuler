@@ -13,7 +13,9 @@ int is_prime (char *, int);
 
 int divisors_sum (int);
 int gcd (int, int);
+
 int is_palindrome (int, int);
+int is_permutation (int, int);
 
 int pandigital_test_and_set_digits (char *, int);
 int pandigital_test_digits (char *, int);
