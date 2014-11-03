@@ -1,5 +1,5 @@
-#ifndef _FRACTION_H
-#define _FRACTION_H
+#ifndef FRACTION_H_
+#define FRACTION_H_
 
 typedef struct {
 	unsigned long nominator;

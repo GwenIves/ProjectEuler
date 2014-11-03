@@ -1,5 +1,5 @@
-#ifndef _MATH_UTILS_H
-#define _MATH_UTILS_H
+#ifndef MATH_UTILS_H_
+#define MATH_UTILS_H_
 
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define MIN(a,b) ((a)<(b)?(a):(b))

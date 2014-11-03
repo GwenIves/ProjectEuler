@@ -1,5 +1,5 @@
-#ifndef _BIGNUM_H
-#define _BIGNUM_H
+#ifndef BIGNUM_H_
+#define BIGNUM_H_
 
 typedef struct {
 	char * digits;
