@@ -6,6 +6,7 @@
 
 static void set_digits (char *, int);
 
+// Returns an Eratosthenes sieve checkable from 2 (inclusive) to size (non-inclusive)
 char * eratosthenes_sieve (int size) {
 	char * sieve = x_malloc (size);
 
@@ -21,7 +22,11 @@ char * eratosthenes_sieve (int size) {
 	return sieve;
 }
 
+// Determines if a number is prime by divisor checking, the caller must guarantee the primes sieve contains entries at least up to sqrt (num) inclusive
 int is_prime (char * primes, int num) {
+	if (num < 2)
+		return 0;
+
 	int limit = sqrt (num);
 
 	for (int i = 2; i <= limit; i++)

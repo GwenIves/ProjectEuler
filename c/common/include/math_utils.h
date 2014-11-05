@@ -4,7 +4,7 @@
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define ABS(a) ((a)>0?(a):-(a))
-#define ROUND(a) ((int)(a+0.5))
+#define ROUND(a) ((a)>0?(int)(a+0.5):(int)(a-0.5))
 
 #define DIGITS_COUNT	10
 

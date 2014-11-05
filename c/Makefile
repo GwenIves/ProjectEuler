@@ -1,15 +1,16 @@
 ############### Definitions
 
 main_sources := $(wildcard *.c)
-lib_sources := $(wildcard common/*c)
+lib_sources := $(wildcard common/*.c)
+test_sources := $(wildcard tests/*.c)
 
-sources := $(main_sources) $(lib_sources)
+sources := $(main_sources) $(lib_sources) $(test_sources)
 headers := $(wildcard *.h common/*.h)
 
 dependencies := $(subst .c,.d,$(sources))
 objects := $(subst .c,.o,$(sources))
 
-executables := $(subst .c,,$(main_sources))
+executables := $(subst .c,,$(main_sources) $(test_sources))
 
 CFLAGS += --pedantic -Wall -Werror -std=gnu99 -O3
 CPPFLAGS += -Icommon/include
@@ -21,6 +22,13 @@ VPATH := common
 
 .PHONY: build
 build:  $(executables)
+
+.PHONY: all
+all: build tests
+
+.PHONY: tests
+tests: build
+	cd tests && ./test_all.sh
 
 .PHONY: clean
 clean:
