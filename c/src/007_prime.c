@@ -17,16 +17,16 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	int size = N * 5;
+	size_t size = N * 5;
 
 	while (1) {
 		char * sieve = eratosthenes_sieve (size);
 
 		int prime_count = 0;
 
-		for (int i = 2; i < size; i++) {
+		for (size_t i = 2; i < size; i++) {
 			if (sieve[i] && ++prime_count == N) {
-				printf ("%d\n", i);
+				printf ("%d\n", (int) i);
 
 				free (sieve);
 				return 0;

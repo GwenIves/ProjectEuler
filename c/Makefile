@@ -24,7 +24,7 @@ VPATH := common
 build:  $(executables)
 
 .PHONY: all
-all: build tests
+all: build tests tags
 
 .PHONY: tests
 tests: build

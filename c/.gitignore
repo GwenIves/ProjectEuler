@@ -3,6 +3,7 @@
 
 tests/*
 !tests/*.*
+!tests/data
 
 *.o
 *.a

@@ -4,9 +4,8 @@
 typedef struct {
 	char * digits;
 	char sign;
-	int allocated;
-	int used;
-	int significant;
+	size_t allocated;
+	size_t used;
 } bignum_t;
 
 bignum_t * get_bignum_int (int);

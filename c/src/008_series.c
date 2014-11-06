@@ -26,16 +26,17 @@ int main (int argc, char ** argv) {
 			if (series[i] == '\n' || series[i] == '\0') {
 				series[i] = '\0';
 				series_size = i;
+				break;
 			}
 
 	unsigned long prev_product = 0;
 	unsigned long max_product = 0;
 
-	for (int i = 0; i <= series_size - N; i++) {
+	for (size_t i = 0; i <= series_size - N; i++) {
 		unsigned long product = 0;
 
 		if (i == 0 || series[i - 1] == '0') {
-			for (int j = 0; j < N; j++) {
+			for (size_t j = 0; j < N; j++) {
 				int digit = series[i + j] - '0';
 
 				if (j == 0)

@@ -42,6 +42,7 @@ static void bignum_mult_test () {
 	bignum_t * a = get_bignum_str ("123456");
 	bignum_t * b = get_bignum_str ("456789");
 	bignum_t * b_neg = get_bignum_str ("-456789");
+
 	bignum_t * c_known = get_bignum_str ("56393342784");
 	bignum_t * c_known_neg = get_bignum_str ("-56393342784");
 

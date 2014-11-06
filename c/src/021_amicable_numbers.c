@@ -21,7 +21,7 @@ int main (int argc, char ** argv) {
 	int * divisors_sums = x_malloc (N * sizeof (int));
 
 	for (int i = 1; i < N; i++)
-		divisors_sums[i] = divisors_sum (i);
+		divisors_sums[i] = proper_divisors_sum (i);
 
 	unsigned long amicable_sum = 0;
 
@@ -34,7 +34,7 @@ int main (int argc, char ** argv) {
 		if (divisors_sums[i] < N)
 			pair = divisors_sums[divisors_sums[i]];
 		else
-			pair = divisors_sum (divisors_sums[i]);
+			pair = proper_divisors_sum (divisors_sums[i]);
 
 		if (i == pair)
 			amicable_sum += i;

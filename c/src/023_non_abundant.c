@@ -13,7 +13,7 @@ int main () {
 	size_t abundant_count = 0;
 
 	for (int i = 1; i <= KNOWN_UPPER_LIMIT; i++)
-		if (divisors_sum (i) > i)
+		if (proper_divisors_sum (i) > i)
 			abundant_nums[abundant_count++] = i;
 
 	char candidates[KNOWN_UPPER_LIMIT + 1];

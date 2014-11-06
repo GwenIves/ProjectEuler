@@ -48,10 +48,11 @@ int main (int argc, char ** argv) {
 static bignum_t * self_power (int num) {
 	bignum_t * val = get_bignum_int (num);
 	bignum_t * result = get_bignum_int (1);
-	result->significant = DIGITS_TO_CONSIDER;
 
 	for (int i = 0; i < num; i++) {
 		bignum_t * new_result = bignum_mult (val, result);
+
+		new_result->used = MIN (DIGITS_TO_CONSIDER, new_result->used);
 
 		delete_bignum (result);
 		result = new_result;

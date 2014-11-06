@@ -13,6 +13,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N < 1)
+		return 1;
+
 	unsigned long sum_of_squares = 0;
 	unsigned long square_of_sum = 0;
 

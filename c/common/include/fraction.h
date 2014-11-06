@@ -2,11 +2,12 @@
 #define FRACTION_H_
 
 typedef struct {
-	unsigned long nominator;
-	unsigned long denominator;
+	long nominator;
+	long denominator;
+	int sign;
 } fraction_t;
 
-fraction_t fraction_get (unsigned long, unsigned long);
+fraction_t fraction_get (long, long);
 void fraction_reduce (fraction_t *);
 fraction_t fraction_mult (fraction_t *, fraction_t *);
 

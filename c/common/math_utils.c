@@ -7,16 +7,16 @@
 static void set_digits (char *, int);
 
 // Returns an Eratosthenes sieve checkable from 2 (inclusive) to size (non-inclusive)
-char * eratosthenes_sieve (int size) {
+char * eratosthenes_sieve (size_t size) {
 	char * sieve = x_malloc (size);
 
-	for (int i = 2; i < size; i++)
+	for (size_t i = 2; i < size; i++)
 		sieve[i] = 1;
 
-	int upper_limit = sqrt (size);
-	for (int i = 2; i <= upper_limit; i++)
+	size_t upper_limit = sqrt (size);
+	for (size_t i = 2; i <= upper_limit; i++)
 		if (sieve[i])
-			for (int j = i * i; j < size; j += i)
+			for (size_t j = i * i; j < size; j += i)
 				sieve[j] = 0;
 
 	return sieve;
@@ -36,14 +36,18 @@ int is_prime (char * primes, int num) {
 	return 1;
 }
 
-int divisors_sum (int num) {
-	int sum = 1;
+// Returns the sum of all positive proper divisors of num including 1
+long proper_divisors_sum (long num) {
+	if (num < 0)
+		num = -num;
 
-	int upper_limit = sqrt (num);
+	long sum = 1;
+
+	long upper_limit = sqrt (num);
 
 	for (int i = 2; i <= upper_limit; i++)
 		if (num % i == 0) {
-			int div = num / i;
+			long div = num / i;
 
 			if (i == div)
 				sum += i;
@@ -54,12 +58,34 @@ int divisors_sum (int num) {
 	return sum;
 }
 
-int gcd (int val_a, int val_b) {
-	int a = MAX (val_a, val_b);
-	int b = MIN (val_a, val_b);
+// Returns the count of all positive divisors of num including 1 and num
+int divisors_count (long num) {
+	if (num < 0)
+		num = -num;
+
+	int count = 0;
+
+	long upper_limit = sqrt (num);
+
+	for (int i = 1; i <= upper_limit; i++)
+		if (num % i == 0) {
+			long div = num / i;
+
+			if (i == div)
+				count += 1;
+			else
+				count += 2;
+		}
+
+	return count;
+}
+
+long gcd (long val_a, long val_b) {
+	long a = MAX (ABS (val_a), ABS (val_b));
+	long b = MIN (ABS (val_a), ABS (val_b));
 
 	while (b > 0) {
-		int rem = a % b;
+		long rem = a % b;
 
 		a = b;
 		b = rem;
@@ -69,6 +95,9 @@ int gcd (int val_a, int val_b) {
 }
 
 int is_palindrome (int num, int base) {
+	if (num < 0)
+		num = -num;
+
 	int orig_num = num;
 	int rev_num = 0;
 
@@ -84,13 +113,13 @@ int is_palindrome (int num, int base) {
 int is_permutation (int a, int b) {
 	char digits[DIGITS_COUNT];
 
-	for (int i = 0; i < DIGITS_COUNT; i++)
+	for (size_t i = 0; i < DIGITS_COUNT; i++)
 		digits[i] = 0;
 
 	set_digits (digits, a);
 	set_digits (digits, b);
 
-	for (int i = 0; i < DIGITS_COUNT; i++)
+	for (size_t i = 0; i < DIGITS_COUNT; i++)
 		if (digits[i] == 1)
 			return 0;
 
@@ -98,17 +127,29 @@ int is_permutation (int a, int b) {
 }
 
 static void set_digits (char * digits, int num) {
+	if (num < 0)
+		num = -num;
+
 	while (num > 0) {
-		int digit = num % 10;
+		size_t digit = num % 10;
 		num /= 10;
 
 		digits[digit] += 1;
 	}
 }
 
+/*
+ * This function can be used for part-wise pandigital checking
+ * Call for different values giving the same digits mask
+ * Will immeditaly return failure should value contain digits already encountered previously
+ * Use panditital_test_digits () to perform a final validation of the mask
+ */
 int pandigital_test_and_set_digits (char * digits, int value) {
+	if (value < 0)
+		value = -value;
+
 	while (value > 0) {
-		int digit = value % 10;
+		size_t digit = value % 10;
 		value /= 10;
 
 		if (digit == 0)
@@ -122,12 +163,13 @@ int pandigital_test_and_set_digits (char * digits, int value) {
 	return 1;
 }
 
-int pandigital_test_digits (char * digits, int N) {
-	for (int i = 1; i <= N; i++)
+// Test if the digit mask is 1..N pandigital
+int pandigital_test_digits (char * digits, size_t N) {
+	for (size_t i = 1; i <= N; i++)
 		if (digits[i] == 0)
 			return 0;
 
-	for (int i = N + 1; i < DIGITS_COUNT; i++)
+	for (size_t i = N + 1; i < DIGITS_COUNT; i++)
 		if (digits[i] == 1)
 			return 0;
 
@@ -234,4 +276,15 @@ unsigned long next_hexagonal_num () {
 	last_index++;
 
 	return last_num;
+}
+
+// Sum an arithmetic sequence from start (inclusive) to end (non-inclusive)
+long arithmetic_sequence_sum (long start, long end, long step) {
+	if (end <= start)
+		return 0;
+
+	long count = 1 + (end - start - 1) / step;
+	long last = start + (count - 1) * step;
+
+	return count * (start + last) / 2;
 }

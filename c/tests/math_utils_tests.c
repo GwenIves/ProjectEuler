@@ -10,7 +10,8 @@ static void abs_test ();
 static void round_test ();
 static void eratosthenes_sieve_test ();
 static void is_prime_test ();
-static void divisors_sum_test ();
+static void proper_divisors_sum_test ();
+static void divisors_count_test ();
 static void gcd_test ();
 static void is_palindrome_test ();
 static void is_permutation_test ();
@@ -21,6 +22,7 @@ static void prev_permutation_test ();
 static void next_triangle_num_test ();
 static void next_pentagonal_num_test ();
 static void next_hexagonal_num_test ();
+static void arithmetic_sequence_sum_test ();
 
 int main () {
 	max_test ();
@@ -29,7 +31,8 @@ int main () {
 	round_test ();
 	eratosthenes_sieve_test ();
 	is_prime_test ();
-	divisors_sum_test ();
+	proper_divisors_sum_test ();
+	divisors_count_test ();
 	gcd_test ();
 	is_palindrome_test ();
 	is_permutation_test ();
@@ -40,6 +43,7 @@ int main () {
 	next_triangle_num_test ();
 	next_pentagonal_num_test ();
 	next_hexagonal_num_test ();
+	arithmetic_sequence_sum_test ();
 
 	printf ("All math util tests passed\n");
 
@@ -94,21 +98,31 @@ static void is_prime_test () {
 	free (sieve);
 }
 
-static void divisors_sum_test () {
-	assert (divisors_sum (1) == 1);
-	assert (divisors_sum (2) == 1);
-	assert (divisors_sum (9) == 4);
+static void proper_divisors_sum_test () {
+	assert (proper_divisors_sum (1) == 1);
+	assert (proper_divisors_sum (2) == 1);
+	assert (proper_divisors_sum (9) == 4);
+	assert (proper_divisors_sum (-9) == 4);
+}
+
+static void divisors_count_test () {
+	assert (divisors_count (1) == 1);
+	assert (divisors_count (2) == 2);
+	assert (divisors_count (9) == 3);
+	assert (divisors_count (-9) == 3);
 }
 
 static void gcd_test () {
 	assert (gcd (3, 5) == 1);
 	assert (gcd (12, 60) == 12);
 	assert (gcd (90, 12) == 6);
+	assert (gcd (-90, 12) == 6);
 }
 
 static void is_palindrome_test () {
 	assert (is_palindrome (12344321, 10));
 	assert (is_palindrome (1234321, 10));
+	assert (is_palindrome (-1234321, 10));
 	assert (!is_palindrome (12345321, 10));
 }
 
@@ -188,4 +202,9 @@ static void next_hexagonal_num_test () {
 		num = next_hexagonal_num ();
 
 	assert (num == 190);
+}
+
+static void arithmetic_sequence_sum_test () {
+	assert (arithmetic_sequence_sum (1, 101, 1) == 5050);
+	assert (arithmetic_sequence_sum (1, 101, 2) == 2500);
 }

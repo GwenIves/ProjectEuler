@@ -21,6 +21,13 @@ static void fraction_get_test () {
 
 	assert (f.nominator == 1);
 	assert (f.denominator == 2);
+	assert (f.sign == 0);
+
+	f = fraction_get (1, -2);
+
+	assert (f.nominator == 1);
+	assert (f.denominator == 2);
+	assert (f.sign == 1);
 }
 
 static void fraction_reduce_test () {
@@ -40,4 +47,15 @@ static void fraction_mult_test () {
 
 	assert (f.nominator == 10);
 	assert (f.denominator == 21);
+	assert (f.sign == 0);
+
+	a = fraction_get (-240, 360);
+	b = fraction_get (600, 840);
+
+	f = fraction_mult (&a, &b);
+	fraction_reduce (&f);
+
+	assert (f.nominator == 10);
+	assert (f.denominator == 21);
+	assert (f.sign == 1);
 }

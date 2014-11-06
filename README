@@ -1,1 +1,7 @@
 Solutions to the Project Euler problems in various programming languages
+
+c - ANSI C implementations for an arbitrary input parameter
+	make build to compile all binaries in the src subdir
+	make all to compile binaries and also run tests
+
+	Limitations: does not check for numeric overflows, consequently a number of the solutions will produce incorrect answers for very large input parameters

@@ -2,11 +2,12 @@
 #include "fraction.h"
 #include "math_utils.h"
 
-fraction_t fraction_get (unsigned long nom, unsigned long denom) {
+fraction_t fraction_get (long nom, long denom) {
 	fraction_t f;
 
-	f.nominator = nom;
-	f.denominator = denom;
+	f.nominator = ABS (nom);
+	f.denominator = ABS (denom);
+	f.sign = (nom < 0) ^ (denom < 0);
 
 	fraction_reduce (&f);
 
@@ -27,6 +28,7 @@ fraction_t fraction_mult (fraction_t * a, fraction_t * b) {
 
 	c.denominator = a->denominator * b->denominator;
 	c.nominator = a->nominator * b->nominator;
+	c.sign = a->sign ^ b->sign;
 
 	fraction_reduce (&c);
 
