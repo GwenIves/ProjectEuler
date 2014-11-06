@@ -35,6 +35,7 @@ int prev_permutation (char *);
 unsigned long next_triangle_num ();
 unsigned long next_pentagonal_num ();
 unsigned long next_hexagonal_num ();
+unsigned long next_collatz_num (unsigned long);
 
 long arithmetic_sequence_sum (long, long, long);
 

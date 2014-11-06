@@ -1,15 +1,16 @@
 /*
- * Write out N (less than 1,000,000) in English letters
+ * Write out N (with absolute value less than 1,000,000) in English letters
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "math_utils.h"
 
 static const char * ones[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 static const char * teens[] = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
 static const char * tys[] = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
-static void printout_number (int);
+static int printout_number (int);
 static void printout_number_under100 (int);
 static void printout_number_under1000 (int, int);
 static void printout_number_under1000000 (int, int);
@@ -22,16 +23,22 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	printout_number (N);
-
-	return 0;
+	return printout_number (N);
 }
 
-static void printout_number (int N) {
-	if (N >= 0 && N < 1000000)
-		printout_number_under1000000 (N, 1);
+static int printout_number (int N) {
+	if (ABS (N) >= 1000000)
+		return 1;
 
+	if (N < 0) {
+		printf ("minus ");
+		N = -N;
+	} 
+	
+	printout_number_under1000000 (N, 1);
 	printf ("\n");
+
+	return 0;
 }
 
 static void printout_number_under100 (int N) {

@@ -4,9 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "math_utils.h"
 #include "utils.h"
-
-static unsigned long collatz (unsigned long);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -32,7 +31,7 @@ int main (int argc, char ** argv) {
 
 		while (next >= i) {
 			steps++;
-			next = collatz (next);
+			next = next_collatz_num (next);
 		}
 
 		lengths[i] = steps + lengths[next];
@@ -48,11 +47,4 @@ int main (int argc, char ** argv) {
 	free (lengths);
 
 	return 0;
-}
-
-static unsigned long collatz (unsigned long x) {
-	if (x % 2 == 0)
-		return x / 2;
-	else
-		return x * 3 + 1;
 }

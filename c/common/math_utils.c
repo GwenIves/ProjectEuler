@@ -323,6 +323,13 @@ unsigned long next_hexagonal_num () {
 	return last_num;
 }
 
+unsigned long next_collatz_num (unsigned long x) {
+	if (x % 2 == 0)
+		return x / 2;
+	else
+		return x * 3 + 1;
+}
+
 // Sum an arithmetic sequence from start (inclusive) to end (non-inclusive)
 long arithmetic_sequence_sum (long start, long end, long step) {
 	if (end <= start)

@@ -1,5 +1,5 @@
 /*
- * Find the sum of digits in the N-th power of 2
+ * Find the sum of digits in the N-th power of 2, with N >= 0
  */
 
 #include <stdio.h>

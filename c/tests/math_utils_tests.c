@@ -23,6 +23,7 @@ static void prev_permutation_test ();
 static void next_triangle_num_test ();
 static void next_pentagonal_num_test ();
 static void next_hexagonal_num_test ();
+static void next_collatz_num_test ();
 static void arithmetic_sequence_sum_test ();
 
 int main () {
@@ -45,6 +46,7 @@ int main () {
 	next_triangle_num_test ();
 	next_pentagonal_num_test ();
 	next_hexagonal_num_test ();
+	next_collatz_num_test ();
 	arithmetic_sequence_sum_test ();
 
 	printf ("All math util tests passed\n");
@@ -222,6 +224,11 @@ static void next_hexagonal_num_test () {
 		num = next_hexagonal_num ();
 
 	assert (num == 190);
+}
+
+static void next_collatz_num_test () {
+	assert (next_collatz_num (13) == 40);
+	assert (next_collatz_num (16) == 8);
 }
 
 static void arithmetic_sequence_sum_test () {

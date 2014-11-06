@@ -2,7 +2,8 @@
 !???_*.*
 
 tests/*
-!tests/*.*
+!tests/*.c
+!tests/*.sh
 !tests/data
 
 *.o
