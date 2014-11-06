@@ -1,6 +1,12 @@
 #ifndef MATH_UTILS_H_
 #define MATH_UTILS_H_
 
+typedef struct factors {
+	unsigned long factor;
+	unsigned int power;
+	struct factors * next;
+} factors_t;
+
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define ABS(a) ((a)>0?(a):-(a))
@@ -10,6 +16,8 @@
 
 char * eratosthenes_sieve (size_t);
 int is_prime (char *, int);
+
+factors_t * factorise (long);
 
 long proper_divisors_sum (long);
 int divisors_count (long);

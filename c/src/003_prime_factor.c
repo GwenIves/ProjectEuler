@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "math_utils.h"
 
 int main (int argc, char ** argv) {
@@ -20,29 +19,15 @@ int main (int argc, char ** argv) {
 		return 0;
 	}
 
-	long upper_limit = sqrt (N);
-	long factor = 2;
-	long max_factor = 1;
+	factors_t * factors = factorise (N);
 
-	while (N != 1) {
-		if (N % factor == 0) {
-			max_factor = factor;
-				
-			while (N % factor == 0)
-				N /= factor;
+	printf ("%lu\n", factors->factor);
 
-			upper_limit = sqrt (N);
-		}
-
-		if (N == 1)
-			break;
-		else if (++factor > upper_limit) {
-			max_factor = N;
-			break;
-		}
+	while (factors) {
+		factors_t * t = factors->next;
+		free (factors);
+		factors = t;
 	}
-
-	printf ("%ld\n", max_factor);
 
 	return 0;
 }

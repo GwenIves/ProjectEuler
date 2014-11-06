@@ -36,6 +36,49 @@ int is_prime (char * primes, int num) {
 	return 1;
 }
 
+factors_t * factorise (long num) {
+	if (num < 0)
+		num = -num;
+
+	unsigned long upper_limit = sqrt (num);
+	unsigned long factor = 2;
+
+	factors_t * factors = NULL;
+
+	while (num != 1) {
+		if (num % factor == 0) {
+			unsigned int power = 0;
+
+			while (num % factor == 0) {
+				num /= factor;
+				power++;
+			}
+
+			upper_limit = sqrt (num);
+
+			factors_t * f = x_malloc (sizeof (factors_t));
+			f->factor = factor;
+			f->power = power;
+			f->next = factors;
+			factors = f;
+		}
+
+		if (num == 1)
+			break;
+		else if (++factor > upper_limit) {
+			factors_t * f = x_malloc (sizeof (factors_t));
+			f->factor = num;
+			f->power = 1;
+			f->next = factors;
+			factors = f;
+
+			break;
+		}
+	}
+
+	return factors;
+}
+
 // Returns the sum of all positive proper divisors of num including 1
 long proper_divisors_sum (long num) {
 	if (num < 0)
@@ -63,19 +106,21 @@ int divisors_count (long num) {
 	if (num < 0)
 		num = -num;
 
-	int count = 0;
+	if (num <= 1)
+		return 1;
 
-	long upper_limit = sqrt (num);
+	int count = 1;
 
-	for (int i = 1; i <= upper_limit; i++)
-		if (num % i == 0) {
-			long div = num / i;
+	factors_t * factors = factorise (num);
 
-			if (i == div)
-				count += 1;
-			else
-				count += 2;
-		}
+	while (factors) {
+		factors_t * t = factors->next;
+
+		count *= factors->power + 1;
+
+		free (factors);
+		factors = t;
+	}
 
 	return count;
 }
