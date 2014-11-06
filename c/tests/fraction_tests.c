@@ -1,6 +1,6 @@
 #include <assert.h>
 #include <stdio.h>
-#include "../common/include/fraction.h"
+#include "fraction.h"
 
 static void fraction_get_test ();
 static void fraction_reduce_test ();

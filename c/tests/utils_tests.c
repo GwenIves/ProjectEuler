@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../common/include/utils.h"
+#include "utils.h"
 
 static void malloc_test ();
 static void calloc_test ();

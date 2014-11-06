@@ -1,11 +1,11 @@
 ############### Definitions
 
-main_sources := $(wildcard *.c)
+main_sources := $(wildcard src/*.c)
 lib_sources := $(wildcard common/*.c)
 test_sources := $(wildcard tests/*.c)
 
 sources := $(main_sources) $(lib_sources) $(test_sources)
-headers := $(wildcard *.h common/*.h)
+headers := $(wildcard common/include/*.h)
 
 dependencies := $(subst .c,.d,$(sources))
 objects := $(subst .c,.o,$(sources))

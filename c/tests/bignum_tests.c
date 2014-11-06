@@ -1,17 +1,19 @@
 #include <assert.h>
 #include <stdio.h>
-#include "../common/include/bignum.h"
+#include "bignum.h"
 
 static void get_bignum_int_test ();
 static void get_bignum_str_test ();
 static void bignum_mult_test ();
 static void bignum_add_test ();
+static void bignum_cmp_test ();
 
 int main () {
 	get_bignum_int_test ();
 	get_bignum_str_test ();
 	bignum_mult_test ();
 	bignum_add_test ();
+	bignum_cmp_test ();
 
 	printf ("All bignum tests passed\n");
 
@@ -79,4 +81,18 @@ static void bignum_add_test () {
 	delete_bignum (c_neg);
 	delete_bignum (c_known);
 	delete_bignum (c_known_neg);
+}
+
+static void bignum_cmp_test () {
+	bignum_t * a = get_bignum_str ("123456789");
+	bignum_t * b = get_bignum_str ("234567890");
+	bignum_t * c = get_bignum_str ("-234567890");
+
+	assert (bignum_cmp (b, a) == 1);
+	assert (bignum_cmp (a, a) == 0);
+	assert (bignum_cmp (c, a) == -1);
+
+	delete_bignum (a);
+	delete_bignum (b);
+	delete_bignum (c);
 }

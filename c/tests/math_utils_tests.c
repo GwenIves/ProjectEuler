@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../common/include/math_utils.h"
+#include "math_utils.h"
 
 static void max_test ();
 static void min_test ();
