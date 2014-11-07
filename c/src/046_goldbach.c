@@ -4,22 +4,25 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "math_utils.h"
 
 static int goldbach_represent (int, bool *);
 
 int main () {
-	int size = 1000;
+	size_t size = 1000;
 
 	while (1) {
 		bool * sieve = eratosthenes_sieve (size);
 
-		for (int i = 9; i < size; i += 2) {
+		for (size_t i = 9; i < size; i += 2) {
 			if (sieve[i])
 				continue;
 
 			if (!goldbach_represent (i, sieve)) {
-				printf ("%d\n", i);
+				printf ("%d\n", (int) i);
+
+				free (sieve);
 				return 0;
 			}
 		}
@@ -36,18 +39,10 @@ static int goldbach_represent (int num, bool * primes) {
 		if (!primes[i])
 			continue;
 
-		int j = 1;
+		int root = sqrt ((num - i) / 2);
 
-		while (1) {
-			int value = i + 2 * j * j;
-
-			if (value == num)
-				return 1;
-			else if (value > num)
-				break;
-			else
-				j++;
-		}
+		if (num == i + 2 * root * root)
+			return 1;
 	}
 
 	return 0;

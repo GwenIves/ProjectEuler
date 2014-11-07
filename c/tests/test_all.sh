@@ -211,7 +211,7 @@ assert_fail "../src/039_triangles 2" $LINENO
 assert "$(../src/039_triangles 1000)" 840 $LINENO
 
 assert_fail "../src/040_champernowne -1" $LINENO
-assert "$(../src/040_champernowne 0)" 1 $LINENO
+assert_fail "../src/040_champernowne 0" $LINENO
 assert "$(../src/040_champernowne 1)" 1 $LINENO
 assert "$(../src/040_champernowne 6)" 210 $LINENO
 

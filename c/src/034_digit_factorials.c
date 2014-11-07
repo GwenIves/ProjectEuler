@@ -6,19 +6,19 @@
 #include "math_utils.h"
 
 int main () {
-	int digit_factorials[10];
+	int digit_factorials[DIGITS_COUNT];
 
 	digit_factorials[0] = 1;
 
-	for (int i = 1; i < 10; i++)
+	for (int i = 1; i < DIGITS_COUNT; i++)
 		digit_factorials[i] = i * digit_factorials[i - 1];
 
 	int lowest_pow10 = 1;
-	int max_representable = digit_factorials[9];
+	int max_representable = digit_factorials[DIGITS_COUNT - 1];
 
 	while (lowest_pow10 < max_representable) {
 		lowest_pow10 *= 10;
-		max_representable += digit_factorials[9];
+		max_representable += digit_factorials[DIGITS_COUNT - 1];
 	}
 
 	unsigned long sum = 0;

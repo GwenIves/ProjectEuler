@@ -6,7 +6,6 @@
 #include <math.h>
 #include "math_utils.h"
 
-static int is_pentagonal (unsigned long);
 static unsigned long search_solutions (int, unsigned long);
 
 int main () {
@@ -68,13 +67,4 @@ static unsigned long search_solutions (int limit, unsigned long current_minimum)
 	}
 
 	return minimum;
-}
-
-// If val is pentagonal there is a positive integer n solving n * (3n - 1) = 2 * val
-static int is_pentagonal (unsigned long val) {
-	unsigned long discrim = 1 + 24 * val;
-	unsigned long larger_root = ROUND ((1 + sqrt (discrim)) / 6);
-	unsigned long recomputed_val = larger_root * (3 * larger_root - 1) / 2;
-
-	return val == recomputed_val;
 }

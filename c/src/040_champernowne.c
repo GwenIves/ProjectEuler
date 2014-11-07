@@ -13,7 +13,7 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N < 0)
+	if (N <= 0)
 		return 1;
 
 	int num = 1;

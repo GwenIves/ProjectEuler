@@ -52,6 +52,7 @@ static bignum_t * self_power (int num) {
 	for (int i = 0; i < num; i++) {
 		bignum_t * new_result = bignum_mult (val, result);
 
+		// Truncate only to the interesting digits to speed up multiplications
 		new_result->used = MIN (DIGITS_TO_CONSIDER, new_result->used);
 
 		bignum_delete (result);

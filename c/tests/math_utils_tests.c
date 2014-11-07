@@ -11,6 +11,7 @@ static void round_test ();
 static void eratosthenes_sieve_test ();
 static void is_prime_test ();
 static void factorise_test ();
+static void factors_count_test ();
 static void proper_divisors_sum_test ();
 static void divisors_count_test ();
 static void gcd_test ();
@@ -24,6 +25,8 @@ static void next_triangle_num_test ();
 static void next_pentagonal_num_test ();
 static void next_hexagonal_num_test ();
 static void next_collatz_num_test ();
+static void is_triangle_test ();
+static void is_pentagonal_test ();
 static void arithmetic_sequence_sum_test ();
 
 int main () {
@@ -34,6 +37,7 @@ int main () {
 	eratosthenes_sieve_test ();
 	is_prime_test ();
 	factorise_test ();
+	factors_count_test ();
 	proper_divisors_sum_test ();
 	divisors_count_test ();
 	gcd_test ();
@@ -47,6 +51,8 @@ int main () {
 	next_pentagonal_num_test ();
 	next_hexagonal_num_test ();
 	next_collatz_num_test ();
+	is_triangle_test ();
+	is_pentagonal_test ();
 	arithmetic_sequence_sum_test ();
 
 	printf ("All math util tests passed\n");
@@ -121,6 +127,10 @@ static void factorise_test () {
 	assert (factor == NULL);
 
 	linked_list_free (factors);
+}
+
+static void factors_count_test () {
+	assert (factors_count (330) == 4);
 }
 
 static void proper_divisors_sum_test () {
@@ -232,6 +242,16 @@ static void next_hexagonal_num_test () {
 static void next_collatz_num_test () {
 	assert (next_collatz_num (13) == 40);
 	assert (next_collatz_num (16) == 8);
+}
+
+static void is_triangle_test () {
+	assert (is_triangle (406));
+	assert (!is_triangle (326));
+}
+
+static void is_pentagonal_test () {
+	assert (is_pentagonal (782));
+	assert (!is_pentagonal (426));
 }
 
 static void arithmetic_sequence_sum_test () {

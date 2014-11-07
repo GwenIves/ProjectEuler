@@ -20,6 +20,7 @@ bool * eratosthenes_sieve (size_t);
 int is_prime (bool *, int);
 
 linked_list_t * factorise (long);
+int factors_count (long);
 
 long proper_divisors_sum (long);
 int divisors_count (long);
@@ -38,6 +39,9 @@ unsigned long next_triangle_num ();
 unsigned long next_pentagonal_num ();
 unsigned long next_hexagonal_num ();
 unsigned long next_collatz_num (unsigned long);
+
+bool is_triangle (unsigned long);
+bool is_pentagonal (unsigned long);
 
 long arithmetic_sequence_sum (long, long, long);
 

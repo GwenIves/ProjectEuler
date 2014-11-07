@@ -11,7 +11,7 @@
 #include "fraction.h"
 
 static int cancel_digit (int, int, int);
-static int * fill_digits (int, int);
+static void fill_digits (int *, int);
 static int digits_to_num (int *, int, int);
 
 int main (int argc, char ** argv) {
@@ -43,54 +43,50 @@ int main (int argc, char ** argv) {
 }
 
 static int cancel_digit (int nom, int denom, int N) {
-	int * nom_digits = fill_digits (nom, N);
-	int * denom_digits = fill_digits (denom, N);
+	int nom_digits[N]; 
+	int denom_digits[N];
 
-	int nom_trailing_zero = 1;
+	fill_digits (nom_digits, nom);
+	fill_digits (denom_digits, denom);
+
+	bool nom_trailing_zero = true;
 
 	for (int i = 0; i < N; i++) {
 		if (nom_digits[i] != 0)
-			nom_trailing_zero = 0;
+			nom_trailing_zero = false;
 
-		int denom_trailing_zero = 1;
+		if (nom_trailing_zero)
+			continue;
+
+		bool denom_trailing_zero = true;
 
 		for (int j = 0; j < N; j++) {
 			if (denom_digits[j] != 0)
-				denom_trailing_zero = 0;
+				denom_trailing_zero = false;
 
-			if (nom_trailing_zero && denom_trailing_zero)
+			if (denom_trailing_zero)
 				continue;
-			else if (nom_digits[i] == denom_digits[j]) {
+
+			if (nom_digits[i] == denom_digits[j]) {
 				int new_nom = digits_to_num (nom_digits, N, i);
 				int new_denom = digits_to_num (denom_digits, N, j);
 
-				if (nom * new_denom == denom * new_nom) {
-					free (nom_digits);
-					free (denom_digits);
-					
+				if (nom * new_denom == denom * new_nom)
 					return 1;
-				}
 			}
 		}
 	}
 
-	free (nom_digits);
-	free (denom_digits);
-
 	return 0;
 }
 
-static int * fill_digits (int value, int len) {
-	int * digits = x_malloc (len * sizeof (int));
-
+static void fill_digits (int * digits, int value) {
 	int index = 0;
 
 	do {
 		digits[index++] = value % 10;
 		value /= 10;
 	} while (value > 0);
-
-	return digits;
 }
 
 static int digits_to_num (int * digits, int len, int ignore_index) {

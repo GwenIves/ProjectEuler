@@ -18,10 +18,10 @@ int main () {
 	do {
 		int all_divisible = 1;
 
-		for (int i = 1; i <= 7; i++) {
+		for (size_t i = 1; i <= 7; i++) {
 			int substr_val = 0;
 
-			for (int j = 0; j < SUBSTR_LEN; j++) {
+			for (size_t j = 0; j < SUBSTR_LEN; j++) {
 				substr_val *= 10;
 				substr_val += digits[i + j] - '0';
 			}

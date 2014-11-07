@@ -5,8 +5,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
-
-static int is_triangle (int);
+#include "math_utils.h"
 
 int main () {
 	char word[100 + 1];
@@ -29,16 +28,4 @@ int main () {
 	printf ("%d\n", count);
 
 	return 0;
-}
-
-static int is_triangle (int val) {
-	int nat_num = 0;
-	int tri_num = 0;
-
-	while (tri_num < val) {
-		nat_num++;
-		tri_num += nat_num;
-	}
-
-	return val == tri_num;
 }

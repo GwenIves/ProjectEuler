@@ -30,6 +30,7 @@ int main (int argc, char ** argv) {
 static int count_combinations (int * values, int max_value, int sum) {
 	int combinations = 0;
 
+	// One representation using only max_value coins
 	if (sum > 0 && sum % values[max_value] == 0)
 		combinations++;
 

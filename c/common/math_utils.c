@@ -82,6 +82,19 @@ linked_list_t * factorise (long num) {
 	return factors;
 }
 
+int factors_count (long num) {
+	linked_list_t * factors = factorise (num);
+
+	int count = 0;
+
+	while (linked_list_next (factors, factor_t))
+		count++;
+
+	linked_list_free (factors);
+
+	return count;
+}
+
 // Returns the sum of all positive proper divisors of num including 1
 long proper_divisors_sum (long num) {
 	if (num < 0)
@@ -329,6 +342,24 @@ unsigned long next_collatz_num (unsigned long x) {
 		return x / 2;
 	else
 		return x * 3 + 1;
+}
+
+// If val is pentagonal there is a positive integer n solving n * (3n - 1) = 2 * val
+bool is_pentagonal (unsigned long val) {
+	unsigned long discrim = 1 + 24 * val;
+	unsigned long larger_root = ROUND ((1 + sqrt (discrim)) / 6);
+	unsigned long recomputed_val = larger_root * (3 * larger_root - 1) / 2;
+
+	return val == recomputed_val;
+}
+
+// If val is triangular there is a positive integer n solving n * (n + 1) = 2 * val
+bool is_triangle (unsigned long val) {
+	unsigned long discrim = 1 + 8 * val;
+	unsigned long larger_root = ROUND ((-1 + sqrt (discrim)) / 2);
+	unsigned long recomputed_val = larger_root * (larger_root + 1) / 2;
+
+	return val == recomputed_val;
 }
 
 // Sum an arithmetic sequence from start (inclusive) to end (non-inclusive)

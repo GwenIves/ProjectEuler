@@ -1,5 +1,5 @@
 /*
- * Find the largest concatenation of 3 N-digit numbers that are all primes and permutations of each other
+ * Find the largest concatenation of 3 N-digit numbers that are all primes, permutations of each other and each term incresing by the same amount from the previous one
  */
 
 #include <stdlib.h>
