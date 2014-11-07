@@ -35,7 +35,7 @@ static void calloc_test () {
 
 	assert (p != NULL);
 
-	for (int i = 0; i < ALLOC_SIZE; i++)
+	for (size_t i = 0; i < ALLOC_SIZE; i++)
 		assert (p[i] == 0);
 
 	free (p);
@@ -60,7 +60,7 @@ static void realloc_test () {
 static void swap_chars_test () {
 	char test_str[] = "ab";
 
-	swap_chars (test_str, 0, 1);
+	swap (test_str, 0, 1);
 
 	assert (!strcmp (test_str, "ba"));
 }

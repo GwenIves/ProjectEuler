@@ -7,23 +7,26 @@
 static void set_digits (char *, int);
 
 // Returns an Eratosthenes sieve checkable from 2 (inclusive) to size (non-inclusive)
-char * eratosthenes_sieve (size_t size) {
-	char * sieve = x_malloc (size);
+bool * eratosthenes_sieve (size_t size) {
+	if (size < 3)
+		return NULL;
+
+	bool * sieve = x_malloc (size * sizeof (bool));
 
 	for (size_t i = 2; i < size; i++)
-		sieve[i] = 1;
+		sieve[i] = true;
 
 	size_t upper_limit = sqrt (size);
 	for (size_t i = 2; i <= upper_limit; i++)
 		if (sieve[i])
 			for (size_t j = i * i; j < size; j += i)
-				sieve[j] = 0;
+				sieve[j] = false;
 
 	return sieve;
 }
 
 // Determines if a number is prime by divisor checking, the caller must guarantee the primes sieve contains entries at least up to sqrt (num) inclusive
-int is_prime (char * primes, int num) {
+int is_prime (bool * primes, int num) {
 	if (num < 2)
 		return 0;
 
@@ -36,14 +39,14 @@ int is_prime (char * primes, int num) {
 	return 1;
 }
 
-factors_t * factorise (long num) {
+linked_list_t * factorise (long num) {
 	if (num < 0)
 		num = -num;
 
 	unsigned long upper_limit = sqrt (num);
 	unsigned long factor = 2;
 
-	factors_t * factors = NULL;
+	linked_list_t * factors = linked_list_create ();
 
 	while (num != 1) {
 		if (num % factor == 0) {
@@ -56,21 +59,21 @@ factors_t * factorise (long num) {
 
 			upper_limit = sqrt (num);
 
-			factors_t * f = x_malloc (sizeof (factors_t));
+			factor_t * f = x_malloc (sizeof (factor_t));
 			f->factor = factor;
 			f->power = power;
-			f->next = factors;
-			factors = f;
+
+			linked_list_add (factors, f);
 		}
 
 		if (num == 1)
 			break;
 		else if (++factor > upper_limit) {
-			factors_t * f = x_malloc (sizeof (factors_t));
+			factor_t * f = x_malloc (sizeof (factor_t));
 			f->factor = num;
 			f->power = 1;
-			f->next = factors;
-			factors = f;
+
+			linked_list_add (factors, f);
 
 			break;
 		}
@@ -88,7 +91,7 @@ long proper_divisors_sum (long num) {
 
 	long upper_limit = sqrt (num);
 
-	for (int i = 2; i <= upper_limit; i++)
+	for (long i = 2; i <= upper_limit; i++)
 		if (num % i == 0) {
 			long div = num / i;
 
@@ -111,16 +114,14 @@ int divisors_count (long num) {
 
 	int count = 1;
 
-	factors_t * factors = factorise (num);
+	linked_list_t * factors = factorise (num);
 
-	while (factors) {
-		factors_t * t = factors->next;
+	factor_t * f = NULL;
 
-		count *= factors->power + 1;
+	while ((f = linked_list_next (factors, factor_t)) != NULL)
+		count *= f->power + 1;
 
-		free (factors);
-		factors = t;
-	}
+	linked_list_free (factors);
 
 	return count;
 }
@@ -245,7 +246,7 @@ int next_permutation (char * seq) {
 
 	for (int i = len - 1; i > 0; i--)
 		if (seq[i] > seq[first_digit_to_increase]) {
-			swap_chars (seq, i, first_digit_to_increase);
+			swap (seq, i, first_digit_to_increase);
 			break;
 		}
 
@@ -253,7 +254,7 @@ int next_permutation (char * seq) {
 	int j = len - 1;
 
 	while (i < j) {
-		swap_chars (seq, i, j);
+		swap (seq, i, j);
 		i++;
 		j--;
 	}
@@ -277,7 +278,7 @@ int prev_permutation (char * seq) {
 
 	for (int i = len - 1; i > 0; i--)
 		if (seq[i] < seq[first_digit_to_decrease]) {
-			swap_chars (seq, i, first_digit_to_decrease);
+			swap (seq, i, first_digit_to_decrease);
 			break;
 		}
 
@@ -285,7 +286,7 @@ int prev_permutation (char * seq) {
 	int j = len - 1;
 
 	while (i < j) {
-		swap_chars (seq, i, j);
+		swap (seq, i, j);
 		i++;
 		j--;
 	}

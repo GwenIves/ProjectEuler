@@ -19,7 +19,7 @@ int main (int argc, char ** argv) {
 		return 0;
 	}
 
-	char * sieve = eratosthenes_sieve (N);
+	bool * sieve = eratosthenes_sieve (N);
 
 	unsigned long sum = 0;
 

@@ -8,11 +8,7 @@
 #include <math.h>
 #include "utils.h"
 #include "math_utils.h"
-
-typedef struct node {
-	int val;
-	struct node * next;
-} node_t;
+#include "linked_list.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -26,7 +22,7 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	char digits[DIGITS_COUNT];
-	node_t * products = NULL;
+	linked_list_t * products = linked_list_create ();
 	int sum = 0;
 
 	int max_mult = pow (10, N / 2) - 1;
@@ -49,24 +45,24 @@ int main (int argc, char ** argv) {
 			else if (!pandigital_test_and_set_digits(new_digits, new_product))
 				continue;
 			else if (pandigital_test_digits (new_digits, N)) {
-				node_t * product = products;
 				int duplicate = 0;
 
-				while (product != NULL) {
-					if (product->val == new_product) {
+				int * product = NULL;
+
+				while ((product = linked_list_next (products, int)) != NULL) {
+					if (*product == new_product) {
 						duplicate = 1;
+						linked_list_stop_iteration (products);
 						break;
 					}
-
-					product = product->next;
 				}
 
 				if (!duplicate) {
-					node_t * node = x_malloc (sizeof (node_t));
-					node->val = new_product;
-					node->next = products;
+					int * val = x_malloc (sizeof (int));
+					*val = new_product;
 
-					products = node;
+					linked_list_add (products, val);
+
 					sum += new_product;
 				}
 			}
@@ -75,12 +71,7 @@ int main (int argc, char ** argv) {
 
 	printf ("%d\n", sum);
 
-	while (products != NULL) {
-		node_t * node = products;
-
-		products = products->next;
-		free (node);
-	}
+	linked_list_free (products);
 
 	return 0;
 }

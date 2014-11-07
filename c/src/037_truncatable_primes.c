@@ -12,7 +12,7 @@ int main () {
 	int limit = 1000;
 
 	while (1) {
-		char * sieve = eratosthenes_sieve (limit);
+		bool * sieve = eratosthenes_sieve (limit);
 
 		unsigned long sum = 0;
 		int count = 0;

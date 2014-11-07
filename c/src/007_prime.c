@@ -20,7 +20,7 @@ int main (int argc, char ** argv) {
 	size_t size = N * 5;
 
 	while (1) {
-		char * sieve = eratosthenes_sieve (size);
+		bool * sieve = eratosthenes_sieve (size);
 
 		int prime_count = 0;
 

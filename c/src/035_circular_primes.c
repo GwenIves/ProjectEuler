@@ -22,7 +22,7 @@ int main (int argc, char ** argv) {
 
 	int upper_limit = pow (10, (int) log10 (N) + 1);
 
-	char * sieve = eratosthenes_sieve (upper_limit);
+	bool * sieve = eratosthenes_sieve (upper_limit);
 
 	int count = 0;
 

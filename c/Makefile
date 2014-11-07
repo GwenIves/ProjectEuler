@@ -12,8 +12,8 @@ objects := $(subst .c,.o,$(sources))
 
 executables := $(subst .c,,$(main_sources) $(test_sources))
 
-CFLAGS += --pedantic -Wall -Werror -std=gnu99 -O3
-CPPFLAGS += -Icommon/include
+CFLAGS += --pedantic -Wall -Werror -std=c11 -O3
+CPPFLAGS += -Icommon/include -D_POSIX_C_SOURCE=200809L
 LDFLAGS += -L.
 
 VPATH := common

@@ -9,20 +9,20 @@ int main () {
 	char * line = NULL;
 	size_t len = 0;
 
-	bignum_t * sum = get_bignum_int (0);
+	bignum_t * sum = bignum_get (0);
 
 	while (getline (&line, &len, stdin) != -1) {
-		bignum_t * val = get_bignum_str (line);
+		bignum_t * val = bignum_get (line);
 
 		bignum_t * new_sum = bignum_add (sum, val);
 
-		delete_bignum (sum);
+		bignum_delete (sum);
 		sum = new_sum;
 	}
 
-	print_bignum (sum);
+	bignum_print (sum);
 
-	delete_bignum (sum);
+	bignum_delete (sum);
 
 	return 0;
 }

@@ -1,11 +1,13 @@
 #ifndef MATH_UTILS_H_
 #define MATH_UTILS_H_
 
-typedef struct factors {
+#include <stdbool.h>
+#include "linked_list.h"
+
+typedef struct {
 	unsigned long factor;
 	unsigned int power;
-	struct factors * next;
-} factors_t;
+} factor_t;
 
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define MIN(a,b) ((a)<(b)?(a):(b))
@@ -14,10 +16,10 @@ typedef struct factors {
 
 #define DIGITS_COUNT	10
 
-char * eratosthenes_sieve (size_t);
-int is_prime (char *, int);
+bool * eratosthenes_sieve (size_t);
+int is_prime (bool *, int);
 
-factors_t * factorise (long);
+linked_list_t * factorise (long);
 
 long proper_divisors_sum (long);
 int divisors_count (long);

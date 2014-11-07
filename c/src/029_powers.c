@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 
 	for (int a = 2; a <= N; a++) {
 		bignum_t * power = NULL;
-		bignum_t * base = get_bignum_int (a);
+		bignum_t * base = bignum_get (a);
 
 		for (int b = 2; b <= N; b++) {
 			bignum_t * new_power = NULL;
@@ -45,18 +45,18 @@ int main (int argc, char ** argv) {
 				powers[powers_count++] = new_power;
 				power = new_power;
 			} else {
-				delete_bignum (new_power);
+				bignum_delete (new_power);
 				power = powers[duplicate_at];
 			}
 		}
 
-		delete_bignum (base);
+		bignum_delete (base);
 	}
 
 	printf ("%d\n", powers_count);
 
 	for (int i = 0; i < powers_count; i++)
-		delete_bignum (powers[i]);
+		bignum_delete (powers[i]);
 
 	return 0;
 }

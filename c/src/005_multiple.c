@@ -19,7 +19,7 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	unsigned long num = 1;
-	char * primes = eratosthenes_sieve (N + 1);
+	bool * primes = eratosthenes_sieve (N + 1);
 
 	double log_N = log (N);
 

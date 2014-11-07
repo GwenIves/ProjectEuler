@@ -6,13 +6,13 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-static int goldbach_represent (int, char *);
+static int goldbach_represent (int, bool *);
 
 int main () {
 	int size = 1000;
 
 	while (1) {
-		char * sieve = eratosthenes_sieve (size);
+		bool * sieve = eratosthenes_sieve (size);
 
 		for (int i = 9; i < size; i += 2) {
 			if (sieve[i])
@@ -31,7 +31,7 @@ int main () {
 	return 0;
 }
 
-static int goldbach_represent (int num, char * primes) {
+static int goldbach_represent (int num, bool * primes) {
 	for (int i = 2; i < num; i++) {
 		if (!primes[i])
 			continue;

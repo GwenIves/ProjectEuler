@@ -17,13 +17,13 @@ int main (int argc, char ** argv) {
 	if (N < 0)
 		return 1;
 
-	bignum_t * val2 = get_bignum_int (2);
-	bignum_t * power = get_bignum_int (1);
+	bignum_t * val2 = bignum_get (2);
+	bignum_t * power = bignum_get (1);
 
 	for (int i = 0; i < N; i++) {
 		bignum_t * new_power = bignum_mult (power, val2);
 
-		delete_bignum (power);
+		bignum_delete (power);
 		power = new_power;
 	}
 
@@ -34,8 +34,8 @@ int main (int argc, char ** argv) {
 
 	printf ("%lu\n", sum);
 
-	delete_bignum (power);
-	delete_bignum (val2);
+	bignum_delete (power);
+	bignum_delete (val2);
 
 	return 0;
 }

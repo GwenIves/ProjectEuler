@@ -1,10 +1,12 @@
 #ifndef FRACTION_H_
 #define FRACTION_H_
 
+#include <stdbool.h>
+
 typedef struct {
-	long nominator;
-	long denominator;
-	int sign;
+	unsigned long nominator;
+	unsigned long denominator;
+	bool sign;
 } fraction_t;
 
 fraction_t fraction_get (long, long);

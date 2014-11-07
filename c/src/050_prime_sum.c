@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-static int sum_primes (char *, int, int, int);
+static int sum_primes (bool *, int, int, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -19,7 +19,7 @@ int main (int argc, char ** argv) {
 	if (N < 3)
 		return 1;
 
-	char * primes = eratosthenes_sieve (N);
+	bool * primes = eratosthenes_sieve (N);
 
 	int max_sum = 0;
 	int max_count = 0;
@@ -53,7 +53,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static int sum_primes (char * primes, int count, int first, int under) {
+static int sum_primes (bool * primes, int count, int first, int under) {
 	int next_prime = first;
 	int sum = 0;
 

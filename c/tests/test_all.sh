@@ -3,6 +3,7 @@
 # Library unit tests
 
 ./utils_tests || exit 1
+./linked_list_tests || exit 1
 ./math_utils_tests || exit 1
 ./date_utils_tests || exit 1
 ./fraction_tests || exit 1
@@ -25,7 +26,13 @@ assert ()
 
 assert_blank ()
 {
-	if [ ! -z "$1" ]
+	result=$($1)
+
+	if [ $? == 127 ]
+	then
+		echo "Invalid assertion at $2"
+		exit 1
+	elif [ ! -z "$result" ]
 	then
 		echo "Assertion failed at $2"
 		exit 1
@@ -84,8 +91,8 @@ assert_fail "../src/008_series 1 < /dev/null" $LINENO
 assert "$(../src/008_series 4 < data/008_series.in)" 5832 $LINENO
 assert "$(../src/008_series 13 < data/008_series.in)" 23514624000 $LINENO
 
-assert_blank "$(../src/009_pythagorean_triplet -1)" $LINENO
-assert_blank "$(../src/009_pythagorean_triplet 0)" $LINENO
+assert_blank "../src/009_pythagorean_triplet -1" $LINENO
+assert_blank "../src/009_pythagorean_triplet 0" $LINENO
 assert "$(../src/009_pythagorean_triplet 1000)" 31875000 $LINENO
 
 assert "$(../src/010_primes_sum -1)" 0 $LINENO

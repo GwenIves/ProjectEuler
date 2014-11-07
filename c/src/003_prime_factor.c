@@ -19,15 +19,12 @@ int main (int argc, char ** argv) {
 		return 0;
 	}
 
-	factors_t * factors = factorise (N);
+	linked_list_t * factors = factorise (N);
 
-	printf ("%lu\n", factors->factor);
+	factor_t * f = linked_list_next (factors, factor_t);
+	printf ("%lu\n", f->factor);
 
-	while (factors) {
-		factors_t * t = factors->next;
-		free (factors);
-		factors = t;
-	}
+	linked_list_free (factors);
 
 	return 0;
 }

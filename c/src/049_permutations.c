@@ -24,7 +24,7 @@ int main (int argc, char ** argv) {
 	int upper_limit = lower_limit * 10 - 1;
 	long multiplier = lower_limit * 10;
 
-	char * primes = eratosthenes_sieve (upper_limit);
+	bool * primes = eratosthenes_sieve (upper_limit);
 	char * next_perm = x_malloc (N + 1);
 
 	long max = 0;

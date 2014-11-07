@@ -1,6 +1,6 @@
 Solutions to the Project Euler problems in various programming languages
 
-c - ANSI C implementations for an arbitrary input parameter
+c - C11/POSIX implementations for an arbitrary input parameter
 	make build to compile all binaries in the src subdir
 	make all to compile binaries and also run tests
 

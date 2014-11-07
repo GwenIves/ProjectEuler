@@ -80,7 +80,7 @@ static void round_test () {
 static void eratosthenes_sieve_test () {
 	static const int primes_under = 1000000;
 
-	char * sieve = eratosthenes_sieve (primes_under);
+	bool * sieve = eratosthenes_sieve (primes_under);
 
 	int count = 0;
 
@@ -94,7 +94,7 @@ static void eratosthenes_sieve_test () {
 }
 
 static void is_prime_test () {
-	char * sieve = eratosthenes_sieve (798);
+	bool * sieve = eratosthenes_sieve (798);
 
 	assert (!is_prime (sieve, 797 * 797));
 	assert (is_prime (sieve, 336533));
@@ -103,21 +103,24 @@ static void is_prime_test () {
 }
 
 static void factorise_test () {
-	factors_t * factors = factorise (28);
+	linked_list_t * factors = factorise (28);
 
-	assert (factors->factor == 7);
-	assert (factors->power == 1);
-	assert (factors->next != NULL);
+	factor_t * factor = linked_list_next (factors, factor_t);
 
-	factors_t * t = factors->next;
-	free (factors);
-	factors = t;
+	assert (factor != NULL);
+	assert (factor->factor == 7);
+	assert (factor->power == 1);
 
-	assert (factors->factor == 2);
-	assert (factors->power == 2);
-	assert (factors->next == NULL);
+	factor = linked_list_next (factors, factor_t);
 
-	free (factors);
+	assert (factor != NULL);
+	assert (factor->factor == 2);
+	assert (factor->power == 2);
+
+	factor = linked_list_next (factors, factor_t);
+	assert (factor == NULL);
+
+	linked_list_free (factors);
 }
 
 static void proper_divisors_sum_test () {
@@ -202,7 +205,7 @@ static void prev_permutation_test () {
 static void next_triangle_num_test () {
 	unsigned long num = 0;
 
-	for (int i = 0; i < 10; i++)
+	for (size_t i = 0; i < 10; i++)
 		num = next_triangle_num ();
 
 	assert (num == 55);
@@ -211,7 +214,7 @@ static void next_triangle_num_test () {
 static void next_pentagonal_num_test () {
 	unsigned long num = 0;
 
-	for (int i = 0; i < 10; i++)
+	for (size_t i = 0; i < 10; i++)
 		num = next_pentagonal_num ();
 
 	assert (num == 145);
@@ -220,7 +223,7 @@ static void next_pentagonal_num_test () {
 static void next_hexagonal_num_test () {
 	unsigned long num = 0;
 
-	for (int i = 0; i < 10; i++)
+	for (size_t i = 0; i < 10; i++)
 		num = next_hexagonal_num ();
 
 	assert (num == 190);

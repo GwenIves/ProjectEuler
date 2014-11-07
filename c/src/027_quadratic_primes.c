@@ -21,7 +21,7 @@ int main (int argc, char ** argv) {
 	// When x reaches b, the formula cannot certainly produce a prime
 	int formula_maximum = (2 * N - 1) * (N - 1) + 1;
 
-	char * primes = eratosthenes_sieve (formula_maximum);
+	bool * primes = eratosthenes_sieve (formula_maximum);
 
 	int max_primes = 0;
 	int max_a = 0;

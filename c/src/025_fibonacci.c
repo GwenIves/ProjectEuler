@@ -21,8 +21,8 @@ int main (int argc, char ** argv) {
 		return 0;
 	}
 
-	bignum_t * fib1 = get_bignum_int (0);
-	bignum_t * fib2 = get_bignum_int (1);
+	bignum_t * fib1 = bignum_get (0);
+	bignum_t * fib2 = bignum_get (1);
 	bignum_t * fib = NULL;
 
 	int term = 1;
@@ -36,15 +36,15 @@ int main (int argc, char ** argv) {
 			break;
 		}
 
-		delete_bignum (fib1);
+		bignum_delete (fib1);
 
 		fib1 = fib2;
 		fib2 = fib;
 	} while (1);
 
-	delete_bignum (fib1);
-	delete_bignum (fib2);
-	delete_bignum (fib);
+	bignum_delete (fib1);
+	bignum_delete (fib2);
+	bignum_delete (fib);
 
 	return 0;
 }

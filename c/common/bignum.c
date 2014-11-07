@@ -9,17 +9,17 @@ static void ensure_allocation (bignum_t *);
 static int bignum_magnitude_cmp (bignum_t *, bignum_t *);
 static bignum_t * bignum_sub_aux (bignum_t *, bignum_t *);
 
-bignum_t * get_bignum_int (int value) {
+bignum_t * bignum_get_int (int value) {
 	bignum_t * num = x_malloc (sizeof (bignum_t));
 
 	num->digits = NULL;
-	num->sign = 0;
+	num->sign = false;
 	num->allocated = 0;
 	num->used = 0;
 
 	if (value < 0) {
 		value = -value;
-		num->sign = 1;
+		num->sign = true;
 	}
 
 	do {
@@ -32,11 +32,11 @@ bignum_t * get_bignum_int (int value) {
 	return num;
 }
 
-bignum_t * get_bignum_str (char * value) {
+bignum_t * bignum_get_str (char * value) {
 	bignum_t * num = x_malloc (sizeof (bignum_t));
 
 	num->digits = NULL;
-	num->sign = 0;
+	num->sign = false;
 	num->allocated = 0;
 	num->used = 0;
 
@@ -44,7 +44,7 @@ bignum_t * get_bignum_str (char * value) {
 		value++;
 
 	if (*value == '-')
-		num->sign = 1;
+		num->sign = true;
 
 	char * tail_ptr = NULL;
 
@@ -65,20 +65,20 @@ bignum_t * get_bignum_str (char * value) {
 
 	if (num->allocated == 0) {
 		free (num);
-		return get_bignum_int (0);
+		return bignum_get (0);
 	}
 
 	return num;
 }
 
-void delete_bignum (bignum_t * num) {
+void bignum_delete (bignum_t * num) {
 	if (num) {
 		free (num->digits);
 		free (num);
 	}
 }
 
-void print_bignum (bignum_t * num) {
+void bignum_print (bignum_t * num) {
 	if (num->sign)
 		printf ("-");
 
@@ -89,7 +89,7 @@ void print_bignum (bignum_t * num) {
 }
 
 bignum_t * bignum_mult (bignum_t * a, bignum_t * b) {
-	bignum_t * c = get_bignum_int (0);
+	bignum_t * c = bignum_get (0);
 
 	c->sign = a->sign ^ b->sign;
 
@@ -132,25 +132,25 @@ bignum_t * bignum_mult (bignum_t * a, bignum_t * b) {
 }
 
 bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
-	bignum_t * c = get_bignum_int (0);
+	bignum_t * c = bignum_get (0);
 
-	if ((a->sign ^ b->sign) == 0) {
+	if ((a->sign ^ b->sign) == false) {
 		c->sign = a->sign;
 	} else {
 		int cmp = bignum_magnitude_cmp (a, b);
 
 		if (cmp > 0) {
-			delete_bignum (c);
+			bignum_delete (c);
 			c = bignum_sub_aux (a, b);
 
 			if (a->sign)
-				c->sign = 1;
+				c->sign = true;
 		} else if (cmp < 0) {
-			delete_bignum (c);
+			bignum_delete (c);
 			c = bignum_sub_aux (b, a);
 
 			if (b->sign)
-				c->sign = 1;
+				c->sign = true;
 		}
 
 		return c;
@@ -166,7 +166,7 @@ bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
 	int carry = 0;
 	int partial_sum = 0;
 
-	for (int i = 0; i < used; i++) {
+	for (size_t i = 0; i < used; i++) {
 		ensure_allocation (c);
 
 		partial_sum = 0;
@@ -206,7 +206,7 @@ int bignum_cmp (bignum_t * a, bignum_t * b) {
  * Signs should be handled by the caller
  */
 static bignum_t * bignum_sub_aux (bignum_t * a, bignum_t * b) {
-	bignum_t * c = get_bignum_int (0);
+	bignum_t * c = bignum_get (0);
 	c->used = 0;
 
 	int carry = 0;
