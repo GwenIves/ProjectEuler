@@ -15,6 +15,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 1)
+		return 1;
+
 	// When x reaches b, the formula cannot certainly produce a prime
 	int formula_maximum = (2 * N - 1) * (N - 1) + 1;
 

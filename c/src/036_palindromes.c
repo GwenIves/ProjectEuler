@@ -14,6 +14,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	unsigned long sum = 0;
 
 	for (int i = 1; i < N; i++)

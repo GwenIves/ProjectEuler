@@ -32,10 +32,8 @@ int main () {
 			}
 		}
 
-		if (all_divisible) {
-			printf ("%s\n",digits);
+		if (all_divisible)
 			sum += atol (digits);
-		}
 	} while (next_permutation (digits));
 
 	printf ("%lu\n", sum);

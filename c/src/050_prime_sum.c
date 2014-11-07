@@ -16,7 +16,7 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N < 1)
+	if (N < 3)
 		return 1;
 
 	char * primes = eratosthenes_sieve (N);
@@ -61,7 +61,7 @@ static int sum_primes (char * primes, int count, int first, int under) {
 		sum += next_prime;
 
 		while (next_prime < under)
-			if (primes[next_prime += 2])
+			if (primes[next_prime += 1])
 				break;
 
 		if (next_prime >= under)

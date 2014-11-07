@@ -19,7 +19,7 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N < 0)
+	if (N < 1)
 		return 1;
 
 	bignum_t * sum = get_bignum_int (0);

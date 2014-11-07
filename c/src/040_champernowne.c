@@ -13,10 +13,8 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N < 1) {
-		printf ("0\n");
-		return 0;
-	}
+	if (N < 0)
+		return 1;
 
 	int num = 1;
 	int num_digits = 1;

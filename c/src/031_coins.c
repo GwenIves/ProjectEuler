@@ -17,6 +17,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	int coin_values[COIN_TYPES] = {1, 2, 5, 10, 20, 50, 100, 200};
 
 	printf ("%d\n", count_combinations (coin_values, COIN_TYPES - 1, N));

@@ -13,9 +13,6 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N <= 2)
-		return 0;
-
 	int max = 0;
 	int max_count = 0;
 
@@ -39,7 +36,9 @@ int main (int argc, char ** argv) {
 		}
 	}
 
-	printf ("%d\n", max);
-
-	return 0;
+	if (max_count > 0) {
+		printf ("%d\n", max);
+		return 0;
+	} else
+		return 1;
 }

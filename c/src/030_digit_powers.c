@@ -1,5 +1,5 @@
 /*
- * Find the sum of all the numbers that are equal to the sum of the N-th powers of their digits
+ * Find the sum of all the numbers, excluding 1, that are equal to the sum of the N-th powers of their digits
  */
 
 #include <stdio.h>

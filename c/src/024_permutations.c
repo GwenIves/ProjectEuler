@@ -14,6 +14,9 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
+	if (N <= 0)
+		return 1;
+
 	char sequence[11] = "0123456789";
 
 	do {
@@ -21,9 +24,9 @@ int main (int argc, char ** argv) {
 
 		if (N <= 0) {
 			printf ("%s\n", sequence);
-			break;
+			return 0;
 		}
 	} while (next_permutation (sequence));
 
-	return 0;
+	return 1;
 }
