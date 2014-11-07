@@ -14,7 +14,7 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N <= 0) {
+	if (N <= 2) {
 		printf ("0\n");
 		return 0;
 	}

@@ -5,13 +5,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "linked_list.h"
 
 typedef struct {
 	int remainder;
 	int position;
 } rem_t;
 
-static int unit_fraction_cycle_len (int, rem_t *);
+static int unit_fraction_cycle_len (int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -24,13 +25,11 @@ int main (int argc, char ** argv) {
 	if (N < 1)
 		return 1;
 
-	rem_t * remainders = x_malloc (N * sizeof (rem_t));
-
 	int longest_cycle = 0;
 	int fraction = 0;
 
 	for (int i = 1; i < N; i++) {
-		int len = unit_fraction_cycle_len (i, remainders);
+		int len = unit_fraction_cycle_len (i);
 
 		if (len > longest_cycle) {
 			longest_cycle = len;
@@ -40,30 +39,41 @@ int main (int argc, char ** argv) {
 
 	printf ("%d\n", fraction);
 
-	free (remainders);
-
 	return 0;
 }
 
-static int unit_fraction_cycle_len (int N, rem_t * remainders) {
+// The cycle length will be the number of divisions between getting the same remainder
+static int unit_fraction_cycle_len (int N) {
 	int num = 1;
 	int position = 0;
-	int past_rems = 0;
+
+	linked_list_t * remainders = linked_list_create ();
 
 	do {
 		int rem = num % N;
 
-		for (int i = 0; i < past_rems; i++)
-			if (remainders[i].remainder == rem)
-				return position - remainders[i].position;
+		rem_t * remainder = NULL;
+		while ((remainder = linked_list_next (remainders, rem_t)) != NULL)
+			if (remainder->remainder == rem) {
+				int cycle_len = position - remainder->position;
 
-		remainders[past_rems].remainder = rem;
-		remainders[past_rems].position = position;
-		past_rems++;
+				linked_list_free (remainders);
+
+				return cycle_len;
+			}
+
+		remainder = x_malloc (sizeof (rem_t));
+
+		remainder->remainder = rem;
+		remainder->position = position;
+
+		linked_list_add (remainders, remainder);
 
 		num = rem * 10;
 		position++;
 	} while (num > 0);
+
+	linked_list_free (remainders);
 
 	return 0;
 }

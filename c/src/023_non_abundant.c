@@ -12,26 +12,26 @@ int main () {
 
 	size_t abundant_count = 0;
 
-	for (int i = 1; i <= KNOWN_UPPER_LIMIT; i++)
+	for (size_t i = 1; i <= KNOWN_UPPER_LIMIT; i++)
 		if (proper_divisors_sum (i) > i)
 			abundant_nums[abundant_count++] = i;
 
-	char candidates[KNOWN_UPPER_LIMIT + 1];
+	bool candidates[KNOWN_UPPER_LIMIT + 1];
 
-	for (int i = 1; i <= KNOWN_UPPER_LIMIT; i++)
-		candidates[i] = 1;
+	for (size_t i = 1; i <= KNOWN_UPPER_LIMIT; i++)
+		candidates[i] = true;
 
-	for (int i = 0; i < abundant_count; i++)
-		for (int j = i; j < abundant_count; j++) {
+	for (size_t i = 0; i < abundant_count; i++)
+		for (size_t j = i; j < abundant_count; j++) {
 			int abundant_sum = abundant_nums[i] + abundant_nums[j];
 
 			if (abundant_sum <= KNOWN_UPPER_LIMIT)
-				candidates[abundant_sum] = 0;
+				candidates[abundant_sum] = false;
 		}
 
 	unsigned long sum = 0;
 
-	for (int i = 1; i <= KNOWN_UPPER_LIMIT; i++)
+	for (size_t i = 1; i <= KNOWN_UPPER_LIMIT; i++)
 		if (candidates[i])
 			sum += i;
 

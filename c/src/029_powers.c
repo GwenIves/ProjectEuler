@@ -18,7 +18,7 @@ int main (int argc, char ** argv) {
 	if (N < 2)
 		return 1;
 
-	bignum_t ** powers = x_malloc ((N - 1) * (N - 1) * sizeof (bignum_t *));
+	bignum_t * powers[(N - 1) * (N - 1)];
 	int powers_count = 0;
 
 	for (int a = 2; a <= N; a++) {

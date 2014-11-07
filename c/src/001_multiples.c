@@ -14,11 +14,6 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N < 0) {
-		printf ("0\n");
-		return 0;
-	}
-
 	long sum3 = arithmetic_sequence_sum (0, N, 3);
 	long sum5 = arithmetic_sequence_sum (0, N, 5);
 	long sum15 = arithmetic_sequence_sum (0, N, 15);

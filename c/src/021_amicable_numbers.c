@@ -18,7 +18,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	int * divisors_sums = x_malloc (N * sizeof (int));
+	int divisors_sums[N];
 
 	for (int i = 1; i < N; i++)
 		divisors_sums[i] = proper_divisors_sum (i);
@@ -41,8 +41,6 @@ int main (int argc, char ** argv) {
 	}
 
 	printf ("%lu\n", amicable_sum);
-
-	free (divisors_sums);
 
 	return 0;
 }

@@ -30,7 +30,7 @@ int main (int argc, char ** argv) {
 
 		day += days_in_month[month % MONTHS_IN_YEAR];
 
-		if (month % MONTHS_IN_YEAR == 1 && is_leap_year (year))
+		if (month % MONTHS_IN_YEAR == FEBRUARY && is_leap_year (year))
 			day++;
 
 		day %= DAYS_IN_WEEK;

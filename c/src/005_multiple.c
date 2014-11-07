@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "math_utils.h"
 
 int main (int argc, char ** argv) {
@@ -21,15 +20,20 @@ int main (int argc, char ** argv) {
 	unsigned long num = 1;
 	bool * primes = eratosthenes_sieve (N + 1);
 
-	double log_N = log (N);
-
-	for (int i = 2; i <= N; i++)
+	// The result will have to be divisible by all primes and their composite powers less than or equal to N
+	for (int i = 2; i <= N; i++) {
 		if (primes[i]) {
-			int pow = log_N / log (i);
+			int power = 1;
 
-			for (int j = 0; j < pow; j++)
-				num *= i;
+			while (power < N)
+				power *= i;
+
+			if (power > N)
+				power /= i;
+
+			num *= power;
 		}
+	}
 
 	printf ("%lu\n", num);
 

@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -17,17 +18,10 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	char * series = NULL;
-	size_t series_size = 0;
+	ssize_t series_size = x_getline (&series, stdin); 
 
-	if (getline (&series, &series_size, stdin) == -1)
+	if (series_size == -1)
 		return 1;
-	else
-		for (int i = 0; i < series_size; i++) 
-			if (series[i] == '\n' || series[i] == '\0') {
-				series[i] = '\0';
-				series_size = i;
-				break;
-			}
 
 	unsigned long prev_product = 0;
 	unsigned long max_product = 0;

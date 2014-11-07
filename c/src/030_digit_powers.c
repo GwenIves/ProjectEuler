@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "math_utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -19,17 +20,17 @@ int main (int argc, char ** argv) {
 		return 0;
 	}
 
-	int digit_powers[10];
+	int digit_powers[DIGITS_COUNT];
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < DIGITS_COUNT; i++)
 		digit_powers[i] = pow (i, N);
 
 	int lowest_pow10 = 1;
-	int max_representable = digit_powers[9];
+	int max_representable = digit_powers[DIGITS_COUNT - 1];
 
 	while (lowest_pow10 < max_representable) {
 		lowest_pow10 *= 10;
-		max_representable += digit_powers[9];
+		max_representable += digit_powers[DIGITS_COUNT - 1];
 	}
 
 	int sum = 0;

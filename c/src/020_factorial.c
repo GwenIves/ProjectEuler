@@ -30,7 +30,7 @@ int main (int argc, char ** argv) {
 
 	int sum = 0;
 
-	for (int i = 0; i < fact->used; i++)
+	for (size_t i = 0; i < fact->used; i++)
 		sum += fact->digits[i];
 
 	printf ("%d\n", sum);

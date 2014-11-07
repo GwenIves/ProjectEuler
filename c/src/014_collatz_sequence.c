@@ -18,7 +18,7 @@ int main (int argc, char ** argv) {
 	if (N <= 1)
 		return 1;
 
-	int * lengths = x_malloc (N * sizeof (int));
+	int lengths[N];
 
 	int starting_num = 1;
 	int max_length = 0;
@@ -43,8 +43,6 @@ int main (int argc, char ** argv) {
 	}
 
 	printf ("%d\n", starting_num);
-
-	free (lengths);
 
 	return 0;
 }

@@ -11,7 +11,6 @@
 
 static char ** read_names (int *);
 static void free_names (char **, int);
-static int string_cmp (const void *, const void *);
 
 int main () {
 	int names_count = 0;
@@ -76,8 +75,4 @@ static void free_names (char ** names, int count) {
 		free (names[i]);
 
 	free (names);
-}
-
-static int string_cmp (const void * a, const void * b) {
-	return strcmp (* (char **) a, * (char **) b);
 }

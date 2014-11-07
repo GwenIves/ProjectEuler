@@ -17,10 +17,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	unsigned long ** grid_paths = x_malloc (N * sizeof (unsigned long *));
-
-	for (int i = 0; i < N; i++)
-		grid_paths[i] = x_malloc (N * sizeof (unsigned long));
+	unsigned long grid_paths[N][N]; 
 
 	for (int i = N - 1; i >= 0; i --)
 		for (int j = N - 1; j >= 0; j--) {
@@ -35,11 +32,6 @@ int main (int argc, char ** argv) {
 		}
 
 	printf ("%lu\n", grid_paths[0][0]);
-
-	for (int i = 0; i < N; i++)
-		free (grid_paths[i]);
-
-	free (grid_paths);
 
 	return 0;
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void * x_malloc (size_t size) {
 	void * mem = malloc (size);
@@ -34,9 +35,26 @@ void * x_realloc (void * ptr, size_t size) {
 	return mem;
 }
 
+ssize_t x_getline (char ** line, FILE * file) {
+	size_t allocated = 0;
+
+	ssize_t len = getline (line, &allocated, file); 
+
+	if (len == -1)
+		return -1;
+	else if ((*line)[len - 1] == '\n') {
+		(*line)[--len] = '\0';
+	}
+
+	return len;
+}
 
 void swap_chars (char * seq, size_t a, size_t b) {
 	char t = seq[a];
 	seq[a] = seq[b];
 	seq[b] = t;
+}
+
+int string_cmp (const void * a, const void * b) {
+	return strcmp (* (char **) a, * (char **) b);
 }

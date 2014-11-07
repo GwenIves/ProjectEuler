@@ -7,7 +7,9 @@
 static void malloc_test ();
 static void calloc_test ();
 static void realloc_test ();
+static void getline_test ();
 static void swap_chars_test ();
+static void string_cmp_test ();
 
 #define ALLOC_SIZE	100
 
@@ -15,7 +17,9 @@ int main () {
 	malloc_test ();
 	calloc_test ();
 	realloc_test ();
+	getline_test ();
 	swap_chars_test ();
+	string_cmp_test ();
 
 	printf ("All util tests passed\n");
 
@@ -57,10 +61,40 @@ static void realloc_test () {
 	free (p);
 }
 
+static void getline_test () {
+	char * filename = __FILE__;
+
+	if (strrchr (filename, '/'))
+		filename = strrchr (filename, '/') + 1;
+
+	FILE * f = fopen (filename, "r");
+
+	assert (f != NULL);
+
+	char * line = NULL;
+	ssize_t len = x_getline (&line, f);
+
+	assert (len == 19);
+	assert (!strcmp (line, "#include <assert.h>"));
+
+	free (line);
+
+	fclose (f);
+}
+
 static void swap_chars_test () {
 	char test_str[] = "ab";
 
 	swap (test_str, 0, 1);
 
 	assert (!strcmp (test_str, "ba"));
+}
+
+static void string_cmp_test () {
+	char * strings[] = {"b", "a"};
+
+	qsort (strings, 2, sizeof (char *), string_cmp);
+
+	assert (!strcmp (strings[0], "a"));
+	assert (!strcmp (strings[1], "b"));
 }

@@ -17,7 +17,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	char sequence[11] = "0123456789";
+	char sequence[DIGITS_COUNT + 1] = "0123456789";
 
 	do {
 		N--;

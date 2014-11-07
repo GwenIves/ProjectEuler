@@ -25,7 +25,7 @@ int main (int argc, char ** argv) {
 	long multiplier = lower_limit * 10;
 
 	bool * primes = eratosthenes_sieve (upper_limit);
-	char * next_perm = x_malloc (N + 1);
+	char next_perm[N + 1];
 
 	long max = 0;
 
@@ -63,7 +63,6 @@ int main (int argc, char ** argv) {
 	printf ("%ld\n", max);
 
 	free (primes);
-	free (next_perm);
 
 	return 0;
 }

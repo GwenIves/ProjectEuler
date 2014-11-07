@@ -4,20 +4,22 @@
 
 #include <stdio.h>
 #include "bignum.h"
+#include "utils.h"
 
 int main () {
 	char * line = NULL;
-	size_t len = 0;
 
 	bignum_t * sum = bignum_get (0);
 
-	while (getline (&line, &len, stdin) != -1) {
+	while (x_getline (&line, stdin) != -1) {
 		bignum_t * val = bignum_get (line);
 
 		bignum_t * new_sum = bignum_add (sum, val);
 
 		bignum_delete (sum);
 		sum = new_sum;
+
+		free (line);
 	}
 
 	bignum_print (sum);
