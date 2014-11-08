@@ -10,6 +10,7 @@ static void abs_test ();
 static void round_test ();
 static void eratosthenes_sieve_test ();
 static void is_prime_test ();
+static void prime_count_inverse_test ();
 static void factorise_test ();
 static void factors_count_test ();
 static void proper_divisors_sum_test ();
@@ -36,6 +37,7 @@ int main () {
 	round_test ();
 	eratosthenes_sieve_test ();
 	is_prime_test ();
+	prime_count_inverse_test ();
 	factorise_test ();
 	factors_count_test ();
 	proper_divisors_sum_test ();
@@ -106,6 +108,11 @@ static void is_prime_test () {
 	assert (is_prime (sieve, 336533));
 
 	free (sieve);
+}
+
+static void prime_count_inverse_test () {
+	assert (prime_count_inverse (5) == 100);
+	assert (prime_count_inverse (10000) == 1000000);
 }
 
 static void factorise_test () {

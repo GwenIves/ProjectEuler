@@ -41,7 +41,6 @@ int main (int argc, char ** argv) {
 			next_index_at *= 10;
 		}
 
-
 		if (++num == next_digit_at) {
 			num_digits++;
 			next_digit_at *= 10;

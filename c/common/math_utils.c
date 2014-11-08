@@ -16,8 +16,12 @@ bool * eratosthenes_sieve (size_t size) {
 	for (size_t i = 2; i < size; i++)
 		sieve[i] = true;
 
+	// Deal with even composites separately, then sieve only odds with a step of 2
+	for (size_t i = 4; i < size; i += 2)
+		sieve[i] = false;
+
 	size_t upper_limit = sqrt (size);
-	for (size_t i = 2; i <= upper_limit; i++)
+	for (size_t i = 3; i <= upper_limit; i += 2)
 		if (sieve[i])
 			for (size_t j = i * i; j < size; j += i)
 				sieve[j] = false;
@@ -37,6 +41,25 @@ int is_prime (bool * primes, int num) {
 			return 0;
 
 	return 1;
+}
+
+// Returns an approximation of the inverse prime counting function - to be used for sizing the Eratosthenes sieve in iterative solutions
+// The result is guaranteed to be an upper bound of the true result for the inverse under 10^7
+size_t prime_count_inverse (size_t prime_count) {
+	if (prime_count < 25)
+		return 100;
+	else if (prime_count < 168)
+		return 1000;
+	else if (prime_count < 1229)
+		return 10000;
+	else if (prime_count < 9592)
+		return 100000;
+	else if (prime_count < 78498)
+		return 1000000;
+	else if (prime_count < 664579)
+		return 10000000;
+	else
+		return 100000000;
 }
 
 linked_list_t * factorise (long num) {
@@ -98,21 +121,31 @@ long proper_divisors_sum (long num) {
 	if (num < 0)
 		num = -num;
 
-	long sum = 1;
+	if (num <= 1)
+		return 1;
 
-	long upper_limit = sqrt (num);
+	int sum = 1;
 
-	for (long i = 2; i <= upper_limit; i++)
-		if (num % i == 0) {
-			long div = num / i;
+	linked_list_t * factors = factorise (num);
 
-			if (i == div)
-				sum += i;
-			else
-				sum += i + div;
+	factor_t * f = NULL;
+
+	// The divisor sum is equal to a product of sums of all prime factors' powers
+	while ((f = linked_list_next (factors, factor_t)) != NULL) {
+		int factor_contrib = 0;
+		int power = 1;
+
+		for (int i = 0; i <= f->power; i++) {
+			factor_contrib += power;
+			power *= f->factor;
 		}
 
-	return sum;
+		sum *= factor_contrib;
+	}
+
+	linked_list_free (factors);
+
+	return sum - num;
 }
 
 // Returns the count of all positive divisors of num including 1 and num

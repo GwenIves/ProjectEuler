@@ -21,9 +21,9 @@ int main (int argc, char ** argv) {
 
 	bool * sieve = eratosthenes_sieve (N);
 
-	unsigned long sum = 0;
+	unsigned long sum = 2;
 
-	for (int i = 2; i < N; i++)
+	for (int i = 3; i < N; i += 2)
 		if (sieve[i])
 			sum += i;
 

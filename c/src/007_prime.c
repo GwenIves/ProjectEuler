@@ -16,15 +16,19 @@ int main (int argc, char ** argv) {
 
 	if (N <= 0)
 		return 1;
+	else if (N == 1) {
+		printf ("2\n");
+		return 0;
+	}
 
-	size_t size = N * 5;
+	size_t size = prime_count_inverse (N);
 
 	while (1) {
 		bool * sieve = eratosthenes_sieve (size);
 
-		int prime_count = 0;
+		int prime_count = 1;
 
-		for (size_t i = 2; i < size; i++) {
+		for (size_t i = 3; i < size; i += 2) {
 			if (sieve[i] && ++prime_count == N) {
 				printf ("%d\n", (int) i);
 

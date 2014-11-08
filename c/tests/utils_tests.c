@@ -9,6 +9,7 @@ static void calloc_test ();
 static void realloc_test ();
 static void getline_test ();
 static void swap_chars_test ();
+static void array_len_test ();
 static void string_cmp_test ();
 
 #define ALLOC_SIZE	100
@@ -19,6 +20,7 @@ int main () {
 	realloc_test ();
 	getline_test ();
 	swap_chars_test ();
+	array_len_test ();
 	string_cmp_test ();
 
 	printf ("All util tests passed\n");
@@ -88,6 +90,12 @@ static void swap_chars_test () {
 	swap (test_str, 0, 1);
 
 	assert (!strcmp (test_str, "ba"));
+}
+
+static void array_len_test () {
+	int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+	assert (array_len (array) == 10);
 }
 
 static void string_cmp_test () {

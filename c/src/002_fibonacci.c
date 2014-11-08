@@ -29,7 +29,6 @@ int main (int argc, char ** argv) {
 		fib1 = fib2;
 		fib2 = fib;
 	}
-		
 
 	printf ("%ld\n", sum);
 

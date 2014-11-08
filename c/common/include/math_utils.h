@@ -18,6 +18,7 @@ typedef struct {
 
 bool * eratosthenes_sieve (size_t);
 int is_prime (bool *, int);
+size_t prime_count_inverse (size_t);
 
 linked_list_t * factorise (long);
 int factors_count (long);
