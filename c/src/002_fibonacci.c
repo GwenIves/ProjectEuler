@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -17,7 +18,7 @@ int main (int argc, char ** argv) {
 	long fib1 = 1;
 	long fib2 = 1;
 
-	while (1) {
+	while (true) {
 		long fib = fib1 + fib2;
 
 		if (fib > N)

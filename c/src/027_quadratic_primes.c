@@ -19,9 +19,9 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	// When x reaches b, the formula cannot certainly produce a prime
-	int formula_maximum = (2 * N - 1) * (N - 1) + 1;
+	int formula_maximum = 2 * N * N - 3 * N + 1;
 
-	bool * primes = eratosthenes_sieve (formula_maximum);
+	bool * primes = eratosthenes_sieve (formula_maximum + 1);
 
 	int max_primes = 0;
 	int max_a = 0;
@@ -37,7 +37,7 @@ int main (int argc, char ** argv) {
 			if (!primes[ABS (b)])
 				continue;
 
-			while (1) {
+			while (true) {
 				value = x * (x + a) + b;
 
 				if (primes[ABS (value)]) {

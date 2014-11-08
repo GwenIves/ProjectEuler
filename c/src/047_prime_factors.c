@@ -21,7 +21,7 @@ int main (int argc, char ** argv) {
 	int len = 0;
 	int i = 2;
 
-	while (1) {
+	while (true) {
 		if (factors_count (i) >= N) {
 			if (len++ == 0)
 				start = i;

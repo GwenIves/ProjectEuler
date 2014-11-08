@@ -30,7 +30,7 @@ int main (int argc, char ** argv) {
 
 		int count_attempt = max_count + 1;
 
-		while (1) {
+		while (true) {
 			int sum = sum_primes (primes, count_attempt, i, N);
 
 			if (sum < 0)

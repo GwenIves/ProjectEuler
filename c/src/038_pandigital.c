@@ -32,7 +32,7 @@ int main (int argc, char ** argv) {
 
 		int mult = 1;
 
-		while (1) {
+		while (true) {
 			int result = i * mult;
 
 			if (!pandigital_test_and_set_digits (digits, result))

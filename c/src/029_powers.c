@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "utils.h"
 #include "bignum.h"
+#include "math_utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -21,6 +22,8 @@ int main (int argc, char ** argv) {
 	bignum_t * powers[(N - 1) * (N - 1)];
 	int powers_count = 0;
 
+	bool * primes = eratosthenes_sieve (N + 1);
+
 	for (int a = 2; a <= N; a++) {
 		bignum_t * power = NULL;
 		bignum_t * base = bignum_get (a);
@@ -35,11 +38,13 @@ int main (int argc, char ** argv) {
 
 			int duplicate_at = -1;
 
-			for (int i = 0; i < powers_count; i++)
-				if (bignum_cmp (powers[i], new_power) == 0) {
-					duplicate_at = i;
-					break;
-				}
+			// Powers of a prime base cannot be duplicates
+			if (!primes[a])
+				for (int i = 0; i < powers_count; i++)
+					if (bignum_cmp (powers[i], new_power) == 0) {
+						duplicate_at = i;
+						break;
+					}
 
 			if (duplicate_at == -1) {
 				powers[powers_count++] = new_power;
@@ -57,6 +62,8 @@ int main (int argc, char ** argv) {
 
 	for (int i = 0; i < powers_count; i++)
 		bignum_delete (powers[i]);
+
+	free (primes);
 
 	return 0;
 }

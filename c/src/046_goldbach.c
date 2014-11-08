@@ -12,7 +12,7 @@ static int goldbach_represent (int, bool *);
 int main () {
 	size_t size = 1000;
 
-	while (1) {
+	while (true) {
 		bool * sieve = eratosthenes_sieve (size);
 
 		for (size_t i = 9; i < size; i += 2) {

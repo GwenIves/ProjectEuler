@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 
 	size_t size = prime_count_inverse (N);
 
-	while (1) {
+	while (true) {
 		bool * sieve = eratosthenes_sieve (size);
 
 		int prime_count = 1;

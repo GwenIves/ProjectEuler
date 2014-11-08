@@ -11,7 +11,7 @@
 int main () {
 	int limit = 1000;
 
-	while (1) {
+	while (true) {
 		bool * sieve = eratosthenes_sieve (limit);
 
 		unsigned long sum = 0;

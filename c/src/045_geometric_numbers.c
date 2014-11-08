@@ -24,7 +24,7 @@ int main (int argc, char ** argv) {
 
 	int count = 0;
 
-	while (1) {
+	while (true) {
 		hex_num = next_hexagonal_num ();
 
 		while (pent_num < hex_num)

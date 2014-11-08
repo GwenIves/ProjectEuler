@@ -40,7 +40,7 @@ int main (int argc, char ** argv) {
 
 		fib1 = fib2;
 		fib2 = fib;
-	} while (1);
+	} while (true);
 
 	bignum_delete (fib1);
 	bignum_delete (fib2);

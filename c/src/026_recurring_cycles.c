@@ -6,11 +6,6 @@
 #include <stdlib.h>
 #include "linked_list.h"
 
-typedef struct {
-	int remainder;
-	int position;
-} rem_t;
-
 static int unit_fraction_cycle_len (int);
 
 int main (int argc, char ** argv) {
@@ -46,31 +41,19 @@ static int unit_fraction_cycle_len (int N) {
 	int num = 1;
 	int position = 0;
 
-	linked_list_t * remainders = linked_list_create ();
+	int remainders[N];
 
 	do {
 		int rem = num % N;
 
-		rem_t * remainder = NULL;
-		while ((remainder = linked_list_next (remainders, rem_t)) != NULL)
-			if (remainder->remainder == rem) {
-				int cycle_len = position - remainder->position;
+		for (int i = 0; i < position; i++)
+			if (remainders[i] == rem)
+				return position - i;
 
-				linked_list_free (remainders);
-
-				return cycle_len;
-			}
-
-		remainder = linked_list_add_empty (remainders, rem_t);
-
-		remainder->remainder = rem;
-		remainder->position = position;
+		remainders[position++] = rem;
 
 		num = rem * 10;
-		position++;
 	} while (num > 0);
-
-	linked_list_free (remainders);
 
 	return 0;
 }

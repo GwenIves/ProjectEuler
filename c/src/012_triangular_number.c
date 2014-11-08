@@ -17,7 +17,7 @@ int main (int argc, char ** argv) {
 	if (N < 0)
 		return 1;
 
-	while (1) {
+	while (true) {
 		long triangle_num = next_triangle_num ();
 
 		if (divisors_count (triangle_num) > N) {
