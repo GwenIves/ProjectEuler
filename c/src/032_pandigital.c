@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "utils.h"
 #include "math_utils.h"
 #include "linked_list.h"
 
@@ -58,10 +57,8 @@ int main (int argc, char ** argv) {
 				}
 
 				if (!duplicate) {
-					int * val = x_malloc (sizeof (int));
+					int * val = linked_list_add_empty (products, int);
 					*val = new_product;
-
-					linked_list_add (products, val);
 
 					sum += new_product;
 				}

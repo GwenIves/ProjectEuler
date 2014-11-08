@@ -2,6 +2,8 @@
 
 # Library unit tests
 
+echo "Running library unit tests"
+
 ./utils_tests || exit 1
 ./linked_list_tests || exit 1
 ./math_utils_tests || exit 1
@@ -55,6 +57,8 @@ assert_fail ()
 		exit 1
 	fi
 }
+
+echo "Running program tests"
 
 assert "$(../src/001_multiples -1)" 0 $LINENO
 assert "$(../src/001_multiples 0)" 0 $LINENO

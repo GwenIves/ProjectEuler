@@ -10,7 +10,7 @@ linked_list_t * linked_list_create () {
 	return l;
 }
 
-void linked_list_add (linked_list_t * list, void * payload) {
+list_node_t * linked_list_add (linked_list_t * list, void * payload) {
 	list_node_t * n = x_malloc (sizeof (list_node_t));
 
 	n->payload = payload;
@@ -18,6 +18,14 @@ void linked_list_add (linked_list_t * list, void * payload) {
 
 	list->head = n;
 	list->cursor = n;
+
+	return n;
+}
+
+void * linked_list_add_empty_ (linked_list_t * list, size_t size) {
+	list_node_t * n = linked_list_add (list, x_malloc (size));
+
+	return n->payload;
 }
 
 void linked_list_free (linked_list_t * list) {

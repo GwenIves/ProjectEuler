@@ -59,21 +59,19 @@ linked_list_t * factorise (long num) {
 
 			upper_limit = sqrt (num);
 
-			factor_t * f = x_malloc (sizeof (factor_t));
+			factor_t * f = linked_list_add_empty (factors, factor_t);
+
 			f->factor = factor;
 			f->power = power;
-
-			linked_list_add (factors, f);
 		}
 
 		if (num == 1)
 			break;
 		else if (++factor > upper_limit) {
-			factor_t * f = x_malloc (sizeof (factor_t));
+			factor_t * f = linked_list_add_empty (factors, factor_t);
+
 			f->factor = num;
 			f->power = 1;
-
-			linked_list_add (factors, f);
 
 			break;
 		}

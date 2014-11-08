@@ -29,16 +29,13 @@ static void linked_list_add_test () {
 	linked_list_t * l = linked_list_create ();
 
 	int * value1 = x_malloc (sizeof (int));
-	int * value2 = x_malloc (sizeof (int));
-	int * value = NULL;
-
 	*value1 = 123;
+	linked_list_add (l, value1);
+
+	int * value2 = linked_list_add_empty (l, int);
 	*value2 = 456;
 
-	linked_list_add (l, value1);
-	linked_list_add (l, value2);
-
-	value = linked_list_next (l, int);
+	int * value = linked_list_next (l, int);
 	assert (*value == 456);
 
 	value = linked_list_next (l, int);

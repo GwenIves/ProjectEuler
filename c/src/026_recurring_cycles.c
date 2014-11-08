@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "utils.h"
 #include "linked_list.h"
 
 typedef struct {
@@ -62,12 +61,10 @@ static int unit_fraction_cycle_len (int N) {
 				return cycle_len;
 			}
 
-		remainder = x_malloc (sizeof (rem_t));
+		remainder = linked_list_add_empty (remainders, rem_t);
 
 		remainder->remainder = rem;
 		remainder->position = position;
-
-		linked_list_add (remainders, remainder);
 
 		num = rem * 10;
 		position++;

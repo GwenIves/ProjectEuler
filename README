@@ -1,7 +1,15 @@
-Solutions to the Project Euler problems in various programming languages
+Solutions to the Project Euler problems in various programming languages with focus on general applicability and idiomatic language use
 
 c - C11/POSIX implementations for an arbitrary input parameter
+
+	An example of a barebones imperative language solution
+
 	make build to compile all binaries in the src subdir
 	make all to compile binaries and also run tests
+	---
+	make tests - run all tests
+	make clean - delete compilation related generated files
+	make distclean - delete all generated files
+	make tags - create a single ctags database with symbol lookups
 
 	Limitations: does not check for numeric overflows, consequently a number of the solutions will produce incorrect answers for very large input parameters
