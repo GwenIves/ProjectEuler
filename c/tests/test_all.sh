@@ -254,5 +254,11 @@ assert "$(../src/050_prime_sum 100)" 41 $LINENO
 assert "$(../src/050_prime_sum 1000)" 953 $LINENO
 assert "$(../src/050_prime_sum 1000000)" 997651 $LINENO
 
+assert_fail "../src/051_prime_families 0" $LINENO
+assert_fail "../src/051_prime_families 11" $LINENO
+assert "$(../src/051_prime_families 6)" 13 $LINENO
+assert "$(../src/051_prime_families 7)" 56003 $LINENO
+assert "$(../src/051_prime_families 8)" 121313 $LINENO
+
 echo "All tests passed"
 exit 0

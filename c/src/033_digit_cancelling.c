@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "utils.h"
 #include "fraction.h"
 
 static bool cancel_digit (int, int, int);

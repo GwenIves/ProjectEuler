@@ -23,18 +23,21 @@ int main (int argc, char ** argv) {
 
 	size_t size = prime_count_inverse (N);
 
+	int prime = 3;
+	int prime_count = 1;
+
 	while (true) {
 		bool * sieve = eratosthenes_sieve (size);
 
-		int prime_count = 1;
-
-		for (size_t i = 3; i < size; i += 2) {
-			if (sieve[i] && ++prime_count == N) {
-				printf ("%d\n", (int) i);
+		while (prime < size) {
+			if (sieve[prime] && ++prime_count == N) {
+				printf ("%d\n", prime);
 
 				free (sieve);
 				return 0;
 			}
+
+			prime += 2;
 		}
 
 		free (sieve);

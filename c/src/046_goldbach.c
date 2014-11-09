@@ -12,19 +12,20 @@ static bool goldbach_represent (int, bool *);
 int main () {
 	size_t size = 1000;
 
+	int candidate = 9;
+
 	while (true) {
 		bool * sieve = eratosthenes_sieve (size);
 
-		for (size_t i = 9; i < size; i += 2) {
-			if (sieve[i])
-				continue;
-
-			if (!goldbach_represent (i, sieve)) {
-				printf ("%d\n", (int) i);
+		while (candidate < size) {
+			if (!sieve[candidate] && !goldbach_represent (candidate, sieve)) {
+				printf ("%d\n", candidate);
 
 				free (sieve);
 				return 0;
 			}
+
+			candidate += 2;
 		}
 
 		free (sieve);

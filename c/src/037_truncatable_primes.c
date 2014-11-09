@@ -10,16 +10,17 @@
 
 int main () {
 	size_t limit = 1000;
+	int count = 0;
+	unsigned long sum = 0;
+
+	int prime = 11;
 
 	while (true) {
 		bool * sieve = eratosthenes_sieve (limit);
 
-		unsigned long sum = 0;
-		int count = 0;
-
-		for (int i = 11; i < limit; i += 2) {
+		while (prime < limit) {
 			int all_primes = 1;
-			int num = i;
+			int num = prime;
 
 			while (num > 0) {
 				if (!sieve[num]) {
@@ -30,12 +31,14 @@ int main () {
 				num /= 10;
 			}
 
-			if (!all_primes)
+			if (!all_primes) {
+				prime += 2;
 				continue;
+			}
 
 			char digits[20];
 
-			sprintf (digits, "%d", i);
+			sprintf (digits, "%d", prime);
 
 			for (int j = 1; digits[j] != '\0'; j++)
 				if (!sieve[atoi (digits + j)]) {
@@ -44,7 +47,7 @@ int main () {
 				}
 
 			if (all_primes) {
-				sum += i;
+				sum += prime;
 
 				if (++count == KNOWN_COUNT) {
 					printf ("%lu\n", sum);
@@ -53,6 +56,8 @@ int main () {
 					return 0;
 				}
 			}
+
+			prime += 2;
 		}
 
 		free (sieve);
