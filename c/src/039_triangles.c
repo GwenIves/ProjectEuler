@@ -21,7 +21,7 @@ int main (int argc, char ** argv) {
 	int max_count = 0;
 
 	// Precompute squares used in the calculation
-	int squares[N - 1];
+	int squares[N / 2 + 1];
 
 	for (int i = 0; i < array_len (squares); i++)
 		squares[i] = i * i;
@@ -29,16 +29,10 @@ int main (int argc, char ** argv) {
 	for (int n = 3; n <= N; n++) {
 		int triangles = 0;
 
-		for (int a = 1; a < n - 1; a++)
-			for (int b = a; b < n - 1; b++) {
-				int c = n - a - b;
-
-				if (b > a + c)
-					break;
-
-				if (squares[a] + squares[b] == squares[c])
+		for (int a = 1; a <= n / 2; a++)
+			for (int b = a; b <= n / 2 ; b++)
+				if (squares[a] + squares[b] == squares[n - a - b])
 					triangles++;
-			}
 
 		if (triangles > max_count) {
 			max_count = triangles;

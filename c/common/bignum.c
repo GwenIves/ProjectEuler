@@ -88,6 +88,41 @@ void bignum_print (bignum_t * num) {
 	printf ("\n");
 }
 
+// Calculates num^pow for num, pow >= 0, if truncate >= 0, then calculate only truncate least-significant bits
+bignum_t * bignum_pow (int num, int pow, int truncate) {
+	if (num == 0)
+		return bignum_get (0);
+	else if (pow == 0)
+		return bignum_get (1);
+
+	bignum_t * val = bignum_get (num);
+	bignum_t * result = bignum_get (num);
+
+	int power = 1;
+
+	while (power < pow) {
+		bignum_t * new_result = NULL;
+
+		if (power < num / 2) {
+			new_result = bignum_mult (result, result);
+			power *= 2;
+		} else {
+			new_result = bignum_mult (result, val);
+			power++;
+		}
+
+		if (truncate >= 0)
+			new_result->used = MIN (truncate, new_result->used);
+
+		bignum_delete (result);
+		result = new_result;
+	}
+
+	bignum_delete (val);
+
+	return result;
+}
+
 bignum_t * bignum_mult (bignum_t * a, bignum_t * b) {
 	bignum_t * c = bignum_get (0);
 

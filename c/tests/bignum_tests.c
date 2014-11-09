@@ -6,6 +6,7 @@ static void bignum_get_int_test ();
 static void bignum_get_str_test ();
 static void bignum_mult_test ();
 static void bignum_add_test ();
+static void bignum_pow_test ();
 static void bignum_cmp_test ();
 
 int main () {
@@ -13,6 +14,7 @@ int main () {
 	bignum_get_str_test ();
 	bignum_mult_test ();
 	bignum_add_test ();
+	bignum_pow_test ();
 	bignum_cmp_test ();
 
 	printf ("All bignum tests passed\n");
@@ -82,6 +84,33 @@ static void bignum_add_test () {
 	bignum_delete (c_neg);
 	bignum_delete (c_known);
 	bignum_delete (c_known_neg);
+}
+
+static void bignum_pow_test () {
+	bignum_t * a_ref = bignum_get (0);
+	bignum_t * b_ref = bignum_get (1);
+	bignum_t * c_ref = bignum_get ("1073741824");
+	bignum_t * c_trunc_ref = bignum_get ("41824");
+
+	bignum_t * a = bignum_pow (0, 1, -1);
+	bignum_t * b = bignum_pow (10, 0, -1);
+	bignum_t * c = bignum_pow (2, 30, -1);
+	bignum_t * c_trunc = bignum_pow (2, 30, 5);
+
+	assert (!bignum_cmp (a, a_ref));
+	assert (!bignum_cmp (b, b_ref));
+	assert (!bignum_cmp (c, c_ref));
+	assert (!bignum_cmp (c_trunc, c_trunc_ref));
+
+	bignum_delete (a);
+	bignum_delete (b);
+	bignum_delete (c);
+	bignum_delete (c_trunc);
+
+	bignum_delete (a_ref);
+	bignum_delete (b_ref);
+	bignum_delete (c_ref);
+	bignum_delete (c_trunc_ref);
 }
 
 static void bignum_cmp_test () {

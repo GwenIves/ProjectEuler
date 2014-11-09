@@ -41,7 +41,8 @@ static unsigned long search_solutions (int limit, unsigned long current_minimum)
 		n_limit = limit;
 		k_limit = limit;
 	} else {
-		n_limit = (current_minimum - 1) / 6;
+		// Largest possible n that could give a smaller difference (when k == 1)
+		n_limit = (current_minimum - 1) / 3;
 		k_limit = 0;
 	}
 
@@ -54,15 +55,14 @@ static unsigned long search_solutions (int limit, unsigned long current_minimum)
 			unsigned long difference = (3 * k_squared + 6 * k * n - k) / 2;
 			unsigned long sum = (6 * n_squared + 3 * k_squared + 6 * k * n - 2 * n - k) / 2;
 
-			if (is_pentagonal (difference) && is_pentagonal (sum)) {
+			if (k_limit == 0 && difference > minimum)
+				break;
+			else if (is_pentagonal (difference) && is_pentagonal (sum)) {
 				if (minimum == 0)
 					return difference;
 				else if (difference < minimum)
 					minimum = difference;
 			}
-
-			if (k_limit == 0 && difference > minimum)
-				break;
 		}
 	}
 

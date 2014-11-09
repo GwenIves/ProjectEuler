@@ -17,15 +17,7 @@ int main (int argc, char ** argv) {
 	if (N < 0)
 		return 1;
 
-	bignum_t * val2 = bignum_get (2);
-	bignum_t * power = bignum_get (1);
-
-	for (int i = 0; i < N; i++) {
-		bignum_t * new_power = bignum_mult (power, val2);
-
-		bignum_delete (power);
-		power = new_power;
-	}
+	bignum_t * power = bignum_pow (2, N, -1);
 
 	unsigned long sum = 0;
 
@@ -35,7 +27,6 @@ int main (int argc, char ** argv) {
 	printf ("%lu\n", sum);
 
 	bignum_delete (power);
-	bignum_delete (val2);
 
 	return 0;
 }

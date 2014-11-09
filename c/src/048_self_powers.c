@@ -9,8 +9,6 @@
 
 #define DIGITS_TO_CONSIDER	10
 
-static bignum_t * self_power (int);
-
 int main (int argc, char ** argv) {
 	if (argc != 2) {
 		fprintf (stderr, "usage: %s <N>\n", argv[0]);
@@ -25,8 +23,7 @@ int main (int argc, char ** argv) {
 	bignum_t * sum = bignum_get (0);
 
 	for (int i = 1; i <= N; i++) {
-		bignum_t * power = self_power (i);
-
+		bignum_t * power = bignum_pow (i, i, DIGITS_TO_CONSIDER);
 		bignum_t * new_sum = bignum_add (sum, power);
 
 		bignum_delete (power);
@@ -43,23 +40,4 @@ int main (int argc, char ** argv) {
 	bignum_delete (sum);
 
 	return 0;
-}
-
-static bignum_t * self_power (int num) {
-	bignum_t * val = bignum_get (num);
-	bignum_t * result = bignum_get (1);
-
-	for (int i = 0; i < num; i++) {
-		bignum_t * new_result = bignum_mult (val, result);
-
-		// Truncate only to the interesting digits to speed up multiplications
-		new_result->used = MIN (DIGITS_TO_CONSIDER, new_result->used);
-
-		bignum_delete (result);
-		result = new_result;
-	}
-
-	bignum_delete (val);
-
-	return result;
 }

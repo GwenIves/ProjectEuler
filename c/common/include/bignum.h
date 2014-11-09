@@ -24,5 +24,6 @@ int bignum_cmp (bignum_t *, bignum_t *);
 
 bignum_t * bignum_mult (bignum_t *, bignum_t *);
 bignum_t * bignum_add (bignum_t *, bignum_t *);
+bignum_t * bignum_pow (int, int, int);
 
 #endif
