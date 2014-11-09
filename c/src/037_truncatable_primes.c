@@ -9,7 +9,7 @@
 #define KNOWN_COUNT	11
 
 int main () {
-	int limit = 1000;
+	size_t limit = 1000;
 
 	while (true) {
 		bool * sieve = eratosthenes_sieve (limit);
@@ -17,7 +17,7 @@ int main () {
 		unsigned long sum = 0;
 		int count = 0;
 
-		for (int i = 10; i < limit; i++) {
+		for (int i = 11; i < limit; i += 2) {
 			int all_primes = 1;
 			int num = i;
 

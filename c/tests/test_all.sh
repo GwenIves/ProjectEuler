@@ -43,11 +43,11 @@ assert_blank ()
 
 assert_fail ()
 {
-	eval $1 > /dev/null
+	eval $1 > /dev/null 2>&1 
 
 	result=$?
 
-	if [ $result == 127 ]
+	if [ $result == 127 -o $result == 139 ]
 	then
 		echo "Invalid assertion at $2"
 		exit 1

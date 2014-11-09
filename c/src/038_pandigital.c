@@ -22,11 +22,7 @@ int main (int argc, char ** argv) {
 	char digits[DIGITS_COUNT];
 	char concat[DIGITS_COUNT];
 
-	int upper_limit = pow (10, N / 2 + 1);
-
-	int max = 0;
-
-	for (int i = 1; i <= upper_limit; i++) {
+	for (int i = pow (10, N / 2 + 1); i > 0; i--) {
 		memset (digits, 0, DIGITS_COUNT);
 		concat[0] = '\0';
 
@@ -44,19 +40,13 @@ int main (int argc, char ** argv) {
 			}
 
 			if (pandigital_test_digits (digits, N)) {
-				int new_val = atoi (concat);
-
-				if (new_val > max && mult > 1)
-					max = new_val;
-
-				break;
+				printf ("%s\n", concat);
+				return 0;
 			}
 
 			mult++;
 		}
 	}
-
-	printf ("%d\n", max);
 
 	return 0;
 }
