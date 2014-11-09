@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-static int sum_primes (bool *, int, int, int);
+static int sum_primes (bool *, int *, int, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -28,21 +28,12 @@ int main (int argc, char ** argv) {
 		if (!primes[i])
 			continue;
 
-		int count_attempt = max_count + 1;
+		int count = 0;
+		int sum = sum_primes (primes, &count, i, N);
 
-		while (true) {
-			int sum = sum_primes (primes, count_attempt, i, N);
-
-			if (sum < 0)
-				break;
-			else if (sum >= N)
-				break;
-			else if (primes[sum]) {
-				max_sum = sum;
-				max_count = count_attempt;
-			}
-
-			count_attempt++;
+		if (count > max_count) {
+			max_sum = sum;
+			max_count = count;
 		}
 	}
 
@@ -53,20 +44,31 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static int sum_primes (bool * primes, int count, int first, int under) {
-	int next_prime = first;
+static int sum_primes (bool * primes, int * count, int first, int under) {
 	int sum = 0;
+	int primes_added = 0;
+	int prime = first;
 
-	for (int i = 0; i < count; i++) {
-		sum += next_prime;
+	int max_while_prime = 0;
+	int sum_while_prime = 0;
 
-		while (next_prime < under)
-			if (primes[next_prime += 1])
+	while (true) {
+		sum += prime;
+
+		if (sum >= under) {
+			*count = max_while_prime;
+			return sum_while_prime;
+		} else {
+			primes_added++;
+
+			if (primes[sum]) {
+				max_while_prime = primes_added;
+				sum_while_prime = sum;
+			}
+		}
+
+		while (prime < under - 1)
+			if (primes[prime += 1])
 				break;
-
-		if (next_prime >= under)
-			return -1;
 	}
-
-	return sum;
 }

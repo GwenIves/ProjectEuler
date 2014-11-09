@@ -3,7 +3,6 @@
  */
 
 #include <stdio.h>
-#include <math.h>
 #include "math_utils.h"
 
 static unsigned long search_solutions (int, unsigned long);
