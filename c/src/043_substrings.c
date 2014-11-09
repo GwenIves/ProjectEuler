@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "math_utils.h"
+#include "utils.h"
 
 #define SUBSTR_LEN	3
 
@@ -18,7 +19,7 @@ int main () {
 	do {
 		int all_divisible = 1;
 
-		for (size_t i = 1; i <= 7; i++) {
+		for (size_t i = 1; i < array_len (digits) - SUBSTR_LEN; i++) {
 			int substr_val = 0;
 
 			for (size_t j = 0; j < SUBSTR_LEN; j++) {

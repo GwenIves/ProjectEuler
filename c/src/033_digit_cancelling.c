@@ -10,7 +10,7 @@
 #include "utils.h"
 #include "fraction.h"
 
-static int cancel_digit (int, int, int);
+static bool cancel_digit (int, int, int);
 static void fill_digits (int *, int);
 static int digits_to_num (int *, int, int);
 
@@ -42,7 +42,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static int cancel_digit (int nom, int denom, int N) {
+static bool cancel_digit (int nom, int denom, int N) {
 	int nom_digits[N]; 
 	int denom_digits[N];
 
@@ -72,12 +72,12 @@ static int cancel_digit (int nom, int denom, int N) {
 				int new_denom = digits_to_num (denom_digits, N, j);
 
 				if (nom * new_denom == denom * new_nom)
-					return 1;
+					return true;
 			}
 		}
 	}
 
-	return 0;
+	return false;
 }
 
 static void fill_digits (int * digits, int value) {

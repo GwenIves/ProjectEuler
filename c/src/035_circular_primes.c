@@ -20,14 +20,18 @@ int main (int argc, char ** argv) {
 		return 0;
 	}
 
-	int upper_limit = pow (10, (int) log10 (N) + 1);
+	int digits_count = log10 (N) + 1;
+	int upper_limit = pow (10, digits_count);
 
 	bool * sieve = eratosthenes_sieve (upper_limit);
 
-	int count = 0;
+	int count = 1;
 
-	for (int i = 2; i < N; i++) {
-		char digits[20];
+	for (int i = 3; i < N; i += 2) {
+		char digits[digits_count + 1];
+
+		if (!sieve[i])
+			continue;
 
 		sprintf (digits, "%d", i);
 

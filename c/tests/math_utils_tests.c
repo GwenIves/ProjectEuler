@@ -16,6 +16,7 @@ static void factors_count_test ();
 static void proper_divisors_sum_test ();
 static void divisors_count_test ();
 static void gcd_test ();
+static void make_palindrome_test ();
 static void is_palindrome_test ();
 static void is_permutation_test ();
 static void pandigital_test_and_set_digits_test ();
@@ -43,6 +44,7 @@ int main () {
 	proper_divisors_sum_test ();
 	divisors_count_test ();
 	gcd_test ();
+	make_palindrome_test ();
 	is_palindrome_test ();
 	is_permutation_test ();
 	pandigital_test_and_set_digits_test ();
@@ -159,6 +161,11 @@ static void gcd_test () {
 	assert (gcd (12, 60) == 12);
 	assert (gcd (90, 12) == 6);
 	assert (gcd (-90, 12) == 6);
+}
+
+static void make_palindrome_test () {
+	assert (make_palindrome (123, 10, true) == 12321);
+	assert (make_palindrome (123, 10, false) == 123321);
 }
 
 static void is_palindrome_test () {

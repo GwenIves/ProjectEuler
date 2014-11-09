@@ -13,10 +13,10 @@ int main () {
 	for (int i = 1; i < DIGITS_COUNT; i++)
 		digit_factorials[i] = i * digit_factorials[i - 1];
 
-	int lowest_pow10 = 1;
+	int lowest_pow10 = 10;
 	int max_representable = digit_factorials[DIGITS_COUNT - 1];
 
-	while (lowest_pow10 < max_representable) {
+	while (lowest_pow10 <= max_representable) {
 		lowest_pow10 *= 10;
 		max_representable += digit_factorials[DIGITS_COUNT - 1];
 	}

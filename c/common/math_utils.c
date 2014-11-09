@@ -30,17 +30,17 @@ bool * eratosthenes_sieve (size_t size) {
 }
 
 // Determines if a number is prime by divisor checking, the caller must guarantee the primes sieve contains entries at least up to sqrt (num) inclusive
-int is_prime (bool * primes, int num) {
+bool is_prime (bool * primes, int num) {
 	if (num < 2)
-		return 0;
+		return false;
 
 	int limit = sqrt (num);
 
 	for (int i = 2; i <= limit; i++)
 		if (primes[i] && num % i == 0)
-			return 0;
+			return false;
 
-	return 1;
+	return true;
 }
 
 // Returns an approximation of the inverse prime counting function - to be used for sizing the Eratosthenes sieve in iterative solutions
@@ -184,7 +184,24 @@ long gcd (long val_a, long val_b) {
 	return a;
 }
 
-int is_palindrome (int num, int base) {
+// Seed abc can generate two palindromes: abccba and abcba, odd_len controls which one is returned
+int make_palindrome (int seed, int base, bool odd_len) {
+	int palindrome = seed;
+
+	if (odd_len)
+		seed /= base;
+
+	while (seed > 0) {
+		palindrome *= base;
+		palindrome += seed % base;
+
+		seed /= base;
+	}
+
+	return palindrome;
+}
+
+bool is_palindrome (int num, int base) {
 	if (num < 0)
 		num = -num;
 
@@ -200,7 +217,7 @@ int is_palindrome (int num, int base) {
 	return rev_num == orig_num;
 }
 
-int is_permutation (int a, int b) {
+bool is_permutation (int a, int b) {
 	char digits[DIGITS_COUNT];
 
 	for (size_t i = 0; i < DIGITS_COUNT; i++)
@@ -211,9 +228,9 @@ int is_permutation (int a, int b) {
 
 	for (size_t i = 0; i < DIGITS_COUNT; i++)
 		if (digits[i] == 1)
-			return 0;
+			return false;
 
-	return 1;
+	return true;
 }
 
 static void set_digits (char * digits, int num) {
@@ -234,7 +251,7 @@ static void set_digits (char * digits, int num) {
  * Will immeditaly return failure should value contain digits already encountered previously
  * Use panditital_test_digits () to perform a final validation of the mask
  */
-int pandigital_test_and_set_digits (char * digits, int value) {
+bool pandigital_test_and_set_digits (char * digits, int value) {
 	if (value < 0)
 		value = -value;
 
@@ -243,38 +260,38 @@ int pandigital_test_and_set_digits (char * digits, int value) {
 		value /= 10;
 
 		if (digit == 0)
-			return 0;
+			return false;
 		else if (digits[digit])
-			return 0;
+			return false;
 		else
 			digits[digit] = 1;
 	}
 
-	return 1;
+	return true;
 }
 
 // Test if the digit mask is 1..N pandigital
-int pandigital_test_digits (char * digits, size_t N) {
+bool pandigital_test_digits (char * digits, size_t N) {
 	for (size_t i = 1; i <= N; i++)
 		if (digits[i] == 0)
-			return 0;
+			return false;
 
 	for (size_t i = N + 1; i < DIGITS_COUNT; i++)
 		if (digits[i] == 1)
-			return 0;
+			return false;
 
-	return 1;
+	return true;
 }
 
 /*
- * Inplace produce the next lexicographically ordered permutation of a given sequence and return 1
+ * Inplace produce the next lexicographically ordered permutation of a given sequence and return true
  * Returns 0 and leaves the sequence unchanged when given the already largest possible sequence
  *
  * 1. Find the least significant digit to increase, the one with a less significant and larger digit
  * 2. Swap it with the smallest larger, less significant digit, thus increasing the lexicographical value as little as possible
  * 3. Reverse all the less significant digits, changing them to increasing order, thus starting to permute the tail from the lowest possible value
  */
-int next_permutation (char * seq) {
+bool next_permutation (char * seq) {
 	size_t len = strlen (seq);
 
 	int first_digit_to_increase = -1;
@@ -286,7 +303,7 @@ int next_permutation (char * seq) {
 		}
 
 	if (first_digit_to_increase < 0)
-		return 0;
+		return false;
 
 	for (int i = len - 1; i > 0; i--)
 		if (seq[i] > seq[first_digit_to_increase]) {
@@ -303,10 +320,10 @@ int next_permutation (char * seq) {
 		j--;
 	}
 
-	return 1;
+	return true;
 }
 
-int prev_permutation (char * seq) {
+bool prev_permutation (char * seq) {
 	size_t len = strlen (seq);
 
 	int first_digit_to_decrease = -1;
@@ -318,7 +335,7 @@ int prev_permutation (char * seq) {
 		}
 
 	if (first_digit_to_decrease < 0)
-		return 0;
+		return false;
 
 	for (int i = len - 1; i > 0; i--)
 		if (seq[i] < seq[first_digit_to_decrease]) {
@@ -335,7 +352,7 @@ int prev_permutation (char * seq) {
 		j--;
 	}
 
-	return 1;
+	return true;
 }
 
 unsigned long next_triangle_num () {

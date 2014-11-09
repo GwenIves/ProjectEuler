@@ -17,7 +17,7 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N < 1 || N > 9)
+	if (N < 1 || N >= DIGITS_COUNT)
 		return 1;
 
 	char digits[DIGITS_COUNT];
@@ -32,7 +32,7 @@ int main (int argc, char ** argv) {
 		if (!pandigital_test_and_set_digits (digits, i))
 			continue;
 
-		for (int j = i + 1; j <= max_mult; j++) {
+		for (int j = i + 1; j <= max_mult / i; j++) {
 			char new_digits[DIGITS_COUNT];
 
 			memcpy (new_digits, digits, DIGITS_COUNT);

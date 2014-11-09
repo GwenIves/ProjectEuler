@@ -4,7 +4,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "math_utils.h"
+
+static void sum_two_base_palindromes (unsigned long *, int, int, bool);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -19,11 +22,28 @@ int main (int argc, char ** argv) {
 
 	unsigned long sum = 0;
 
-	for (int i = 1; i < N; i++)
-		if (is_palindrome (i, 10) && is_palindrome (i, 2))
-			sum += i;
+	int upper_limit = pow (10, (int) log10 (N) / 2);
+
+	for (int seed = 1; seed < upper_limit; seed++) {
+		sum_two_base_palindromes (&sum, N, seed, true);
+		sum_two_base_palindromes (&sum, N, seed, false);
+	}
 
 	printf ("%lu\n", sum);
 
 	return 0;
+}
+
+static void sum_two_base_palindromes (unsigned long * sum, int under, int seed, bool odd_len) {
+	int palindrome10 = make_palindrome (seed, 10, odd_len);
+
+	if (palindrome10 >= under)
+		return;
+
+	// Even numbers cannot be binary palindromes
+	if (palindrome10 % 2 == 0)
+		return;
+
+	if (is_palindrome (palindrome10, 2))
+		*sum += palindrome10;
 }

@@ -7,7 +7,7 @@
 #include <math.h>
 #include "math_utils.h"
 
-static int goldbach_represent (int, bool *);
+static bool goldbach_represent (int, bool *);
 
 int main () {
 	size_t size = 1000;
@@ -34,7 +34,7 @@ int main () {
 	return 0;
 }
 
-static int goldbach_represent (int num, bool * primes) {
+static bool goldbach_represent (int num, bool * primes) {
 	for (int i = 2; i < num; i++) {
 		if (!primes[i])
 			continue;
@@ -42,8 +42,8 @@ static int goldbach_represent (int num, bool * primes) {
 		int root = sqrt ((num - i) / 2);
 
 		if (num == i + 2 * root * root)
-			return 1;
+			return true;
 	}
 
-	return 0;
+	return false;
 }

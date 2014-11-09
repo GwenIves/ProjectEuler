@@ -15,7 +15,7 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N < 1 || N > 9)
+	if (N < 1 || N >= DIGITS_COUNT)
 		return 1;
 
 	bool * primes = eratosthenes_sieve (sqrt (pow (10, N)) + 1);
