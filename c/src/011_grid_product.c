@@ -112,8 +112,6 @@ static int ** load_grid (int * rows_out, int * columns_out) {
 }
 
 static void free_grid (int ** grid, int rows) {
-	for (int i = 0; i < rows; i++)
-		free (grid[i]);
-
+	free_array (grid, rows);
 	free (grid);
 }

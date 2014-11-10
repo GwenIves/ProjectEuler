@@ -265,5 +265,9 @@ assert "$(../src/052_multiples_permutations 1)" 1 $LINENO
 assert "$(../src/052_multiples_permutations 2)" 125874 $LINENO
 assert "$(../src/052_multiples_permutations 6)" 142857 $LINENO
 
+assert_fail "../src/053_selections 0" $LINENO
+assert "$(../src/053_selections 22)" 0 $LINENO
+assert "$(../src/053_selections 100)" 4075 $LINENO
+
 echo "All tests passed"
 exit 0

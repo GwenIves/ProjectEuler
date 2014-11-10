@@ -62,8 +62,6 @@ static int ** load_triangle (int * rows_out) {
 }
 
 static void free_triangle (int ** triangle, int rows) {
-	for (int i = 0; i < rows; i++)
-		free (triangle[i]);
-
+	free_array (triangle, rows);
 	free (triangle);
 }

@@ -71,8 +71,6 @@ static char ** read_names (int * count) {
 }
 
 static void free_names (char ** names, int count) {
-	for (int i = 0; i < count; i++)
-		free (names[i]);
-
+	free_array (names, count);
 	free (names);
 }

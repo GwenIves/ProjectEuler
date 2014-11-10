@@ -20,9 +20,7 @@ int main (int argc, char ** argv) {
 	bignum_t * fact = bignum_get (1);
 
 	for (int i = 2; i <= N; i++) {
-		bignum_t * num = bignum_get (i);
-
-		bignum_t * new_fact = bignum_mult (fact, num);
+		bignum_t * new_fact = bignum_mult (fact, i);
 
 		bignum_delete (fact);
 		fact = new_fact;

@@ -72,8 +72,6 @@ static int ** allocate_cache (size_t rows, size_t columns) {
 }
 
 static void free_cache (int ** cache, size_t rows) {
-	for (size_t i = 0; i < rows; i++)
-		free (cache[i]);
-
+	free_array (cache, rows);
 	free (cache);
 }

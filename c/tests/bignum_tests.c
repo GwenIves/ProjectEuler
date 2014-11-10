@@ -43,20 +43,18 @@ static void bignum_get_str_test () {
 static void bignum_mult_test () {
 	bignum_t * a = bignum_get ("123456");
 	bignum_t * b = bignum_get ("456789");
-	bignum_t * b_neg = bignum_get ("-456789");
 
 	bignum_t * c_known = bignum_get ("56393342784");
 	bignum_t * c_known_neg = bignum_get ("-56393342784");
 
 	bignum_t * c = bignum_mult (a, b);
-	bignum_t * c_neg = bignum_mult (a, b_neg);
+	bignum_t * c_neg = bignum_mult (a, -456789);
 
 	assert (!bignum_cmp (c, c_known));
 	assert (!bignum_cmp (c_neg, c_known_neg));
 
 	bignum_delete (a);
 	bignum_delete (b);
-	bignum_delete (b_neg);
 	bignum_delete (c);
 	bignum_delete (c_neg);
 	bignum_delete (c_known);

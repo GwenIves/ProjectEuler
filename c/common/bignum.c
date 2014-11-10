@@ -123,7 +123,17 @@ bignum_t * bignum_pow (int num, int pow, int truncate) {
 	return result;
 }
 
-bignum_t * bignum_mult (bignum_t * a, bignum_t * b) {
+bignum_t * bignum_mult_int (bignum_t * a, int b) {
+	bignum_t * bb = bignum_get (b);
+
+	bignum_t * c = bignum_mult (a, bb);
+
+	bignum_delete (bb);
+
+	return c;
+}
+
+bignum_t * bignum_mult_bignum (bignum_t * a, bignum_t * b) {
 	bignum_t * c = bignum_get (0);
 
 	c->sign = a->sign ^ b->sign;
