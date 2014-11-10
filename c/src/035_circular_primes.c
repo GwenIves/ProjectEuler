@@ -35,12 +35,12 @@ int main (int argc, char ** argv) {
 
 		sprintf (digits, "%d", i);
 
-		int all_primes = 1;
+		bool all_primes = true;
 		int rotated_num = i;
 
 		do {
 			if (!sieve[rotated_num]) {
-				all_primes = 0;
+				all_primes = false;
 				break;
 			}
 

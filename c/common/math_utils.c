@@ -218,16 +218,17 @@ bool is_palindrome (int num, int base) {
 }
 
 bool is_permutation (int a, int b) {
-	char digits[DIGITS_COUNT];
+	char digits_a[DIGITS_COUNT];
+	char digits_b[DIGITS_COUNT];
+
+	memset (digits_a, 0, DIGITS_COUNT);
+	memset (digits_b, 0, DIGITS_COUNT);
+
+	set_digits (digits_a, a);
+	set_digits (digits_b, b);
 
 	for (size_t i = 0; i < DIGITS_COUNT; i++)
-		digits[i] = 0;
-
-	set_digits (digits, a);
-	set_digits (digits, b);
-
-	for (size_t i = 0; i < DIGITS_COUNT; i++)
-		if (digits[i] == 1)
+		if (digits_a[i] != digits_b[i])
 			return false;
 
 	return true;

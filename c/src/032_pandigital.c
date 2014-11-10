@@ -44,13 +44,13 @@ int main (int argc, char ** argv) {
 			else if (!pandigital_test_and_set_digits(new_digits, new_product))
 				continue;
 			else if (pandigital_test_digits (new_digits, N)) {
-				int duplicate = 0;
+				bool duplicate = false;
 
 				int * product = NULL;
 
 				while ((product = linked_list_next (products, int)) != NULL) {
 					if (*product == new_product) {
-						duplicate = 1;
+						duplicate = true;
 						linked_list_stop_iteration (products);
 						break;
 					}

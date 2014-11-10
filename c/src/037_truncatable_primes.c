@@ -19,12 +19,12 @@ int main () {
 		bool * sieve = eratosthenes_sieve (limit);
 
 		while (prime < limit) {
-			int all_primes = 1;
+			bool all_primes = true;
 			int num = prime;
 
 			while (num > 0) {
 				if (!sieve[num]) {
-					all_primes = 0;
+					all_primes = false;
 					break;
 				}
 
@@ -42,7 +42,7 @@ int main () {
 
 			for (int j = 1; digits[j] != '\0'; j++)
 				if (!sieve[atoi (digits + j)]) {
-					all_primes = 0;
+					all_primes = false;
 					break;
 				}
 

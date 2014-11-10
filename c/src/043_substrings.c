@@ -17,7 +17,7 @@ int main () {
 	unsigned long sum = 0;
 
 	do {
-		int all_divisible = 1;
+		bool all_divisible = true;
 
 		for (size_t i = 1; i < array_len (digits) - SUBSTR_LEN; i++) {
 			int substr_val = 0;
@@ -28,7 +28,7 @@ int main () {
 			}
 
 			if (substr_val % primes[i]) {
-				all_divisible = 0;
+				all_divisible = false;
 				break;
 			}
 		}

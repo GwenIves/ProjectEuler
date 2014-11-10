@@ -260,5 +260,10 @@ assert "$(../src/051_prime_families 6)" 13 $LINENO
 assert "$(../src/051_prime_families 7)" 56003 $LINENO
 assert "$(../src/051_prime_families 8)" 121313 $LINENO
 
+assert_fail "../src/052_multiples_permutations 0" $LINENO
+assert "$(../src/052_multiples_permutations 1)" 1 $LINENO
+assert "$(../src/052_multiples_permutations 2)" 125874 $LINENO
+assert "$(../src/052_multiples_permutations 6)" 142857 $LINENO
+
 echo "All tests passed"
 exit 0
