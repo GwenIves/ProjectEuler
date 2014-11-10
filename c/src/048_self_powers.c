@@ -22,15 +22,8 @@ int main (int argc, char ** argv) {
 
 	bignum_t * sum = bignum_get (0);
 
-	for (int i = 1; i <= N; i++) {
-		bignum_t * power = bignum_pow (i, i, DIGITS_TO_CONSIDER);
-		bignum_t * new_sum = bignum_add (sum, power);
-
-		bignum_delete (power);
-		bignum_delete (sum);
-
-		sum = new_sum;
-	}
+	for (int i = 1; i <= N; i++)
+		sum = bignum_add_to (sum, bignum_pow (i, i, DIGITS_TO_CONSIDER));
 
 	for (int i = MIN (DIGITS_TO_CONSIDER, sum->used) - 1; i >= 0; i--)
 		printf ("%d", sum->digits[i]);

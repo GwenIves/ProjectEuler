@@ -11,6 +11,8 @@
 	int: bignum_mult_int, \
 	bignum_t *: bignum_mult_bignum)(X,Y)
 
+#define bignum_add_to(A,B) bignum_add_to_ (A,B,true)
+
 typedef struct {
 	unsigned char * digits;
 	bool sign;
@@ -24,11 +26,15 @@ bignum_t * bignum_get_str (char *);
 void bignum_delete (bignum_t *);
 void bignum_print (bignum_t *);
 
+bool bignum_is_palindrome (bignum_t *);
+
 int bignum_cmp (bignum_t *, bignum_t *);
 
 bignum_t * bignum_mult_bignum (bignum_t *, bignum_t *);
 bignum_t * bignum_mult_int (bignum_t *, int);
 bignum_t * bignum_add (bignum_t *, bignum_t *);
+bignum_t * bignum_add_to_ (bignum_t *, bignum_t *, bool);
 bignum_t * bignum_pow (int, int, int);
+bignum_t * bignum_reverse (bignum_t *);
 
 #endif

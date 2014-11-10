@@ -8,14 +8,12 @@
 static void ensure_allocation (bignum_t *);
 static int bignum_magnitude_cmp (bignum_t *, bignum_t *);
 static bignum_t * bignum_sub_aux (bignum_t *, bignum_t *);
+static void bignum_init (bignum_t *);
 
 bignum_t * bignum_get_int (int value) {
 	bignum_t * num = x_malloc (sizeof (bignum_t));
 
-	num->digits = NULL;
-	num->sign = false;
-	num->allocated = 0;
-	num->used = 0;
+	bignum_init (num);
 
 	if (value < 0) {
 		value = -value;
@@ -35,10 +33,7 @@ bignum_t * bignum_get_int (int value) {
 bignum_t * bignum_get_str (char * value) {
 	bignum_t * num = x_malloc (sizeof (bignum_t));
 
-	num->digits = NULL;
-	num->sign = false;
-	num->allocated = 0;
-	num->used = 0;
+	bignum_init (num);
 
 	while (isblank (*value))
 		value++;
@@ -86,6 +81,21 @@ void bignum_print (bignum_t * num) {
 		printf ("%d", (int) num->digits[i]);
 
 	printf ("\n");
+}
+
+bignum_t * bignum_reverse (bignum_t * num) {
+	bignum_t * rev = x_malloc (sizeof (bignum_t));
+
+	bignum_init (rev);
+
+	rev->allocated = num->used;
+	rev->used = num->used;
+	rev->digits = x_malloc (rev->allocated);
+
+	for (size_t i = 0; i < num->used; i++)
+		rev->digits[i] = num->digits[num->used - 1 - i];
+
+	return rev;
 }
 
 // Calculates num^pow for num, pow >= 0, if truncate >= 0, then calculate only truncate least-significant digits
@@ -176,6 +186,17 @@ bignum_t * bignum_mult_bignum (bignum_t * a, bignum_t * b) {
 	return c;
 }
 
+bignum_t * bignum_add_to_ (bignum_t * a, bignum_t * b, bool clear_flag) {
+	bignum_t * c = bignum_add (a, b);
+
+	bignum_delete (a);
+
+	if (clear_flag)
+		bignum_delete (b);
+
+	return c;
+}
+
 bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
 	bignum_t * c = bignum_get (0);
 
@@ -243,6 +264,14 @@ int bignum_cmp (bignum_t * a, bignum_t * b) {
 		return -1;
 	else
 		return bignum_magnitude_cmp (a, b);
+}
+
+bool bignum_is_palindrome (bignum_t * num) {
+	for (size_t i = 0; i < num->used / 2; i++)
+		if (num->digits[i] != num->digits[num->used - 1 - i])
+			return false;
+
+	return true;
 }
 
 /*
@@ -313,4 +342,11 @@ static int bignum_magnitude_cmp (bignum_t * a, bignum_t * b) {
 
 		return 0;
 	}
+}
+
+static void bignum_init (bignum_t * num) {
+	num->digits = NULL;
+	num->sign = false;
+	num->allocated = 0;
+	num->used = 0;
 }

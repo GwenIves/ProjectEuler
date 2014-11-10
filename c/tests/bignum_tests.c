@@ -6,16 +6,22 @@ static void bignum_get_int_test ();
 static void bignum_get_str_test ();
 static void bignum_mult_test ();
 static void bignum_add_test ();
+static void bignum_add_to_test ();
 static void bignum_pow_test ();
 static void bignum_cmp_test ();
+static void bignum_is_palindrome_test ();
+static void bignum_reverse_test ();
 
 int main () {
 	bignum_get_int_test ();
 	bignum_get_str_test ();
 	bignum_mult_test ();
 	bignum_add_test ();
+	bignum_add_to_test ();
 	bignum_pow_test ();
 	bignum_cmp_test ();
+	bignum_is_palindrome_test ();
+	bignum_reverse_test ();
 
 	printf ("All bignum tests passed\n");
 
@@ -84,6 +90,18 @@ static void bignum_add_test () {
 	bignum_delete (c_known_neg);
 }
 
+static void bignum_add_to_test () {
+	bignum_t * a = bignum_get ("12345678");
+	bignum_t * a_ref = bignum_get ("23456789");
+
+	a = bignum_add_to (a, bignum_get ("11111111"));
+
+	assert (!bignum_cmp (a, a_ref));
+
+	bignum_delete (a);
+	bignum_delete (a_ref);
+}
+
 static void bignum_pow_test () {
 	bignum_t * a_ref = bignum_get (0);
 	bignum_t * b_ref = bignum_get (1);
@@ -123,4 +141,29 @@ static void bignum_cmp_test () {
 	bignum_delete (a);
 	bignum_delete (b);
 	bignum_delete (c);
+}
+static void bignum_is_palindrome_test () {
+	bignum_t * a = bignum_get ("12345678987654321");
+	bignum_t * b = bignum_get ("123456789987654321");
+	bignum_t * c = bignum_get ("1234567897654321");
+
+	assert (bignum_is_palindrome (a));
+	assert (bignum_is_palindrome (b));
+	assert (!bignum_is_palindrome (c));
+
+	bignum_delete (a);
+	bignum_delete (b);
+	bignum_delete (c);
+}
+
+static void bignum_reverse_test () {
+	bignum_t * a = bignum_get ("123456");
+	bignum_t * b = bignum_reverse (a);
+	bignum_t * b_ref = bignum_get ("654321");
+
+	assert (!bignum_cmp (b, b_ref));
+
+	bignum_delete (a);
+	bignum_delete (b);
+	bignum_delete (b_ref);
 }
