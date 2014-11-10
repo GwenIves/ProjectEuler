@@ -269,5 +269,8 @@ assert_fail "../src/053_selections 0" $LINENO
 assert "$(../src/053_selections 22)" 0 $LINENO
 assert "$(../src/053_selections 100)" 4075 $LINENO
 
+assert "$(../src/054_poker < /dev/null)" 0 $LINENO
+assert "$(../src/054_poker < data/054_hands.in)" 376 $LINENO
+
 echo "All tests passed"
 exit 0
