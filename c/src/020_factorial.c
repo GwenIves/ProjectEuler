@@ -26,12 +26,7 @@ int main (int argc, char ** argv) {
 		fact = new_fact;
 	}
 
-	int sum = 0;
-
-	for (size_t i = 0; i < fact->used; i++)
-		sum += fact->digits[i];
-
-	printf ("%d\n", sum);
+	printf ("%d\n", bignum_digits_sum (fact));
 
 	bignum_delete (fact);
 

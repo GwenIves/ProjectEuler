@@ -19,12 +19,7 @@ int main (int argc, char ** argv) {
 
 	bignum_t * power = bignum_pow (2, N, -1);
 
-	unsigned long sum = 0;
-
-	for (int i = 0; i < power->used; i++)
-		sum += power->digits[i];
-
-	printf ("%lu\n", sum);
+	printf ("%d\n", bignum_digits_sum (power));
 
 	bignum_delete (power);
 

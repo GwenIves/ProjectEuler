@@ -30,6 +30,8 @@ bool bignum_is_palindrome (bignum_t *);
 
 int bignum_cmp (bignum_t *, bignum_t *);
 
+int bignum_digits_sum (bignum_t *);
+
 bignum_t * bignum_mult_bignum (bignum_t *, bignum_t *);
 bignum_t * bignum_mult_int (bignum_t *, int);
 bignum_t * bignum_add (bignum_t *, bignum_t *);

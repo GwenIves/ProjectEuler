@@ -11,6 +11,7 @@ static void bignum_pow_test ();
 static void bignum_cmp_test ();
 static void bignum_is_palindrome_test ();
 static void bignum_reverse_test ();
+static void bignum_digits_sum_test ();
 
 int main () {
 	bignum_get_int_test ();
@@ -22,6 +23,7 @@ int main () {
 	bignum_cmp_test ();
 	bignum_is_palindrome_test ();
 	bignum_reverse_test ();
+	bignum_digits_sum_test ();
 
 	printf ("All bignum tests passed\n");
 
@@ -166,4 +168,11 @@ static void bignum_reverse_test () {
 	bignum_delete (a);
 	bignum_delete (b);
 	bignum_delete (b_ref);
+}
+static void bignum_digits_sum_test () {
+	bignum_t * a = bignum_get ("123456789987654321");
+
+	assert (bignum_digits_sum (a) == 90);
+
+	bignum_delete (a);
 }

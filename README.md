@@ -1,6 +1,6 @@
 # Project Euler Solutions
 
-Solutions to the Project Euler problems in various programming languages
+Solutions to the Project Euler problems in various programming languages.
 
 
 Unless noted otherwise in the language sections, every solution should be:
@@ -11,14 +11,14 @@ Unless noted otherwise in the language sections, every solution should be:
 
 
 ## Currently implemented problems:
-   * C - 55 problems
+   * C - 56 problems
 
 
 ## Build instructions and language notes
 
 ### C11/POSIX
 
-An example of a barebones imperative language solution.
+An example of a barebones imperative language approach.
 
 Build by running make from the top of the c/ directory tree
 
@@ -29,5 +29,5 @@ Build by running make from the top of the c/ directory tree
 	make distclean  // deletes all generated files
 	make tags       // creates a single ctags database with symbol lookups
 
-#### Limitations
+##### Limitations
 Does not check for numeric overflows, consequently a number of the solutions will produce incorrect answers for very large input parameters

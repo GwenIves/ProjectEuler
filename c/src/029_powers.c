@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "utils.h"
 #include "bignum.h"
 #include "math_utils.h"
 
@@ -25,16 +24,10 @@ int main (int argc, char ** argv) {
 	bool * primes = eratosthenes_sieve (N + 1);
 
 	for (int a = 2; a <= N; a++) {
-		bignum_t * power = NULL;
-		bignum_t * base = bignum_get (a);
+		bignum_t * power = bignum_get (a);
 
 		for (int b = 2; b <= N; b++) {
-			bignum_t * new_power = NULL;
-			
-			if (power)
-				new_power = bignum_mult (power, base);
-			else
-				new_power = bignum_mult (base, base);
+			bignum_t * new_power = bignum_mult (power, a);
 
 			int duplicate_at = -1;
 
@@ -54,8 +47,6 @@ int main (int argc, char ** argv) {
 				power = powers[duplicate_at];
 			}
 		}
-
-		bignum_delete (base);
 	}
 
 	printf ("%d\n", powers_count);

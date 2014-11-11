@@ -83,6 +83,15 @@ void bignum_print (bignum_t * num) {
 	printf ("\n");
 }
 
+int bignum_digits_sum (bignum_t * num) {
+	int sum = 0;
+
+	for (size_t i = 0; i < num->used; i++)
+		sum += num->digits[i];
+
+	return sum;
+}
+
 bignum_t * bignum_reverse (bignum_t * num) {
 	bignum_t * rev = x_malloc (sizeof (bignum_t));
 
