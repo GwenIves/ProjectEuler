@@ -7,6 +7,8 @@
 #include <math.h>
 #include "math_utils.h"
 
+static void rotate (char *);
+
 int main (int argc, char ** argv) {
 	if (argc != 2) {
 		fprintf (stderr, "usage: %s <N>\n", argv[0]);
@@ -44,13 +46,7 @@ int main (int argc, char ** argv) {
 				break;
 			}
 
-			int leftmost = digits[0];
-			int digit_index = 0;
-
-			for (digit_index = 1; digits[digit_index] != '\0'; digit_index++)
-				digits[digit_index - 1] = digits[digit_index];
-
-			digits[digit_index - 1] = leftmost;
+			rotate (digits);
 
 			rotated_num = atoi (digits);
 		} while (rotated_num != i);
@@ -64,4 +60,14 @@ int main (int argc, char ** argv) {
 	printf ("%d\n", count);
 
 	return 0;
+}
+
+static void rotate (char * digits) {
+	int leftmost = digits[0];
+	size_t digit_index = 0;
+
+	for (digit_index = 1; digits[digit_index] != '\0'; digit_index++)
+		digits[digit_index - 1] = digits[digit_index];
+
+	digits[digit_index - 1] = leftmost;
 }

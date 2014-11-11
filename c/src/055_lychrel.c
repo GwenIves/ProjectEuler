@@ -24,18 +24,18 @@ int main (int argc, char ** argv) {
 	for (int i = 1; i < N; i++) {
 		bignum_t * sum = bignum_get (i);
 
-		bool lynchrel = true;
+		bool lychrel = true;
 
 		for (int j = 0; j < BREAKOFF_COUNT; j++) {
 			sum = bignum_add_to (sum, bignum_reverse (sum));
 
 			if (bignum_is_palindrome (sum)) {
-				lynchrel = false;
+				lychrel = false;
 				break;
 			}
 		}
 
-		if (lynchrel)
+		if (lychrel)
 			count++;
 
 		bignum_delete (sum);

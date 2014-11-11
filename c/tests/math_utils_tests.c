@@ -27,6 +27,7 @@ static void next_triangle_num_test ();
 static void next_pentagonal_num_test ();
 static void next_hexagonal_num_test ();
 static void next_collatz_num_test ();
+static void next_fibonacci_num_test ();
 static void is_triangle_test ();
 static void is_pentagonal_test ();
 static void arithmetic_sequence_sum_test ();
@@ -55,6 +56,7 @@ int main () {
 	next_pentagonal_num_test ();
 	next_hexagonal_num_test ();
 	next_collatz_num_test ();
+	next_fibonacci_num_test ();
 	is_triangle_test ();
 	is_pentagonal_test ();
 	arithmetic_sequence_sum_test ();
@@ -251,6 +253,15 @@ static void next_hexagonal_num_test () {
 		num = next_hexagonal_num ();
 
 	assert (num == 190);
+}
+
+static void next_fibonacci_num_test () {
+	unsigned long num = 0;
+
+	for (size_t i = 0; i < 10; i++)
+		num = next_fibonacci_num ();
+
+	assert (num == 89);
 }
 
 static void next_collatz_num_test () {

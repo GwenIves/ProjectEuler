@@ -37,6 +37,7 @@ bool pandigital_test_digits (char *, size_t);
 bool next_permutation (char *);
 bool prev_permutation (char *);
 
+unsigned long next_fibonacci_num ();
 unsigned long next_triangle_num ();
 unsigned long next_pentagonal_num ();
 unsigned long next_hexagonal_num ();

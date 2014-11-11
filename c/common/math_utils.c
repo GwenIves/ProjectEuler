@@ -356,6 +356,18 @@ bool prev_permutation (char * seq) {
 	return true;
 }
 
+unsigned long next_fibonacci_num () {
+	static unsigned long f1 = 0;
+	static unsigned long f2 = 1;
+
+	unsigned long f = f1 + f2;
+
+	f1 = f2;
+	f2 = f;
+
+	return f;
+}
+
 unsigned long next_triangle_num () {
 	static unsigned long last_index = 0;
 	static unsigned long last_num = 0;

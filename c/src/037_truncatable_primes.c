@@ -8,6 +8,8 @@
 
 #define KNOWN_COUNT	11
 
+static bool is_truncatable (bool *, int);
+
 int main () {
 	size_t limit = 1000;
 	int count = 0;
@@ -19,34 +21,7 @@ int main () {
 		bool * sieve = eratosthenes_sieve (limit);
 
 		while (prime < limit) {
-			bool all_primes = true;
-			int num = prime;
-
-			while (num > 0) {
-				if (!sieve[num]) {
-					all_primes = false;
-					break;
-				}
-
-				num /= 10;
-			}
-
-			if (!all_primes) {
-				prime += 2;
-				continue;
-			}
-
-			char digits[20];
-
-			sprintf (digits, "%d", prime);
-
-			for (int j = 1; digits[j] != '\0'; j++)
-				if (!sieve[atoi (digits + j)]) {
-					all_primes = false;
-					break;
-				}
-
-			if (all_primes) {
+			if (is_truncatable (sieve, prime)) {
 				sum += prime;
 
 				if (++count == KNOWN_COUNT) {
@@ -65,4 +40,25 @@ int main () {
 	}
 
 	return 0;
+}
+
+static bool is_truncatable (bool * sieve, int prime) {
+	int num = prime;
+
+	while (num > 0) {
+		if (!sieve[num])
+			return false;
+
+		num /= 10;
+	}
+
+	char digits[20];
+
+	sprintf (digits, "%d", prime);
+
+	for (size_t j = 1; digits[j] != '\0'; j++)
+		if (!sieve[atoi (digits + j)])
+			return false;
+
+	return true;
 }

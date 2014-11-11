@@ -9,6 +9,7 @@
 #include <ctype.h>
 #include "utils.h"
 
+static int score_name (char *);
 static char ** read_names (int *);
 static void free_names (char **, int);
 
@@ -23,24 +24,25 @@ int main () {
 
 	unsigned long sum = 0;
 
-	for (int i = 0; i < names_count; i++) {
-		int alpha_value = 0;
-
-		char * name = names[i];
-
-		while (*name) {
-			alpha_value += tolower (*name) - 'a' + 1;
-			name++;
-		}
-
-		sum += alpha_value * (i + 1);
-	}
+	for (int i = 0; i < names_count; i++)
+		sum += score_name (names[i]) * (i + 1);
 
 	printf ("%lu\n", sum);
 
 	free_names (names, names_count);
 
 	return 0;
+}
+
+static int score_name (char * name) {
+	int alpha_value = 0;
+
+	while (*name) {
+		alpha_value += tolower (*name) - 'a' + 1;
+		name++;
+	}
+
+	return alpha_value;
 }
 
 static char ** read_names (int * count) {
