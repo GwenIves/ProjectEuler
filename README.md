@@ -11,12 +11,12 @@ Unless noted otherwise in the language sections, every solution should be:
 
 
 ## Currently implemented problems:
-   * **C** - 56 problems
+   * **C** - 57 problems
 
 
 ## Build instructions and language notes
 
-### c/ - C11/POSIX
+### c/ subdirectory --- C11/POSIX
 
 An example of a barebones imperative language approach.
 

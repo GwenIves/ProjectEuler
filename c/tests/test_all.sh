@@ -279,5 +279,10 @@ assert "$(../src/055_lychrel 10000)" 249 $LINENO
 assert_fail "../src/056_power_digit_sum 0" $LINENO
 assert "$(../src/056_power_digit_sum 100)" 972 $LINENO
 
+assert_fail "../src/057_square_root 0" $LINENO
+assert "$(../src/057_square_root 7)" 0 $LINENO
+assert "$(../src/057_square_root 8)" 1 $LINENO
+assert "$(../src/057_square_root 1000)" 153 $LINENO
+
 echo "All tests passed"
 exit 0
