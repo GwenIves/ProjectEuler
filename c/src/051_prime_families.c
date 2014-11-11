@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "math_utils.h"
-#include "utils.h"
 
 static size_t primes_family_size (bool *, int, size_t);
 static int replace_digits (char *, char *, int);

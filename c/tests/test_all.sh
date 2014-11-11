@@ -284,5 +284,10 @@ assert "$(../src/057_square_root 7)" 0 $LINENO
 assert "$(../src/057_square_root 8)" 1 $LINENO
 assert "$(../src/057_square_root 1000)" 153 $LINENO
 
+assert_fail "../src/058_number_spiral -1" $LINENO
+assert_fail "../src/058_number_spiral 101" $LINENO
+assert "$(../src/058_number_spiral 65)" 3 $LINENO
+assert "$(../src/058_number_spiral 10)" 26241 $LINENO
+
 echo "All tests passed"
 exit 0
