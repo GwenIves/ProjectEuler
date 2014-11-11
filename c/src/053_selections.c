@@ -52,10 +52,10 @@ int main (int argc, char ** argv) {
 					count += 2;
 			}
 
-		free_array (cancelled_factorials, array_len (cancelled_factorials));
+		bignum_free_array (cancelled_factorials, array_len (cancelled_factorials));
 	}
 
-	free_array (factorials, array_len (factorials));
+	bignum_free_array (factorials, array_len (factorials));
 
 	printf ("%d\n", count);
 

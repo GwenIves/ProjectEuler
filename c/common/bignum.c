@@ -120,26 +120,37 @@ bignum_t * bignum_pow (int num, int pow, int truncate) {
 	int power = 1;
 
 	while (power < pow) {
-		bignum_t * new_result = NULL;
-
 		if (power < num / 2) {
-			new_result = bignum_mult (result, result);
+			result = bignum_mult_to (result, result);
 			power *= 2;
 		} else {
-			new_result = bignum_mult (result, val);
+			result = bignum_mult_to (result, val);
 			power++;
 		}
 
 		if (truncate >= 0)
-			new_result->used = MIN (truncate, new_result->used);
-
-		bignum_delete (result);
-		result = new_result;
+			result->used = MIN (truncate, result->used);
 	}
 
 	bignum_delete (val);
 
 	return result;
+}
+
+bignum_t * bignum_mult_int_to (bignum_t * a, int b) {
+	bignum_t * c = bignum_mult (a, b);
+
+	bignum_delete (a);
+
+	return c;
+}
+
+bignum_t * bignum_mult_bignum_to (bignum_t * a, bignum_t * b) {
+	bignum_t * c = bignum_mult (a, b);
+
+	bignum_delete (a);
+
+	return c;
 }
 
 bignum_t * bignum_mult_int (bignum_t * a, int b) {

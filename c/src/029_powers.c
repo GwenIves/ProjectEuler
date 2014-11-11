@@ -51,9 +51,7 @@ int main (int argc, char ** argv) {
 
 	printf ("%d\n", powers_count);
 
-	for (int i = 0; i < powers_count; i++)
-		bignum_delete (powers[i]);
-
+	bignum_free_array (powers, powers_count);
 	free (primes);
 
 	return 0;

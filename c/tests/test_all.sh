@@ -276,7 +276,7 @@ assert_fail "../src/055_lychrel 1" $LINENO
 assert "$(../src/055_lychrel 200)" 1 $LINENO
 assert "$(../src/055_lychrel 10000)" 249 $LINENO
 
-assert_fail "../src/056_power_digit_sum 1" $LINENO
+assert_fail "../src/056_power_digit_sum 0" $LINENO
 assert "$(../src/056_power_digit_sum 100)" 972 $LINENO
 
 echo "All tests passed"

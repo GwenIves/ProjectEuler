@@ -44,7 +44,6 @@ int main (int argc, char ** argv) {
 
 	bignum_delete (fib1);
 	bignum_delete (fib2);
-	bignum_delete (fib);
 
 	return 0;
 }

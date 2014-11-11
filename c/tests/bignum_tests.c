@@ -5,6 +5,7 @@
 static void bignum_get_int_test ();
 static void bignum_get_str_test ();
 static void bignum_mult_test ();
+static void bignum_mult_to_test ();
 static void bignum_add_test ();
 static void bignum_add_to_test ();
 static void bignum_pow_test ();
@@ -17,6 +18,7 @@ int main () {
 	bignum_get_int_test ();
 	bignum_get_str_test ();
 	bignum_mult_test ();
+	bignum_mult_to_test ();
 	bignum_add_test ();
 	bignum_add_to_test ();
 	bignum_pow_test ();
@@ -67,6 +69,18 @@ static void bignum_mult_test () {
 	bignum_delete (c_neg);
 	bignum_delete (c_known);
 	bignum_delete (c_known_neg);
+}
+
+static void bignum_mult_to_test () {
+	bignum_t * a = bignum_get ("123456789");
+	bignum_t * a_ref = bignum_get ("56296295784");
+
+	a = bignum_mult_to (a, 456);
+
+	assert (!bignum_cmp (a, a_ref));
+
+	bignum_delete (a);
+	bignum_delete (a_ref);
 }
 
 static void bignum_add_test () {

@@ -11,7 +11,13 @@
 	int: bignum_mult_int, \
 	bignum_t *: bignum_mult_bignum)(X,Y)
 
+#define bignum_mult_to(X,Y) _Generic((Y), \
+	int: bignum_mult_int_to, \
+	bignum_t *: bignum_mult_bignum_to)(X,Y)
+
 #define bignum_add_to(A,B) bignum_add_to_ (A,B,true)
+
+#define bignum_free_array(A,L) for (size_t i = 0; i < L; i++) { bignum_delete (A[i]); }
 
 typedef struct {
 	unsigned char * digits;
@@ -34,8 +40,12 @@ int bignum_digits_sum (bignum_t *);
 
 bignum_t * bignum_mult_bignum (bignum_t *, bignum_t *);
 bignum_t * bignum_mult_int (bignum_t *, int);
+bignum_t * bignum_mult_bignum_to (bignum_t *, bignum_t *);
+bignum_t * bignum_mult_int_to (bignum_t *, int);
+
 bignum_t * bignum_add (bignum_t *, bignum_t *);
 bignum_t * bignum_add_to_ (bignum_t *, bignum_t *, bool);
+
 bignum_t * bignum_pow (int, int, int);
 bignum_t * bignum_reverse (bignum_t *);
 

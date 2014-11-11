@@ -23,16 +23,15 @@ int main (int argc, char ** argv) {
 		bignum_t * power = bignum_get (1);
 
 		for (int b = 1; b <= N; b++) {
-			bignum_t * new_power = bignum_mult (power, a);
+			power = bignum_mult_to (power, a);
 
-			int sum = bignum_digits_sum (new_power);
+			int sum = bignum_digits_sum (power);
 
 			if (sum > max_digits_sum)
 				max_digits_sum = sum;
-
-			bignum_delete (power);
-			power = new_power;
 		}
+
+		bignum_delete (power);
 	}
 
 	printf ("%d\n", max_digits_sum);

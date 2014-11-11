@@ -19,12 +19,8 @@ int main (int argc, char ** argv) {
 
 	bignum_t * fact = bignum_get (1);
 
-	for (int i = 2; i <= N; i++) {
-		bignum_t * new_fact = bignum_mult (fact, i);
-
-		bignum_delete (fact);
-		fact = new_fact;
-	}
+	for (int i = 2; i <= N; i++)
+		fact = bignum_mult_to (fact, i);
 
 	printf ("%d\n", bignum_digits_sum (fact));
 
