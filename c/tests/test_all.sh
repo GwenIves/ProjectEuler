@@ -28,7 +28,7 @@ assert ()
 
 assert_blank ()
 {
-	result=$($1)
+	result=$(eval $1)
 
 	if [ $? == 127 ]
 	then
@@ -288,6 +288,10 @@ assert_fail "../src/058_number_spiral -1" $LINENO
 assert_fail "../src/058_number_spiral 101" $LINENO
 assert "$(../src/058_number_spiral 65)" 3 $LINENO
 assert "$(../src/058_number_spiral 10)" 26241 $LINENO
+
+assert_fail "../src/059_xor 0 < /dev/null" $LINENO
+assert_blank "../src/059_xor 1 < /dev/null" $LINENO
+assert "$(../src/059_xor 3 < data/059_encrypted.in)" 107359 $LINENO
 
 echo "All tests passed"
 exit 0
