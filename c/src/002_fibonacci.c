@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include "math_utils.h"
 
 int main (int argc, char ** argv) {
@@ -16,16 +15,11 @@ int main (int argc, char ** argv) {
 	long N = atol (argv[1]);
 
 	long sum = 0;
+	long fib = 0;
 
-	while (true) {
-		long fib = next_fibonacci_num ();
-
-		if (fib > N)
-			break;
-
+	while ((fib = next_fibonacci_num ()) <= N)
 		if (fib % 2 == 0)
 			sum += fib;
-	}
 
 	printf ("%ld\n", sum);
 

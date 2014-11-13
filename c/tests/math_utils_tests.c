@@ -19,6 +19,7 @@ static void gcd_test ();
 static void make_palindrome_test ();
 static void is_palindrome_test ();
 static void is_permutation_test ();
+static void concatenate_test ();
 static void pandigital_test_and_set_digits_test ();
 static void pandigital_test_digits_test ();
 static void next_permutation_test ();
@@ -48,6 +49,7 @@ int main () {
 	make_palindrome_test ();
 	is_palindrome_test ();
 	is_permutation_test ();
+	concatenate_test ();
 	pandigital_test_and_set_digits_test ();
 	pandigital_test_digits_test ();
 	next_permutation_test ();
@@ -108,8 +110,8 @@ static void eratosthenes_sieve_test () {
 static void is_prime_test () {
 	bool * sieve = eratosthenes_sieve (798);
 
-	assert (!is_prime (sieve, 797 * 797));
-	assert (is_prime (sieve, 336533));
+	assert (!is_prime (sieve, 797 * 797, 798));
+	assert (is_prime (sieve, 336533, 798));
 
 	free (sieve);
 }
@@ -180,6 +182,10 @@ static void is_palindrome_test () {
 static void is_permutation_test () {
 	assert (is_permutation (12345, 32415));
 	assert (!is_permutation (12345, 32615));
+}
+
+static void concatenate_test () {
+	assert (concatenate (12345, 678910) == 12345678910L);
 }
 
 static void pandigital_test_and_set_digits_test () {

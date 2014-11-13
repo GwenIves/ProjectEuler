@@ -18,7 +18,8 @@ int main (int argc, char ** argv) {
 	if (N < 1 || N >= DIGITS_COUNT)
 		return 1;
 
-	bool * primes = eratosthenes_sieve (sqrt (pow (10, N)) + 1);
+	int primes_limit = sqrt (pow (10, N)) + 1;
+	bool * primes = eratosthenes_sieve (primes_limit);
 
 	char digits[DIGITS_COUNT];
 	int digit = 0;
@@ -29,7 +30,7 @@ int main (int argc, char ** argv) {
 	digits[digit] = '\0';
 
 	while (prev_permutation (digits)) {
-		if (is_prime (primes, atoi (digits))) {
+		if (is_prime (primes, atoi (digits), primes_limit)) {
 			printf ("%s\n", digits);
 			break;
 		}

@@ -17,7 +17,7 @@ typedef struct {
 #define DIGITS_COUNT	10
 
 bool * eratosthenes_sieve (size_t);
-bool is_prime (bool *, int);
+bool is_prime (bool *, int, size_t);
 size_t prime_count_inverse (size_t);
 
 linked_list_t * factorise (long);
@@ -30,6 +30,8 @@ long gcd (long, long);
 int make_palindrome (int, int, bool);
 bool is_palindrome (int, int);
 bool is_permutation (int, int);
+
+long concatenate (int, int);
 
 bool pandigital_test_and_set_digits (char *, int);
 bool pandigital_test_digits (char *, size_t);

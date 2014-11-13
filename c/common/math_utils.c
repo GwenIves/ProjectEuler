@@ -30,9 +30,11 @@ bool * eratosthenes_sieve (size_t size) {
 }
 
 // Determines if a number is prime by divisor checking, the caller must guarantee the primes sieve contains entries at least up to sqrt (num) inclusive
-bool is_prime (bool * primes, int num) {
+bool is_prime (bool * primes, int num, size_t primes_size) {
 	if (num < 2)
 		return false;
+	else if (num < primes_size)
+		return primes[num];
 
 	int limit = sqrt (num);
 
@@ -244,6 +246,20 @@ static void set_digits (char * digits, int num) {
 
 		digits[digit] += 1;
 	}
+}
+
+// Concatenate two positive integers
+long concatenate (int a, int b) {
+	int b_orig = b;
+
+	long result = a;
+
+	while (b > 0) {
+		result *= 10;
+		b /= 10;
+	}
+
+	return result + b_orig;
 }
 
 /*

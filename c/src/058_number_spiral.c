@@ -34,13 +34,13 @@ int main (int argc, char ** argv) {
 			int tl_corner = bl_corner - side + 1;
 			int tr_corner = tl_corner - side + 1;
 
-			if (is_prime (primes, bl_corner))
+			if (is_prime (primes, bl_corner, size))
 				primes_count++;
 
-			if (is_prime (primes, tl_corner))
+			if (is_prime (primes, tl_corner, size))
 				primes_count++;
 
-			if (is_prime (primes, tr_corner))
+			if (is_prime (primes, tr_corner, size))
 				primes_count++;
 
 			if (primes_count * 100.0 / numbers_count < N) {
