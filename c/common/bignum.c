@@ -169,7 +169,7 @@ bignum_t * bignum_mult_bignum (bignum_t * a, bignum_t * b) {
 
 	c->sign = a->sign ^ b->sign;
 
-	char carry = 0;
+	int carry = 0;
 
 	for (size_t i = 0; i < b->used; i++) {
 		for (size_t j = 0; j < a->used; j++) {

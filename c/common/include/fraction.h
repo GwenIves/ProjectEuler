@@ -4,12 +4,12 @@
 #include <stdbool.h>
 
 typedef struct {
-	long nominator;
-	long denominator;
+	int nominator;
+	int denominator;
 	bool sign;
 } fraction_t;
 
-fraction_t fraction_get (long, long);
+fraction_t fraction_get (int, int);
 void fraction_reduce (fraction_t *);
 fraction_t fraction_mult (fraction_t *, fraction_t *);
 

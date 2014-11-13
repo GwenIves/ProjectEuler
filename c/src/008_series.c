@@ -20,7 +20,7 @@ int main (int argc, char ** argv) {
 	char * series = NULL;
 	ssize_t series_size = x_getline (&series, stdin); 
 
-	if (series_size == -1)
+	if (series_size == -1 || series_size < N)
 		return 1;
 
 	long prev_product = 0;

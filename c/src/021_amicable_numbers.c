@@ -17,15 +17,15 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	int divisors_sums[N];
+	long divisors_sums[N];
 
-	for (int i = 1; i < N; i++)
+	for (long i = 1; i < N; i++)
 		divisors_sums[i] = proper_divisors_sum (i);
 
 	long amicable_sum = 0;
 
-	for (int i = 1; i < N; i++) {
-		int pair = 0;
+	for (long i = 1; i < N; i++) {
+		long pair = 0;
 
 		if (i == divisors_sums[i])
 			continue;

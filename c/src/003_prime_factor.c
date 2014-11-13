@@ -22,7 +22,7 @@ int main (int argc, char ** argv) {
 	linked_list_t * factors = factorise (N);
 
 	factor_t * f = linked_list_next (factors, factor_t);
-	printf ("%lu\n", f->factor);
+	printf ("%ld\n", f->factor);
 
 	linked_list_free (factors);
 

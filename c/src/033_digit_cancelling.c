@@ -36,7 +36,7 @@ int main (int argc, char ** argv) {
 				product = fraction_mult (&product, &new_frac);
 			}
 
-	printf ("%lu\n", product.denominator);
+	printf ("%d\n", product.denominator);
 
 	return 0;
 }

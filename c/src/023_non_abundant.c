@@ -8,11 +8,11 @@
 #define KNOWN_UPPER_LIMIT	 28123
 
 int main () {
-	int abundant_nums[KNOWN_UPPER_LIMIT];
+	long abundant_nums[KNOWN_UPPER_LIMIT];
 
 	size_t abundant_count = 0;
 
-	for (size_t i = 1; i <= KNOWN_UPPER_LIMIT; i++)
+	for (long i = 1; i <= KNOWN_UPPER_LIMIT; i++)
 		if (proper_divisors_sum (i) > i)
 			abundant_nums[abundant_count++] = i;
 
@@ -23,7 +23,7 @@ int main () {
 
 	for (size_t i = 0; i < abundant_count; i++)
 		for (size_t j = i; j < abundant_count; j++) {
-			int abundant_sum = abundant_nums[i] + abundant_nums[j];
+			long abundant_sum = abundant_nums[i] + abundant_nums[j];
 
 			if (abundant_sum <= KNOWN_UPPER_LIMIT)
 				candidates[abundant_sum] = false;

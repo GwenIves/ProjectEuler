@@ -17,9 +17,9 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	int start = 0;
+	long start = 0;
 	int len = 0;
-	int i = 2;
+	long i = 2;
 
 	while (true) {
 		if (factors_count (i) >= N) {
@@ -34,7 +34,7 @@ int main (int argc, char ** argv) {
 		i++;
 	}
 
-	printf ("%d\n", start);
+	printf ("%ld\n", start);
 
 	return 0;
 }

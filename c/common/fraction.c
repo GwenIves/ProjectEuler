@@ -2,7 +2,7 @@
 #include "fraction.h"
 #include "math_utils.h"
 
-fraction_t fraction_get (long nom, long denom) {
+fraction_t fraction_get (int nom, int denom) {
 	fraction_t f;
 
 	f.nominator = ABS (nom);

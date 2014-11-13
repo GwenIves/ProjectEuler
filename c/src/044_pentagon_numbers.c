@@ -5,10 +5,10 @@
 #include <stdio.h>
 #include "math_utils.h"
 
-static long search_solutions (int, long);
+static int search_solutions (int, int);
 
 int main () {
-	long dif = 0;
+	int dif = 0;
 	int limit = 10;
 	
 	while ((dif = search_solutions (limit, 0)) == 0)
@@ -16,7 +16,7 @@ int main () {
 
 	dif = search_solutions (0, dif);
 
-	printf ("%ld\n", dif);
+	printf ("%d\n", dif);
 
 	return 0;
 }
@@ -30,11 +30,11 @@ int main () {
  *
  * Returns the found difference or 0 if none exists given the specified limit (only applies to case 1)
  */
-static long search_solutions (int limit, long current_minimum) {
+static int search_solutions (int limit, int current_minimum) {
 	int	n_limit = 0;
 	int	k_limit = 0;
 
-	long minimum = current_minimum;
+	int minimum = current_minimum;
 
 	if (limit > 0) {
 		n_limit = limit;
@@ -45,14 +45,14 @@ static long search_solutions (int limit, long current_minimum) {
 		k_limit = 0;
 	}
 
-	for (long n = 1; n < n_limit; n++) {
-		long n_squared = n * n;
+	for (int n = 1; n < n_limit; n++) {
+		int n_squared = n * n;
 
-		for (long k = 1; k < k_limit || k_limit == 0; k++) {
-			long k_squared = k * k;
+		for (int k = 1; k < k_limit || k_limit == 0; k++) {
+			int k_squared = k * k;
 
-			long difference = (3 * k_squared + 6 * k * n - k) / 2;
-			long sum = (6 * n_squared + 3 * k_squared + 6 * k * n - 2 * n - k) / 2;
+			int difference = (3 * k_squared + 6 * k * n - k) / 2;
+			int sum = (6 * n_squared + 3 * k_squared + 6 * k * n - 2 * n - k) / 2;
 
 			if (k_limit == 0 && difference > minimum)
 				break;

@@ -13,7 +13,7 @@ static bool is_truncatable (bool *, int);
 int main () {
 	size_t limit = 1000;
 	int count = 0;
-	long sum = 0;
+	int sum = 0;
 
 	int prime = 11;
 
@@ -25,7 +25,7 @@ int main () {
 				sum += prime;
 
 				if (++count == KNOWN_COUNT) {
-					printf ("%ld\n", sum);
+					printf ("%d\n", sum);
 
 					free (sieve);
 					return 0;
@@ -54,7 +54,7 @@ static bool is_truncatable (bool * sieve, int prime) {
 
 	char digits[20];
 
-	sprintf (digits, "%d", prime);
+	snprintf (digits, 20, "%d", prime);
 
 	for (size_t j = 1; digits[j] != '\0'; j++)
 		if (!sieve[atoi (digits + j)])

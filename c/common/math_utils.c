@@ -124,7 +124,7 @@ long proper_divisors_sum (long num) {
 	if (num <= 1)
 		return 1;
 
-	int sum = 1;
+	long sum = 1;
 
 	linked_list_t * factors = factorise (num);
 
@@ -132,8 +132,8 @@ long proper_divisors_sum (long num) {
 
 	// The divisor sum is equal to a product of sums of all prime factors' powers
 	while ((f = linked_list_next (factors, factor_t)) != NULL) {
-		int factor_contrib = 0;
-		int power = 1;
+		long factor_contrib = 0;
+		long power = 1;
 
 		for (int i = 0; i <= f->power; i++) {
 			factor_contrib += power;
@@ -239,7 +239,7 @@ static void set_digits (char * digits, int num) {
 		num = -num;
 
 	while (num > 0) {
-		size_t digit = num % 10;
+		int digit = num % 10;
 		num /= 10;
 
 		digits[digit] += 1;
@@ -257,7 +257,7 @@ bool pandigital_test_and_set_digits (char * digits, int value) {
 		value = -value;
 
 	while (value > 0) {
-		size_t digit = value % 10;
+		int digit = value % 10;
 		value /= 10;
 
 		if (digit == 0)

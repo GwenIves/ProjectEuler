@@ -12,7 +12,7 @@ int main (int argc, char ** argv) {
 		return 1;
 	}
 
-	int N = atoi (argv[1]);
+	long N = atol (argv[1]);
 
 	if (N < 0)
 		return 1;
