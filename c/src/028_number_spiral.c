@@ -16,18 +16,18 @@ int main (int argc, char ** argv) {
 	if (N < 1 || (N % 2 == 0))
 		return 1;
 
-	unsigned long sum = 1;
+	long sum = 1;
 
 	for (int side = 3; side <= N; side += 2) {
-		unsigned long tr_corner = side * side;
-		unsigned long tl_corner = tr_corner - side + 1;
-		unsigned long bl_corner = tl_corner - side + 1;
-		unsigned long br_corner = bl_corner - side + 1;
+		long tr_corner = side * side;
+		long tl_corner = tr_corner - side + 1;
+		long bl_corner = tl_corner - side + 1;
+		long br_corner = bl_corner - side + 1;
 
 		sum += tr_corner + tl_corner + bl_corner + br_corner;
 	}
 
-	printf ("%lu\n", sum);
+	printf ("%ld\n", sum);
 
 	return 0;
 }

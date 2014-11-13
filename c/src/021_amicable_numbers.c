@@ -22,7 +22,7 @@ int main (int argc, char ** argv) {
 	for (int i = 1; i < N; i++)
 		divisors_sums[i] = proper_divisors_sum (i);
 
-	unsigned long amicable_sum = 0;
+	long amicable_sum = 0;
 
 	for (int i = 1; i < N; i++) {
 		int pair = 0;
@@ -39,7 +39,7 @@ int main (int argc, char ** argv) {
 			amicable_sum += i;
 	}
 
-	printf ("%lu\n", amicable_sum);
+	printf ("%ld\n", amicable_sum);
 
 	return 0;
 }

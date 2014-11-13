@@ -21,7 +21,7 @@ int main () {
 		max_representable += digit_factorials[DIGITS_COUNT - 1];
 	}
 
-	unsigned long sum = 0;
+	long sum = 0;
 
 	for (int i = 10; i <= max_representable; i++) {
 		int digits_sum = 0;
@@ -39,7 +39,7 @@ int main () {
 			sum += i;
 	}
 
-	printf ("%lu\n", sum);
+	printf ("%ld\n", sum);
 
 	return 0;
 }

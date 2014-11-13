@@ -26,7 +26,7 @@ int main (int argc, char ** argv) {
 
 	for (int i = 2; i < N; i++) {
 		int steps = 0;
-		unsigned long next = i;
+		long next = i;
 
 		while (next >= i) {
 			steps++;

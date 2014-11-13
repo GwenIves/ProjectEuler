@@ -7,7 +7,7 @@
 #include <math.h>
 #include "math_utils.h"
 
-static void sum_two_base_palindromes (unsigned long *, int, int, bool);
+static void sum_two_base_palindromes (long *, int, int, bool);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -20,7 +20,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	unsigned long sum = 0;
+	long sum = 0;
 
 	int upper_limit = pow (10, (int) log10 (N) / 2);
 
@@ -29,12 +29,12 @@ int main (int argc, char ** argv) {
 		sum_two_base_palindromes (&sum, N, seed, false);
 	}
 
-	printf ("%lu\n", sum);
+	printf ("%ld\n", sum);
 
 	return 0;
 }
 
-static void sum_two_base_palindromes (unsigned long * sum, int under, int seed, bool odd_len) {
+static void sum_two_base_palindromes (long * sum, int under, int seed, bool odd_len) {
 	int palindrome10 = make_palindrome (seed, 10, odd_len);
 
 	if (palindrome10 >= under)

@@ -4,8 +4,8 @@
 #include <stdbool.h>
 
 typedef struct {
-	unsigned long nominator;
-	unsigned long denominator;
+	long nominator;
+	long denominator;
 	bool sign;
 } fraction_t;
 

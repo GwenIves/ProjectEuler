@@ -5,8 +5,8 @@
 #include "linked_list.h"
 
 typedef struct {
-	unsigned long factor;
-	unsigned int power;
+	long factor;
+	int power;
 } factor_t;
 
 #define MAX(a,b) ((a)>(b)?(a):(b))
@@ -37,14 +37,14 @@ bool pandigital_test_digits (char *, size_t);
 bool next_permutation (char *);
 bool prev_permutation (char *);
 
-unsigned long next_fibonacci_num ();
-unsigned long next_triangle_num ();
-unsigned long next_pentagonal_num ();
-unsigned long next_hexagonal_num ();
-unsigned long next_collatz_num (unsigned long);
+long next_fibonacci_num ();
+long next_triangle_num ();
+long next_pentagonal_num ();
+long next_hexagonal_num ();
+long next_collatz_num (long);
 
-bool is_triangle (unsigned long);
-bool is_pentagonal (unsigned long);
+bool is_triangle (long);
+bool is_pentagonal (long);
 
 long arithmetic_sequence_sum (long, long, long);
 

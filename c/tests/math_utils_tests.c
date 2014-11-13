@@ -229,7 +229,7 @@ static void prev_permutation_test () {
 }
 
 static void next_triangle_num_test () {
-	unsigned long num = 0;
+	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
 		num = next_triangle_num ();
@@ -238,7 +238,7 @@ static void next_triangle_num_test () {
 }
 
 static void next_pentagonal_num_test () {
-	unsigned long num = 0;
+	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
 		num = next_pentagonal_num ();
@@ -247,7 +247,7 @@ static void next_pentagonal_num_test () {
 }
 
 static void next_hexagonal_num_test () {
-	unsigned long num = 0;
+	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
 		num = next_hexagonal_num ();
@@ -256,7 +256,7 @@ static void next_hexagonal_num_test () {
 }
 
 static void next_fibonacci_num_test () {
-	unsigned long num = 0;
+	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
 		num = next_fibonacci_num ();

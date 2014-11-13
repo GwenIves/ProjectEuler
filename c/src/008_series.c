@@ -23,11 +23,11 @@ int main (int argc, char ** argv) {
 	if (series_size == -1)
 		return 1;
 
-	unsigned long prev_product = 0;
-	unsigned long max_product = 0;
+	long prev_product = 0;
+	long max_product = 0;
 
 	for (size_t i = 0; i <= series_size - N; i++) {
-		unsigned long product = 0;
+		long product = 0;
 
 		if (i == 0 || series[i - 1] == '0') {
 			for (size_t j = 0; j < N; j++) {
@@ -51,7 +51,7 @@ int main (int argc, char ** argv) {
 		prev_product = product;
 	}
 
-	printf ("%lu\n", max_product);
+	printf ("%ld\n", max_product);
 
 	free (series);
 

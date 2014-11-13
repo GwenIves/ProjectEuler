@@ -22,12 +22,12 @@ int main () {
 
 	qsort (names, names_count, sizeof (char *), string_cmp);
 
-	unsigned long sum = 0;
+	long sum = 0;
 
 	for (int i = 0; i < names_count; i++)
 		sum += score_name (names[i]) * (i + 1);
 
-	printf ("%lu\n", sum);
+	printf ("%ld\n", sum);
 
 	free_names (names, names_count);
 

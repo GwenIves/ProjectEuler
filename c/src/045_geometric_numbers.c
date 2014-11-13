@@ -17,9 +17,9 @@ int main (int argc, char ** argv) {
 	if (N < 1)
 		return 1;
 
-	unsigned long tri_num = 0;
-	unsigned long pent_num = 0;
-	unsigned long hex_num = 0;
+	long tri_num = 0;
+	long pent_num = 0;
+	long hex_num = 0;
 
 	int count = 0;
 
@@ -36,7 +36,7 @@ int main (int argc, char ** argv) {
 			count++;
 
 		if (count == N) {
-			printf ("%lu\n", hex_num);
+			printf ("%ld\n", hex_num);
 			break;
 		}
 	}

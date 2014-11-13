@@ -16,7 +16,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	unsigned long grid_paths[N][N]; 
+	long grid_paths[N][N]; 
 
 	for (int i = N - 1; i >= 0; i --)
 		for (int j = N - 1; j >= 0; j--) {
@@ -30,7 +30,7 @@ int main (int argc, char ** argv) {
 				grid_paths[i][j] = grid_paths[i][j + 1] + grid_paths[i + 1][j];
 		}
 
-	printf ("%lu\n", grid_paths[0][0]);
+	printf ("%ld\n", grid_paths[0][0]);
 
 	return 0;
 }

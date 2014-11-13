@@ -21,13 +21,13 @@ int main (int argc, char ** argv) {
 
 	bool * sieve = eratosthenes_sieve (N);
 
-	unsigned long sum = 2;
+	long sum = 2;
 
 	for (int i = 3; i < N; i += 2)
 		if (sieve[i])
 			sum += i;
 
-	printf ("%lu\n", sum);
+	printf ("%ld\n", sum);
 
 	free (sieve);
 

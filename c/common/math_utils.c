@@ -66,14 +66,14 @@ linked_list_t * factorise (long num) {
 	if (num < 0)
 		num = -num;
 
-	unsigned long upper_limit = sqrt (num);
-	unsigned long factor = 2;
+	long upper_limit = sqrt (num);
+	long factor = 2;
 
 	linked_list_t * factors = linked_list_create ();
 
 	while (num != 1) {
 		if (num % factor == 0) {
-			unsigned int power = 0;
+			int power = 0;
 
 			while (num % factor == 0) {
 				num /= factor;
@@ -356,11 +356,11 @@ bool prev_permutation (char * seq) {
 	return true;
 }
 
-unsigned long next_fibonacci_num () {
-	static unsigned long f1 = 0;
-	static unsigned long f2 = 1;
+long next_fibonacci_num () {
+	static long f1 = 0;
+	static long f2 = 1;
 
-	unsigned long f = f1 + f2;
+	long f = f1 + f2;
 
 	f1 = f2;
 	f2 = f;
@@ -368,9 +368,9 @@ unsigned long next_fibonacci_num () {
 	return f;
 }
 
-unsigned long next_triangle_num () {
-	static unsigned long last_index = 0;
-	static unsigned long last_num = 0;
+long next_triangle_num () {
+	static long last_index = 0;
+	static long last_num = 0;
 
 	last_num += last_index + 1;
 	last_index++;
@@ -378,9 +378,9 @@ unsigned long next_triangle_num () {
 	return last_num;
 }
 
-unsigned long next_pentagonal_num () {
-	static unsigned long last_index = 0;
-	static unsigned long last_num = 0;
+long next_pentagonal_num () {
+	static long last_index = 0;
+	static long last_num = 0;
 
 	last_num += 3 * last_index + 1;
 	last_index++;
@@ -388,9 +388,9 @@ unsigned long next_pentagonal_num () {
 	return last_num;
 }
 
-unsigned long next_hexagonal_num () {
-	static unsigned long last_index = 0;
-	static unsigned long last_num = 0;
+long next_hexagonal_num () {
+	static long last_index = 0;
+	static long last_num = 0;
 
 	last_num += 4 * last_index + 1;
 	last_index++;
@@ -398,7 +398,7 @@ unsigned long next_hexagonal_num () {
 	return last_num;
 }
 
-unsigned long next_collatz_num (unsigned long x) {
+long next_collatz_num (long x) {
 	if (x % 2 == 0)
 		return x / 2;
 	else
@@ -406,19 +406,19 @@ unsigned long next_collatz_num (unsigned long x) {
 }
 
 // If val is pentagonal there is a positive integer n solving n * (3n - 1) = 2 * val
-bool is_pentagonal (unsigned long val) {
-	unsigned long discrim = 1 + 24 * val;
-	unsigned long larger_root = ROUND ((1 + sqrt (discrim)) / 6);
-	unsigned long recomputed_val = larger_root * (3 * larger_root - 1) / 2;
+bool is_pentagonal (long val) {
+	long discrim = 1 + 24 * val;
+	long larger_root = ROUND ((1 + sqrt (discrim)) / 6);
+	long recomputed_val = larger_root * (3 * larger_root - 1) / 2;
 
 	return val == recomputed_val;
 }
 
 // If val is triangular there is a positive integer n solving n * (n + 1) = 2 * val
-bool is_triangle (unsigned long val) {
-	unsigned long discrim = 1 + 8 * val;
-	unsigned long larger_root = ROUND ((-1 + sqrt (discrim)) / 2);
-	unsigned long recomputed_val = larger_root * (larger_root + 1) / 2;
+bool is_triangle (long val) {
+	long discrim = 1 + 8 * val;
+	long larger_root = ROUND ((-1 + sqrt (discrim)) / 2);
+	long recomputed_val = larger_root * (larger_root + 1) / 2;
 
 	return val == recomputed_val;
 }

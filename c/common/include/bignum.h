@@ -20,7 +20,7 @@
 #define bignum_free_array(A,L) for (size_t i = 0; i < L; i++) { bignum_delete (A[i]); }
 
 typedef struct {
-	unsigned char * digits;
+	char * digits;
 	bool sign;
 	size_t allocated;
 	size_t used;

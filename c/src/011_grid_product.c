@@ -31,11 +31,11 @@ int main (int argc, char ** argv) {
 	if (!grid)
 		return 1;
 	
-	unsigned long max_product = 0;
+	long max_product = 0;
 
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < columns; j++) {
-			unsigned long product = 1;
+			long product = 1;
 
 			if (j <= columns - N) {
 				for (int k = 0; k < N; k++)
@@ -72,7 +72,7 @@ int main (int argc, char ** argv) {
 			}
 		}
 
-	printf ("%lu\n", max_product);
+	printf ("%ld\n", max_product);
 
 	free_grid (grid, rows);
 

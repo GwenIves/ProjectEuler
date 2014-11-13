@@ -14,7 +14,7 @@ int main () {
 
 	char digits[] = "0123456789";
 
-	unsigned long sum = 0;
+	long sum = 0;
 
 	do {
 		bool all_divisible = true;
@@ -37,7 +37,7 @@ int main () {
 			sum += atol (digits);
 	} while (next_permutation (digits));
 
-	printf ("%lu\n", sum);
+	printf ("%ld\n", sum);
 
 	return 0;
 }

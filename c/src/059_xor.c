@@ -19,8 +19,8 @@
 
 static char * common_words[] = {"the", "be", "to", "of", "and", "a", "in", "that", "have", "I"};
 
-static bool next_password (unsigned int *, int);
-static int check_letter (unsigned int);
+static bool next_password (int *, int);
+static int check_letter (int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -33,22 +33,22 @@ int main (int argc, char ** argv) {
 	if (N < 1)
 		return 1;
 
-	unsigned int password[N];
+	int password[N];
 
 	memset (password, 0, N);
 
 	while (next_password (password, N)) {
-		unsigned int encrypted = 0;
+		int encrypted = 0;
 
 		size_t password_cursor = 0;
 
 		int common_words_count = 0;
 		int other_words_count = 0;
 
-		unsigned int sum = 0;
+		int sum = 0;
 
-		while (scanf ("%u", &encrypted) > 0) {
-			unsigned int decrypted = encrypted ^ password[password_cursor++];
+		while (scanf ("%d", &encrypted) > 0) {
+			int decrypted = encrypted ^ password[password_cursor++];
 
 			sum += decrypted;
 
@@ -72,7 +72,7 @@ int main (int argc, char ** argv) {
 		}
 
 		if (common_words_count * COMMON_WORDS_THRESHOLD > other_words_count) {
-			printf ("%u\n", sum);
+			printf ("%d\n", sum);
 			break;
 		}
 
@@ -82,7 +82,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static bool next_password (unsigned int * password, int len) {
+static bool next_password (int * password, int len) {
 	if (password[0] == 0) {
 		for (size_t i = 0; i < len; i++)
 			password[i] = 'a';
@@ -103,7 +103,7 @@ static bool next_password (unsigned int * password, int len) {
 	return true;
 }
 
-static int check_letter (unsigned int letter) {
+static int check_letter (int letter) {
 	static char word[LONGEST_COMMON_WORD + 1];
 	static int word_index = 0;
 	static int word_len = 0;

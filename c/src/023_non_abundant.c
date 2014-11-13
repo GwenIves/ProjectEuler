@@ -29,13 +29,13 @@ int main () {
 				candidates[abundant_sum] = false;
 		}
 
-	unsigned long sum = 0;
+	long sum = 0;
 
 	for (size_t i = 1; i <= KNOWN_UPPER_LIMIT; i++)
 		if (candidates[i])
 			sum += i;
 
-	printf ("%lu\n", sum);
+	printf ("%ld\n", sum);
 
 	return 0;
 }

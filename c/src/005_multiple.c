@@ -17,7 +17,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	unsigned long num = 1;
+	long num = 1;
 	bool * primes = eratosthenes_sieve (N + 1);
 
 	// The result will have to be divisible by all primes and their composite powers less than or equal to N
@@ -35,7 +35,7 @@ int main (int argc, char ** argv) {
 		}
 	}
 
-	printf ("%lu\n", num);
+	printf ("%ld\n", num);
 
 	free (primes);
 

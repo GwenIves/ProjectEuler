@@ -13,7 +13,7 @@ static bool is_truncatable (bool *, int);
 int main () {
 	size_t limit = 1000;
 	int count = 0;
-	unsigned long sum = 0;
+	long sum = 0;
 
 	int prime = 11;
 
@@ -25,7 +25,7 @@ int main () {
 				sum += prime;
 
 				if (++count == KNOWN_COUNT) {
-					printf ("%lu\n", sum);
+					printf ("%ld\n", sum);
 
 					free (sieve);
 					return 0;

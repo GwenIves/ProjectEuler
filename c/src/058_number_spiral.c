@@ -29,10 +29,10 @@ int main (int argc, char ** argv) {
 		bool * primes = eratosthenes_sieve (size);
 
 		do {
-			unsigned int br_corner = side * side;
-			unsigned int bl_corner = br_corner - side + 1;
-			unsigned int tl_corner = bl_corner - side + 1;
-			unsigned int tr_corner = tl_corner - side + 1;
+			int br_corner = side * side;
+			int bl_corner = br_corner - side + 1;
+			int tl_corner = bl_corner - side + 1;
+			int tr_corner = tl_corner - side + 1;
 
 			if (is_prime (primes, bl_corner))
 				primes_count++;
