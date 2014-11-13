@@ -114,25 +114,26 @@ bignum_t * bignum_pow (int num, int pow, int truncate) {
 	else if (pow == 0)
 		return bignum_get (1);
 
-	bignum_t * val = bignum_get (num);
-	bignum_t * result = bignum_get (num);
+	bignum_t * result = bignum_get (1);
 
-	int power = 1;
+	int power_mask = 1;
 
-	while (power < pow) {
-		if (power < num / 2) {
+	while (power_mask < pow)
+		power_mask <<= 1;
+
+	while (power_mask > 0) {
+		if (power_mask & pow) {
 			result = bignum_mult_to (result, result);
-			power *= 2;
+			result = bignum_mult_to (result, num);
 		} else {
-			result = bignum_mult_to (result, val);
-			power++;
+			result = bignum_mult_to (result, result);
 		}
 
 		if (truncate >= 0)
 			result->used = MIN (truncate, result->used);
-	}
 
-	bignum_delete (val);
+		power_mask >>= 1;
+	}
 
 	return result;
 }

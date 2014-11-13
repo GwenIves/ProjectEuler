@@ -123,26 +123,31 @@ static void bignum_pow_test () {
 	bignum_t * b_ref = bignum_get (1);
 	bignum_t * c_ref = bignum_get ("1073741824");
 	bignum_t * c_trunc_ref = bignum_get ("41824");
+	bignum_t * d_ref = bignum_get ("32768");
 
 	bignum_t * a = bignum_pow (0, 1, -1);
 	bignum_t * b = bignum_pow (10, 0, -1);
 	bignum_t * c = bignum_pow (2, 30, -1);
 	bignum_t * c_trunc = bignum_pow (2, 30, 5);
+	bignum_t * d = bignum_pow (2, 15, -1);
 
 	assert (!bignum_cmp (a, a_ref));
 	assert (!bignum_cmp (b, b_ref));
 	assert (!bignum_cmp (c, c_ref));
 	assert (!bignum_cmp (c_trunc, c_trunc_ref));
+	assert (!bignum_cmp (d, d_ref));
 
 	bignum_delete (a);
 	bignum_delete (b);
 	bignum_delete (c);
 	bignum_delete (c_trunc);
+	bignum_delete (d);
 
 	bignum_delete (a_ref);
 	bignum_delete (b_ref);
 	bignum_delete (c_ref);
 	bignum_delete (c_trunc_ref);
+	bignum_delete (d_ref);
 }
 
 static void bignum_cmp_test () {

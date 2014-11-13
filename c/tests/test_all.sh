@@ -298,5 +298,7 @@ assert "$(../src/059_xor 3 < data/059_encrypted.in)" 107359 $LINENO $REFERENCE
 # Problem 67 can be solved reusing the code for problem 18
 assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
 
+assert "$(../src/097_non_mersenne_prime)" 8739992577 $LINENO $REFERENCE
+
 echo "All tests passed"
 exit 0
