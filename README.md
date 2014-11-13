@@ -11,14 +11,23 @@ Unless noted otherwise in the language sections, every solution should be:
 
 
 ## Currently implemented problems:
-   * **C** - 59 problems
+   * **C** - 60 problems
+
+
+## Performance report
+
+You can generate a simple performance comparison report of the used languages by running:
+
+	./performance_report.sh
+
+The script will print the number of executed solutions and their total running time for each language.
 
 
 ## Build instructions and language notes
 
 ### c/ subdirectory --- C11/POSIX
 
-An example of a barebones imperative language approach.
+An example of a barebones, compiled, procedural language approach.
 
 Build by running make from the top of the c/ directory tree
 
