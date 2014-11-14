@@ -26,8 +26,11 @@ static void pandigital_test_digits_test ();
 static void next_permutation_test ();
 static void prev_permutation_test ();
 static void next_triangle_num_test ();
+static void next_square_num_test ();
 static void next_pentagonal_num_test ();
 static void next_hexagonal_num_test ();
+static void next_heptagonal_num_test ();
+static void next_octagonal_num_test ();
 static void next_collatz_num_test ();
 static void next_fibonacci_num_test ();
 static void is_triangle_test ();
@@ -57,8 +60,11 @@ int main () {
 	next_permutation_test ();
 	prev_permutation_test ();
 	next_triangle_num_test ();
+	next_square_num_test ();
 	next_pentagonal_num_test ();
 	next_hexagonal_num_test ();
+	next_heptagonal_num_test ();
+	next_octagonal_num_test ();
 	next_collatz_num_test ();
 	next_fibonacci_num_test ();
 	is_triangle_test ();
@@ -261,6 +267,15 @@ static void next_triangle_num_test () {
 	assert (num == 55);
 }
 
+static void next_square_num_test () {
+	long num = 0;
+
+	for (size_t i = 0; i < 10; i++)
+		num = next_square_num ();
+
+	assert (num == 100);
+}
+
 static void next_pentagonal_num_test () {
 	long num = 0;
 
@@ -277,6 +292,24 @@ static void next_hexagonal_num_test () {
 		num = next_hexagonal_num ();
 
 	assert (num == 190);
+}
+
+static void next_heptagonal_num_test () {
+	long num = 0;
+
+	for (size_t i = 0; i < 10; i++)
+		num = next_heptagonal_num ();
+
+	assert (num == 235);
+}
+
+static void next_octagonal_num_test () {
+	long num = 0;
+
+	for (size_t i = 0; i < 10; i++)
+		num = next_octagonal_num ();
+
+	assert (num == 280);
 }
 
 static void next_fibonacci_num_test () {

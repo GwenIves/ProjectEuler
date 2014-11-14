@@ -411,6 +411,14 @@ long next_triangle_num () {
 	return last_num;
 }
 
+long next_square_num () {
+	static long last_index = 0;
+
+	last_index++;
+
+	return last_index * last_index;
+}
+
 long next_pentagonal_num () {
 	static long last_index = 0;
 	static long last_num = 0;
@@ -426,6 +434,26 @@ long next_hexagonal_num () {
 	static long last_num = 0;
 
 	last_num += 4 * last_index + 1;
+	last_index++;
+
+	return last_num;
+}
+
+long next_heptagonal_num () {
+	static long last_index = 0;
+	static long last_num = 0;
+
+	last_num += 5 * last_index + 1;
+	last_index++;
+
+	return last_num;
+}
+
+long next_octagonal_num () {
+	static long last_index = 0;
+	static long last_num = 0;
+
+	last_num += 6 * last_index + 1;
 	last_index++;
 
 	return last_num;

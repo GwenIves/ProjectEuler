@@ -299,6 +299,9 @@ assert_fail "../src/060_prime_pairs 1" $LINENO
 assert "$(../src/060_prime_pairs 4)" 792 $LINENO
 assert "$(../src/060_prime_pairs 5)" 26033 $LINENO $REFERENCE
 
+assert_fail "../src/061_cyclical_polygonals 3" $LINENO
+assert "$(../src/061_cyclical_polygonals 4)" 28684 $LINENO $REFERENCE
+
 assert "$(../src/063_powers)" 49 $LINENO $REFERENCE
 
 # Problem 67 can be solved reusing the code for problem 18

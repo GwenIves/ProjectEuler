@@ -42,8 +42,11 @@ bool prev_permutation (char *);
 
 long next_fibonacci_num ();
 long next_triangle_num ();
+long next_square_num ();
 long next_pentagonal_num ();
 long next_hexagonal_num ();
+long next_heptagonal_num ();
+long next_octagonal_num ();
 long next_collatz_num (long);
 
 bool is_triangle (long);
