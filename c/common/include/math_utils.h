@@ -17,7 +17,8 @@ typedef struct {
 #define DIGITS_COUNT	10
 
 bool * eratosthenes_sieve (size_t);
-bool is_prime (bool *, int, size_t);
+bool is_prime (int, bool *, size_t);
+bool is_prime_long (long, bool *, size_t, int *, size_t);
 size_t prime_count_inverse (size_t);
 
 linked_list_t * factorise (long);

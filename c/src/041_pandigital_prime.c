@@ -30,7 +30,7 @@ int main (int argc, char ** argv) {
 	digits[digit] = '\0';
 
 	while (prev_permutation (digits)) {
-		if (is_prime (primes, atoi (digits), primes_limit)) {
+		if (is_prime (atoi (digits), primes, primes_limit)) {
 			printf ("%s\n", digits);
 			break;
 		}

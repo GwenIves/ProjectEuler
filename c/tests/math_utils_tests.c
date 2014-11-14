@@ -10,6 +10,7 @@ static void abs_test ();
 static void round_test ();
 static void eratosthenes_sieve_test ();
 static void is_prime_test ();
+static void is_prime_long_test ();
 static void prime_count_inverse_test ();
 static void factorise_test ();
 static void factors_count_test ();
@@ -40,6 +41,7 @@ int main () {
 	round_test ();
 	eratosthenes_sieve_test ();
 	is_prime_test ();
+	is_prime_long_test ();
 	prime_count_inverse_test ();
 	factorise_test ();
 	factors_count_test ();
@@ -110,8 +112,24 @@ static void eratosthenes_sieve_test () {
 static void is_prime_test () {
 	bool * sieve = eratosthenes_sieve (798);
 
-	assert (!is_prime (sieve, 797 * 797, 798));
-	assert (is_prime (sieve, 336533, 798));
+	assert (!is_prime (797 * 797, sieve, 798));
+	assert (is_prime (336533, sieve, 798));
+
+	free (sieve);
+}
+
+static void is_prime_long_test () {
+	bool * sieve = eratosthenes_sieve (798);
+
+	int primes[798];
+	size_t primes_count = 0;
+
+	for (size_t i = 2; i < 1000; i++)
+		if (sieve[i])
+			primes[primes_count++] = i;
+
+	assert (!is_prime_long (797L * 797L, sieve, 798, primes, primes_count));
+	assert (is_prime_long (336533L, sieve, 798, primes, primes_count));
 
 	free (sieve);
 }

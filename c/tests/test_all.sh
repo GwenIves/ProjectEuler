@@ -295,6 +295,10 @@ assert_fail "../src/059_xor 0 < /dev/null" $LINENO
 assert_blank "../src/059_xor 1 < /dev/null" $LINENO
 assert "$(../src/059_xor 3 < data/059_encrypted.in)" 107359 $LINENO $REFERENCE
 
+assert_fail "../src/060_prime_pairs 1" $LINENO
+assert "$(../src/060_prime_pairs 4)" 792 $LINENO
+assert "$(../src/060_prime_pairs 5)" 26033 $LINENO $REFERENCE
+
 # Problem 67 can be solved reusing the code for problem 18
 assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
 

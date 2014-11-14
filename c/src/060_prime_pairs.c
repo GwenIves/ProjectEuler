@@ -4,20 +4,17 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "math_utils.h"
 #include "linked_list.h"
 #include "utils.h"
 
-/*
- * FIXME: Severe performance issues (~ 20 seconds for N == 5)
- * 	Optimisticaly skipping the exhaustive search part improves performance (for N == 5) by a factor of almost 20
- * 	However, the algorithm would then no longer guarantee the location of the global minimum
- */
-
-static int find_minimum (int, size_t);
-static bool is_a_prime_pair (int, int, bool *, size_t);
+static int find_minimum (int, size_t, int *);
+static bool is_a_prime_pair (int, int, bool *, size_t, int *, size_t);
 static bool ** create_cache (size_t);
 static void free_cache (bool **, size_t);
+static int get_boundary (size_t, int, int *);
+static int get_min_sum (linked_list_t *, size_t, int *);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -32,12 +29,15 @@ int main (int argc, char ** argv) {
 
 	int sum = 0;
 	size_t search_limit = 1000;
+	int boundary = 0;
 	
-	while ((sum = find_minimum (N, search_limit)) == 0)
+	while ((sum = find_minimum (N, search_limit, &boundary)) == 0)
 		search_limit *= 10;
 
-	if (sum > search_limit)
-		sum = find_minimum (N, sum);
+	if (boundary > search_limit) {
+		search_limit = boundary;
+		sum = find_minimum (N, search_limit, &boundary);
+	}
 
 	printf ("%d\n", sum);
 
@@ -48,26 +48,36 @@ int main (int argc, char ** argv) {
  * Iteratively search for possible n-tuples of primes under limit
  * To satisfy the pair-wise concatenation criteria, any (n+1)-tuple must be formed from 
  * two n-tuples with the same prefix of size n-1
+ *
+ * Returns the found minimum or 0 if no set exists under limit
+ * Upon a successful return, boundary will be set to the largest limit that could possibly contain a lower solution
  */
-static int find_minimum (int set_size, size_t limit) {
+static int find_minimum (int set_size, size_t candidates_limit, int * boundary) {
 	linked_list_t * tuples = linked_list_create ();
 
 	// Gather primes, pre-calculate pair primeness checks and start the iteration by determining all eligible pairs
 
-	bool * sieve = eratosthenes_sieve (limit + 1);
+	size_t primes_limit = sqrt (concatenate (candidates_limit, candidates_limit)) + 1;
+	bool * sieve = eratosthenes_sieve (primes_limit);
 
-	int primes[limit];
+	int primes[primes_limit];
 	size_t primes_count = 0;
 
-	for (int i = 3; i <= limit; i += 2)
-		if (sieve[i])
+	size_t candidates_count = 0;
+
+	for (int i = 3; i < primes_limit; i += 2)
+		if (sieve[i]) {
 			primes[primes_count++] = i;
 
-	bool ** cache = create_cache (primes_count);
+			if (i < candidates_limit)
+				candidates_count++;
+		}
 
-	for (size_t i = 0; i < primes_count; i++)
-		for (size_t j = i + 1; j < primes_count; j++)
-			if (is_a_prime_pair (primes[i], primes[j], sieve, limit)) {
+	bool ** cache = create_cache (candidates_count);
+
+	for (size_t i = 0; i < candidates_count; i++)
+		for (size_t j = i + 1; j < candidates_count; j++)
+			if (is_a_prime_pair (primes[i], primes[j], sieve, primes_limit, primes, primes_count)) {
 				cache[i][j] = true;
 
 				int * pair = linked_list_append_empty_array (tuples, 2, int);
@@ -80,16 +90,16 @@ static int find_minimum (int set_size, size_t limit) {
 
 	// Now iterate from pairs up to set_size-tuples
 
+	int min_prefix_sums[set_size];
+
 	int * p = NULL;
 	int * q = NULL;
 
 	for (int size = 2; size < set_size; size++) {
 		linked_list_t * new_tuples = linked_list_create ();
 
-		list_node_t * cursor = NULL;
-
 		while ((p = linked_list_next (tuples, int)) != NULL) {
-			cursor = tuples->cursor;
+			list_node_t * cursor = tuples->cursor;
 
 			while ((q = linked_list_next (tuples, int)) != NULL) {
 				bool same_prefix = true;
@@ -117,40 +127,69 @@ static int find_minimum (int set_size, size_t limit) {
 			tuples->cursor = cursor;
 		}
 
+		min_prefix_sums[size] = get_min_sum (tuples, size - 1, primes);
+
 		linked_list_free (tuples);
 		tuples = new_tuples;
 	}
 
-	// Return the smallest tuple's sum
+	free_cache (cache, candidates_count);
 
-	int min_sum = 0;
+	int min_sum = get_min_sum (tuples, set_size, primes);
 
-	while ((p = linked_list_next (tuples, int)) != NULL) {
-		int sum = 0;
-
-		for (int i = 0; i < set_size; i++)
-			sum += primes[p[i]];
-
-		if (min_sum == 0 || sum < min_sum)
-			min_sum = sum;
-	}
+	*boundary = get_boundary (set_size, min_sum, min_prefix_sums);
 
 	linked_list_free (tuples);
-
-	free_cache (cache, primes_count);
 
 	return min_sum;
 }
 
-static bool is_a_prime_pair (int a, int b, bool * sieve, size_t limit) {
+static int get_min_sum (linked_list_t * tuples, size_t size, int * primes) {
+	int min_prefix_sum = 0;
+
+	int * p = NULL;
+
+	while ((p = linked_list_next (tuples, int)) != NULL) {
+		int prefix_sum = 0;
+
+		for (int i = 0; i < size; i++)
+			prefix_sum += primes[p[i]];
+
+		if (min_prefix_sum == 0 || prefix_sum < min_prefix_sum)
+			min_prefix_sum = prefix_sum;
+	}
+
+	return min_prefix_sum;
+}
+
+/*
+ * A solution was found with a sum == local_minimum under some arbitrarily chosen limit
+ * Under this limit, all formable n-tuples have a prefix sum >= min_prefix_sums[n]
+ * If there is a global solution above limit, it must share an n-1 long prefix with some already found n-tuple
+ * Consequently, we can determine the largest primes to be used in the suffix so that the total sum is less than local_minimum
+ */
+static int get_boundary (size_t set_size, int local_minimum, int * min_prefix_sums) {
+	int max_boundary = 0;
+
+	for (size_t i = 2; i < set_size; i++) {
+		int boundary = (local_minimum - min_prefix_sums[i]) / (set_size - i + 1);
+
+		if (boundary > max_boundary)
+			max_boundary = boundary;
+	}
+
+	return max_boundary;
+}
+
+static bool is_a_prime_pair (int a, int b, bool * sieve, size_t sieve_size, int * primes, size_t primes_size) {
 	long c = concatenate (a, b);
 
-	if (!is_prime (sieve, c, limit))
+	if (!is_prime_long (c, sieve, sieve_size, primes, primes_size))
 		return false;
 
 	c = concatenate (b, a);
 
-	if (!is_prime (sieve, c, limit))
+	if (!is_prime_long (c, sieve, sieve_size, primes, primes_size))
 		return false;
 
 	return true;

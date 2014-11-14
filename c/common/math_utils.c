@@ -30,7 +30,7 @@ bool * eratosthenes_sieve (size_t size) {
 }
 
 // Determines if a number is prime by divisor checking, the caller must guarantee the primes sieve contains entries at least up to sqrt (num) inclusive
-bool is_prime (bool * primes, int num, size_t primes_size) {
+bool is_prime (int num, bool * primes, size_t primes_size) {
 	if (num < 2)
 		return false;
 	else if (num < primes_size)
@@ -38,8 +38,25 @@ bool is_prime (bool * primes, int num, size_t primes_size) {
 
 	int limit = sqrt (num);
 
-	for (int i = 2; i <= limit; i++)
+	if (num % 2 == 0)
+		return false;
+
+	for (int i = 3; i <= limit; i += 2)
 		if (primes[i] && num % i == 0)
+			return false;
+
+	return true;
+}
+
+// Primeness check for long integers. The caller must guarantee that the primes array contains all primes up to and including sqrt (num)
+bool is_prime_long (long num, bool * sieve, size_t sieve_size, int * primes, size_t primes_size) {
+	if (num < sieve_size)
+		return sieve[num];
+
+	long limit = sqrt (num);
+
+	for (size_t i = 0; primes[i] <= limit && i < primes_size; i++)
+		if (num % primes[i] == 0)
 			return false;
 
 	return true;
