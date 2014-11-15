@@ -15,8 +15,10 @@ typedef struct {
 #define ROUND(a) ((a)>0?(int)(a+0.5):(int)(a-0.5))
 
 #define DIGITS_COUNT	10
+#define MILLER_RABIN_DETERMINISTIC_LIMIT	341550071728321L
 
 bool * eratosthenes_sieve (size_t);
+bool miller_rabin (long);
 bool is_prime (int, bool *, size_t);
 bool is_prime_long (long, bool *, size_t, int *, size_t);
 size_t prime_count_inverse (size_t);
@@ -53,5 +55,7 @@ bool is_triangle (long);
 bool is_pentagonal (long);
 
 long arithmetic_sequence_sum (long, long, long);
+
+long mod_pow (long, long, long);
 
 #endif

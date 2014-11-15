@@ -10,7 +10,7 @@
 #include "utils.h"
 
 static int find_minimum (int, size_t, int *);
-static bool is_a_prime_pair (int, int, bool *, size_t, int *, size_t);
+static bool is_a_prime_pair (int, int, bool *, size_t);
 static bool ** create_cache (size_t);
 static void free_cache (bool **, size_t);
 static int get_boundary (size_t, int, int *);
@@ -28,7 +28,7 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	int sum = 0;
-	size_t search_limit = 1000;
+	size_t search_limit = 1300; // Hand-picked so that we find the minium in one iteration for N <= 5, can be any number
 	int boundary = 0;
 	
 	while ((sum = find_minimum (N, search_limit, &boundary)) == 0)
@@ -57,27 +57,20 @@ static int find_minimum (int set_size, size_t candidates_limit, int * boundary) 
 
 	// Gather primes, pre-calculate pair primeness checks and start the iteration by determining all eligible pairs
 
-	size_t primes_limit = sqrt (concatenate (candidates_limit, candidates_limit)) + 1;
-	bool * sieve = eratosthenes_sieve (primes_limit);
+	bool * sieve = eratosthenes_sieve (candidates_limit);
 
-	int primes[primes_limit];
+	int primes[candidates_limit];
 	size_t primes_count = 0;
 
-	size_t candidates_count = 0;
-
-	for (int i = 3; i < primes_limit; i += 2)
-		if (sieve[i]) {
+	for (int i = 3; i < candidates_limit; i += 2)
+		if (sieve[i])
 			primes[primes_count++] = i;
 
-			if (i < candidates_limit)
-				candidates_count++;
-		}
+	bool ** cache = create_cache (primes_count);
 
-	bool ** cache = create_cache (candidates_count);
-
-	for (size_t i = 0; i < candidates_count; i++)
-		for (size_t j = i + 1; j < candidates_count; j++)
-			if (is_a_prime_pair (primes[i], primes[j], sieve, primes_limit, primes, primes_count)) {
+	for (size_t i = 0; i < primes_count; i++)
+		for (size_t j = i + 1; j < primes_count; j++)
+			if (is_a_prime_pair (primes[i], primes[j], sieve, candidates_limit)) {
 				cache[i][j] = true;
 
 				int * pair = linked_list_append_empty_array (tuples, 2, int);
@@ -133,7 +126,7 @@ static int find_minimum (int set_size, size_t candidates_limit, int * boundary) 
 		tuples = new_tuples;
 	}
 
-	free_cache (cache, candidates_count);
+	free_cache (cache, primes_count);
 
 	int min_sum = get_min_sum (tuples, set_size, primes);
 
@@ -181,15 +174,15 @@ static int get_boundary (size_t set_size, int local_minimum, int * min_prefix_su
 	return max_boundary;
 }
 
-static bool is_a_prime_pair (int a, int b, bool * sieve, size_t sieve_size, int * primes, size_t primes_size) {
+static bool is_a_prime_pair (int a, int b, bool * sieve, size_t sieve_size) {
 	long c = concatenate (a, b);
 
-	if (!is_prime_long (c, sieve, sieve_size, primes, primes_size))
+	if (!is_prime_long (c, sieve, sieve_size, NULL, 0))
 		return false;
 
 	c = concatenate (b, a);
 
-	if (!is_prime_long (c, sieve, sieve_size, primes, primes_size))
+	if (!is_prime_long (c, sieve, sieve_size, NULL, 0))
 		return false;
 
 	return true;

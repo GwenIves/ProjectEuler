@@ -14,13 +14,15 @@ report_C ()
 			exit 1
 		fi
 
+		LOC=$(wc -l src/*.c common/*.c common/include/*.h tests/*.c | tail -1 | cut -f3 -d" ")
+
 		cd tests
 
 		COMMANDS="grep \\\$REFERENCE test_all.sh | cut -f2 -d\( | cut -f1 -d\)"
 
 		COUNT=$(eval "$COMMANDS" | wc -l)
 
-		echo "Running $COUNT C language solutions"
+		echo "Running $COUNT C language solutions ($LOC lines of code)"
 
 		time eval "$COMMANDS" | while read p; do eval "$p"; done > /dev/null 2>&1
 

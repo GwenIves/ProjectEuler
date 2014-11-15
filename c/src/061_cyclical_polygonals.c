@@ -80,11 +80,8 @@ static void find_all_cycles (linked_list_t ** nodes, long sum, int start, int co
 			find_all_cycles (nodes, n->value, start + 1, n->suffix, n->prefix);
 	} else if (start == POLY_COUNT - 1) {
 		while ((n = linked_list_next (nodes[start], cycle_node_t)) != NULL)
-			if (n->prefix == connected_by && n->suffix == connecting_to) {
-				sum += n->value;
-
-				printf ("%ld\n", sum);
-			}
+			if (n->prefix == connected_by && n->suffix == connecting_to)
+				printf ("%ld\n", sum + n->value);
 	} else {
 		while ((n = linked_list_next (nodes[start], cycle_node_t)) != NULL) {
 			if (n->prefix == connected_by)

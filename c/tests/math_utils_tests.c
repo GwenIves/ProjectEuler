@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "math_utils.h"
 
 static void max_test ();
@@ -9,6 +10,7 @@ static void min_test ();
 static void abs_test ();
 static void round_test ();
 static void eratosthenes_sieve_test ();
+static void miller_rabin_test ();
 static void is_prime_test ();
 static void is_prime_long_test ();
 static void prime_count_inverse_test ();
@@ -43,6 +45,7 @@ int main () {
 	abs_test ();
 	round_test ();
 	eratosthenes_sieve_test ();
+	miller_rabin_test ();
 	is_prime_test ();
 	is_prime_long_test ();
 	prime_count_inverse_test ();
@@ -115,27 +118,51 @@ static void eratosthenes_sieve_test () {
 	free (sieve);
 }
 
-static void is_prime_test () {
-	bool * sieve = eratosthenes_sieve (798);
+static void miller_rabin_test () {
+	static const int primes_under = 1000000;
 
-	assert (!is_prime (797 * 797, sieve, 798));
-	assert (is_prime (336533, sieve, 798));
+	bool * sieve = eratosthenes_sieve (primes_under);
+
+	for (int i = 3; i < primes_under; i++)
+		assert (miller_rabin (i) == sieve[i]);
+
+	free (sieve);
+}
+
+static void is_prime_test () {
+	static const int primes_under = 798;
+
+	bool * sieve = eratosthenes_sieve (primes_under);
+
+	assert (!is_prime (797 * 797, sieve, primes_under));
+	assert (is_prime (336533, sieve, primes_under));
 
 	free (sieve);
 }
 
 static void is_prime_long_test () {
-	bool * sieve = eratosthenes_sieve (798);
+	static const int primes_under = 18481074;
 
-	int primes[798];
+	bool * sieve = eratosthenes_sieve (primes_under);
+
+	int primes[primes_under];
 	size_t primes_count = 0;
 
-	for (size_t i = 2; i < 1000; i++)
+	for (size_t i = 2; i < primes_under; i++)
 		if (sieve[i])
 			primes[primes_count++] = i;
 
-	assert (!is_prime_long (797L * 797L, sieve, 798, primes, primes_count));
-	assert (is_prime_long (336533L, sieve, 798, primes, primes_count));
+	// Through Eratosthenes sieve (num < primes_under)
+	assert (!is_prime_long (635209, sieve, primes_under, primes, primes_count));
+	assert (is_prime_long (336533L, sieve, primes_under, primes, primes_count));
+
+	// Through determinist Miller-Rabin (primes_under >= num < MILLER_RABIN_DETERMINISTIC_LIMIT)
+	assert (is_prime_long (20786669, sieve, primes_under, primes, primes_count));
+	assert (!is_prime_long (20786671, sieve, primes_under, primes, primes_count));
+
+	// Through divisor checking (MILLER_RABIN_DETERMINISTIC_LIMIT <= num)
+	assert (is_prime_long (341550071728361L, sieve, primes_under, primes, primes_count));
+	assert (!is_prime_long (MILLER_RABIN_DETERMINISTIC_LIMIT, sieve, primes_under, primes, primes_count));
 
 	free (sieve);
 }

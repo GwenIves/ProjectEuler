@@ -5,6 +5,7 @@
 #include "math_utils.h"
 
 static void set_digits (char *, int);
+static bool mr_test (long, long, long, int);
 
 // Returns an Eratosthenes sieve checkable from 2 (inclusive) to size (non-inclusive)
 bool * eratosthenes_sieve (size_t size) {
@@ -33,13 +34,14 @@ bool * eratosthenes_sieve (size_t size) {
 bool is_prime (int num, bool * primes, size_t primes_size) {
 	if (num < 2)
 		return false;
+	else if (num <= 3)
+		return true;
 	else if (num < primes_size)
 		return primes[num];
+	else if (num % 2 == 0)
+		return false;
 
 	int limit = sqrt (num);
-
-	if (num % 2 == 0)
-		return false;
 
 	for (int i = 3; i <= limit; i += 2)
 		if (primes[i] && num % i == 0)
@@ -48,16 +50,97 @@ bool is_prime (int num, bool * primes, size_t primes_size) {
 	return true;
 }
 
-// Primeness check for long integers. The caller must guarantee that the primes array contains all primes up to and including sqrt (num)
+/*
+ * Primeness check for long integers.
+ * sieve used as an optimisation for checking under sieve_size, can be NULL, in which case set sieve_size to 0
+ * primes[primes_size] are used for divisor checking, only required if num > MILLER_RABIN_DETERMINISTIC_LIMIT
+ * in which case the caller must guarantee that the array holds all primes up to and including sqrt (num)
+ * Can be NULL otherwise
+ */
 bool is_prime_long (long num, bool * sieve, size_t sieve_size, int * primes, size_t primes_size) {
-	if (num < sieve_size)
+	if (num < 2)
+		return false;
+	else if (num <= 3)
+		return true;
+	else if (num < sieve_size)
 		return sieve[num];
+	else if (num % 2 == 0)
+		return false;
+	else if (num < MILLER_RABIN_DETERMINISTIC_LIMIT)
+		return miller_rabin (num);
 
 	long limit = sqrt (num);
 
 	for (size_t i = 0; primes[i] <= limit && i < primes_size; i++)
 		if (num % primes[i] == 0)
 			return false;
+
+	return true;
+}
+
+/*
+ * num must be odd. Represent num as s * 2^r + 1 then check for random bases a, 0 < a < num
+ * whether a^s (mod num) == 1 or a^(2^j * s) (mod num) == -1 for some j, 0 < j < r
+ * A prime will pass the check for all bases.
+ * The limit constants are the smallest composites that successfully pass checks using first k prime bases
+ *
+ * Returns whether num is prime for num < MILLER_RABIN_DETERMINISTIC_CHECK
+ * In other cases returns false for composites and probably true for primes
+ */
+bool miller_rabin (long num) {
+	long s = num;
+	long r = 0;
+
+	do {
+		s >>= 1;
+		r++;
+	} while (!(s & 1));
+
+	if (num < 2047L)
+		return mr_test (num, r, s, 1);
+	else if (num < 1373653L)
+		return mr_test (num, r, s, 2);
+	else if (num <  25326001L)
+		return mr_test (num, r, s, 3);
+	else if (num <  3215031751L)
+		return mr_test (num, r, s, 4);
+	else if (num <  2152302898747L)
+		return mr_test (num, r, s, 5);
+	else if (num <  3474749660383L)
+		return mr_test (num, r, s, 6);
+	else
+		return mr_test (num, r, s, 7);
+}
+
+static bool mr_test (long num, long r, long s, int tests) {
+	static int primes[] = {2, 3, 5, 7, 11, 13, 17};
+
+	const long minus1_mod_num = num - 1;
+
+	if (tests > array_len (primes))
+		tests = array_len (primes);
+
+	for (int test = 0; test < tests; test++) {
+		int a = primes[test];
+
+		long x = mod_pow (a, s, num);
+
+		if (x == 1 || x == minus1_mod_num)
+			continue;
+
+		long y = x;
+		long j = 1;
+
+		for (j = 1; j < r; j++) {
+			y = (y * y) % num;
+
+			if (y == minus1_mod_num)
+				break;
+		}
+
+		if (j >= r)
+			return false;
+	}
 
 	return true;
 }
@@ -493,4 +576,29 @@ long arithmetic_sequence_sum (long start, long end, long step) {
 	long last = start + (count - 1) * step;
 
 	return count * (start + last) / 2;
+}
+
+long mod_pow (long num, long pow, long mod) {
+	if (num == 0)
+		return 0;
+	else if (pow == 0)
+		return 1;
+
+	long result = 1;
+
+	long power_mask = 1;
+
+	while (power_mask < pow)
+		power_mask <<= 1;
+
+	while (power_mask > 0) {
+		result = (result * result) % mod;
+
+		if (power_mask & pow)
+			result = (result * num) % mod;
+
+		power_mask >>= 1;
+	}
+
+	return result;
 }
