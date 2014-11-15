@@ -302,6 +302,10 @@ assert "$(../src/060_prime_pairs 5)" 26033 $LINENO $REFERENCE
 assert_fail "../src/061_cyclical_polygonals 3" $LINENO
 assert "$(../src/061_cyclical_polygonals 4)" 28684 $LINENO $REFERENCE
 
+assert_fail "../src/062_cubic_permutations 0" $LINENO
+assert "$(../src/062_cubic_permutations 3)" 41063625 $LINENO
+assert "$(../src/062_cubic_permutations 5)" 127035954683 $LINENO $REFERENCE
+
 assert "$(../src/063_powers)" 49 $LINENO $REFERENCE
 
 # Problem 67 can be solved reusing the code for problem 18

@@ -20,5 +20,6 @@ ssize_t x_getline (char **, FILE *);
 void swap_chars (char *, size_t, size_t);
 
 int string_cmp (const void *, const void *);
+int char_cmp (const void *, const void *);
 
 #endif

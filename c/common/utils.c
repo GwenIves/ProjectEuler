@@ -58,3 +58,10 @@ void swap_chars (char * seq, size_t a, size_t b) {
 int string_cmp (const void * a, const void * b) {
 	return strcmp (* (char **) a, * (char **) b);
 }
+
+int char_cmp (const void * a, const void * b) {
+	char aa = * ((char *) a);
+	char bb = * ((char *) b);
+
+	return aa - bb;
+}

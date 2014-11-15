@@ -11,6 +11,7 @@ static void getline_test ();
 static void swap_chars_test ();
 static void array_len_test ();
 static void string_cmp_test ();
+static void char_cmp_test ();
 
 #define ALLOC_SIZE	100
 
@@ -22,6 +23,7 @@ int main () {
 	swap_chars_test ();
 	array_len_test ();
 	string_cmp_test ();
+	char_cmp_test ();
 
 	printf ("All util tests passed\n");
 
@@ -105,4 +107,12 @@ static void string_cmp_test () {
 
 	assert (!strcmp (strings[0], "a"));
 	assert (!strcmp (strings[1], "b"));
+}
+
+static void char_cmp_test () {
+	char string[] = "hello char";
+
+	qsort (string, strlen (string), 1, char_cmp);
+
+	assert (!strcmp (string, " acehhllor"));
 }
