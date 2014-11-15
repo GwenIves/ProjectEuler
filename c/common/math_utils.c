@@ -79,7 +79,7 @@ bool is_prime_long (long num, bool * sieve, size_t sieve_size, int * primes, siz
 }
 
 /*
- * num must be odd. Represent num as s * 2^r + 1 then check for random bases a, 0 < a < num
+ * num must be odd >= 3. Represent num as s * 2^r + 1 then check for random bases a, 0 < a < num
  * whether a^s (mod num) == 1 or a^(2^j * s) (mod num) == -1 for some j, 0 < j < r
  * A prime will pass the check for all bases.
  * The limit constants are the smallest composites that successfully pass checks using first k prime bases

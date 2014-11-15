@@ -307,6 +307,9 @@ assert "$(../src/063_powers)" 49 $LINENO $REFERENCE
 # Problem 67 can be solved reusing the code for problem 18
 assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
 
+assert_fail "../src/092_unhappy 1" $LINENO
+assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
+
 assert "$(../src/097_non_mersenne_prime)" 8739992577 $LINENO $REFERENCE
 
 echo "All tests passed"

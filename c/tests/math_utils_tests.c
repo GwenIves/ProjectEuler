@@ -4,6 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include "math_utils.h"
+#include "utils.h"
 
 static void max_test ();
 static void min_test ();
@@ -144,8 +145,7 @@ static void is_prime_long_test () {
 	static const int primes_under = 18481074;
 
 	bool * sieve = eratosthenes_sieve (primes_under);
-
-	int primes[primes_under];
+	int * primes = x_malloc (primes_under * sizeof (int));
 	size_t primes_count = 0;
 
 	for (size_t i = 2; i < primes_under; i++)
@@ -165,6 +165,7 @@ static void is_prime_long_test () {
 	assert (!is_prime_long (MILLER_RABIN_DETERMINISTIC_LIMIT, sieve, primes_under, primes, primes_count));
 
 	free (sieve);
+	free (primes);
 }
 
 static void prime_count_inverse_test () {
