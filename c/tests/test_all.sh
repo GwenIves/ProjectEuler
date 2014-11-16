@@ -308,6 +308,10 @@ assert "$(../src/062_cubic_permutations 5)" 127035954683 $LINENO $REFERENCE
 
 assert "$(../src/063_powers)" 49 $LINENO $REFERENCE
 
+assert_fail "../src/064_irrational_fractions 0" $LINENO
+assert "$(../src/064_irrational_fractions 13)" 4 $LINENO
+assert "$(../src/064_irrational_fractions 10000)" 1322 $LINENO $REFERENCE
+
 # Problem 67 can be solved reusing the code for problem 18
 assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
 
