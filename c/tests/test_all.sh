@@ -311,6 +311,9 @@ assert "$(../src/063_powers)" 49 $LINENO $REFERENCE
 # Problem 67 can be solved reusing the code for problem 18
 assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
 
+assert_fail "../src/081_minimum_path < /dev/null" $LINENO
+assert "$(../src/081_minimum_path < data/081_matrix.in)" 427337 $LINENO $REFERENCE
+
 assert_fail "../src/092_unhappy 1" $LINENO
 assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 

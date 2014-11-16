@@ -41,20 +41,20 @@ static int ** load_triangle (int * rows_out) {
 
 	int ** triangle = x_malloc (rows * sizeof (int *));
 
-	for (int i = 0; i < rows; i++)
+	for (int i = 0; i < rows; i++) {
 		triangle[i] = x_malloc ((i + 1) * sizeof (int));
 
-	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < i + 1; j++) {
 			int value = 0;
 
 			if (scanf ("%d", &value) != 1) {
-				free_triangle (triangle, rows);
+				free_triangle (triangle, i);
 				return NULL;
 			}
 
 			triangle[i][j] = value;
 		}
+	}
 
 	*rows_out = rows;
 

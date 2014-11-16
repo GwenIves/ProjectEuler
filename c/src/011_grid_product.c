@@ -90,20 +90,20 @@ static int ** load_grid (int * rows_out, int * columns_out) {
 
 	int ** grid = x_malloc (rows * sizeof (int *));
 
-	for (int i = 0; i < rows; i++)
+	for (int i = 0; i < rows; i++) {
 		grid[i] = x_malloc (columns * sizeof (int));
 
-	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < columns; j++) {
 			int value = 0;
 
 			if (scanf ("%d", &value) != 1) {
-				free_grid (grid, rows);
+				free_grid (grid, i);
 				return NULL;
 			}
 
 			grid[i][j] = value;
 		}
+	}
 
 	*rows_out = rows;
 	*columns_out = columns;
