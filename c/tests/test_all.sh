@@ -312,6 +312,10 @@ assert_fail "../src/064_irrational_fractions 0" $LINENO
 assert "$(../src/064_irrational_fractions 13)" 4 $LINENO
 assert "$(../src/064_irrational_fractions 10000)" 1322 $LINENO $REFERENCE
 
+assert_fail "../src/069_totient 0" $LINENO
+assert "$(../src/069_totient 10)" 6 $LINENO
+assert "$(../src/069_totient 1000000)" 510510 $LINENO $REFERENCE
+
 # Problem 67 can be solved reusing the code for problem 18
 assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
 
