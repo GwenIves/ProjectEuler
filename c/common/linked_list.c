@@ -1,3 +1,4 @@
+#include <string.h>
 #include "linked_list.h"
 #include "utils.h"
 
@@ -53,6 +54,14 @@ void * linked_list_append_empty_ (linked_list_t * list, size_t size) {
 
 void * linked_list_add_empty_ (linked_list_t * list, size_t size) {
 	list_node_t * n = linked_list_add (list, x_malloc (size));
+
+	return n->payload;
+}
+
+void * linked_list_add_copy_ (linked_list_t * list, void * payload, size_t size) {
+	list_node_t * n = linked_list_add (list, x_malloc (size));
+
+	memcpy (n->payload, payload, size);
 
 	return n->payload;
 }

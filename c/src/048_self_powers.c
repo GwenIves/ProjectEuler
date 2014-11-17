@@ -25,10 +25,8 @@ int main (int argc, char ** argv) {
 	for (int i = 1; i <= N; i++)
 		sum = bignum_add_to (sum, bignum_pow (i, i, DIGITS_TO_CONSIDER));
 
-	for (int i = MIN (DIGITS_TO_CONSIDER, sum->used) - 1; i >= 0; i--)
-		printf ("%d", sum->digits[i]);
-
-	printf ("\n");
+	sum->used = MIN (DIGITS_TO_CONSIDER, sum->used);
+	bignum_print (sum);
 
 	bignum_delete (sum);
 

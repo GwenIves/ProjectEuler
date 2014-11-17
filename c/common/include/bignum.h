@@ -1,6 +1,7 @@
 #ifndef BIGNUM_H_
 #define BIGNUM_H_
 
+#include <stdlib.h>
 #include <stdbool.h>
 
 #define bignum_get(X) _Generic((X), \

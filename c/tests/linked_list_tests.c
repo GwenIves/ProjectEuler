@@ -41,7 +41,14 @@ static void linked_list_add_test () {
 	int * value2 = linked_list_add_empty (l, int);
 	*value2 = 456;
 
+	int value3 = 789;
+
+	linked_list_add_copy (l, &value3, int);
+
 	int * value = linked_list_next (l, int);
+	assert (*value == 789);
+
+	value = linked_list_next (l, int);
 	assert (*value == 456);
 
 	value = linked_list_next (l, int);

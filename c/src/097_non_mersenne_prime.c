@@ -13,10 +13,8 @@ int main () {
 	prime = bignum_mult_to (prime, 28433);
 	prime = bignum_add_to (prime, bignum_get (1));
 
-	for (int i = DIGITS_TO_CONSIDER - 1; i >= 0; i--)
-		printf ("%d", prime->digits[i]);
-
-	printf ("\n");
+	prime->used = DIGITS_TO_CONSIDER;
+	bignum_print (prime);
 
 	bignum_delete (prime);
 

@@ -57,8 +57,7 @@ int main (int argc, char ** argv) {
 				}
 
 				if (!duplicate) {
-					int * val = linked_list_add_empty (products, int);
-					*val = new_product;
+					linked_list_add_copy (products, &new_product, int);
 
 					sum += new_product;
 				}

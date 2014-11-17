@@ -9,6 +9,7 @@ echo "Running library unit tests"
 ./math_utils_tests || exit 1
 ./date_utils_tests || exit 1
 ./fraction_tests || exit 1
+./continued_fraction_tests || exit 1
 ./bignum_tests || exit 1
 
 # Project main () tests
@@ -315,6 +316,10 @@ assert "$(../src/064_irrational_fractions 10000)" 1322 $LINENO $REFERENCE
 assert_fail "../src/065_e 0" $LINENO
 assert "$(../src/065_e 10)" 17 $LINENO
 assert "$(../src/065_e 100)" 272 $LINENO $REFERENCE
+
+assert_fail "../src/066_pell 0" $LINENO
+assert "$(../src/066_pell 7)" 5 $LINENO
+assert "$(../src/066_pell 1000)" 661 $LINENO $REFERENCE
 
 assert_fail "../src/069_totient 0" $LINENO
 assert "$(../src/069_totient 10)" 6 $LINENO

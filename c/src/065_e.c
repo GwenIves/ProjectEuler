@@ -39,12 +39,7 @@ int main (int argc, char ** argv) {
 
 	nominator = bignum_add_to (nominator, bignum_mult (denominator, 2));
 
-	int sum = 0;
-
-	for (int i = 0; i < nominator->used; i++)
-		sum += nominator->digits[i];
-
-	printf ("%d\n", sum);
+	printf ("%d\n", bignum_digits_sum (nominator));
 
 	bignum_delete (nominator);
 	bignum_delete (denominator);
