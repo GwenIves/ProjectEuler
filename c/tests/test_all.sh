@@ -312,6 +312,10 @@ assert_fail "../src/064_irrational_fractions 0" $LINENO
 assert "$(../src/064_irrational_fractions 13)" 4 $LINENO
 assert "$(../src/064_irrational_fractions 10000)" 1322 $LINENO $REFERENCE
 
+assert_fail "../src/065_e 0" $LINENO
+assert "$(../src/065_e 10)" 17 $LINENO
+assert "$(../src/065_e 100)" 272 $LINENO $REFERENCE
+
 assert_fail "../src/069_totient 0" $LINENO
 assert "$(../src/069_totient 10)" 6 $LINENO
 assert "$(../src/069_totient 1000000)" 510510 $LINENO $REFERENCE

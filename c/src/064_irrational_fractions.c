@@ -47,6 +47,7 @@ int main (int argc, char ** argv) {
 
 		linked_list_t * fractions = linked_list_create ();
 
+		// All quadratic irrationals must eventually reach a cycle
 		while (expand_continued_fraction (&frac)) {
 			continued_fraction_t * f = NULL;
 
