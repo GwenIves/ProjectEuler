@@ -323,6 +323,9 @@ assert "$(../src/069_totient 1000000)" 510510 $LINENO $REFERENCE
 # Problem 67 can be solved reusing the code for problem 18
 assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
 
+assert_blank "../src/079_passcode < /dev/null" $LINENO
+assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE
+
 assert_fail "../src/081_minimum_path < /dev/null" $LINENO
 assert "$(../src/081_minimum_path < data/081_matrix.in)" 427337 $LINENO $REFERENCE
 
