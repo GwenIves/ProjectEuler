@@ -12,5 +12,6 @@ typedef struct {
 fraction_t fraction_get (int, int);
 void fraction_reduce (fraction_t *);
 fraction_t fraction_mult (fraction_t *, fraction_t *);
+int fraction_cmp (fraction_t *, fraction_t *);
 
 #endif

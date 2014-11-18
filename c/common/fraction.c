@@ -34,3 +34,16 @@ fraction_t fraction_mult (fraction_t * a, fraction_t * b) {
 
 	return c;
 }
+
+int fraction_cmp (fraction_t * a, fraction_t * b) {
+	if (a->sign ^ b->sign)
+		return b->sign ? 1 : -1;
+
+	int aa = a->nominator * b->denominator;
+	int bb = b->nominator * a->denominator;
+
+	if (!a->sign)
+		return aa - bb;
+	else
+		return bb - aa;
+}

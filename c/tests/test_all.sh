@@ -330,6 +330,10 @@ assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFEREN
 
 assert "$(../src/068_magic_ring)" 6531031914842725 $LINENO $REFERENCE
 
+assert_fail "../src/071_ordered_fractions 0 " $LINENO
+assert "$(../src/071_ordered_fractions 8)" 2 $LINENO
+assert "$(../src/071_ordered_fractions 1000000)" 428570 $LINENO $REFERENCE
+
 assert_blank "../src/079_passcode < /dev/null" $LINENO
 assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE
 
