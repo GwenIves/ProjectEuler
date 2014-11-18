@@ -339,5 +339,8 @@ assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 
 assert "$(../src/097_non_mersenne_prime)" 8739992577 $LINENO $REFERENCE
 
+assert_blank "../src/099_exponentials < /dev/null" $LINENO
+assert "$(../src/099_exponentials < data/099_values.in)" 709 $LINENO $REFERENCE
+
 echo "All tests passed"
 exit 0
