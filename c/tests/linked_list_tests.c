@@ -4,6 +4,7 @@
 #include "utils.h"
 
 static void linked_list_create_test ();
+static void linked_list_copy_test ();
 static void linked_list_add_test ();
 static void linked_list_append_test ();
 static void linked_list_add_array_test ();
@@ -12,6 +13,7 @@ static void linked_list_stop_iteration_test ();
 
 int main () {
 	linked_list_create_test ();
+	linked_list_copy_test ();
 	linked_list_add_test ();
 	linked_list_append_test ();
 	linked_list_add_array_test ();
@@ -29,6 +31,29 @@ static void linked_list_create_test () {
 	assert (l != NULL);
 
 	linked_list_free (l);
+}
+
+static void linked_list_copy_test () {
+	linked_list_t * l = linked_list_create ();
+
+	int * p = NULL;
+
+	p = linked_list_append_empty (l, int);
+	*p = 10;
+
+	p = linked_list_append_empty (l, int);
+	*p = 20;
+
+	linked_list_t * c = linked_list_copy (l, int);
+
+	p = linked_list_next (c, int);
+	assert (*p == 10);
+
+	p = linked_list_next (c, int);
+	assert (*p == 20);
+
+	linked_list_free (l);
+	linked_list_free (c);
 }
 
 static void linked_list_add_test () {

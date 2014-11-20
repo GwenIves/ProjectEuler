@@ -205,6 +205,30 @@ linked_list_t * factorise (long num) {
 	return factors;
 }
 
+long factors_to_value (linked_list_t * factors) {
+	long value = 1;
+
+	factor_t * f = NULL;
+
+	while ((f = linked_list_next (factors, factor_t)) != NULL)
+		value *= power (f->factor, f->power);
+
+	return value;
+}
+
+long factors_to_totient (linked_list_t * factors) {
+	long totient = 1;
+
+	factor_t * f = NULL;
+
+	while ((f = linked_list_next (factors, factor_t)) != NULL) {
+		totient *= power (f->factor, f->power - 1);
+		totient *= f->factor - 1;
+	}
+
+	return totient;
+}
+
 int factors_count (long num) {
 	linked_list_t * factors = factorise (num);
 
@@ -596,6 +620,31 @@ long mod_pow (long num, long pow, long mod) {
 
 		if (power_mask & pow)
 			result = (result * num) % mod;
+
+		power_mask >>= 1;
+	}
+
+	return result;
+}
+
+long power (long num, long pow) {
+	if (num == 0)
+		return 0;
+	else if (pow == 0)
+		return 1;
+
+	long result = 1;
+
+	long power_mask = 1;
+
+	while (power_mask < pow)
+		power_mask <<= 1;
+
+	while (power_mask > 0) {
+		result = result * result;
+
+		if (power_mask & pow)
+			result = result * num;
 
 		power_mask >>= 1;
 	}

@@ -25,6 +25,8 @@ size_t prime_count_inverse (size_t);
 
 linked_list_t * factorise (long);
 int factors_count (long);
+long factors_to_value (linked_list_t *);
+long factors_to_totient (linked_list_t *);
 
 long proper_divisors_sum (long);
 int divisors_count (long);
@@ -57,5 +59,6 @@ bool is_pentagonal (long);
 long arithmetic_sequence_sum (long, long, long);
 
 long mod_pow (long, long, long);
+long power (long, long);
 
 #endif

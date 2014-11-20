@@ -2,6 +2,7 @@
 #define LINKED_LIST_H_
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct node {
 	void * payload;
@@ -20,14 +21,17 @@ typedef struct {
 #define linked_list_add_empty_array(l,c,t) (t *) linked_list_add_empty_ (l, c * sizeof (t))
 #define linked_list_append_empty(l,t) (t *) linked_list_append_empty_ (l, sizeof (t))
 #define linked_list_append_empty_array(l,c,t) (t *) linked_list_append_empty_ (l, c * sizeof (t))
+#define linked_list_free(l) linked_list_free_ (l, true)
+#define linked_list_copy(l,t) linked_list_copy_ (l, sizeof (t))
 
 linked_list_t * linked_list_create ();
+linked_list_t * linked_list_copy_ (linked_list_t *, size_t);
 list_node_t * linked_list_add (linked_list_t *, void *);
 void * linked_list_add_empty_ (linked_list_t *, size_t);
 void * linked_list_add_copy_ (linked_list_t *, void *, size_t);
 list_node_t * linked_list_append (linked_list_t *, void *);
 void * linked_list_append_empty_ (linked_list_t *, size_t);
-void linked_list_free (linked_list_t *);
+void linked_list_free_ (linked_list_t *, bool);
 void * linked_list_next_ (linked_list_t *);
 void linked_list_stop_iteration (linked_list_t *);
 

@@ -321,14 +321,17 @@ assert_fail "../src/066_pell 0" $LINENO
 assert "$(../src/066_pell 7)" 5 $LINENO
 assert "$(../src/066_pell 1000)" 661 $LINENO $REFERENCE
 
-assert_fail "../src/069_totient 0" $LINENO
-assert "$(../src/069_totient 10)" 6 $LINENO
-assert "$(../src/069_totient 1000000)" 510510 $LINENO $REFERENCE
-
 # Problem 67 can be solved reusing the code for problem 18
 assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
 
 assert "$(../src/068_magic_ring)" 6531031914842725 $LINENO $REFERENCE
+
+assert_fail "../src/069_totient 0" $LINENO
+assert "$(../src/069_totient 10)" 6 $LINENO
+assert "$(../src/069_totient 1000000)" 510510 $LINENO $REFERENCE
+
+assert_fail "../src/070_totient_permutations 1" $LINENO
+assert "$(../src/070_totient_permutations 10000000)" 8319823 $LINENO $REFERENCE
 
 assert_fail "../src/071_ordered_fractions 0 " $LINENO
 assert "$(../src/071_ordered_fractions 8)" 2 $LINENO

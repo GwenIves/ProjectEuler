@@ -16,6 +16,8 @@ static void is_prime_test ();
 static void is_prime_long_test ();
 static void prime_count_inverse_test ();
 static void factorise_test ();
+static void factors_to_value_test ();
+static void factors_to_totient_test ();
 static void factors_count_test ();
 static void proper_divisors_sum_test ();
 static void divisors_count_test ();
@@ -39,6 +41,8 @@ static void next_fibonacci_num_test ();
 static void is_triangle_test ();
 static void is_pentagonal_test ();
 static void arithmetic_sequence_sum_test ();
+static void mod_pow_test ();
+static void power_test ();
 
 int main () {
 	max_test ();
@@ -51,6 +55,8 @@ int main () {
 	is_prime_long_test ();
 	prime_count_inverse_test ();
 	factorise_test ();
+	factors_to_value_test ();
+	factors_to_totient_test ();
 	factors_count_test ();
 	proper_divisors_sum_test ();
 	divisors_count_test ();
@@ -74,6 +80,8 @@ int main () {
 	is_triangle_test ();
 	is_pentagonal_test ();
 	arithmetic_sequence_sum_test ();
+	mod_pow_test ();
+	power_test ();
 
 	printf ("All math util tests passed\n");
 
@@ -190,6 +198,34 @@ static void factorise_test () {
 
 	factor = linked_list_next (factors, factor_t);
 	assert (factor == NULL);
+
+	linked_list_free (factors);
+}
+
+static void factors_to_value_test () {
+	linked_list_t * factors = factorise (97);
+
+	assert (factors_to_value (factors) == 97);
+
+	linked_list_free (factors);
+
+	factors = factorise (56);
+
+	assert (factors_to_value (factors) == 56);
+
+	linked_list_free (factors);
+}
+
+static void factors_to_totient_test () {
+	linked_list_t * factors = factorise (97);
+
+	assert (factors_to_totient (factors) == 96);
+
+	linked_list_free (factors);
+
+	factors = factorise (56);
+
+	assert (factors_to_totient (factors) == 24);
 
 	linked_list_free (factors);
 }
@@ -367,4 +403,17 @@ static void is_pentagonal_test () {
 static void arithmetic_sequence_sum_test () {
 	assert (arithmetic_sequence_sum (1, 101, 1) == 5050);
 	assert (arithmetic_sequence_sum (1, 101, 2) == 2500);
+}
+
+static void mod_pow_test () {
+	assert (mod_pow (0, 10, 1) == 0);
+	assert (mod_pow (10, 0, 1) == 1);
+	assert (mod_pow (3, 10, 60000) == 59049);
+	assert (mod_pow (3, 10, 50000) == 9049);
+}
+
+static void power_test () {
+	assert (power (0, 10) == 0);
+	assert (power (10, 0) == 1);
+	assert (power (3, 10) == 59049);
 }

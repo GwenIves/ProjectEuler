@@ -12,6 +12,26 @@ linked_list_t * linked_list_create () {
 	return l;
 }
 
+linked_list_t * linked_list_copy_ (linked_list_t * src, size_t size) {
+	linked_list_t * trg = linked_list_create ();
+
+	list_node_t * saved_cursor = src->cursor;
+
+	linked_list_stop_iteration (src);
+
+	void * p_ptr = NULL;
+
+	while ((p_ptr = linked_list_next_ (src)) != NULL) {
+		void * copy = x_malloc (size);
+		memcpy (copy, p_ptr, size);
+		linked_list_append (trg, copy);
+	}
+
+	src->cursor = saved_cursor;
+
+	return trg;
+}
+
 list_node_t * linked_list_add (linked_list_t * list, void * payload) {
 	list_node_t * n = x_malloc (sizeof (list_node_t));
 
@@ -66,11 +86,13 @@ void * linked_list_add_copy_ (linked_list_t * list, void * payload, size_t size)
 	return n->payload;
 }
 
-void linked_list_free (linked_list_t * list) {
+void linked_list_free_ (linked_list_t * list, bool free_payload) {
 	while (list->head) {
 		list_node_t * t = list->head->next;
 
-		free (list->head->payload);
+		if (free_payload)
+			free (list->head->payload);
+
 		free (list->head);
 
 		list->head = t;
