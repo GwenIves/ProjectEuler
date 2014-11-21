@@ -333,13 +333,17 @@ assert "$(../src/069_totient 1000000)" 510510 $LINENO $REFERENCE
 assert_fail "../src/070_totient_permutations 1" $LINENO
 assert "$(../src/070_totient_permutations 10000000)" 8319823 $LINENO $REFERENCE
 
-assert_fail "../src/071_ordered_fractions 0 " $LINENO
+assert_fail "../src/071_ordered_fractions 0" $LINENO
 assert "$(../src/071_ordered_fractions 8)" 2 $LINENO
 assert "$(../src/071_ordered_fractions 1000000)" 428570 $LINENO $REFERENCE
 
-assert_fail "../src/072_fractions_count 0 " $LINENO
+assert_fail "../src/072_fractions_count 0" $LINENO
 assert "$(../src/072_fractions_count 8)" 21 $LINENO
 assert "$(../src/072_fractions_count 1000000)" 303963552391 $LINENO $REFERENCE
+
+assert_fail "../src/073_fractions_range 0" $LINENO
+assert "$(../src/073_fractions_range 8)" 3 $LINENO
+assert "$(../src/073_fractions_range 12000)" 7295372 $LINENO $REFERENCE
 
 assert_blank "../src/079_passcode < /dev/null" $LINENO
 assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE

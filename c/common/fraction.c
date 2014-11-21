@@ -2,14 +2,15 @@
 #include "fraction.h"
 #include "math_utils.h"
 
-fraction_t fraction_get (int nom, int denom) {
+fraction_t fraction_get_ (int nom, int denom, bool should_reduce) {
 	fraction_t f;
 
 	f.nominator = ABS (nom);
 	f.denominator = ABS (denom);
 	f.sign = (nom < 0) ^ (denom < 0);
 
-	fraction_reduce (&f);
+	if (should_reduce)
+		fraction_reduce (&f);
 
 	return f;
 }
@@ -46,4 +47,17 @@ int fraction_cmp (fraction_t * a, fraction_t * b) {
 		return aa - bb;
 	else
 		return bb - aa;
+}
+
+/*
+ * Computes the number of proper reduced fractions in the Stern-Brocot tree with denominators <= max_denominator and values between and excluding above and below
+ * Both above and below must be nodes of some Stern-Brocot tree
+ */
+long stern_brocot_count (long max_denominator, fraction_t * above, fraction_t * below) {
+	fraction_t mediant = fraction_get_ (above->nominator + below->nominator, above->denominator + below->denominator, false);
+
+	if (mediant.denominator > max_denominator)
+		return 0;
+	else
+		return stern_brocot_count (max_denominator, above, &mediant) + stern_brocot_count (max_denominator, &mediant, below) + 1;
 }
