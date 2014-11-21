@@ -573,6 +573,21 @@ long next_collatz_num (long x) {
 		return x * 3 + 1;
 }
 
+int next_digits_factorial_num (int value) {
+	static const int factorials[] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
+
+	int next = 0;
+
+	while (value > 0) {
+		int digit = value % 10;
+		value /= 10;
+
+		next += factorials[digit];
+	}
+
+	return next;
+}
+
 // If val is pentagonal there is a positive integer n solving n * (3n - 1) = 2 * val
 bool is_pentagonal (long val) {
 	long discrim = 1 + 24 * val;

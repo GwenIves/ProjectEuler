@@ -38,6 +38,7 @@ static void next_heptagonal_num_test ();
 static void next_octagonal_num_test ();
 static void next_collatz_num_test ();
 static void next_fibonacci_num_test ();
+static void next_digits_factorial_num_test ();
 static void is_triangle_test ();
 static void is_pentagonal_test ();
 static void arithmetic_sequence_sum_test ();
@@ -77,6 +78,7 @@ int main () {
 	next_octagonal_num_test ();
 	next_collatz_num_test ();
 	next_fibonacci_num_test ();
+	next_digits_factorial_num_test ();
 	is_triangle_test ();
 	is_pentagonal_test ();
 	arithmetic_sequence_sum_test ();
@@ -388,6 +390,10 @@ static void next_fibonacci_num_test () {
 static void next_collatz_num_test () {
 	assert (next_collatz_num (13) == 40);
 	assert (next_collatz_num (16) == 8);
+}
+
+static void next_digits_factorial_num_test () {
+	assert (next_digits_factorial_num (169) == 363601);
 }
 
 static void is_triangle_test () {

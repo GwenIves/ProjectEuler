@@ -52,6 +52,7 @@ long next_hexagonal_num ();
 long next_heptagonal_num ();
 long next_octagonal_num ();
 long next_collatz_num (long);
+int next_digits_factorial_num (int);
 
 bool is_triangle (long);
 bool is_pentagonal (long);

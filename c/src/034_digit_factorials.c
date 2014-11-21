@@ -5,39 +5,22 @@
 #include <stdio.h>
 #include "math_utils.h"
 
+#define FACT9	362880
+
 int main () {
-	int digit_factorials[DIGITS_COUNT];
-
-	digit_factorials[0] = 1;
-
-	for (int i = 1; i < DIGITS_COUNT; i++)
-		digit_factorials[i] = i * digit_factorials[i - 1];
-
 	int lowest_pow10 = 10;
-	int max_representable = digit_factorials[DIGITS_COUNT - 1];
+	int max_representable = FACT9;
 
 	while (lowest_pow10 <= max_representable) {
 		lowest_pow10 *= 10;
-		max_representable += digit_factorials[DIGITS_COUNT - 1];
+		max_representable += FACT9;
 	}
 
 	int sum = 0;
 
-	for (int i = 10; i <= max_representable; i++) {
-		int digits_sum = 0;
-		int num = i;
-
-		while (num > 0) {
-			int digit = num % 10;
-
-			digits_sum += digit_factorials[digit];
-
-			num /= 10;
-		}
-
-		if (digits_sum == i)
+	for (int i = 10; i <= max_representable; i++)
+		if (i == next_digits_factorial_num (i))
 			sum += i;
-	}
 
 	printf ("%d\n", sum);
 
