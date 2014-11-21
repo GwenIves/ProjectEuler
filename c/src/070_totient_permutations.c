@@ -12,6 +12,7 @@
 #define FULL_SEARCH_CUTOFF	500
 #define STEP_SIZE		0.8
 
+static bool search_for_solutions (bool *, size_t, int, double *, int *);
 static void gather_factorisations (linked_list_t *, bool *, size_t, int, int, linked_list_t *);
 static int get_exhaustive_limit (double);
 static void free_factorisations (linked_list_t *);
@@ -40,18 +41,33 @@ int main (int argc, char ** argv) {
 	// In the worst case we will need a product of the smallest prime (2) and the largest prime x such that 2 * x < N
 	bool * sieve = eratosthenes_sieve (N / 2);
 
-	int search_start = sqrt (N) * STEP_SIZE;
 	size_t primes_count = 2;
-
-	bool solution_found = false;
-	bool factorisations_found = false;
-	bool full_range = false;
-	bool exhaustive_search = false;
-
 	double best_ratio = 2.0;
 	int value_when_best = 0;
 
-	while (!solution_found) {
+	while (search_for_solutions (sieve, primes_count, N, &best_ratio, &value_when_best))
+		primes_count++;
+
+	free (sieve);
+
+	if (value_when_best > 0)
+		printf ("%d\n", value_when_best);
+
+	return 0;
+}
+
+/*
+ * Searches for the best solution among products of prime_count-tuples. If it exists, it is passed to the caller via value_when_best
+ * Returns an indicator whether the search should be continued among (prime_count + 1)-tuples
+ */
+static bool search_for_solutions (bool * sieve, size_t primes_count, int N, double * best_ratio, int * value_when_best) {
+	int search_start = pow (N, 1.0 / primes_count) * STEP_SIZE;
+
+	bool solution_found = false;
+	bool factorisations_found = false;
+	bool exhaustive_search = false;
+
+	while (true) {
 		linked_list_t * factorisations = linked_list_create ();
 
 		gather_factorisations (factorisations, sieve, primes_count, search_start, N, NULL);
@@ -70,44 +86,46 @@ int main (int argc, char ** argv) {
 
 				double ratio = (double) value / totient;
 
-				if (ratio < best_ratio) {
-					best_ratio = ratio;
-					value_when_best = value;
+				if (ratio < *best_ratio) {
+					*best_ratio = ratio;
+					*value_when_best = value;
 				}
 			}
 		}
 
 		free_factorisations (factorisations);
 
-		if (full_range && factorisations_found && !solution_found) {
-			// No solution among n-tuples, try to look among (n + 1)-tuples
-			primes_count++;
-			search_start = pow (N, 1.0 / primes_count);
-			full_range = false;
-		} else if (full_range && !factorisations_found) {
-			// No solution exists among tuples, terminate
-			break;
-		} else if (solution_found && !exhaustive_search) {
-			// Local minimum found, repeat search once more among all potentially better solutions
-			solution_found = false;
-			exhaustive_search = true;
-			search_start = get_exhaustive_limit (best_ratio);
+		if (!solution_found && search_start == 2) {
+			if (factorisations_found)
+				// No solution among n-tuples, but could be among (n + 1)-tuples
+				return true;
+			else
+				// No solution or factorisation found, terminate
+				return false;
+		} else if (solution_found) {
+			if (!exhaustive_search) {
+				// Local minimum found, repeat search once more among all potentially better solutions
+				exhaustive_search = true;
+				search_start = get_exhaustive_limit (*best_ratio);
+			} else {
+				// This is the best solution for n-tuples, check if it can be improved in (n + 1)-tuples
+				primes_count++;
+				search_start = pow (N, 1.0 / primes_count);
+
+				double best_n1_ratio = (double) search_start / (search_start - 1);
+
+				if (best_n1_ratio > *best_ratio)
+					return false;
+				else
+					return true;
+			}
 		}
 
 		search_start *= STEP_SIZE;
 
-		if (search_start < FULL_SEARCH_CUTOFF) {
+		if (search_start < FULL_SEARCH_CUTOFF)
 			search_start = 2;
-			full_range = true;
-		}
 	}
-
-	free (sieve);
-
-	if (value_when_best > 0)
-		printf ("%d\n", value_when_best);
-
-	return 0;
 }
 
 // Recursively build the list of all factorisations involving "primes" number of primes whose product is under "under" using primes larger or equal to "from"

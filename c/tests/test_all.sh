@@ -337,6 +337,10 @@ assert_fail "../src/071_ordered_fractions 0 " $LINENO
 assert "$(../src/071_ordered_fractions 8)" 2 $LINENO
 assert "$(../src/071_ordered_fractions 1000000)" 428570 $LINENO $REFERENCE
 
+assert_fail "../src/072_fractions_count 0 " $LINENO
+assert "$(../src/072_fractions_count 8)" 21 $LINENO
+assert "$(../src/072_fractions_count 1000000)" 303963552391 $LINENO $REFERENCE
+
 assert_blank "../src/079_passcode < /dev/null" $LINENO
 assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE
 
