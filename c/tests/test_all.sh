@@ -348,6 +348,9 @@ assert "$(../src/073_fractions_range 12000)" 7295372 $LINENO $REFERENCE
 assert_fail "../src/074_digit_factorials 1" $LINENO
 assert "$(../src/074_digit_factorials 1000000)" 402 $LINENO $REFERENCE
 
+assert_fail "../src/075_triangles 2" $LINENO
+assert "$(../src/075_triangles 1500000)" 161667 $LINENO $REFERENCE
+
 assert_blank "../src/079_passcode < /dev/null" $LINENO
 assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE
 

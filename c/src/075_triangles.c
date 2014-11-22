@@ -1,11 +1,11 @@
 /*
- * Find the perimeter less than or equal to N for which there exists the largest number of right sided triangles with integral length sides and a perimeter equal to it
+ * Find for how many perimeters less than or equal to N there exists exactly one right sided triangle with integral sides
  */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "math_utils.h"
 #include "utils.h"
+#include "math_utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -15,12 +15,12 @@ int main (int argc, char ** argv) {
 
 	int N = atoi (argv[1]);
 
-	if (N < 6)
+	if (N < 3)
 		return 1;
 
-	int counts[N + 1];
+	int * counts = x_malloc ((N + 1) * sizeof (int));
 
-	for (size_t i = 0; i < array_len (counts); i++)
+	for (size_t i = 0; i <= N; i++)
 		counts[i] = 0;
 
 	for (int n = 1;; n++) {
@@ -41,18 +41,15 @@ int main (int argc, char ** argv) {
 	}
 
 
-	int max_count = 0;
-	int perimeter_when_max = 0;
+	int singular_count = 0;
 
-	for (int i = 0; i < array_len (counts); i++)
-		if (counts[i] > max_count) {
-			max_count = counts[i];
-			perimeter_when_max = i;
-		}
+	for (int i = 0; i <= N; i++)
+		if (counts[i] == 1)
+			singular_count++;
 
-	if (max_count > 0) {
-		printf ("%d\n", perimeter_when_max);
-		return 0;
-	} else
-		return 1;
+	printf ("%d\n", singular_count);
+
+	free (counts);
+
+	return 0;
 }

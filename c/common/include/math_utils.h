@@ -62,4 +62,6 @@ long arithmetic_sequence_sum (long, long, long);
 long mod_pow (long, long, long);
 long power (long, long);
 
+int euclid_pythagorean_triple_perim (int, int);
+
 #endif

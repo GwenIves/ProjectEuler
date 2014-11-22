@@ -44,6 +44,7 @@ static void is_pentagonal_test ();
 static void arithmetic_sequence_sum_test ();
 static void mod_pow_test ();
 static void power_test ();
+static void euclid_pythagorean_triple_perim_test ();
 
 int main () {
 	max_test ();
@@ -84,6 +85,7 @@ int main () {
 	arithmetic_sequence_sum_test ();
 	mod_pow_test ();
 	power_test ();
+	euclid_pythagorean_triple_perim_test ();
 
 	printf ("All math util tests passed\n");
 
@@ -422,4 +424,9 @@ static void power_test () {
 	assert (power (0, 10) == 0);
 	assert (power (10, 0) == 1);
 	assert (power (3, 10) == 59049);
+}
+static void euclid_pythagorean_triple_perim_test () {
+	assert (euclid_pythagorean_triple_perim (9, 6) == 0);
+	assert (euclid_pythagorean_triple_perim (9, 7) == 0);
+	assert (euclid_pythagorean_triple_perim (2, 1) == 12);
 }
