@@ -15,6 +15,5 @@ fraction_t fraction_get_ (int, int, bool);
 void fraction_reduce (fraction_t *);
 fraction_t fraction_mult (fraction_t *, fraction_t *);
 int fraction_cmp (fraction_t *, fraction_t *);
-long stern_brocot_count (long, fraction_t *, fraction_t *);
 
 #endif

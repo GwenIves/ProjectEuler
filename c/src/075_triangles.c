@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#include "math_utils.h"
+#include "euler_utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {

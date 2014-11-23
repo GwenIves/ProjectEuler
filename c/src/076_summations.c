@@ -1,5 +1,5 @@
 /*
- * Find the number of combinations of British coins that combine to make N pennies
+ * Find the number of combinations of representing N as a sum of at least two numbers
  */
 
 #include <stdio.h>
@@ -18,9 +18,12 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	int coin_values[] = {1, 2, 5, 10, 20, 50, 100, 200};
+	int values[N - 1];
 
-	printf ("%d\n", count_representation_combinations (coin_values, array_len (coin_values) - 1, N, NULL));
+	for (int i = 0; i < array_len (values); i++)
+		values[i] = i + 1;
+
+	printf ("%d\n", count_representation_combinations (values, array_len (values) - 1, N, NULL));
 
 	return 0;
 }

@@ -48,16 +48,3 @@ int fraction_cmp (fraction_t * a, fraction_t * b) {
 	else
 		return bb - aa;
 }
-
-/*
- * Computes the number of proper reduced fractions in the Stern-Brocot tree with denominators <= max_denominator and values between and excluding above and below
- * Both above and below must be nodes of some Stern-Brocot tree
- */
-long stern_brocot_count (long max_denominator, fraction_t * above, fraction_t * below) {
-	fraction_t mediant = fraction_get_ (above->nominator + below->nominator, above->denominator + below->denominator, false);
-
-	if (mediant.denominator > max_denominator)
-		return 0;
-	else
-		return stern_brocot_count (max_denominator, above, &mediant) + stern_brocot_count (max_denominator, &mediant, below) + 1;
-}

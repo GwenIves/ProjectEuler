@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "math_utils.h"
+#include "euler_utils.h"
 #include "utils.h"
 
 int main (int argc, char ** argv) {

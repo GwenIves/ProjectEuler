@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "fraction.h"
+#include "euler_utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {

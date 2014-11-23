@@ -7,6 +7,7 @@ echo "Running library unit tests"
 ./utils_tests || exit 1
 ./linked_list_tests || exit 1
 ./math_utils_tests || exit 1
+./euler_utils_tests || exit 1
 ./date_utils_tests || exit 1
 ./fraction_tests || exit 1
 ./continued_fraction_tests || exit 1
@@ -350,6 +351,10 @@ assert "$(../src/074_digit_factorials 1000000)" 402 $LINENO $REFERENCE
 
 assert_fail "../src/075_triangles 2" $LINENO
 assert "$(../src/075_triangles 1500000)" 161667 $LINENO $REFERENCE
+
+assert_fail "../src/076_summations 0" $LINENO
+assert "$(../src/076_summations 5)" 6 $LINENO
+assert "$(../src/076_summations 100)" 190569291 $LINENO $REFERENCE
 
 assert_blank "../src/079_passcode < /dev/null" $LINENO
 assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE
