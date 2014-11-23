@@ -43,7 +43,7 @@ int euclid_pythagorean_triple_perim (int m, int n) {
  * Returns how many combinations exist of representing "sum" as a summation of values from the "values" array
  * using elements up to the "max_value" index
  */
-int count_representation_combinations (int * values, int max_value, int sum, int ** cache) {
+int count_representation_combinations_ (int * values, size_t max_value, int sum, int ** cache) {
 	int combinations = 0;
 	bool allocated_cache = false;
 
@@ -61,7 +61,7 @@ int count_representation_combinations (int * values, int max_value, int sum, int
 			int remaining_sum = sum;
 
 			while (remaining_sum > 0) {
-				combinations += count_representation_combinations (values, max_value - 1, remaining_sum, cache);
+				combinations += count_representation_combinations_ (values, max_value - 1, remaining_sum, cache);
 				remaining_sum -= values[max_value];
 			}
 		}

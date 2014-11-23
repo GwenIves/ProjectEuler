@@ -20,7 +20,7 @@ int main (int argc, char ** argv) {
 
 	int coin_values[] = {1, 2, 5, 10, 20, 50, 100, 200};
 
-	printf ("%d\n", count_representation_combinations (coin_values, array_len (coin_values) - 1, N, NULL));
+	printf ("%d\n", count_representation_combinations (coin_values, array_len (coin_values) - 1, N));
 
 	return 0;
 }

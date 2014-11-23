@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 	for (int i = 0; i < array_len (values); i++)
 		values[i] = i + 1;
 
-	printf ("%d\n", count_representation_combinations (values, array_len (values) - 1, N, NULL));
+	printf ("%d\n", count_representation_combinations (values, array_len (values) - 1, N));
 
 	return 0;
 }

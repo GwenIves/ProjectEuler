@@ -33,5 +33,5 @@ static void euclid_pythagorean_triple_perim_test () {
 static void count_representation_combinations_test () {
 	int values[] = {1, 2, 3, 4};
 
-	assert (count_representation_combinations (values, 3, 5, NULL) == 6);
+	assert (count_representation_combinations (values, 3, 5) == 6);
 }
