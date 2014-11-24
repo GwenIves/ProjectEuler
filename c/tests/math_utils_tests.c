@@ -33,6 +33,7 @@ static void prev_permutation_test ();
 static void next_triangle_num_test ();
 static void next_square_num_test ();
 static void next_pentagonal_num_test ();
+static void next_generalised_pentagonal_num_test ();
 static void next_hexagonal_num_test ();
 static void next_heptagonal_num_test ();
 static void next_octagonal_num_test ();
@@ -73,6 +74,7 @@ int main () {
 	next_triangle_num_test ();
 	next_square_num_test ();
 	next_pentagonal_num_test ();
+	next_generalised_pentagonal_num_test ();
 	next_hexagonal_num_test ();
 	next_heptagonal_num_test ();
 	next_octagonal_num_test ();
@@ -349,6 +351,22 @@ static void next_pentagonal_num_test () {
 		num = next_pentagonal_num ();
 
 	assert (num == 145);
+}
+
+static void next_generalised_pentagonal_num_test () {
+	long num = 0;
+
+	for (size_t i = 0; i < 10; i++)
+		num = next_generalised_pentagonal_num (false);
+
+	assert (num == 40);
+
+	num = next_generalised_pentagonal_num (true);
+
+	for (size_t i = 0; i < 10; i++)
+		num = next_generalised_pentagonal_num (false);
+
+	assert (num == 40);
 }
 
 static void next_hexagonal_num_test () {

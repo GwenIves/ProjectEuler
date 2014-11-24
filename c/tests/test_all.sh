@@ -360,6 +360,9 @@ assert_fail "../src/077_prime_summations 0" $LINENO
 assert "$(../src/077_prime_summations 5)" 10 $LINENO
 assert "$(../src/077_prime_summations 5000)" 71 $LINENO $REFERENCE
 
+assert_fail "../src/078_partitions 0" $LINENO
+assert "$(../src/078_partitions 1000000)" 55374 $LINENO $REFERENCE
+
 assert_blank "../src/079_passcode < /dev/null" $LINENO
 assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE
 

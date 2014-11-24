@@ -536,6 +536,28 @@ long next_pentagonal_num () {
 	return last_num;
 }
 
+/*
+ * If reset == false, returns the next generalised pentagonal number
+ * If reset == true, returns 0 and the next function call will start from the sequence's beginning
+ */
+int next_generalised_pentagonal_num (bool reset) {
+	static int index = 1;
+
+	if (reset) {
+		index = 1;
+		return 0;
+	}
+
+	int num = index * (3 * index - 1) / 2;
+
+	if (index > 0)
+		index = -index;
+	else
+		index = -index + 1;
+
+	return num;
+}
+
 long next_hexagonal_num () {
 	static long last_index = 0;
 	static long last_num = 0;

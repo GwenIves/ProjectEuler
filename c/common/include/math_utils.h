@@ -48,6 +48,7 @@ long next_fibonacci_num ();
 long next_triangle_num ();
 long next_square_num ();
 long next_pentagonal_num ();
+int next_generalised_pentagonal_num (bool);
 long next_hexagonal_num ();
 long next_heptagonal_num ();
 long next_octagonal_num ();

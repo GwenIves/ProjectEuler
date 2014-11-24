@@ -59,9 +59,13 @@ int count_representation_combinations_ (int * values, size_t max_value, int sum,
 
 		if (max_value > 0) {
 			int remaining_sum = sum;
+			size_t next_max_value = max_value - 1;
 
 			while (remaining_sum > 0) {
-				combinations += count_representation_combinations_ (values, max_value - 1, remaining_sum, cache);
+				while (next_max_value > 0 && values[next_max_value] > remaining_sum)
+					next_max_value--;
+
+				combinations += count_representation_combinations_ (values, next_max_value, remaining_sum, cache);
 				remaining_sum -= values[max_value];
 			}
 		}
