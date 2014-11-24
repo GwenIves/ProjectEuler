@@ -10,6 +10,7 @@ static void bignum_add_test ();
 static void bignum_add_to_test ();
 static void bignum_pow_test ();
 static void bignum_cmp_test ();
+static void bignum_is_digit_test ();
 static void bignum_is_palindrome_test ();
 static void bignum_reverse_test ();
 static void bignum_digits_sum_test ();
@@ -23,6 +24,7 @@ int main () {
 	bignum_add_to_test ();
 	bignum_pow_test ();
 	bignum_cmp_test ();
+	bignum_is_digit_test ();
 	bignum_is_palindrome_test ();
 	bignum_reverse_test ();
 	bignum_digits_sum_test ();
@@ -163,6 +165,19 @@ static void bignum_cmp_test () {
 	bignum_delete (b);
 	bignum_delete (c);
 }
+
+static void bignum_is_digit_test () {
+	bignum_t * a = bignum_get (1);
+	bignum_t * aa = bignum_get (10);
+
+	assert (bignum_is_digit (a, 1));
+	assert (!bignum_is_digit (a, -1));
+	assert (!bignum_is_digit (aa, 1));
+
+	bignum_delete (a);
+	bignum_delete (aa);
+}
+
 static void bignum_is_palindrome_test () {
 	bignum_t * a = bignum_get ("12345678987654321");
 	bignum_t * b = bignum_get ("123456789987654321");
@@ -188,6 +203,7 @@ static void bignum_reverse_test () {
 	bignum_delete (b);
 	bignum_delete (b_ref);
 }
+
 static void bignum_digits_sum_test () {
 	bignum_t * a = bignum_get ("123456789987654321");
 

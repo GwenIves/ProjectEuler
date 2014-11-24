@@ -21,7 +21,6 @@ int main (int argc, char ** argv) {
 
 	int integral_sqrt = 1;
 
-	bignum_t * one = bignum_get (1);
 	bignum_t * max = bignum_get (0);
 	int n_when_max = 0;
 
@@ -54,7 +53,7 @@ int main (int argc, char ** argv) {
 
 			bignum_delete (convergent.denominator);
 
-			if (!bignum_cmp (x2, one)) {
+			if (bignum_is_digit (x2, 1)) {
 				if (bignum_cmp (convergent.nominator, max) > 0) {
 					bignum_delete (max);
 					max = convergent.nominator;
@@ -74,7 +73,6 @@ int main (int argc, char ** argv) {
 	}
 
 	bignum_delete (max);
-	bignum_delete (one);
 
 	printf ("%d\n", n_when_max);
 

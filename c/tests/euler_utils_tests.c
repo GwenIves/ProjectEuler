@@ -1,15 +1,18 @@
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
 #include "euler_utils.h"
 
 static void stern_brocot_count_test ();
 static void euclid_pythagorean_triple_perim_test ();
 static void count_representation_combinations_test ();
+static void calculate_sqrt_test ();
 
 int main () {
 	stern_brocot_count_test ();
 	euclid_pythagorean_triple_perim_test ();
 	count_representation_combinations_test ();
+	calculate_sqrt_test ();
 
 	printf ("All euler utils tests passed\n");
 
@@ -34,4 +37,12 @@ static void count_representation_combinations_test () {
 	int values[] = {1, 2, 3, 4};
 
 	assert (count_representation_combinations (values, 3, 5) == 6);
+}
+
+static void calculate_sqrt_test () {
+	char * sqrt_str = calculate_sqrt (2, 20);
+
+	assert (!strcmp (sqrt_str, "1.4142135623730950488"));
+
+	free (sqrt_str);
 }

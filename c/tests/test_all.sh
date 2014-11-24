@@ -366,6 +366,10 @@ assert "$(../src/078_partitions 1000000)" 55374 $LINENO $REFERENCE
 assert_blank "../src/079_passcode < /dev/null" $LINENO
 assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE
 
+assert_blank "../src/080_square_roots 0" $LINENO
+assert "$(../src/080_square_roots 2)" 475 $LINENO
+assert "$(../src/080_square_roots 100)" 40886 $LINENO $REFERENCE
+
 assert_fail "../src/081_minimum_path < /dev/null" $LINENO
 assert "$(../src/081_minimum_path < data/081_matrix.in)" 427337 $LINENO $REFERENCE
 

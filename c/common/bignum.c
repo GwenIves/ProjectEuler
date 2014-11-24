@@ -167,6 +167,9 @@ bignum_t * bignum_mult_int (bignum_t * a, int b) {
 bignum_t * bignum_mult_bignum (bignum_t * a, bignum_t * b) {
 	bignum_t * c = bignum_get (0);
 
+	if (bignum_is_digit (a, 0) || bignum_is_digit (b, 0))
+		return c;
+
 	c->sign = a->sign ^ b->sign;
 
 	int carry = 0;
@@ -276,6 +279,18 @@ bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
 	}
 
 	return c;
+}
+
+bool bignum_is_digit (bignum_t * num, int digit) {
+	if (digit >= 0) {
+		if (!num->sign && num->used == 1 && num->digits[0] == digit)
+			return true;
+	} else {
+		if (num->sign && num->used == 1 && num->digits[0] == -digit)
+			return true;
+	}
+
+	return false;
 }
 
 int bignum_cmp (bignum_t * a, bignum_t * b) {

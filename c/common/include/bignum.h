@@ -36,6 +36,7 @@ void bignum_print (bignum_t *);
 bool bignum_is_palindrome (bignum_t *);
 
 int bignum_cmp (bignum_t *, bignum_t *);
+bool bignum_is_digit (bignum_t *, int);
 
 int bignum_digits_sum (bignum_t *);
 
