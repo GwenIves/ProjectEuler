@@ -10,6 +10,7 @@ static void linked_list_append_test ();
 static void linked_list_add_array_test ();
 static void linked_list_append_array_test ();
 static void linked_list_stop_iteration_test ();
+static void linked_list_delete_test ();
 
 int main () {
 	linked_list_create_test ();
@@ -19,6 +20,7 @@ int main () {
 	linked_list_add_array_test ();
 	linked_list_append_array_test ();
 	linked_list_stop_iteration_test ();
+	linked_list_delete_test ();
 
 	printf ("All linked list tests passed\n");
 
@@ -153,6 +155,45 @@ static void linked_list_stop_iteration_test () {
 
 	value = linked_list_next (l, int);
 	assert (*value == 456);
+
+	linked_list_free (l);
+}
+
+static void linked_list_delete_test () {
+	linked_list_t * l = linked_list_create ();
+
+	int * value1 = x_malloc (sizeof (int));
+	int * value2 = x_malloc (sizeof (int));
+	int * value3 = x_malloc (sizeof (int));
+
+	*value1 = 111;
+	*value2 = 222;
+	*value3 = 333;
+
+	linked_list_append (l, value1);
+	linked_list_append (l, value2);
+	linked_list_append (l, value3);
+
+	int * value = NULL;
+
+	(void) linked_list_next (l, int);
+	value = linked_list_next (l, int);
+
+	linked_list_stop_iteration (l);
+
+	linked_list_delete (l, value);
+
+	value = linked_list_next (l, int);
+
+	assert (*value == 111);
+
+	value = linked_list_next (l, int);
+
+	assert (*value == 333);
+
+	value = linked_list_next (l, int);
+
+	assert (value == NULL);
 
 	linked_list_free (l);
 }

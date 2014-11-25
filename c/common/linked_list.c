@@ -118,3 +118,30 @@ void * linked_list_next_ (linked_list_t * list) {
 void linked_list_stop_iteration (linked_list_t * list) {
 	list->cursor = list->head;
 }
+
+void linked_list_delete (linked_list_t * list, void * payload) {
+	list_node_t * node = list->head;
+	list_node_t * prev = NULL;
+
+	while (node) {
+		if (node->payload == payload)
+			break;
+
+		prev = node;
+		node = node->next;
+	}
+
+	if (list->cursor == node)
+		list->cursor = node->next;
+
+	if (list->tail == node)
+		list->tail = prev;
+
+	if (prev)
+		prev->next = node->next;
+	else
+		list->head = list->head->next;
+
+	free (node->payload);
+	free (node);
+}

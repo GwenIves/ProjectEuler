@@ -34,5 +34,6 @@ void * linked_list_append_empty_ (linked_list_t *, size_t);
 void linked_list_free_ (linked_list_t *, bool);
 void * linked_list_next_ (linked_list_t *);
 void linked_list_stop_iteration (linked_list_t *);
+void linked_list_delete (linked_list_t *, void *);
 
 #endif
