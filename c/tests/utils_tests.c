@@ -12,6 +12,7 @@ static void swap_chars_test ();
 static void array_len_test ();
 static void string_cmp_test ();
 static void char_cmp_test ();
+static void allocate_matrix_test ();
 
 #define ALLOC_SIZE	100
 
@@ -24,6 +25,7 @@ int main () {
 	array_len_test ();
 	string_cmp_test ();
 	char_cmp_test ();
+	allocate_matrix_test ();
 
 	printf ("All util tests passed\n");
 
@@ -115,4 +117,20 @@ static void char_cmp_test () {
 	qsort (string, strlen (string), 1, char_cmp);
 
 	assert (!strcmp (string, " acehhllor"));
+}
+
+static void allocate_matrix_test () {
+	int ** im = allocate_matrix (10, 10, 1);
+
+	assert (im[0][0] == 1);
+	assert (im[9][9] == 1);
+
+	free_matrix (im, 10);
+
+	bool ** bm = allocate_matrix (10, 10, (bool) true);
+
+	assert (bm[0][0]);
+	assert (bm[9][9]);
+
+	free_matrix (im, 10);
 }

@@ -376,6 +376,9 @@ assert "$(../src/081_minimum_path < data/081_matrix.in)" 427337 $LINENO $REFEREN
 assert_fail "../src/082_minimum_path < /dev/null" $LINENO
 assert "$(../src/082_minimum_path < data/081_matrix.in)" 260324 $LINENO $REFERENCE
 
+assert_fail "../src/083_minimum_path < /dev/null" $LINENO
+assert "$(../src/083_minimum_path < data/081_matrix.in)" 425185 $LINENO $REFERENCE
+
 assert_fail "../src/085_rectangles 0" $LINENO
 assert "$(../src/085_rectangles 18)" 6 $LINENO
 assert "$(../src/085_rectangles 2000000)" 2772 $LINENO $REFERENCE

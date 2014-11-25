@@ -146,7 +146,38 @@ int ** load_square (int * rows_out) {
 	}
 }
 
-void free_matrix (int ** matrix, int rows) {
+int ** allocate_matrix_int (size_t rows, size_t columns, int init_value) {
+	int ** matrix = x_malloc (rows * sizeof (int *));
+
+	for (size_t i = 0; i < rows; i++) {
+		matrix[i] = x_malloc (columns * sizeof (int));
+
+		for (size_t j = 0; j < columns; j++)
+			matrix[i][j] = init_value;
+	}
+
+	return matrix;
+}
+
+bool ** allocate_matrix_bool (size_t rows, size_t columns, bool init_value) {
+	bool ** matrix = x_malloc (rows * sizeof (bool *));
+
+	for (size_t i = 0; i < rows; i++) {
+		matrix[i] = x_malloc (columns * sizeof (bool));
+
+		for (size_t j = 0; j < columns; j++)
+			matrix[i][j] = init_value;
+	}
+
+	return matrix;
+}
+
+void free_matrix_int (int ** matrix, int rows) {
+	free_array (matrix, rows);
+	free (matrix);
+}
+
+void free_matrix_bool (bool ** matrix, int rows) {
 	free_array (matrix, rows);
 	free (matrix);
 }
