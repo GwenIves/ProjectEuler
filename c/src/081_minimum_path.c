@@ -1,7 +1,7 @@
 /*
  * Find the value of the minimum path from the left top to the right bottom corner of a numeric matrix
  * It is only possible to move right or down. The matrix is read from stdin in this format:
- * <N = rows and columns count> on a separete line, followed by comma separated numbers, N per line
+ * <N = rows count> <N = columns count> on a separete line, followed by comma separated numbers, N per line
  */
 
 #include <stdio.h>
@@ -9,13 +9,10 @@
 #include "math_utils.h"
 #include "utils.h"
 
-static int ** load_matrix (int *);
-static void free_matrix (int **, int);
-
 int main () {
 	int rows = 0;
 
-	int ** matrix = load_matrix (&rows);
+	int ** matrix = load_square (&rows);
 
 	if (!matrix)
 		return 1;
@@ -37,41 +34,4 @@ int main () {
 	free_matrix (matrix, rows);
 
 	return 0;
-}
-
-static int ** load_matrix (int * rows_out) {
-	int rows = 0;
-
-	if (scanf ("%d\n", &rows) != 1)
-		return NULL;
-	else if (rows <= 0)
-		return NULL;
-
-	int ** matrix = x_malloc (rows * sizeof (int *));
-
-	for (int i = 0; i < rows; i++) {
-		matrix[i] = x_malloc (rows * sizeof (int));
-
-		for (int j = 0; j < rows; j++) {
-			int value = 0;
-
-			if (scanf ("%d", &value) != 1) {
-				free_matrix (matrix, i);
-				return NULL;
-			}
-
-			matrix[i][j] = value;
-
-			(void) fgetc (stdin);
-		}
-	}
-
-	*rows_out = rows;
-
-	return matrix;
-}
-
-static void free_matrix (int ** matrix, int rows) {
-	free_array (matrix, rows);
-	free (matrix);
 }

@@ -9,9 +9,6 @@
 #include "math_utils.h"
 #include "utils.h"
 
-static int ** load_triangle (int *);
-static void free_triangle (int **, int);
-
 int main () {
 	int rows = 0;
 
@@ -26,42 +23,7 @@ int main () {
 
 	printf ("%d\n", triangle[0][0]);
 
-	free_triangle (triangle, rows);
+	free_matrix (triangle, rows);
 
 	return 0;
-}
-
-static int ** load_triangle (int * rows_out) {
-	int rows = 0;
-
-	if (scanf ("%d", &rows) != 1)
-		return NULL;
-	else if (rows <= 0)
-		return NULL;
-
-	int ** triangle = x_malloc (rows * sizeof (int *));
-
-	for (int i = 0; i < rows; i++) {
-		triangle[i] = x_malloc ((i + 1) * sizeof (int));
-
-		for (int j = 0; j < i + 1; j++) {
-			int value = 0;
-
-			if (scanf ("%d", &value) != 1) {
-				free_triangle (triangle, i);
-				return NULL;
-			}
-
-			triangle[i][j] = value;
-		}
-	}
-
-	*rows_out = rows;
-
-	return triangle;
-}
-
-static void free_triangle (int ** triangle, int rows) {
-	free_array (triangle, rows);
-	free (triangle);
 }

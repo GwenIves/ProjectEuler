@@ -1,7 +1,7 @@
 /*
  * Find the value of the minimum path from the left to the right column of a numeric matrix
  * It is possible to move right, up or down. The matrix is read from stdin in this format:
- * <N = rows and columns count> on a separete line, followed by comma separated numbers, N per line
+ * <N = rows count> <N = columns count> on a separete line, followed by comma separated numbers, N per line
  */
 
 #include <stdio.h>
@@ -9,32 +9,12 @@
 #include "math_utils.h"
 #include "utils.h"
 
-static int ** load_matrix (int *);
-static void free_matrix (int **, int);
-
-static int down_cost (int ** matrix, int rows, int i, int j, int up_or_right) {
-	int down = 0;
-	int min = up_or_right;
-
-	for (int k = i + 1; k < rows; k++) {
-		down += matrix[k][j];
-
-		if (down >= min)
-			break;
-
-		int total_cost = down + matrix[k][j + 1];
-
-		if (total_cost < min)
-			min = total_cost;
-	}
-
-	return min;
-}
+static int down_cost (int **, int, int, int, int);
 
 int main () {
 	int rows = 0;
 
-	int ** matrix = load_matrix (&rows);
+	int ** matrix = load_square (&rows);
 
 	if (!matrix)
 		return 1;
@@ -66,39 +46,21 @@ int main () {
 	return 0;
 }
 
-static int ** load_matrix (int * rows_out) {
-	int rows = 0;
+static int down_cost (int ** matrix, int rows, int i, int j, int up_or_right) {
+	int down = 0;
+	int min = up_or_right;
 
-	if (scanf ("%d\n", &rows) != 1)
-		return NULL;
-	else if (rows <= 0)
-		return NULL;
+	for (int k = i + 1; k < rows; k++) {
+		down += matrix[k][j];
 
-	int ** matrix = x_malloc (rows * sizeof (int *));
+		if (down >= min)
+			break;
 
-	for (int i = 0; i < rows; i++) {
-		matrix[i] = x_malloc (rows * sizeof (int));
+		int total_cost = down + matrix[k][j + 1];
 
-		for (int j = 0; j < rows; j++) {
-			int value = 0;
-
-			if (scanf ("%d", &value) != 1) {
-				free_matrix (matrix, i);
-				return NULL;
-			}
-
-			matrix[i][j] = value;
-
-			(void) fgetc (stdin);
-		}
+		if (total_cost < min)
+			min = total_cost;
 	}
 
-	*rows_out = rows;
-
-	return matrix;
-}
-
-static void free_matrix (int ** matrix, int rows) {
-	free_array (matrix, rows);
-	free (matrix);
+	return min;
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "utils.h"
 
 void * x_malloc (size_t size) {
 	void * mem = malloc (size);
@@ -64,4 +65,88 @@ int char_cmp (const void * a, const void * b) {
 	char bb = * ((char *) b);
 
 	return aa - bb;
+}
+
+int ** load_matrix (int * rows_out, int * columns_out) {
+	int rows = 0;
+	int columns = 0;
+
+	if (scanf ("%d %d", &rows, &columns) != 2)
+		return NULL;
+	else if (rows <= 0 || columns <= 0)
+		return NULL;
+
+	int ** matrix = x_malloc (rows * sizeof (int *));
+
+	for (int i = 0; i < rows; i++) {
+		matrix[i] = x_malloc (columns * sizeof (int));
+
+		for (int j = 0; j < columns; j++) {
+			int value = 0;
+
+			if (scanf ("%d", &value) != 1) {
+				free_matrix (matrix, i);
+				return NULL;
+			}
+
+			matrix[i][j] = value;
+
+			(void) fgetc (stdin);
+		}
+	}
+
+	*rows_out = rows;
+	*columns_out = columns;
+
+	return matrix;
+}
+
+int ** load_triangle (int * rows_out) {
+	int rows = 0;
+
+	if (scanf ("%d", &rows) != 1)
+		return NULL;
+	else if (rows <= 0)
+		return NULL;
+
+	int ** triangle = x_malloc (rows * sizeof (int *));
+
+	for (int i = 0; i < rows; i++) {
+		triangle[i] = x_malloc ((i + 1) * sizeof (int));
+
+		for (int j = 0; j < i + 1; j++) {
+			int value = 0;
+
+			if (scanf ("%d", &value) != 1) {
+				free_matrix (triangle, i);
+				return NULL;
+			}
+
+			triangle[i][j] = value;
+		}
+	}
+
+	*rows_out = rows;
+
+	return triangle;
+}
+
+int ** load_square (int * rows_out) {
+	int rows = 0;
+	int columns = 0;
+
+	int ** matrix = load_matrix (&rows, &columns);
+
+	if (rows != columns) {
+		free_matrix (matrix, rows);
+		return NULL;
+	} else {
+		*rows_out = rows;
+		return matrix;
+	}
+}
+
+void free_matrix (int ** matrix, int rows) {
+	free_array (matrix, rows);
+	free (matrix);
 }
