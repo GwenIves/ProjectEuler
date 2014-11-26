@@ -26,7 +26,7 @@ int main (int argc, char ** argv) {
 			if (len++ == 0)
 				start = i;
 
-			if (len == N) 
+			if (len == N)
 				break;
 		} else
 			len = 0;

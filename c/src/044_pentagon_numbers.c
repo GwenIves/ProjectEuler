@@ -10,7 +10,7 @@ static int search_solutions (int, int);
 int main () {
 	int dif = 0;
 	int limit = 10;
-	
+
 	while ((dif = search_solutions (limit, 0)) == 0)
 		limit *= 10;
 

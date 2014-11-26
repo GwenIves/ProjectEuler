@@ -48,7 +48,7 @@ int main (int argc, char ** argv) {
 
 	get_polygonals (nodes, N);
 
-	char polygonals_order[] = "012345"; 
+	char polygonals_order[] = "012345";
 
 	do {
 		linked_list_t * shuffled[POLY_COUNT];

@@ -42,7 +42,7 @@ int main (int argc, char ** argv) {
 }
 
 static bool cancel_digit (int nom, int denom, int N) {
-	int nom_digits[N]; 
+	int nom_digits[N];
 	int denom_digits[N];
 
 	fill_digits (nom_digits, nom);

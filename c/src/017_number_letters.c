@@ -33,8 +33,8 @@ static int printout_number (int N) {
 	if (N < 0) {
 		printf ("minus ");
 		N = -N;
-	} 
-	
+	}
+
 	printout_number_under1000000 (N, 1);
 	printf ("\n");
 
@@ -59,7 +59,7 @@ static void printout_number_under1000 (int N, int separator) {
 		printout_number_under100 (N);
 	else {
 		printout_number_under100 (N / 100);
-		printf (" hundert"); 
+		printf (" hundert");
 
 		if (N % 100) {
 			if (separator)

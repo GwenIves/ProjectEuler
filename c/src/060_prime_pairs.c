@@ -30,7 +30,7 @@ int main (int argc, char ** argv) {
 	int sum = 0;
 	size_t search_limit = 1300; // Hand-picked so that we find the minium in one iteration for N <= 5, can be any number
 	int boundary = 0;
-	
+
 	while ((sum = find_minimum (N, search_limit, &boundary)) == 0)
 		search_limit *= 10;
 
@@ -46,7 +46,7 @@ int main (int argc, char ** argv) {
 
 /*
  * Iteratively search for possible n-tuples of primes under limit
- * To satisfy the pair-wise concatenation criteria, any (n+1)-tuple must be formed from 
+ * To satisfy the pair-wise concatenation criteria, any (n+1)-tuple must be formed from
  * two n-tuples with the same prefix of size n-1
  *
  * Returns the found minimum or 0 if no set exists under limit

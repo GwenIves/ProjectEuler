@@ -16,7 +16,7 @@ static void free_names (char **, int);
 int main () {
 	int names_count = 0;
 	char ** names = NULL;
-	
+
 	if ((names = read_names (&names_count)) == NULL)
 		return 1;
 

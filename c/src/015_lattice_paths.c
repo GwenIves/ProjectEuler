@@ -16,7 +16,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	long grid_paths[N][N]; 
+	long grid_paths[N][N];
 
 	for (int i = N - 1; i >= 0; i --)
 		for (int j = N - 1; j >= 0; j--) {

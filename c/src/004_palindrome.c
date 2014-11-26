@@ -17,7 +17,7 @@ int main (int argc, char ** argv) {
 
 	if (N < 1)
 		return 1;
-		
+
 	int start = pow (10, N - 1);
 	int stop = pow (10, N) - 1;
 	int max_product = 0;

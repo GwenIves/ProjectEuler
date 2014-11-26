@@ -18,7 +18,7 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	char * series = NULL;
-	ssize_t series_size = x_getline (&series, stdin); 
+	ssize_t series_size = x_getline (&series, stdin);
 
 	if (series_size == -1 || series_size < N)
 		return 1;

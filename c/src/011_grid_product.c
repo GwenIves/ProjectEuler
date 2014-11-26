@@ -27,7 +27,7 @@ int main (int argc, char ** argv) {
 
 	if (!grid)
 		return 1;
-	
+
 	long max_product = 0;
 
 	for (int i = 0; i < rows; i++)
