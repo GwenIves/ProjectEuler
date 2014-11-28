@@ -688,3 +688,24 @@ long power (long num, long pow) {
 
 	return result;
 }
+
+/*
+ * Generates a Pythagorean triplet using the Euclid's algorithm with seeds m and n, m > n
+ * If m, n generate a primitive triplet, returns true and sets a, b, c to the triplet's values
+ * Otherwise, returns false and leaves a, b, c unchanged
+ */
+bool euclid_pythagorean_triple (int m, int n, int * a, int * b, int * c) {
+	if (gcd (m, n) > 1)
+		return false;
+	else if ((m - n) % 2 == 0)
+		return false;
+
+	int m2 = m * m;
+	int n2 = n * n;
+
+	*a = m2 - n2;
+	*b = 2 * m * n;
+	*c = m2 + n2;
+
+	return true;
+}

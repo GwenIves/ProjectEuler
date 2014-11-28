@@ -12,6 +12,7 @@ static void swap_chars_test ();
 static void array_len_test ();
 static void string_cmp_test ();
 static void char_cmp_test ();
+static void int_cmp_test ();
 static void allocate_matrix_test ();
 
 #define ALLOC_SIZE	100
@@ -25,6 +26,7 @@ int main () {
 	array_len_test ();
 	string_cmp_test ();
 	char_cmp_test ();
+	int_cmp_test ();
 	allocate_matrix_test ();
 
 	printf ("All util tests passed\n");
@@ -117,6 +119,16 @@ static void char_cmp_test () {
 	qsort (string, strlen (string), 1, char_cmp);
 
 	assert (!strcmp (string, " acehhllor"));
+}
+
+static void int_cmp_test () {
+	int ints[] = {5,3,8};
+
+	qsort (ints, array_len (ints), sizeof (int), int_cmp);
+
+	assert (ints[0] == 3);
+	assert (ints[1] == 5);
+	assert (ints[2] == 8);
 }
 
 static void allocate_matrix_test () {

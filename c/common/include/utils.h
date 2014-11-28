@@ -30,6 +30,7 @@ void swap_chars (char *, size_t, size_t);
 
 int string_cmp (const void *, const void *);
 int char_cmp (const void *, const void *);
+int int_cmp (const void *, const void *);
 
 int ** load_matrix (int *, int *);
 int ** load_triangle (int *);

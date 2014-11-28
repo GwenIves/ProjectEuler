@@ -387,6 +387,11 @@ assert_fail "../src/085_rectangles 0" $LINENO
 assert "$(../src/085_rectangles 18)" 6 $LINENO
 assert "$(../src/085_rectangles 2000000)" 2772 $LINENO $REFERENCE
 
+assert "$(../src/086_cuboids -1)" 1 $LINENO
+assert "$(../src/086_cuboids 0)" 3 $LINENO
+assert "$(../src/086_cuboids 2000)" 100 $LINENO
+assert "$(../src/086_cuboids 1000000)" 1818 $LINENO $REFERENCE
+
 assert_fail "../src/092_unhappy 1" $LINENO
 assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 

@@ -21,25 +21,15 @@ long stern_brocot_count (long max_denominator, fraction_t * above, fraction_t * 
 		return stern_brocot_count (max_denominator, above, &mediant) + stern_brocot_count (max_denominator, &mediant, below) + 1;
 }
 
-/*
- * Generates a Pythagorean triplet using the Euclid's algorithm with seeds m and n, m > n
- * If m, n generate a primitive triplet, returns the triplet's sum (triangle perimeter)
- * Otherwise, returns 0
- */
 int euclid_pythagorean_triple_perim (int m, int n) {
-	if (gcd (m, n) > 1)
+	int a = 0;
+	int b = 0;
+	int c = 0;
+
+	if (euclid_pythagorean_triple (m, n, &a, &b, &c))
+		return a + b + c;
+	else
 		return 0;
-	else if ((m - n) % 2 == 0)
-		return 0;
-
-	int m2 = m * m;
-	int n2 = n * n;
-
-	int a = m2 - n2;
-	int b = 2 * m * n;
-	int c = m2 + n2;
-
-	return a + b + c;
 }
 
 /*

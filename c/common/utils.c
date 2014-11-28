@@ -67,6 +67,13 @@ int char_cmp (const void * a, const void * b) {
 	return aa - bb;
 }
 
+int int_cmp (const void * a, const void * b) {
+	int aa = * ((int *) a);
+	int bb = * ((int *) b);
+
+	return aa - bb;
+}
+
 int ** load_matrix (int * rows_out, int * columns_out) {
 	int rows = 0;
 	int columns = 0;
