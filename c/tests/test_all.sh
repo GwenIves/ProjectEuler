@@ -392,6 +392,10 @@ assert "$(../src/086_cuboids 0)" 3 $LINENO
 assert "$(../src/086_cuboids 2000)" 100 $LINENO
 assert "$(../src/086_cuboids 1000000)" 1818 $LINENO $REFERENCE
 
+assert_fail "../src/087_prime_powers 0" $LINENO
+assert "$(../src/087_prime_powers 50)" 4 $LINENO
+assert "$(../src/087_prime_powers 50000000)" 1097343 $LINENO $REFERENCE
+
 assert_fail "../src/092_unhappy 1" $LINENO
 assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 

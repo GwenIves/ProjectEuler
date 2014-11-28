@@ -18,10 +18,7 @@ int main (int argc, char ** argv) {
 	if (N < 3)
 		return 1;
 
-	int * counts = x_malloc ((N + 1) * sizeof (int));
-
-	for (size_t i = 0; i <= N; i++)
-		counts[i] = 0;
+	int * counts = allocate_array (N + 1, 0);
 
 	for (int n = 1;; n++) {
 		if (euclid_pythagorean_triple_perim (n + 1, n) > N)

@@ -16,6 +16,10 @@
 	int**: free_matrix_int, \
 	bool**: free_matrix_bool)(M,R)
 
+#define allocate_array(S,I) _Generic((I), \
+	int: allocate_array_int, \
+	bool: allocate_array_bool)(S,I)
+
 #define array_len(A) (sizeof(A)/sizeof(A[0]))
 
 #define free_array(A,L) for (size_t i = 0; i < L; i++) { free (A[i]); }
@@ -38,6 +42,9 @@ int ** load_square (int *);
 
 int ** allocate_matrix_int (size_t, size_t, int);
 bool ** allocate_matrix_bool (size_t, size_t, bool);
+
+int * allocate_array_int (size_t, int);
+bool * allocate_array_bool (size_t, bool);
 
 void free_matrix_int (int **, int);
 void free_matrix_bool (bool **, int);

@@ -179,6 +179,24 @@ bool ** allocate_matrix_bool (size_t rows, size_t columns, bool init_value) {
 	return matrix;
 }
 
+int * allocate_array_int (size_t size, int init_value) {
+	int * array = x_malloc (size * sizeof (int));
+
+	for (size_t i = 0; i < size; i++)
+		array[i] = init_value;
+
+	return array;
+}
+
+bool * allocate_array_bool (size_t size, bool init_value) {
+	bool * array = x_malloc (size * sizeof (bool));
+
+	for (size_t i = 0; i < size; i++)
+		array[i] = init_value;
+
+	return array;
+}
+
 void free_matrix_int (int ** matrix, int rows) {
 	free_array (matrix, rows);
 	free (matrix);

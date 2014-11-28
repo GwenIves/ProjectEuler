@@ -11,8 +11,6 @@
 
 static int find_minimum (int, size_t, int *);
 static bool is_a_prime_pair (int, int, bool *, size_t);
-static bool ** create_cache (size_t);
-static void free_cache (bool **, size_t);
 static int get_boundary (size_t, int, int *);
 static int get_min_sum (linked_list_t *, size_t, int *);
 
@@ -66,7 +64,7 @@ static int find_minimum (int set_size, size_t candidates_limit, int * boundary) 
 		if (sieve[i])
 			primes[primes_count++] = i;
 
-	bool ** cache = create_cache (primes_count);
+	bool ** cache = allocate_matrix (primes_count, primes_count, (bool) false);
 
 	for (size_t i = 0; i < primes_count; i++)
 		for (size_t j = i + 1; j < primes_count; j++)
@@ -126,7 +124,7 @@ static int find_minimum (int set_size, size_t candidates_limit, int * boundary) 
 		tuples = new_tuples;
 	}
 
-	free_cache (cache, primes_count);
+	free_matrix (cache, primes_count);
 
 	int min_sum = get_min_sum (tuples, set_size, primes);
 
@@ -186,22 +184,4 @@ static bool is_a_prime_pair (int a, int b, bool * sieve, size_t sieve_size) {
 		return false;
 
 	return true;
-}
-
-static bool ** create_cache (size_t primes_count) {
-	bool ** cache = x_malloc (primes_count * sizeof (bool *));
-
-	for (size_t i = 0; i < primes_count; i++) {
-		cache[i] = x_malloc (primes_count * sizeof (bool));
-
-		for (size_t j = 0; j < primes_count; j++)
-			cache[i][j] = false;
-	}
-
-	return cache;
-}
-
-static void free_cache (bool ** cache, size_t cache_size) {
-	free_array (cache, cache_size);
-	free (cache);
 }
