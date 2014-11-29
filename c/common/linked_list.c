@@ -87,6 +87,9 @@ void * linked_list_add_copy_ (linked_list_t * list, void * payload, size_t size)
 }
 
 void linked_list_free_ (linked_list_t * list, bool free_payload) {
+	if (!list)
+		return;
+
 	while (list->head) {
 		list_node_t * t = list->head->next;
 

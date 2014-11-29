@@ -396,6 +396,10 @@ assert_fail "../src/087_prime_powers 0" $LINENO
 assert "$(../src/087_prime_powers 50)" 4 $LINENO
 assert "$(../src/087_prime_powers 50000000)" 1097343 $LINENO $REFERENCE
 
+assert_fail "../src/088_product_sum_numbers 1" $LINENO
+assert "$(../src/088_product_sum_numbers 12)" 61 $LINENO
+assert "$(../src/088_product_sum_numbers 12000)" 7587457 $LINENO $REFERENCE
+
 assert_fail "../src/092_unhappy 1" $LINENO
 assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 
