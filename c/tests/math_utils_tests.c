@@ -25,6 +25,9 @@ static void gcd_test ();
 static void make_palindrome_test ();
 static void is_palindrome_test ();
 static void is_permutation_test ();
+static void is_increasing_test ();
+static void is_decreasing_test ();
+static void is_bouncy_test ();
 static void concatenate_test ();
 static void pandigital_test_and_set_digits_test ();
 static void pandigital_test_digits_test ();
@@ -67,6 +70,9 @@ int main () {
 	make_palindrome_test ();
 	is_palindrome_test ();
 	is_permutation_test ();
+	is_increasing_test ();
+	is_decreasing_test ();
+	is_bouncy_test ();
 	concatenate_test ();
 	pandigital_test_and_set_digits_test ();
 	pandigital_test_digits_test ();
@@ -276,6 +282,22 @@ static void is_palindrome_test () {
 static void is_permutation_test () {
 	assert (is_permutation (12345, 32415));
 	assert (!is_permutation (12345, 32615));
+}
+
+static void is_increasing_test () {
+	assert (is_increasing (124468));
+	assert (!is_increasing (124768));
+}
+
+static void is_decreasing_test () {
+	assert (is_decreasing (66420));
+	assert (!is_decreasing (66720));
+}
+
+static void is_bouncy_test () {
+	assert (is_bouncy (155349));
+	assert (!is_bouncy (1559));
+	assert (!is_bouncy (553));
 }
 
 static void concatenate_test () {

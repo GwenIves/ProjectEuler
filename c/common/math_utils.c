@@ -372,6 +372,42 @@ static void set_digits (char * digits, int num) {
 	}
 }
 
+bool is_increasing (int num) {
+	int prev_digit = num % 10;
+
+	while (num > 0) {
+		int digit = num % 10;
+
+		if (digit > prev_digit)
+			return false;
+
+		prev_digit = digit;
+		num /= 10;
+	}
+
+	return true;
+}
+
+bool is_decreasing (int num) {
+	int prev_digit = num % 10;
+
+	while (num > 0) {
+		int digit = num % 10;
+
+		if (digit < prev_digit)
+			return false;
+
+		prev_digit = digit;
+		num /= 10;
+	}
+
+	return true;
+}
+
+bool is_bouncy (int num) {
+	return (!is_increasing (num) && !is_decreasing (num));
+}
+
 // Concatenate two positive integers
 long concatenate (int a, int b) {
 	int b_orig = b;

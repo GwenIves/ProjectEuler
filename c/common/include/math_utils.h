@@ -36,6 +36,10 @@ int make_palindrome (int, int, bool);
 bool is_palindrome (int, int);
 bool is_permutation (int, int);
 
+bool is_increasing (int);
+bool is_decreasing (int);
+bool is_bouncy (int);
+
 long concatenate (int, int);
 
 bool pandigital_test_and_set_digits (char *, int);
