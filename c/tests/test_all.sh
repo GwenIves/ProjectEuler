@@ -414,5 +414,8 @@ assert "$(../src/112_bouncy_numbers 50)" 538 $LINENO
 assert "$(../src/112_bouncy_numbers 90)" 21780 $LINENO
 assert "$(../src/112_bouncy_numbers 99)" 1587000 $LINENO $REFERENCE
 
+assert "$(../src/206_square 625)" 25 $LINENO
+assert "$(../src/206_square 1_2_3_4_5_6_7_8_9_0)" 1389019170 $LINENO $REFERENCE
+
 echo "All tests passed"
 exit 0
