@@ -16,6 +16,7 @@ typedef struct {
 
 #define DIGITS_COUNT	10
 #define MILLER_RABIN_DETERMINISTIC_LIMIT	341550071728321L
+#define GOLDEN_RATIO	1.6180339887498949025257388711906969547271728515625
 
 bool * eratosthenes_sieve (size_t);
 bool miller_rabin (long);
@@ -42,7 +43,8 @@ bool is_bouncy (int);
 
 long concatenate (int, int);
 
-bool pandigital_test_and_set_digits (char *, int);
+bool is_pandigital (long, size_t);
+bool pandigital_test_and_set_digits (char *, long);
 bool pandigital_test_digits (char *, size_t);
 
 bool next_permutation (char *);

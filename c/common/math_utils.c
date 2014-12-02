@@ -422,13 +422,24 @@ long concatenate (int a, int b) {
 	return result + b_orig;
 }
 
+bool is_pandigital (long num, size_t size) {
+	char digits[DIGITS_COUNT];
+
+	memset (digits, 0, DIGITS_COUNT);
+
+	if (!pandigital_test_and_set_digits (digits, num))
+		return false;
+	else
+		return pandigital_test_digits (digits, size);
+}
+
 /*
  * This function can be used for part-wise pandigital checking
  * Call for different values giving the same digits mask
  * Will immeditaly return failure should value contain digits already encountered previously
  * Use panditital_test_digits () to perform a final validation of the mask
  */
-bool pandigital_test_and_set_digits (char * digits, int value) {
+bool pandigital_test_and_set_digits (char * digits, long value) {
 	if (value < 0)
 		value = -value;
 
