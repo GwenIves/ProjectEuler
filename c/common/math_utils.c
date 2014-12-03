@@ -327,20 +327,11 @@ int make_palindrome (int seed, int base, bool odd_len) {
 	return palindrome;
 }
 
-bool is_palindrome (int num, int base) {
+bool is_palindrome (long num, int base) {
 	if (num < 0)
 		num = -num;
 
-	int orig_num = num;
-	int rev_num = 0;
-
-	while (num > 0) {
-		rev_num *= base;
-		rev_num += num % base;
-		num /= base;
-	}
-
-	return rev_num == orig_num;
+	return num == reverse (num, base);
 }
 
 bool is_permutation (int a, int b) {
@@ -406,6 +397,20 @@ bool is_decreasing (int num) {
 
 bool is_bouncy (int num) {
 	return (!is_increasing (num) && !is_decreasing (num));
+}
+
+long reverse (long num, int base) {
+	long rev = 0;
+
+	while (num > 0) {
+		int digit = num % base;
+		num /= base;
+
+		rev *= base;
+		rev += digit;
+	}
+
+	return rev;
 }
 
 // Concatenate two positive integers

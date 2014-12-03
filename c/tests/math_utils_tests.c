@@ -29,6 +29,7 @@ static void is_increasing_test ();
 static void is_decreasing_test ();
 static void is_bouncy_test ();
 static void concatenate_test ();
+static void reverse_test ();
 static void is_pandigital_test ();
 static void pandigital_test_and_set_digits_test ();
 static void pandigital_test_digits_test ();
@@ -75,6 +76,7 @@ int main () {
 	is_decreasing_test ();
 	is_bouncy_test ();
 	concatenate_test ();
+	reverse_test ();
 	is_pandigital_test ();
 	pandigital_test_and_set_digits_test ();
 	pandigital_test_digits_test ();
@@ -304,6 +306,10 @@ static void is_bouncy_test () {
 
 static void concatenate_test () {
 	assert (concatenate (12345, 678910) == 12345678910L);
+}
+
+static void reverse_test () {
+	assert (reverse (14825, 10) == 52841);
 }
 
 static void is_pandigital_test () {
