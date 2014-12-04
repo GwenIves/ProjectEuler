@@ -400,6 +400,9 @@ assert_fail "../src/088_product_sum_numbers 1" $LINENO
 assert "$(../src/088_product_sum_numbers 12)" 61 $LINENO
 assert "$(../src/088_product_sum_numbers 12000)" 7587457 $LINENO $REFERENCE
 
+assert "$(../src/089_roman_numerals < /dev/null)" 0 $LINENO
+assert "$(../src/089_roman_numerals < data/089_numerals.in)" 743 $LINENO $REFERENCE
+
 assert_fail "../src/092_unhappy 1" $LINENO
 assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 
