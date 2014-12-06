@@ -24,10 +24,18 @@ int main (int argc, char ** argv) {
 	bool * primes = eratosthenes_sieve (N + 1);
 
 	for (int a = 2; a <= N; a++) {
-		bignum_t * power = bignum_get (a);
+		bignum_t * power = NULL;
 
 		for (int b = 2; b <= N; b++) {
-			bignum_t * new_power = bignum_mult (power, a);
+			bignum_t * new_power = NULL;
+
+			if (!power)
+				new_power = bignum_get (a * a);
+			else
+				new_power = bignum_mult (power, a);
+
+			if (b == 2)
+				bignum_delete (power);
 
 			int duplicate_at = -1;
 

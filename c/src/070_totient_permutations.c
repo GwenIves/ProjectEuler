@@ -178,6 +178,9 @@ static void gather_factorisations (linked_list_t * factorisations, bool * sieve,
 		else
 			gather_factorisations (factorisations, sieve, primes - 1, i, under, new_factorisation);
 	}
+
+	if (factorisation)
+		linked_list_free (factorisation);
 }
 
 // Look for a large prime that will still produce a worse ratio (exhaustive search will start from there)

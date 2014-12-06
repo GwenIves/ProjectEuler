@@ -18,9 +18,9 @@ typedef struct {
 #define linked_list_next(l,t) (t *) linked_list_next_ (l)
 #define linked_list_add_empty(l,t) (t *) linked_list_add_empty_ (l, sizeof (t))
 #define linked_list_add_copy(l,d,t) (t *) linked_list_add_copy_ (l, d, sizeof (t))
-#define linked_list_add_empty_array(l,c,t) (t *) linked_list_add_empty_ (l, c * sizeof (t))
+#define linked_list_add_empty_array(l,c,t) (t *) linked_list_add_empty_ (l, (c) * sizeof (t))
 #define linked_list_append_empty(l,t) (t *) linked_list_append_empty_ (l, sizeof (t))
-#define linked_list_append_empty_array(l,c,t) (t *) linked_list_append_empty_ (l, c * sizeof (t))
+#define linked_list_append_empty_array(l,c,t) (t *) linked_list_append_empty_ (l, (c) * sizeof (t))
 #define linked_list_free(l) linked_list_free_ (l, true)
 #define linked_list_copy(l,t) linked_list_copy_ (l, sizeof (t))
 

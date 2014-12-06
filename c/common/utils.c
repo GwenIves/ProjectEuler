@@ -41,9 +41,10 @@ ssize_t x_getline (char ** line, FILE * file) {
 
 	ssize_t len = getline (line, &allocated, file); 
 
-	if (len == -1)
+	if (len == -1) {
+		free (*line);
 		return -1;
-	else if ((*line)[len - 1] == '\n') {
+	} else if ((*line)[len - 1] == '\n') {
 		(*line)[--len] = '\0';
 	}
 

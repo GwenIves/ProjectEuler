@@ -33,6 +33,7 @@ int main (int argc, char ** argv) {
 
 		if (fib->used == N) {
 			printf ("%d\n", term);
+			bignum_delete (fib);
 			break;
 		}
 

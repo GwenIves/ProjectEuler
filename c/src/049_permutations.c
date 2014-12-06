@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 	int upper_limit = lower_limit * 10 - 1;
 	long multiplier = lower_limit * 10;
 
-	bool * primes = eratosthenes_sieve (upper_limit);
+	bool * primes = eratosthenes_sieve (upper_limit + 1);
 	char next_perm[N + 1];
 
 	long max = 0;

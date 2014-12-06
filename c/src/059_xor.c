@@ -35,7 +35,7 @@ int main (int argc, char ** argv) {
 
 	int password[N];
 
-	memset (password, 0, N);
+	memset (password, 0, N * sizeof (int));
 
 	while (next_password (password, N)) {
 		int encrypted = 0;

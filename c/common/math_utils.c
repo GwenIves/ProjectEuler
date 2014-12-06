@@ -12,10 +12,10 @@ bool * eratosthenes_sieve (size_t size) {
 	if (size < 3)
 		return NULL;
 
-	bool * sieve = x_malloc (size * sizeof (bool));
+	bool * sieve = allocate_array (size, (bool) true);
 
-	for (size_t i = 2; i < size; i++)
-		sieve[i] = true;
+	sieve[0] = false;
+	sieve[1] = false;
 
 	// Deal with even composites separately, then sieve only odds with a step of 2
 	for (size_t i = 4; i < size; i += 2)

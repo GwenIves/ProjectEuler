@@ -26,7 +26,7 @@ int main (int argc, char ** argv) {
 	int count = 0;
 
 	int * past_values = x_malloc (sizeof (int));
-	int * chain_lengths = x_malloc ((N - 1) * sizeof (int));
+	int * chain_lengths = x_malloc (N * sizeof (int));
 
 	size_t allocated = 1;
 	size_t used = 0;

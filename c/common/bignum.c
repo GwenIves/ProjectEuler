@@ -48,10 +48,10 @@ bignum_t * bignum_get_str (char * value) {
 	else
 		tail_ptr = value + strlen (value) - 1;
 
-	while (isspace (*tail_ptr) && tail_ptr > value)
+	while (tail_ptr > value && isspace (*tail_ptr))
 		tail_ptr--;
 
-	while (isdigit (*tail_ptr) && tail_ptr >= value) {
+	while (tail_ptr >= value && isdigit (*tail_ptr)) {
 		ensure_allocation (num);
 		num->digits[num->used++] = *tail_ptr - '0';
 

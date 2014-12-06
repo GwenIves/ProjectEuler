@@ -5,9 +5,6 @@
 #include "math_utils.h"
 #include "utils.h"
 
-static int ** crc_allocate_cache (size_t, size_t);
-static void crc_free_cache (int **, size_t);
-
 /*
  * Computes the number of proper reduced fractions in the Stern-Brocot tree with denominators <= max_denominator and values between and excluding above and below
  * Both above and below must be nodes of some Stern-Brocot tree
@@ -84,6 +81,8 @@ char * calculate_sqrt (int num, size_t digits_to_calculate) {
 			bignum_t * y_next = bignum_add (p20, bx);
 			y_next = bignum_mult_to (y_next, bx);
 
+			bignum_delete (bx);
+
 			if (bignum_cmp (y_next, remainder) > 0) {
 				bignum_delete (y_next);
 				break;
@@ -132,7 +131,7 @@ int count_representation_combinations_ (int * values, size_t max_value, int sum,
 
 	if (cache == NULL) {
 		allocated_cache = true;
-		cache = crc_allocate_cache (max_value + 1, sum + 1);
+		cache = allocate_matrix (max_value + 1, sum + 1, -1);
 	}
 
 	if (cache[max_value][sum] == -1) {
@@ -158,25 +157,7 @@ int count_representation_combinations_ (int * values, size_t max_value, int sum,
 		combinations = cache[max_value][sum];
 
 	if (allocated_cache)
-		crc_free_cache (cache, max_value + 1);
+		free_matrix (cache, max_value + 1);
 
 	return combinations;
-}
-
-static int ** crc_allocate_cache (size_t rows, size_t columns) {
-	int ** cache = x_malloc (rows * sizeof (int *));
-
-	for (size_t i = 0; i < rows; i++) {
-		cache[i] = x_malloc (columns * sizeof (int));
-
-		for (size_t j = 0; j < columns; j++)
-			cache[i][j] = -1;
-	}
-
-	return cache;
-}
-
-static void crc_free_cache (int ** cache, size_t rows) {
-	free_array (cache, rows);
-	free (cache);
 }
