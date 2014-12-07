@@ -36,13 +36,11 @@ int main () {
 }
 
 static bool goldbach_represent (int num, bool * primes) {
-	for (int i = 2; i < num; i++) {
+	for (int i = 3; i < num; i++) {
 		if (!primes[i])
 			continue;
 
-		int root = sqrt ((num - i) / 2);
-
-		if (num == i + 2 * root * root)
+		if (is_perfect_square ((num - i) / 2))
 			return true;
 	}
 

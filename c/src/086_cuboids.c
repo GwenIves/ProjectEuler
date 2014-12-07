@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <utils.h>
+#include "utils.h"
 #include "math_utils.h"
 
 static int count_cuboids (int, int, int);

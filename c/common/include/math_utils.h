@@ -72,4 +72,6 @@ long power (long, long);
 
 bool euclid_pythagorean_triple (int, int, int *, int *, int *);
 
+bool is_perfect_square (long);
+
 #endif

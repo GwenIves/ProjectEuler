@@ -761,3 +761,14 @@ bool euclid_pythagorean_triple (int m, int n, int * a, int * b, int * c) {
 
 	return true;
 }
+
+bool is_perfect_square (long num) {
+	int last_digit = num % 10;
+
+	if (last_digit == 2 || last_digit == 3 || last_digit == 7 || last_digit == 8)
+		return false;
+
+	long root = ROUND (sqrt (num));
+
+	return (root * root == num);
+}
