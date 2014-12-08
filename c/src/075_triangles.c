@@ -1,5 +1,5 @@
 /*
- * Find for how many perimeters less than or equal to N there exists exactly one right sided triangle with integral sides
+ * Find for how many perimeters less than or equal to N there exists exactly one right angled triangle with integral sides
  */
 
 #include <stdio.h>

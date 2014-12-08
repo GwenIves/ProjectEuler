@@ -51,7 +51,7 @@ static void arithmetic_sequence_sum_test ();
 static void mod_pow_test ();
 static void power_test ();
 static void euclid_pythagorean_triple_test ();
-static void is_perfect_square_test ();
+static void integer_sqrt_test ();
 
 int main () {
 	max_test ();
@@ -99,7 +99,7 @@ int main () {
 	mod_pow_test ();
 	power_test ();
 	euclid_pythagorean_triple_test ();
-	is_perfect_square_test ();
+	integer_sqrt_test ();
 
 	printf ("All math util tests passed\n");
 
@@ -498,8 +498,8 @@ static void euclid_pythagorean_triple_test () {
 	assert (c == 5);
 }
 
-static void is_perfect_square_test () {
-	assert (is_perfect_square (1));
-	assert (is_perfect_square (625));
-	assert (!is_perfect_square (624));
+static void integer_sqrt_test () {
+	assert (integer_sqrt (1) == 1);
+	assert (integer_sqrt (625) == 25);
+	assert (integer_sqrt (624) == -1);
 }

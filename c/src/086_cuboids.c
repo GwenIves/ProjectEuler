@@ -6,7 +6,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "utils.h"
 #include "math_utils.h"
 
 static int count_cuboids (int, int, int);
@@ -33,8 +32,6 @@ int main (int argc, char ** argv) {
 
 				if (!euclid_pythagorean_triple (m, n, sides, sides + 1, sides + 2))
 					continue;
-
-				qsort (sides, 3, sizeof (int), int_cmp);
 
 				count += count_cuboids (sides[0], sides[1], M);
 				count += count_cuboids (sides[1], sides[0], M);

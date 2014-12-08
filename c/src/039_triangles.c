@@ -1,5 +1,5 @@
 /*
- * Find the perimeter less than or equal to N for which there exists the largest number of right sided triangles with integral length sides and a perimeter equal to it
+ * Find the perimeter less than or equal to N for which there exists the largest number of right angled triangles with integral length sides and a perimeter equal to it
  */
 
 #include <stdio.h>

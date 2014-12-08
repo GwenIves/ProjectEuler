@@ -40,7 +40,7 @@ static bool goldbach_represent (int num, bool * primes) {
 		if (!primes[i])
 			continue;
 
-		if (is_perfect_square ((num - i) / 2))
+		if (integer_sqrt ((num - i) / 2) != -1)
 			return true;
 	}
 

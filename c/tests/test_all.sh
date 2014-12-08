@@ -408,6 +408,10 @@ assert "$(../src/090_cube_pairs)" 1217 $LINENO $REFERENCE
 assert_fail "../src/092_unhappy 1" $LINENO
 assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 
+assert "$(../src/094_triangles -1)" 0 $LINENO
+assert "$(../src/094_triangles 17)" 16 $LINENO
+assert "$(../src/094_triangles 1000000000)" 518408346 $LINENO $REFERENCE
+
 assert "$(../src/097_non_mersenne_prime)" 8739992577 $LINENO $REFERENCE
 
 assert_blank "../src/099_exponentials < /dev/null" $LINENO
