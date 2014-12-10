@@ -71,7 +71,7 @@ bool is_prime_long (long num, bool * sieve, size_t sieve_size, int * primes, siz
 
 	long limit = sqrt (num);
 
-	for (size_t i = 0; primes[i] <= limit && i < primes_size; i++)
+	for (size_t i = 0; i < primes_size && primes[i] <= limit; i++)
 		if (num % primes[i] == 0)
 			return false;
 
