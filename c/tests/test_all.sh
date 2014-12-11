@@ -405,6 +405,11 @@ assert "$(../src/089_roman_numerals < data/089_numerals.in)" 743 $LINENO $REFERE
 
 assert "$(../src/090_cube_pairs)" 1217 $LINENO $REFERENCE
 
+assert_fail "../src/091_triangles -1" $LINENO
+assert "$(../src/091_triangles 0)" 0 $LINENO
+assert "$(../src/091_triangles 2)" 14 $LINENO
+assert "$(../src/091_triangles 50)" 14234 $LINENO $REFERENCE
+
 assert_fail "../src/092_unhappy 1" $LINENO
 assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 
