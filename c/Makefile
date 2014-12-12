@@ -24,7 +24,7 @@ VPATH := common
 build:  $(executables)
 
 .PHONY: all
-all: build tags tests 
+all: build tags tests
 
 .PHONY: tests
 tests: build
@@ -42,7 +42,7 @@ clean:
 	@rm -f *.a
 
 .PHONY: distclean
-distclean: clean	
+distclean: clean
 	@echo "Deleting all generated files"
 	@rm -f tags
 
