@@ -12,7 +12,7 @@ objects := $(subst .c,.o,$(sources))
 
 executables := $(subst .c,,$(main_sources) $(test_sources))
 
-CFLAGS += --pedantic -Wall -Werror -std=c11 -O3
+CFLAGS += --pedantic -Wall -Werror -std=c11
 CPPFLAGS += -Icommon/include -D_POSIX_C_SOURCE=200809L
 LDFLAGS += -L.
 
@@ -21,7 +21,12 @@ VPATH := common
 ############### Top level targets
 
 .PHONY: build
+build: CFLAGS += -O3
 build:  $(executables)
+
+.PHONY: debug
+debug: CFLAGS += -O0 -g
+debug: $(executables)
 
 .PHONY: all
 all: build tags tests
@@ -29,6 +34,10 @@ all: build tags tests
 .PHONY: tests
 tests: build
 	cd tests && ./test_all.sh
+
+.PHONY: verify
+verify: debug
+	cd tests && ./verify_all.sh
 
 .PHONY: clean
 clean:

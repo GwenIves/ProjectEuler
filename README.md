@@ -31,9 +31,11 @@ An example of a barebones, compiled, procedural language approach.
 
 Build by running make from the top of the c/ directory tree
 
-	make build      // default, compiles all binaries in the src subdir
+	make build      // default, compiles all binaries
 	make all        // compiles binaries and also runs tests
 	make tests      // runs all tests
+	make debug	// compiles all binaries with debugging information
+	make verify	// performs dynamic verification using the valgrind's memcheck tool
 	make clean      // deletes compilation related generated files
 	make distclean  // deletes all generated files
 	make tags       // creates a single ctags database with symbol lookups
