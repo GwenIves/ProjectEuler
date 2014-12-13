@@ -437,6 +437,13 @@ assert "$(../src/112_bouncy_numbers 50)" 538 $LINENO
 assert "$(../src/112_bouncy_numbers 90)" 21780 $LINENO
 assert "$(../src/112_bouncy_numbers 99)" 1587000 $LINENO $REFERENCE
 
+assert_fail "../src/124_radicals 1 0" $LINENO
+assert_fail "../src/124_radicals 0 10" $LINENO
+assert_fail "../src/124_radicals 11 10" $LINENO
+assert "$(../src/124_radicals 4 10)" 8 $LINENO
+assert "$(../src/124_radicals 6 10)" 9 $LINENO
+assert "$(../src/124_radicals 10000 100000)" 21417 $LINENO $REFERENCE
+
 assert "$(../src/145_reversible -1)" 0 $LINENO
 assert "$(../src/145_reversible 0)" 0 $LINENO
 assert "$(../src/145_reversible 1000)" 120 $LINENO
