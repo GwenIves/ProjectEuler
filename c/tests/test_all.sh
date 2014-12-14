@@ -444,6 +444,10 @@ assert "$(../src/124_radicals 4 10)" 8 $LINENO
 assert "$(../src/124_radicals 6 10)" 9 $LINENO
 assert "$(../src/124_radicals 10000 100000)" 21417 $LINENO $REFERENCE
 
+assert_fail "../src/125_palindromic_sums 0" $LINENO
+assert "$(../src/125_palindromic_sums 1000)" 4164 $LINENO
+assert "$(../src/125_palindromic_sums 100000000)" 2906969179 $LINENO $REFERENCE
+
 assert "$(../src/145_reversible -1)" 0 $LINENO
 assert "$(../src/145_reversible 0)" 0 $LINENO
 assert "$(../src/145_reversible 1000)" 120 $LINENO
