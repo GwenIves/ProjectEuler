@@ -18,7 +18,7 @@ int main (int argc, char ** argv) {
 	if (N < 1 || N >= DIGITS_COUNT)
 		return 1;
 
-	int primes_limit = sqrt (pow (10, N)) + 1;
+	int primes_limit = sqrt (power (10, N)) + 1;
 	bool * primes = eratosthenes_sieve (primes_limit);
 
 	char digits[DIGITS_COUNT];

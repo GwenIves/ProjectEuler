@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 #include "math_utils.h"
 
 int main (int argc, char ** argv) {
@@ -19,7 +18,7 @@ int main (int argc, char ** argv) {
 	if (N < 1)
 		return 1;
 
-	int lower_limit = pow (10, N - 1);
+	int lower_limit = power (10, N - 1);
 	int upper_limit = lower_limit * 10 - 1;
 	long multiplier = lower_limit * 10;
 

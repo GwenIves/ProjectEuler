@@ -7,6 +7,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdbool.h>
+#include "math_utils.h"
 
 #define WILDCARD	'_'
 
@@ -51,11 +52,11 @@ int main (int argc, char ** argv) {
 	long upper_limit = 0;
 
 	if (pattern[0] == WILDCARD) {
-		lower_limit = sqrt (pow (10, digits - 1));
-		upper_limit = sqrt (pow (10, digits));
+		lower_limit = sqrt (power (10, digits - 1));
+		upper_limit = sqrt (power (10, digits));
 	} else {
-		lower_limit = sqrt ((pattern[0] - '0') * pow (10, digits - 1));
-		upper_limit = sqrt ((pattern[0] - '0' + 1) * pow (10, digits - 1));
+		lower_limit = sqrt ((pattern[0] - '0') * power (10, digits - 1));
+		upper_limit = sqrt ((pattern[0] - '0' + 1) * power (10, digits - 1));
 
 		lower_limit /= step;
 		lower_limit *= step;

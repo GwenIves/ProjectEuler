@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include "math_utils.h"
 #include "linked_list.h"
 
@@ -24,7 +23,7 @@ int main (int argc, char ** argv) {
 	linked_list_t * products = linked_list_create ();
 	int sum = 0;
 
-	int max_mult = pow (10, N / 2) - 1;
+	int max_mult = power (10, N / 2) - 1;
 
 	for (int i = 1; i <= max_mult; i++) {
 		memset (digits, 0, DIGITS_COUNT);

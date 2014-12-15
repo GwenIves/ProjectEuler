@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include "math_utils.h"
 
 int main (int argc, char ** argv) {
@@ -22,7 +21,7 @@ int main (int argc, char ** argv) {
 	char digits[DIGITS_COUNT];
 	char concat[DIGITS_COUNT];
 
-	for (int i = pow (10, N / 2 + 1); i > 0; i--) {
+	for (int i = power (10, N / 2 + 1); i > 0; i--) {
 		memset (digits, 0, DIGITS_COUNT);
 		concat[0] = '\0';
 

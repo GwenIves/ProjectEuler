@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "math_utils.h"
 
 int main (int argc, char ** argv) {
@@ -23,7 +22,7 @@ int main (int argc, char ** argv) {
 	int digit_powers[DIGITS_COUNT];
 
 	for (int i = 0; i < DIGITS_COUNT; i++)
-		digit_powers[i] = pow (i, N);
+		digit_powers[i] = power (i, N);
 
 	int lowest_pow10 = 10;
 	int max_representable = digit_powers[DIGITS_COUNT - 1];

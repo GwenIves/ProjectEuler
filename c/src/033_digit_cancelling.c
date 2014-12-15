@@ -6,8 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "fraction.h"
+#include "math_utils.h"
 
 static bool cancel_digit (int, int, int);
 static void fill_digits (int *, int);
@@ -24,7 +24,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	int start = pow (10, N - 1);
+	int start = power (10, N - 1);
 	int stop = start * 10 - 1;
 
 	fraction_t product = fraction_get (1, 1);

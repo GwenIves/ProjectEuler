@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "math_utils.h"
 #include "linked_list.h"
 
@@ -91,7 +90,7 @@ static void find_all_cycles (linked_list_t ** nodes, long sum, int start, int co
 }
 
 static void get_polygonals (linked_list_t ** nodes, int digits) {
-	int start = pow (10, digits - 1);
+	int start = power (10, digits - 1);
 	int end = start * 10;
 
 	for (int i = 0; i < POLY_COUNT; i++) {

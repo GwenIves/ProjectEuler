@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 	}
 
 	int digits_count = log10 (N) + 1;
-	int upper_limit = pow (10, digits_count);
+	int upper_limit = power (10, digits_count);
 
 	bool * sieve = eratosthenes_sieve (upper_limit);
 
