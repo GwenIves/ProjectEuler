@@ -57,12 +57,8 @@ static int find_minimum (int set_size, size_t candidates_limit, int * boundary) 
 
 	bool * sieve = eratosthenes_sieve (candidates_limit);
 
-	int primes[candidates_limit];
 	size_t primes_count = 0;
-
-	for (int i = 3; i < candidates_limit; i += 2)
-		if (sieve[i])
-			primes[primes_count++] = i;
+	int * primes = primes_under (sieve, candidates_limit, &primes_count);
 
 	bool ** cache = allocate_matrix (primes_count, primes_count, (bool) false);
 
@@ -131,6 +127,7 @@ static int find_minimum (int set_size, size_t candidates_limit, int * boundary) 
 	*boundary = get_boundary (set_size, min_sum, min_prefix_sums);
 
 	linked_list_free (tuples);
+	free (primes);
 
 	return min_sum;
 }

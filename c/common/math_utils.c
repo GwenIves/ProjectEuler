@@ -30,6 +30,40 @@ bool * eratosthenes_sieve (size_t size) {
 	return sieve;
 }
 
+int * primes_under (bool * sieve, size_t limit, size_t * primes_count) {
+	if (limit <= 2) {
+		*primes_count = 0;
+		return NULL;
+	}
+
+	bool should_free = false;
+
+	if (!sieve) {
+		sieve = eratosthenes_sieve (limit);
+		should_free = true;
+	}
+
+	size_t count = 0;
+
+	for (size_t i = 2; i < limit; i++)
+		if (sieve[i])
+			count++;
+
+	int * primes = x_malloc (count * sizeof (int));
+
+	count = 0;
+
+	for (int i = 2; i < limit; i++)
+		if (sieve[i])
+			primes[count++] = i;
+
+	if (should_free)
+		free (sieve);
+
+	*primes_count = count;
+	return primes;
+}
+
 // Determines if a number is prime by divisor checking, the caller must guarantee the primes sieve contains entries at least up to sqrt (num) inclusive
 bool is_prime (int num, bool * primes, size_t primes_size) {
 	if (num < 2)

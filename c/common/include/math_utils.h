@@ -19,6 +19,7 @@ typedef struct {
 #define GOLDEN_RATIO	1.6180339887498949025257388711906969547271728515625
 
 bool * eratosthenes_sieve (size_t);
+int * primes_under (bool *, size_t, size_t *);
 bool miller_rabin (long);
 bool is_prime (int, bool *, size_t);
 bool is_prime_long (long, bool *, size_t, int *, size_t);

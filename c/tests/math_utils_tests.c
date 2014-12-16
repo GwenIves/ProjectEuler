@@ -11,6 +11,7 @@ static void min_test ();
 static void abs_test ();
 static void round_test ();
 static void eratosthenes_sieve_test ();
+static void primes_under_test ();
 static void miller_rabin_test ();
 static void is_prime_test ();
 static void is_prime_long_test ();
@@ -59,6 +60,7 @@ int main () {
 	abs_test ();
 	round_test ();
 	eratosthenes_sieve_test ();
+	primes_under_test ();
 	miller_rabin_test ();
 	is_prime_test ();
 	is_prime_long_test ();
@@ -130,19 +132,39 @@ static void round_test () {
 }
 
 static void eratosthenes_sieve_test () {
-	static const int primes_under = 1000000;
+	static const size_t limit = 1000000;
 
-	bool * sieve = eratosthenes_sieve (primes_under);
+	bool * sieve = eratosthenes_sieve (limit);
 
-	int count = 0;
+	size_t count = 0;
 
-	for (int i = 2; i < primes_under; i++)
+	for (size_t i = 2; i < limit; i++)
 		if (sieve[i])
 			count++;
 
 	assert (count == 78498);
 
 	free (sieve);
+}
+
+static void primes_under_test () {
+	static const size_t limit = 1000000;
+
+	bool * sieve = eratosthenes_sieve (limit);
+
+	size_t primes_count = 0;
+	int * primes = primes_under (sieve, limit, &primes_count);
+
+	assert (primes_count == 78498);
+
+	free (sieve);
+	free (primes);
+
+	primes = primes_under (NULL, limit, &primes_count);
+
+	assert (primes_count == 78498);
+
+	free (primes);
 }
 
 static void miller_rabin_test () {

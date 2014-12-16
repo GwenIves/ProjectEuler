@@ -21,14 +21,8 @@ int main (int argc, char ** argv) {
 	// Worst case upper bound - sum of N twos
 	int upper_bound = 2 * N;
 
-	bool * sieve = eratosthenes_sieve (upper_bound + 1);
-
-	int primes[N];
 	size_t primes_count = 0;
-
-	for (int i = 2; i <= upper_bound ; i++)
-		if (sieve[i])
-			primes[primes_count++] = i;
+	int * primes = primes_under (NULL, upper_bound + 1, &primes_count);
 
 	int sum = 2;
 
@@ -37,7 +31,7 @@ int main (int argc, char ** argv) {
 
 	printf ("%d\n", sum);
 
-	free (sieve);
+	free (primes);
 
 	return 0;
 }
