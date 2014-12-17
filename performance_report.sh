@@ -14,7 +14,7 @@ report_C ()
 			exit 1
 		fi
 
-		LOC=$(wc -l src/*.c common/*.c common/include/*.h tests/*.c | tail -1 | cut -f3 -d" ")
+		LOC=$(wc -l src/*.c common/*.c common/include/*.h tests/*.c | tail -1 | awk '{print $1;}')
 
 		cd tests
 
