@@ -470,5 +470,8 @@ assert "$(../src/203_square_free 51)" 34029210557338 $LINENO $REFERENCE
 assert "$(../src/206_square 625)" 25 $LINENO
 assert "$(../src/206_square 1_2_3_4_5_6_7_8_9_0)" 1389019170 $LINENO $REFERENCE
 
+assert_fail "../src/357_prime_generation 1" $LINENO
+assert "$(../src/357_prime_generation 100000000)" 1739023853137 $LINENO $REFERENCE
+
 echo "All tests passed"
 exit 0
