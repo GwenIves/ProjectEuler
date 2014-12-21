@@ -12,6 +12,7 @@ echo "Running library unit tests"
 ./fraction_tests || exit 1
 ./continued_fraction_tests || exit 1
 ./bignum_tests || exit 1
+./geometry_tests || exit 1
 
 # Project main () tests
 
@@ -425,6 +426,9 @@ assert "$(../src/097_non_mersenne_prime)" 8739992577 $LINENO $REFERENCE
 
 assert_blank "../src/099_exponentials < /dev/null" $LINENO
 assert "$(../src/099_exponentials < data/099_values.in)" 709 $LINENO $REFERENCE
+
+assert "$(../src/102_triangles < /dev/null)" 0 $LINENO
+assert "$(../src/102_triangles < data/102_triangles.in)" 228 $LINENO $REFERENCE
 
 assert_fail "../src/104_fibonacci 0" $LINENO
 assert_fail "../src/104_fibonacci 10" $LINENO
