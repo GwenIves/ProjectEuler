@@ -471,6 +471,8 @@ assert_fail "../src/203_square_free 0" $LINENO
 assert "$(../src/203_square_free 8)" 105 $LINENO
 assert "$(../src/203_square_free 51)" 34029210557338 $LINENO $REFERENCE
 
+assert "$(../src/205_dice_game)" 0.5731441 $LINENO $REFERENCE
+
 assert "$(../src/206_square 625)" 25 $LINENO
 assert "$(../src/206_square 1_2_3_4_5_6_7_8_9_0)" 1389019170 $LINENO $REFERENCE
 
