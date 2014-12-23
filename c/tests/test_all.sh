@@ -457,6 +457,10 @@ assert "$(../src/145_reversible 0)" 0 $LINENO
 assert "$(../src/145_reversible 1000)" 120 $LINENO
 assert "$(../src/145_reversible 1000000000)" 608720 $LINENO $REFERENCE
 
+assert_fail "../src/173_squares 0" $LINENO
+assert "$(../src/173_squares 100)" 41 $LINENO
+assert "$(../src/173_squares 1000000)" 1572729 $LINENO $REFERENCE
+
 assert_fail "../src/179_divisors 2" $LINENO
 assert "$(../src/179_divisors 3)" 1 $LINENO
 assert "$(../src/179_divisors 15)" 2 $LINENO
