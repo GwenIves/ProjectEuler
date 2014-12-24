@@ -461,6 +461,9 @@ assert_fail "../src/173_squares 0" $LINENO
 assert "$(../src/173_squares 100)" 41 $LINENO
 assert "$(../src/173_squares 1000000)" 1572729 $LINENO $REFERENCE
 
+assert_fail "../src/174_squares 0" $LINENO
+assert "$(../src/174_squares 10)" 209566 $LINENO $REFERENCE
+
 assert_fail "../src/179_divisors 2" $LINENO
 assert "$(../src/179_divisors 3)" 1 $LINENO
 assert "$(../src/179_divisors 15)" 2 $LINENO
