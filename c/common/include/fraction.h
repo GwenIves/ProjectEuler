@@ -13,7 +13,10 @@ typedef struct {
 
 fraction_t fraction_get_ (int, int, bool);
 void fraction_reduce (fraction_t *);
+fraction_t fraction_add (fraction_t *, fraction_t *);
+fraction_t fraction_sub (fraction_t *, fraction_t *);
 fraction_t fraction_mult (fraction_t *, fraction_t *);
+fraction_t fraction_div (fraction_t *, fraction_t *);
 int fraction_cmp (fraction_t *, fraction_t *);
 
 #endif

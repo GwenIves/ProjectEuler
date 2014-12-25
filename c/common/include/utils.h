@@ -30,6 +30,8 @@ void * x_realloc (void *, size_t);
 
 ssize_t x_getline (char **, FILE *);
 
+int * copy_int (int);
+
 void swap_chars (char *, size_t, size_t);
 
 int string_cmp (const void *, const void *);

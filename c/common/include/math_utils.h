@@ -49,6 +49,8 @@ bool is_pandigital (long, size_t);
 bool pandigital_test_and_set_digits (char *, long);
 bool pandigital_test_digits (char *, size_t);
 
+bool next_number (int *, int, int);
+
 bool next_permutation (char *);
 bool prev_permutation (char *);
 

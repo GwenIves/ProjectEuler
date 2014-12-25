@@ -6,7 +6,9 @@
 static void linked_list_create_test ();
 static void linked_list_copy_test ();
 static void linked_list_add_test ();
+static void linked_list_add_sorted_test ();
 static void linked_list_append_test ();
+static void linked_list_insert_after_test ();
 static void linked_list_add_array_test ();
 static void linked_list_append_array_test ();
 static void linked_list_stop_iteration_test ();
@@ -16,7 +18,9 @@ int main () {
 	linked_list_create_test ();
 	linked_list_copy_test ();
 	linked_list_add_test ();
+	linked_list_add_sorted_test ();
 	linked_list_append_test ();
+	linked_list_insert_after_test ();
 	linked_list_add_array_test ();
 	linked_list_append_array_test ();
 	linked_list_stop_iteration_test ();
@@ -61,9 +65,7 @@ static void linked_list_copy_test () {
 static void linked_list_add_test () {
 	linked_list_t * l = linked_list_create ();
 
-	int * value1 = x_malloc (sizeof (int));
-	*value1 = 123;
-	linked_list_add (l, value1);
+	linked_list_add (l, copy_int (123));
 
 	int * value2 = linked_list_add_empty (l, int);
 	*value2 = 456;
@@ -84,18 +86,81 @@ static void linked_list_add_test () {
 	linked_list_free (l);
 }
 
+static void linked_list_add_sorted_test () {
+	linked_list_t * l = linked_list_create ();
+
+	linked_list_add_sorted (l, copy_int (200), int_cmp, true);
+	linked_list_add_sorted (l, copy_int (100), int_cmp, true);
+	linked_list_add_sorted (l, copy_int (150), int_cmp, true);
+	linked_list_add_sorted (l, copy_int (150), int_cmp, true);
+
+	int * i_ptr = linked_list_next (l, int);
+	assert (*i_ptr == 100);
+
+	i_ptr = linked_list_next (l, int);
+	assert (*i_ptr == 150);
+
+	i_ptr = linked_list_next (l, int);
+	assert (*i_ptr == 200);
+
+	assert (linked_list_next (l, char) == NULL);
+
+	linked_list_free (l);
+
+	l = linked_list_create ();
+
+	linked_list_add_sorted (l, copy_int (200), int_cmp, false);
+	linked_list_add_sorted (l, copy_int (100), int_cmp, false);
+	linked_list_add_sorted (l, copy_int (150), int_cmp, false);
+	linked_list_add_sorted (l, copy_int (150), int_cmp, false);
+
+	i_ptr = linked_list_next (l, int);
+	assert (*i_ptr == 100);
+
+	i_ptr = linked_list_next (l, int);
+	assert (*i_ptr == 150);
+
+	i_ptr = linked_list_next (l, int);
+	assert (*i_ptr == 150);
+
+	i_ptr = linked_list_next (l, int);
+	assert (*i_ptr == 200);
+
+	assert (linked_list_next (l, char) == NULL);
+
+	linked_list_free (l);
+}
+
 static void linked_list_append_test () {
 	linked_list_t * l = linked_list_create ();
 
-	int * value1 = x_malloc (sizeof (int));
-	*value1 = 123;
-	linked_list_append (l, value1);
+	linked_list_append (l, copy_int (123));
 
 	int * value2 = linked_list_append_empty (l, int);
 	*value2 = 456;
 
 	int * value = linked_list_next (l, int);
 	assert (*value == 123);
+
+	value = linked_list_next (l, int);
+	assert (*value == 456);
+
+	linked_list_free (l);
+}
+
+static void linked_list_insert_after_test () {
+	linked_list_t * l = linked_list_create ();
+
+	list_node_t * n_ptr = linked_list_append (l, copy_int (123));
+
+	linked_list_insert_after (l, n_ptr, copy_int (456));
+	linked_list_insert_after (l, n_ptr, copy_int (789));
+
+	int * value = linked_list_next (l, int);
+	assert (*value == 123);
+
+	value = linked_list_next (l, int);
+	assert (*value == 789);
 
 	value = linked_list_next (l, int);
 	assert (*value == 456);
@@ -138,15 +203,10 @@ static void linked_list_append_array_test () {
 static void linked_list_stop_iteration_test () {
 	linked_list_t * l = linked_list_create ();
 
-	int * value1 = x_malloc (sizeof (int));
-	int * value2 = x_malloc (sizeof (int));
+	linked_list_add (l, copy_int (123));
+	linked_list_add (l, copy_int (456));
+
 	int * value = NULL;
-
-	*value1 = 123;
-	*value2 = 456;
-
-	linked_list_add (l, value1);
-	linked_list_add (l, value2);
 
 	value = linked_list_next (l, int);
 	assert (*value == 456);
@@ -162,17 +222,9 @@ static void linked_list_stop_iteration_test () {
 static void linked_list_delete_test () {
 	linked_list_t * l = linked_list_create ();
 
-	int * value1 = x_malloc (sizeof (int));
-	int * value2 = x_malloc (sizeof (int));
-	int * value3 = x_malloc (sizeof (int));
-
-	*value1 = 111;
-	*value2 = 222;
-	*value3 = 333;
-
-	linked_list_append (l, value1);
-	linked_list_append (l, value2);
-	linked_list_append (l, value3);
+	linked_list_append (l, copy_int (111));
+	linked_list_append (l, copy_int (222));
+	linked_list_append (l, copy_int (333));
 
 	int * value = NULL;
 

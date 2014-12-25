@@ -414,6 +414,9 @@ assert "$(../src/091_triangles 50)" 14234 $LINENO $REFERENCE
 assert_fail "../src/092_unhappy 1" $LINENO
 assert "$(../src/092_unhappy 10000000)" 8581146 $LINENO $REFERENCE
 
+assert_fail "../src/093_expressions 3" $LINENO
+assert "$(../src/093_expressions 9)" 1258 $LINENO $REFERENCE
+
 assert "$(../src/094_triangles -1)" 0 $LINENO
 assert "$(../src/094_triangles 17)" 16 $LINENO
 assert "$(../src/094_triangles 1000000000)" 518408346 $LINENO $REFERENCE

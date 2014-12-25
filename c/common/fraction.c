@@ -24,6 +24,38 @@ void fraction_reduce (fraction_t * f) {
 	}
 }
 
+fraction_t fraction_add (fraction_t * a, fraction_t * b) {
+	fraction_t c;
+
+	c.denominator = a->denominator * b->denominator;
+
+	int a_contrib = a->nominator * b->denominator;
+	int b_contrib =	b->nominator * a->denominator;
+
+	if (a->sign ^ b->sign) {
+		if (a_contrib > b_contrib) {
+			c.nominator = a_contrib - b_contrib;
+			c.sign = a->sign;
+		} else {
+			c.nominator = b_contrib - a_contrib;
+			c.sign = b->sign;
+		}
+	} else {
+		c.nominator = a_contrib + b_contrib;
+		c.sign = a->sign;
+	}
+
+	fraction_reduce (&c);
+
+	return c;
+}
+
+fraction_t fraction_sub (fraction_t * a, fraction_t * b) {
+	fraction_t b_neg = {.nominator = b->nominator, .denominator = b->denominator, .sign = !b->sign};
+
+	return fraction_add (a, &b_neg);
+}
+
 fraction_t fraction_mult (fraction_t * a, fraction_t * b) {
 	fraction_t c;
 
@@ -34,6 +66,13 @@ fraction_t fraction_mult (fraction_t * a, fraction_t * b) {
 	fraction_reduce (&c);
 
 	return c;
+}
+
+// The caller must ensure b != 0
+fraction_t fraction_div (fraction_t * a, fraction_t * b) {
+	fraction_t b_inv = {.nominator = b->denominator, .denominator = b->nominator, .sign = b->sign};
+
+	return fraction_mult (a, &b_inv);
 }
 
 int fraction_cmp (fraction_t * a, fraction_t * b) {

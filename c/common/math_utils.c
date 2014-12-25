@@ -510,6 +510,18 @@ bool pandigital_test_digits (char * digits, size_t N) {
 	return true;
 }
 
+bool next_number (int * num, int digits, int base) {
+	for (int i = digits - 1; i >= 0; i--)
+		if (num[i] + 1 >= base)
+			num[i] = 0;
+		else {
+			num[i] += 1;
+			return true;
+		}
+
+	return false;
+}
+
 /*
  * Inplace produce the next lexicographically ordered permutation of a given sequence and return true
  * Returns 0 and leaves the sequence unchanged when given the already largest possible sequence

@@ -51,6 +51,14 @@ ssize_t x_getline (char ** line, FILE * file) {
 	return len;
 }
 
+int * copy_int (int num) {
+	int * i_ptr = x_malloc (sizeof (int));
+
+	*i_ptr = num;
+
+	return i_ptr;
+}
+
 void swap_chars (char * seq, size_t a, size_t b) {
 	char t = seq[a];
 	seq[a] = seq[b];

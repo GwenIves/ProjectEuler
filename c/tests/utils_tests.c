@@ -15,6 +15,7 @@ static void char_cmp_test ();
 static void int_cmp_test ();
 static void allocate_matrix_test ();
 static void allocate_array_test ();
+static void copy_int_test ();
 
 #define ALLOC_SIZE	100
 
@@ -30,6 +31,7 @@ int main () {
 	int_cmp_test ();
 	allocate_matrix_test ();
 	allocate_array_test ();
+	copy_int_test ();
 
 	printf ("All util tests passed\n");
 
@@ -163,4 +165,12 @@ static void allocate_array_test () {
 	assert (ba[9]);
 
 	free (ba);
+}
+
+static void copy_int_test () {
+	int * i_ptr = copy_int (10);
+
+	assert (*i_ptr == 10);
+
+	free (i_ptr);
 }

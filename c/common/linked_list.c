@@ -48,22 +48,48 @@ list_node_t * linked_list_add (linked_list_t * list, void * payload) {
 	return n;
 }
 
-list_node_t * linked_list_append (linked_list_t * list, void * payload) {
+list_node_t * linked_list_insert_after (linked_list_t * list, list_node_t * after, void * payload) {
 	list_node_t * n = x_malloc (sizeof (list_node_t));
 
 	n->payload = payload;
-	n->next = NULL;
+	n->next = after->next;
 
-	if (list->head == NULL) {
-		list->head = n;
+	after->next = n;
+
+	if (list->tail == after)
 		list->tail = n;
-		list->cursor = n;
-	} else {
-		list->tail->next = n;
-		list->tail = n;
-	}
 
 	return n;
+}
+
+void linked_list_add_sorted (linked_list_t * list, void * payload, int (*comparator) (const void *, const void *), bool unique) {
+	list_node_t * prev = NULL;
+	list_node_t * where = list->head;
+
+	while (where) {
+		int cmp = comparator (where->payload, payload);
+
+		if (cmp == 0 && unique) {
+			free (payload);
+			return;
+		} else if (cmp <= 0) {
+			prev = where;
+			where = where->next;
+		} else
+			break;
+	}
+
+	if (prev == NULL)
+		linked_list_add (list, payload);
+	else
+		linked_list_insert_after (list, prev, payload);
+}
+
+list_node_t * linked_list_append (linked_list_t * list, void * payload) {
+	if (list->tail)
+		return linked_list_insert_after (list, list->tail, payload);
+	else
+		return linked_list_add (list, payload);
 }
 
 void * linked_list_append_empty_ (linked_list_t * list, size_t size) {
