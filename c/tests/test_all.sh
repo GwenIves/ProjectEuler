@@ -425,6 +425,9 @@ assert_fail "../src/095_amicable_chains 0" $LINENO
 assert "$(../src/095_amicable_chains 284)" 220 $LINENO
 assert "$(../src/095_amicable_chains 1000000)" 14316 $LINENO $REFERENCE
 
+assert "$(../src/096_sudoku < /dev/null)" 0 $LINENO
+assert "$(../src/096_sudoku < data/096_sudoku.in)" 24702 $LINENO $REFERENCE
+
 assert "$(../src/097_non_mersenne_prime)" 8739992577 $LINENO $REFERENCE
 
 assert_blank "../src/099_exponentials < /dev/null" $LINENO
