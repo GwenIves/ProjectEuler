@@ -430,6 +430,9 @@ assert "$(../src/096_sudoku < data/096_sudoku.in)" 24702 $LINENO $REFERENCE
 
 assert "$(../src/097_non_mersenne_prime)" 8739992577 $LINENO $REFERENCE
 
+assert "$(../src/098_squares < /dev/null)" 0 $LINENO
+assert "$(../src/098_squares < data/042_words.in)" 18769 $LINENO $REFERENCE
+
 assert_blank "../src/099_exponentials < /dev/null" $LINENO
 assert "$(../src/099_exponentials < data/099_values.in)" 709 $LINENO $REFERENCE
 

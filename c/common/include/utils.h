@@ -24,6 +24,8 @@
 
 #define free_array(A,L) for (size_t i = 0; i < L; i++) { free ((A)[i]); }
 
+#define LETTERS_COUNT	26
+
 void * x_malloc (size_t);
 void * x_calloc (size_t, size_t);
 void * x_realloc (void *, size_t);
