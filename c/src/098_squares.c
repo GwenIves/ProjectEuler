@@ -82,11 +82,7 @@ static linked_list_t * load_words () {
 
 		word_t * w_ptr = x_malloc (sizeof ( word_t));
 
-		if ((w_ptr->length = strlen (word)) == 0) {
-			free (w_ptr);
-			continue;
-		}
-
+		w_ptr->length = strlen (word);
 		w_ptr->word = strdup (word);
 
 		w_ptr->sorted_word = strdup (w_ptr->word);
