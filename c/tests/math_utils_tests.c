@@ -203,12 +203,12 @@ static void is_prime_long_test () {
 			primes[primes_count++] = i;
 
 	// Through Eratosthenes sieve (num < primes_under)
-	assert (!is_prime_long (635209, sieve, primes_under, primes, primes_count));
-	assert (is_prime_long (336533L, sieve, primes_under, primes, primes_count));
+	assert (!is_prime_long (635209, sieve, primes_under, NULL, 0));
+	assert (is_prime_long (336533L, sieve, primes_under, NULL, 0));
 
 	// Through determinist Miller-Rabin (primes_under >= num < MILLER_RABIN_DETERMINISTIC_LIMIT)
-	assert (is_prime_long (20786669, sieve, primes_under, primes, primes_count));
-	assert (!is_prime_long (20786671, sieve, primes_under, primes, primes_count));
+	assert (is_prime_long (20786669, sieve, primes_under, NULL, 0));
+	assert (!is_prime_long (20786671, sieve, primes_under, NULL, 0));
 
 	// Through divisor checking (MILLER_RABIN_DETERMINISTIC_LIMIT <= num)
 	assert (is_prime_long (341550071728361L, sieve, primes_under, primes, primes_count));

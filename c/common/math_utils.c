@@ -88,8 +88,9 @@ bool is_prime (int num, bool * primes, size_t primes_size) {
  * Primeness check for long integers.
  * sieve used as an optimisation for checking under sieve_size, can be NULL, in which case set sieve_size to 0
  * primes[primes_size] are used for divisor checking, only required if num > MILLER_RABIN_DETERMINISTIC_LIMIT
+ * or (num - 1) > sqrt (LONG_MAX)
  * in which case the caller must guarantee that the array holds all primes up to and including sqrt (num)
- * Can be NULL otherwise
+ * Should be NULL otherwise
  */
 bool is_prime_long (long num, bool * sieve, size_t sieve_size, int * primes, size_t primes_size) {
 	if (num < 2)
@@ -100,16 +101,16 @@ bool is_prime_long (long num, bool * sieve, size_t sieve_size, int * primes, siz
 		return sieve[num];
 	else if (num % 2 == 0)
 		return false;
-	else if (num < MILLER_RABIN_DETERMINISTIC_LIMIT)
+	else if (primes_size > 0) {
+		long limit = sqrt (num);
+
+		for (size_t i = 0; i < primes_size && primes[i] <= limit; i++)
+			if (num % primes[i] == 0)
+				return false;
+
+		return true;
+	} else
 		return miller_rabin (num);
-
-	long limit = sqrt (num);
-
-	for (size_t i = 0; i < primes_size && primes[i] <= limit; i++)
-		if (num % primes[i] == 0)
-			return false;
-
-	return true;
 }
 
 /*
