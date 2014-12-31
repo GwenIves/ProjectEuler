@@ -451,6 +451,10 @@ assert_fail "../src/109_darts 0" $LINENO
 assert "$(../src/109_darts 100)" 38182 $LINENO $REFERENCE
 assert "$(../src/109_darts 171)" 42336 $LINENO
 
+assert_fail "../src/111_prime_runs 0" $LINENO
+assert "$(../src/111_prime_runs 4)" 273700 $LINENO
+assert "$(../src/111_prime_runs 10)" 612407567715 $LINENO $REFERENCE
+
 assert_fail "../src/112_bouncy_numbers -1" $LINENO
 assert_fail "../src/112_bouncy_numbers 100" $LINENO
 assert "$(../src/112_bouncy_numbers 50)" 538 $LINENO

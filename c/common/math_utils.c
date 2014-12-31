@@ -523,6 +523,24 @@ bool next_number (int * num, int digits, int base) {
 	return false;
 }
 
+bool next_number_non_decreasing (int * num, int digits, int base) {
+	int i = 0;
+
+	for (i = digits - 1; i >= 0; i--)
+		if (num[i] + 1 < base)
+			break;
+
+	if (i < 0)
+		return false;
+
+	int next_digit = num[i] + 1;
+
+	for (int j = i; j < digits; j++)
+		num[j] = next_digit;
+
+	return true;
+}
+
 /*
  * Inplace produce the next lexicographically ordered permutation of a given sequence and return true
  * Returns 0 and leaves the sequence unchanged when given the already largest possible sequence
