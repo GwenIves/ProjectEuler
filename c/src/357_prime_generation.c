@@ -7,12 +7,6 @@
 #include <math.h>
 #include "math_utils.h"
 
-/*
- * FIXME: This solution is rather slow. No obvious improvements available though.
- * eratosthenes_sieve () accounts for about 60% of the running time
- * Rewriting is_generating () using prime factorisations does not improve performance
- */
-
 static bool is_generating (int, bool *);
 
 int main (int argc, char ** argv) {

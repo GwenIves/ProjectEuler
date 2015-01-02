@@ -6,8 +6,6 @@
 #include <stdlib.h>
 #include "utils.h"
 
-// FIXME: This solution is rather slow. No obvious areas for improvement though
-
 int main (int argc, char ** argv) {
 	if (argc != 2) {
 		fprintf (stderr, "usage: %s <N>\n", argv[0]);

@@ -5,7 +5,7 @@ Solutions to the Project Euler problems in various programming languages.
 
 Unless noted otherwise in the language sections, every solution should be:
    * **General** - supports calculations for an arbitrary input parameter
-   * **Fast** - finishes at worst in hundreds of milliseconds for the reference input using contemporary hardware
+   * **Fast** - when possible, does not resort to brute force techniques
    * **Self-contained** - no 3rd party or non-standard library usage
    * **Clear** - employs good software engineering practices and language idioms
 
