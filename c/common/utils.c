@@ -59,6 +59,14 @@ int * copy_int (int num) {
 	return i_ptr;
 }
 
+long * copy_long (long num) {
+	long * l_ptr = x_malloc (sizeof (long));
+
+	*l_ptr = num;
+
+	return l_ptr;
+}
+
 void swap_chars (char * seq, size_t a, size_t b) {
 	char t = seq[a];
 	seq[a] = seq[b];
@@ -81,6 +89,18 @@ int int_cmp (const void * a, const void * b) {
 	int bb = * ((int *) b);
 
 	return aa - bb;
+}
+
+int long_cmp (const void * a, const void * b) {
+	long aa = * ((long *) a);
+	long bb = * ((long *) b);
+
+	if (aa > bb)
+		return 1;
+	else if (aa < bb)
+		return -1;
+	else
+		return 0;
 }
 
 int ** load_matrix (int * rows_out, int * columns_out) {

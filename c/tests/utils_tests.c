@@ -13,9 +13,11 @@ static void array_len_test ();
 static void string_cmp_test ();
 static void char_cmp_test ();
 static void int_cmp_test ();
+static void long_cmp_test ();
 static void allocate_matrix_test ();
 static void allocate_array_test ();
 static void copy_int_test ();
+static void copy_long_test ();
 
 #define ALLOC_SIZE	100
 
@@ -29,9 +31,11 @@ int main () {
 	string_cmp_test ();
 	char_cmp_test ();
 	int_cmp_test ();
+	long_cmp_test ();
 	allocate_matrix_test ();
 	allocate_array_test ();
 	copy_int_test ();
+	copy_long_test ();
 
 	printf ("All util tests passed\n");
 
@@ -126,13 +130,23 @@ static void char_cmp_test () {
 }
 
 static void int_cmp_test () {
-	int ints[] = {5,3,8};
+	int ints[] = {5, 3, 8};
 
 	qsort (ints, array_len (ints), sizeof (int), int_cmp);
 
 	assert (ints[0] == 3);
 	assert (ints[1] == 5);
 	assert (ints[2] == 8);
+}
+
+static void long_cmp_test () {
+	long longs[] = {5376528972765, 3237897640987, 8357123987649};
+
+	qsort (longs, array_len (longs), sizeof (long), long_cmp);
+
+	assert (longs[0] == 3237897640987);
+	assert (longs[1] == 5376528972765);
+	assert (longs[2] == 8357123987649);
 }
 
 static void allocate_matrix_test () {
@@ -173,4 +187,12 @@ static void copy_int_test () {
 	assert (*i_ptr == 10);
 
 	free (i_ptr);
+}
+
+static void copy_long_test () {
+	long * l_ptr = copy_long (9876543210);
+
+	assert (*l_ptr == 9876543210);
+
+	free (l_ptr);
 }
