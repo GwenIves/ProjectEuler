@@ -65,6 +65,8 @@ echo "Running program tests"
 
 # The blank reference variable is a marker for use by an external performance report script,
 
+DATA_DIR=../../shared/data
+
 assert "$(../src/001_multiples -1)" 0 $LINENO
 assert "$(../src/001_multiples 0)" 0 $LINENO
 assert "$(../src/001_multiples 10)" 23 $LINENO
@@ -95,10 +97,10 @@ assert_fail "../src/007_prime 0" $LINENO
 assert "$(../src/007_prime 6)" 13 $LINENO
 assert "$(../src/007_prime 10001)" 104743 $LINENO $REFERENCE
 
-assert_fail "../src/008_series 0 < data/008_series.in" $LINENO
+assert_fail "../src/008_series 0 < $DATA_DIR/008_series.in" $LINENO
 assert_fail "../src/008_series 1 < /dev/null" $LINENO
-assert "$(../src/008_series 4 < data/008_series.in)" 5832 $LINENO
-assert "$(../src/008_series 13 < data/008_series.in)" 23514624000 $LINENO $REFERENCE
+assert "$(../src/008_series 4 < $DATA_DIR/008_series.in)" 5832 $LINENO
+assert "$(../src/008_series 13 < $DATA_DIR/008_series.in)" 23514624000 $LINENO $REFERENCE
 
 assert_blank "../src/009_pythagorean_triplet -1" $LINENO
 assert_blank "../src/009_pythagorean_triplet 0" $LINENO
@@ -109,9 +111,9 @@ assert "$(../src/010_primes_sum 0)" 0 $LINENO
 assert "$(../src/010_primes_sum 10)" 17 $LINENO
 assert "$(../src/010_primes_sum 2000000)" 142913828922 $LINENO $REFERENCE
 
-assert_fail "../src/011_grid_product 0 < data/011_grid.in" $LINENO
+assert_fail "../src/011_grid_product 0 < $DATA_DIR/011_grid.in" $LINENO
 assert_fail "../src/011_grid_product 1 < /dev/null" $LINENO
-assert "$(../src/011_grid_product 4 < data/011_grid.in)" 70600674 $LINENO $REFERENCE
+assert "$(../src/011_grid_product 4 < $DATA_DIR/011_grid.in)" 70600674 $LINENO $REFERENCE
 
 assert_fail "../src/012_triangular_number -1" $LINENO
 assert "$(../src/012_triangular_number 0)" 1 $LINENO
@@ -119,7 +121,7 @@ assert "$(../src/012_triangular_number 5)" 28 $LINENO
 assert "$(../src/012_triangular_number 500)" 76576500 $LINENO $REFERENCE
 
 assert "$(../src/013_large_sum < /dev/null)" 0 $LINENO
-assert "$(../src/013_large_sum < data/013_nums.in)" 5537376230390876637302048746832985971773659831892672 $LINENO $REFERENCE
+assert "$(../src/013_large_sum < $DATA_DIR/013_nums.in)" 5537376230390876637302048746832985971773659831892672 $LINENO $REFERENCE
 
 assert_fail "../src/014_collatz_sequence 1" $LINENO
 assert "$(../src/014_collatz_sequence 1000000)" 837799 $LINENO $REFERENCE
@@ -139,7 +141,7 @@ assert "$(../src/017_number_letters 0)" "zero" $LINENO
 assert "$(../src/017_number_letters 123456)" "one hundert twenty three thousand four hundert and fifty six" $LINENO $REFERENCE
 
 assert_fail "../src/018_maximum_path < /dev/null" $LINENO
-assert "$(../src/018_maximum_path < data/018_triangle.in)" 1074 $LINENO $REFERENCE
+assert "$(../src/018_maximum_path < $DATA_DIR/018_triangle.in)" 1074 $LINENO $REFERENCE
 
 assert_fail "../src/019_day_count -1" $LINENO
 assert_fail "../src/019_day_count 7" $LINENO
@@ -153,7 +155,7 @@ assert_fail "../src/021_amicable_numbers 0" $LINENO
 assert "$(../src/021_amicable_numbers 10000)" 31626 $LINENO $REFERENCE
 
 assert_fail "../src/022_name_scoring < /dev/null" $LINENO
-assert "$(../src/022_name_scoring < data/022_names.in)" 871198282 $LINENO $REFERENCE
+assert "$(../src/022_name_scoring < $DATA_DIR/022_names.in)" 871198282 $LINENO $REFERENCE
 
 assert "$(../src/023_non_abundant)" 4179871 $LINENO $REFERENCE
 
@@ -229,7 +231,7 @@ assert_fail "../src/041_pandigital_prime 10" $LINENO
 assert "$(../src/041_pandigital_prime 7)" 7652413 $LINENO $REFERENCE
 
 assert "$(../src/042_triangle_words < /dev/null)" 0 $LINENO
-assert "$(../src/042_triangle_words < data/042_words.in)" 162 $LINENO $REFERENCE
+assert "$(../src/042_triangle_words < $DATA_DIR/042_words.in)" 162 $LINENO $REFERENCE
 
 assert "$(../src/043_substrings)" 16695334890 $LINENO $REFERENCE
 
@@ -275,7 +277,7 @@ assert "$(../src/053_selections 22)" 0 $LINENO
 assert "$(../src/053_selections 100)" 4075 $LINENO $REFERENCE
 
 assert "$(../src/054_poker < /dev/null)" 0 $LINENO
-assert "$(../src/054_poker < data/054_hands.in)" 376 $LINENO $REFERENCE
+assert "$(../src/054_poker < $DATA_DIR/054_hands.in)" 376 $LINENO $REFERENCE
 
 assert_fail "../src/055_lychrel 1" $LINENO
 assert "$(../src/055_lychrel 200)" 1 $LINENO
@@ -296,7 +298,7 @@ assert "$(../src/058_number_spiral 10)" 26241 $LINENO $REFERENCE
 
 assert_fail "../src/059_xor 0 < /dev/null" $LINENO
 assert_blank "../src/059_xor 1 < /dev/null" $LINENO
-assert "$(../src/059_xor 3 < data/059_encrypted.in)" 107359 $LINENO $REFERENCE
+assert "$(../src/059_xor 3 < $DATA_DIR/059_encrypted.in)" 107359 $LINENO $REFERENCE
 
 assert_fail "../src/060_prime_pairs 1" $LINENO
 assert "$(../src/060_prime_pairs 4)" 792 $LINENO
@@ -324,7 +326,7 @@ assert "$(../src/066_pell 7)" 5 $LINENO
 assert "$(../src/066_pell 1000)" 661 $LINENO $REFERENCE
 
 # Problem 67 can be solved reusing the code for problem 18
-assert "$(../src/018_maximum_path < data/067_triangle.in)" 7273 $LINENO $REFERENCE
+assert "$(../src/018_maximum_path < $DATA_DIR/067_triangle.in)" 7273 $LINENO $REFERENCE
 
 assert "$(../src/068_magic_ring)" 6531031914842725 $LINENO $REFERENCE
 
@@ -365,20 +367,20 @@ assert_fail "../src/078_partitions 0" $LINENO
 assert "$(../src/078_partitions 1000000)" 55374 $LINENO $REFERENCE
 
 assert_blank "../src/079_passcode < /dev/null" $LINENO
-assert "$(../src/079_passcode < data/079_subsequences.in)" 73162890 $LINENO $REFERENCE
+assert "$(../src/079_passcode < $DATA_DIR/079_subsequences.in)" 73162890 $LINENO $REFERENCE
 
 assert_blank "../src/080_square_roots 0" $LINENO
 assert "$(../src/080_square_roots 2)" 475 $LINENO
 assert "$(../src/080_square_roots 100)" 40886 $LINENO $REFERENCE
 
 assert_fail "../src/081_minimum_path < /dev/null" $LINENO
-assert "$(../src/081_minimum_path < data/081_matrix.in)" 427337 $LINENO $REFERENCE
+assert "$(../src/081_minimum_path < $DATA_DIR/081_matrix.in)" 427337 $LINENO $REFERENCE
 
 assert_fail "../src/082_minimum_path < /dev/null" $LINENO
-assert "$(../src/082_minimum_path < data/081_matrix.in)" 260324 $LINENO $REFERENCE
+assert "$(../src/082_minimum_path < $DATA_DIR/081_matrix.in)" 260324 $LINENO $REFERENCE
 
 assert_fail "../src/083_minimum_path < /dev/null" $LINENO
-assert "$(../src/083_minimum_path < data/081_matrix.in)" 425185 $LINENO $REFERENCE
+assert "$(../src/083_minimum_path < $DATA_DIR/081_matrix.in)" 425185 $LINENO $REFERENCE
 
 assert_fail "../src/084_monopoly 1" $LINENO
 assert "$(../src/084_monopoly 6)" 102400 $LINENO
@@ -402,7 +404,7 @@ assert "$(../src/088_product_sum_numbers 12)" 61 $LINENO
 assert "$(../src/088_product_sum_numbers 12000)" 7587457 $LINENO $REFERENCE
 
 assert "$(../src/089_roman_numerals < /dev/null)" 0 $LINENO
-assert "$(../src/089_roman_numerals < data/089_numerals.in)" 743 $LINENO $REFERENCE
+assert "$(../src/089_roman_numerals < $DATA_DIR/089_numerals.in)" 743 $LINENO $REFERENCE
 
 assert "$(../src/090_cube_pairs)" 1217 $LINENO $REFERENCE
 
@@ -426,18 +428,18 @@ assert "$(../src/095_amicable_chains 284)" 220 $LINENO
 assert "$(../src/095_amicable_chains 1000000)" 14316 $LINENO $REFERENCE
 
 assert "$(../src/096_sudoku < /dev/null)" 0 $LINENO
-assert "$(../src/096_sudoku < data/096_sudoku.in)" 24702 $LINENO $REFERENCE
+assert "$(../src/096_sudoku < $DATA_DIR/096_sudoku.in)" 24702 $LINENO $REFERENCE
 
 assert "$(../src/097_non_mersenne_prime)" 8739992577 $LINENO $REFERENCE
 
 assert "$(../src/098_squares < /dev/null)" 0 $LINENO
-assert "$(../src/098_squares < data/042_words.in)" 18769 $LINENO $REFERENCE
+assert "$(../src/098_squares < $DATA_DIR/042_words.in)" 18769 $LINENO $REFERENCE
 
 assert_blank "../src/099_exponentials < /dev/null" $LINENO
-assert "$(../src/099_exponentials < data/099_values.in)" 709 $LINENO $REFERENCE
+assert "$(../src/099_exponentials < $DATA_DIR/099_values.in)" 709 $LINENO $REFERENCE
 
 assert "$(../src/102_triangles < /dev/null)" 0 $LINENO
-assert "$(../src/102_triangles < data/102_triangles.in)" 228 $LINENO $REFERENCE
+assert "$(../src/102_triangles < $DATA_DIR/102_triangles.in)" 228 $LINENO $REFERENCE
 
 assert_fail "../src/104_fibonacci 0" $LINENO
 assert_fail "../src/104_fibonacci 10" $LINENO
@@ -445,7 +447,7 @@ assert "$(../src/104_fibonacci 2)" 8 $LINENO
 assert "$(../src/104_fibonacci 9)" 329468 $LINENO $REFERENCE
 
 assert_fail "../src/107_spanning_tree < /dev/null" $LINENO
-assert "$(../src/107_spanning_tree < data/107_network.in)" 259679 $LINENO $REFERENCE
+assert "$(../src/107_spanning_tree < $DATA_DIR/107_network.in)" 259679 $LINENO $REFERENCE
 
 assert_fail "../src/109_darts 0" $LINENO
 assert "$(../src/109_darts 100)" 38182 $LINENO $REFERENCE
