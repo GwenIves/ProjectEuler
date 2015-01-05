@@ -484,6 +484,9 @@ assert "$(../src/145_reversible 0)" 0 $LINENO
 assert "$(../src/145_reversible 1000)" 120 $LINENO
 assert "$(../src/145_reversible 1000000000)" 608720 $LINENO $REFERENCE
 
+assert_fail "../src/149_maximum_sum 0" $LINENO
+assert "$(../src/149_maximum_sum 2000)" 52852124 $LINENO $REFERENCE
+
 assert_fail "../src/173_squares 0" $LINENO
 assert "$(../src/173_squares 100)" 41 $LINENO
 assert "$(../src/173_squares 1000000)" 1572729 $LINENO $REFERENCE
