@@ -468,6 +468,9 @@ assert "$(../src/119_digit_power_sum 2)" 512 $LINENO
 assert "$(../src/119_digit_power_sum 10)" 614656 $LINENO
 assert "$(../src/119_digit_power_sum 30)" 248155780267521 $LINENO $REFERENCE
 
+assert_fail "../src/120_remainders 2" $LINENO
+assert "$(../src/120_remainders 1000)" 333082500 $LINENO $REFERENCE
+
 assert_fail "../src/124_radicals 1 0" $LINENO
 assert_fail "../src/124_radicals 0 10" $LINENO
 assert_fail "../src/124_radicals 11 10" $LINENO
