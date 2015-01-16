@@ -6,57 +6,57 @@
 #include "math_utils.h"
 #include "utils.h"
 
-static void max_test ();
-static void min_test ();
-static void abs_test ();
-static void round_test ();
-static void eratosthenes_sieve_test ();
-static void primes_under_test ();
-static void miller_rabin_test ();
-static void is_prime_test ();
-static void is_prime_long_test ();
-static void prime_count_inverse_test ();
-static void factorise_test ();
-static void factors_to_value_test ();
-static void factors_to_totient_test ();
-static void factors_count_test ();
-static void proper_divisors_sum_test ();
-static void divisors_count_test ();
-static void gcd_test ();
-static void make_palindrome_test ();
-static void is_palindrome_test ();
-static void is_permutation_test ();
-static void is_increasing_test ();
-static void is_decreasing_test ();
-static void is_bouncy_test ();
-static void concatenate_test ();
-static void reverse_test ();
-static void is_pandigital_test ();
-static void pandigital_test_and_set_digits_test ();
-static void pandigital_test_digits_test ();
-static void next_number_test ();
-static void next_number_non_decreasing_test ();
-static void next_permutation_test ();
-static void prev_permutation_test ();
-static void next_triangle_num_test ();
-static void next_square_num_test ();
-static void next_pentagonal_num_test ();
-static void next_generalised_pentagonal_num_test ();
-static void next_hexagonal_num_test ();
-static void next_heptagonal_num_test ();
-static void next_octagonal_num_test ();
-static void next_collatz_num_test ();
-static void next_fibonacci_num_test ();
-static void next_digits_factorial_num_test ();
-static void is_triangle_test ();
-static void is_pentagonal_test ();
-static void arithmetic_sequence_sum_test ();
-static void mod_pow_test ();
-static void power_test ();
-static void euclid_pythagorean_triple_test ();
-static void integer_sqrt_test ();
+static void max_test (void);
+static void min_test (void);
+static void abs_test (void);
+static void round_test (void);
+static void eratosthenes_sieve_test (void);
+static void primes_under_test (void);
+static void miller_rabin_test (void);
+static void is_prime_test (void);
+static void is_prime_long_test (void);
+static void prime_count_inverse_test (void);
+static void factorise_test (void);
+static void factors_to_value_test (void);
+static void factors_to_totient_test (void);
+static void factors_count_test (void);
+static void proper_divisors_sum_test (void);
+static void divisors_count_test (void);
+static void gcd_test (void);
+static void make_palindrome_test (void);
+static void is_palindrome_test (void);
+static void is_permutation_test (void);
+static void is_increasing_test (void);
+static void is_decreasing_test (void);
+static void is_bouncy_test (void);
+static void concatenate_test (void);
+static void reverse_test (void);
+static void is_pandigital_test (void);
+static void pandigital_test_and_set_digits_test (void);
+static void pandigital_test_digits_test (void);
+static void next_number_test (void);
+static void next_number_non_decreasing_test (void);
+static void next_permutation_test (void);
+static void prev_permutation_test (void);
+static void next_triangle_num_test (void);
+static void next_square_num_test (void);
+static void next_pentagonal_num_test (void);
+static void next_generalised_pentagonal_num_test (void);
+static void next_hexagonal_num_test (void);
+static void next_heptagonal_num_test (void);
+static void next_octagonal_num_test (void);
+static void next_collatz_num_test (void);
+static void next_fibonacci_num_test (void);
+static void next_digits_factorial_num_test (void);
+static void is_triangle_test (void);
+static void is_pentagonal_test (void);
+static void arithmetic_sequence_sum_test (void);
+static void mod_pow_test (void);
+static void power_test (void);
+static void euclid_pythagorean_triple_test (void);
+static void integer_sqrt_test (void);
 
-int main () {
+int main (void) {
 	max_test ();
 	min_test ();
 	abs_test ();
@@ -112,20 +112,20 @@ int main () {
 	return 0;
 }
 
-static void max_test () {
+static void max_test (void) {
 	assert (MAX (1, 2) == 2);
 }
 
-static void min_test () {
+static void min_test (void) {
 	assert (MIN (1, 2) == 1);
 }
 
-static void abs_test () {
+static void abs_test (void) {
 	assert (ABS (1) == 1);
 	assert (ABS (-1) == 1);
 }
 
-static void round_test () {
+static void round_test (void) {
 	assert (ROUND (3) == 3);
 	assert (ROUND (3.4) == 3);
 	assert (ROUND (3.5) == 4);
@@ -135,7 +135,7 @@ static void round_test () {
 	assert (ROUND (-3.5) == -4);
 }
 
-static void eratosthenes_sieve_test () {
+static void eratosthenes_sieve_test (void) {
 	static const size_t limit = 1000000;
 
 	bool * sieve = eratosthenes_sieve (limit);
@@ -151,7 +151,7 @@ static void eratosthenes_sieve_test () {
 	free (sieve);
 }
 
-static void primes_under_test () {
+static void primes_under_test (void) {
 	static const size_t limit = 1000000;
 
 	bool * sieve = eratosthenes_sieve (limit);
@@ -171,7 +171,7 @@ static void primes_under_test () {
 	free (primes);
 }
 
-static void miller_rabin_test () {
+static void miller_rabin_test (void) {
 	static const int primes_under = 1000000;
 
 	bool * sieve = eratosthenes_sieve (primes_under);
@@ -182,7 +182,7 @@ static void miller_rabin_test () {
 	free (sieve);
 }
 
-static void is_prime_test () {
+static void is_prime_test (void) {
 	static const int primes_under = 798;
 
 	bool * sieve = eratosthenes_sieve (primes_under);
@@ -193,7 +193,7 @@ static void is_prime_test () {
 	free (sieve);
 }
 
-static void is_prime_long_test () {
+static void is_prime_long_test (void) {
 	static const int primes_under = 18481074;
 
 	bool * sieve = eratosthenes_sieve (primes_under);
@@ -220,12 +220,12 @@ static void is_prime_long_test () {
 	free (primes);
 }
 
-static void prime_count_inverse_test () {
+static void prime_count_inverse_test (void) {
 	assert (prime_count_inverse (5) == 100);
 	assert (prime_count_inverse (10000) == 1000000);
 }
 
-static void factorise_test () {
+static void factorise_test (void) {
 	linked_list_t * factors = factorise (28);
 
 	factor_t * factor = linked_list_next (factors, factor_t);
@@ -246,7 +246,7 @@ static void factorise_test () {
 	linked_list_free (factors);
 }
 
-static void factors_to_value_test () {
+static void factors_to_value_test (void) {
 	linked_list_t * factors = factorise (97);
 
 	assert (factors_to_value (factors) == 97);
@@ -260,7 +260,7 @@ static void factors_to_value_test () {
 	linked_list_free (factors);
 }
 
-static void factors_to_totient_test () {
+static void factors_to_totient_test (void) {
 	linked_list_t * factors = factorise (97);
 
 	assert (factors_to_totient (factors) == 96);
@@ -274,80 +274,80 @@ static void factors_to_totient_test () {
 	linked_list_free (factors);
 }
 
-static void factors_count_test () {
+static void factors_count_test (void) {
 	assert (factors_count (330) == 4);
 }
 
-static void proper_divisors_sum_test () {
+static void proper_divisors_sum_test (void) {
 	assert (proper_divisors_sum (1) == 1);
 	assert (proper_divisors_sum (2) == 1);
 	assert (proper_divisors_sum (9) == 4);
 	assert (proper_divisors_sum (-9) == 4);
 }
 
-static void divisors_count_test () {
+static void divisors_count_test (void) {
 	assert (divisors_count (1) == 1);
 	assert (divisors_count (2) == 2);
 	assert (divisors_count (9) == 3);
 	assert (divisors_count (-9) == 3);
 }
 
-static void gcd_test () {
+static void gcd_test (void) {
 	assert (gcd (3, 5) == 1);
 	assert (gcd (12, 60) == 12);
 	assert (gcd (90, 12) == 6);
 	assert (gcd (-90, 12) == 6);
 }
 
-static void make_palindrome_test () {
+static void make_palindrome_test (void) {
 	assert (make_palindrome (123, 10, true) == 12321);
 	assert (make_palindrome (123, 10, false) == 123321);
 }
 
-static void is_palindrome_test () {
+static void is_palindrome_test (void) {
 	assert (is_palindrome (12344321, 10));
 	assert (is_palindrome (1234321, 10));
 	assert (is_palindrome (-1234321, 10));
 	assert (!is_palindrome (12345321, 10));
 }
 
-static void is_permutation_test () {
+static void is_permutation_test (void) {
 	assert (is_permutation (12345, 32415));
 	assert (!is_permutation (12345, 32615));
 }
 
-static void is_increasing_test () {
+static void is_increasing_test (void) {
 	assert (is_increasing (124468));
 	assert (!is_increasing (124768));
 }
 
-static void is_decreasing_test () {
+static void is_decreasing_test (void) {
 	assert (is_decreasing (66420));
 	assert (!is_decreasing (66720));
 }
 
-static void is_bouncy_test () {
+static void is_bouncy_test (void) {
 	assert (is_bouncy (155349));
 	assert (!is_bouncy (1559));
 	assert (!is_bouncy (553));
 }
 
-static void concatenate_test () {
+static void concatenate_test (void) {
 	assert (concatenate (12345, 678910) == 12345678910L);
 }
 
-static void reverse_test () {
+static void reverse_test (void) {
 	assert (reverse (14825, 10) == 52841);
 }
 
-static void is_pandigital_test () {
+static void is_pandigital_test (void) {
 	assert (is_pandigital (728456139, 9));
 	assert (is_pandigital (12345, 5));
 	assert (!is_pandigital (7284561391L, 9));
 	assert (!is_pandigital (12345, 6));
 }
 
-static void pandigital_test_and_set_digits_test () {
+static void pandigital_test_and_set_digits_test (void) {
 	char digits[DIGITS_COUNT];
 
 	memset (digits, 0, DIGITS_COUNT);
@@ -357,7 +357,7 @@ static void pandigital_test_and_set_digits_test () {
 	assert (!pandigital_test_and_set_digits (digits, 678));
 }
 
-static void pandigital_test_digits_test () {
+static void pandigital_test_digits_test (void) {
 	char digits[DIGITS_COUNT] = {0, 1, 1, 1, 1, 1, 1, 0, 0, 0};
 
 	assert (!pandigital_test_digits (digits, 5));
@@ -365,7 +365,7 @@ static void pandigital_test_digits_test () {
 	assert (!pandigital_test_digits (digits, 7));
 }
 
-static void next_number_test () {
+static void next_number_test (void) {
 	int num[] = {1, 2, 8};
 
 	assert (next_number (num, 3, 10));
@@ -385,7 +385,7 @@ static void next_number_test () {
 	assert (!next_number (max_num, 3, 10));
 }
 
-static void next_number_non_decreasing_test () {
+static void next_number_non_decreasing_test (void) {
 	int num[] = {1, 2, 8};
 
 	assert (next_number_non_decreasing (num, 3, 10));
@@ -406,7 +406,7 @@ static void next_number_non_decreasing_test () {
 }
 
 
-static void next_permutation_test () {
+static void next_permutation_test (void) {
 	char permutation[DIGITS_COUNT];
 
 	strcpy (permutation, "123456987");
@@ -420,7 +420,7 @@ static void next_permutation_test () {
 	assert (!strcmp (permutation, "987654321"));
 }
 
-static void prev_permutation_test () {
+static void prev_permutation_test (void) {
 	char permutation[DIGITS_COUNT];
 
 	strcpy (permutation, "987654123");
@@ -434,7 +434,7 @@ static void prev_permutation_test () {
 	assert (!strcmp (permutation, "123456789"));
 }
 
-static void next_triangle_num_test () {
+static void next_triangle_num_test (void) {
 	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
@@ -443,7 +443,7 @@ static void next_triangle_num_test () {
 	assert (num == 55);
 }
 
-static void next_square_num_test () {
+static void next_square_num_test (void) {
 	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
@@ -452,7 +452,7 @@ static void next_square_num_test () {
 	assert (num == 100);
 }
 
-static void next_pentagonal_num_test () {
+static void next_pentagonal_num_test (void) {
 	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
@@ -461,7 +461,7 @@ static void next_pentagonal_num_test () {
 	assert (num == 145);
 }
 
-static void next_generalised_pentagonal_num_test () {
+static void next_generalised_pentagonal_num_test (void) {
 	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
@@ -477,7 +477,7 @@ static void next_generalised_pentagonal_num_test () {
 	assert (num == 40);
 }
 
-static void next_hexagonal_num_test () {
+static void next_hexagonal_num_test (void) {
 	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
@@ -486,7 +486,7 @@ static void next_hexagonal_num_test () {
 	assert (num == 190);
 }
 
-static void next_heptagonal_num_test () {
+static void next_heptagonal_num_test (void) {
 	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
@@ -495,7 +495,7 @@ static void next_heptagonal_num_test () {
 	assert (num == 235);
 }
 
-static void next_octagonal_num_test () {
+static void next_octagonal_num_test (void) {
 	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
@@ -504,7 +504,7 @@ static void next_octagonal_num_test () {
 	assert (num == 280);
 }
 
-static void next_fibonacci_num_test () {
+static void next_fibonacci_num_test (void) {
 	long num = 0;
 
 	for (size_t i = 0; i < 10; i++)
@@ -513,44 +513,44 @@ static void next_fibonacci_num_test () {
 	assert (num == 89);
 }
 
-static void next_collatz_num_test () {
+static void next_collatz_num_test (void) {
 	assert (next_collatz_num (13) == 40);
 	assert (next_collatz_num (16) == 8);
 }
 
-static void next_digits_factorial_num_test () {
+static void next_digits_factorial_num_test (void) {
 	assert (next_digits_factorial_num (169) == 363601);
 }
 
-static void is_triangle_test () {
+static void is_triangle_test (void) {
 	assert (is_triangle (406));
 	assert (!is_triangle (326));
 }
 
-static void is_pentagonal_test () {
+static void is_pentagonal_test (void) {
 	assert (is_pentagonal (782));
 	assert (!is_pentagonal (426));
 }
 
-static void arithmetic_sequence_sum_test () {
+static void arithmetic_sequence_sum_test (void) {
 	assert (arithmetic_sequence_sum (1, 101, 1) == 5050);
 	assert (arithmetic_sequence_sum (1, 101, 2) == 2500);
 }
 
-static void mod_pow_test () {
+static void mod_pow_test (void) {
 	assert (mod_pow (0, 10, 1) == 0);
 	assert (mod_pow (10, 0, 1) == 1);
 	assert (mod_pow (3, 10, 60000) == 59049);
 	assert (mod_pow (3, 10, 50000) == 9049);
 }
 
-static void power_test () {
+static void power_test (void) {
 	assert (power (0, 10) == 0);
 	assert (power (10, 0) == 1);
 	assert (power (3, 10) == 59049);
 }
 
-static void euclid_pythagorean_triple_test () {
+static void euclid_pythagorean_triple_test (void) {
 	int a = 0;
 	int b = 0;
 	int c = 0;
@@ -565,7 +565,7 @@ static void euclid_pythagorean_triple_test () {
 	assert (c == 5);
 }
 
-static void integer_sqrt_test () {
+static void integer_sqrt_test (void) {
 	assert (integer_sqrt (1) == 1);
 	assert (integer_sqrt (625) == 25);
 	assert (integer_sqrt (624) == -1);

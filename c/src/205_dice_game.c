@@ -13,7 +13,7 @@
 static void fill_roll_counts (int *, int, int);
 static int get_roll_counts (int, int, int);
 
-int main () {
+int main (void) {
 	int max_roll_a = DICE_A * SIDES_A;
 	int max_roll_b = DICE_B * SIDES_B;
 

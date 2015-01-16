@@ -13,7 +13,7 @@ static bool contains_origin (triangle_t *);
 static bool in_one_halfplane (line_equation_t *, point_t *, point_t *);
 static bool verify (point_t *, point_t *, point_t *);
 
-int main () {
+int main (void) {
 	triangle_t t;
 
 	int count = 0;

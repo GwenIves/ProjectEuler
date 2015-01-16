@@ -7,7 +7,7 @@
 
 #define KNOWN_UPPER_LIMIT	 28123
 
-int main () {
+int main (void) {
 	long abundant_nums[KNOWN_UPPER_LIMIT];
 
 	size_t abundant_count = 0;

@@ -10,10 +10,10 @@
 #include "math_utils.h"
 #include "linked_list.h"
 
-static linked_list_t * read_subsequences ();
+static linked_list_t * read_subsequences (void);
 static void find_passcodes (char * prefix, linked_list_t *);
 
-int main () {
+int main (void) {
 	linked_list_t * subsequences = read_subsequences ();
 
 	char passcode[DIGITS_COUNT + 1];
@@ -82,7 +82,7 @@ static void find_passcodes (char * prefix, linked_list_t * subsequences) {
 		printf ("%s\n", passcode);
 }
 
-static linked_list_t * read_subsequences () {
+static linked_list_t * read_subsequences (void) {
 	linked_list_t * list = linked_list_create ();
 
 	char * line = NULL;

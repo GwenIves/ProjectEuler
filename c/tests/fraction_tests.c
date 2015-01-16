@@ -2,15 +2,15 @@
 #include <stdio.h>
 #include "fraction.h"
 
-static void fraction_get_test ();
-static void fraction_reduce_test ();
-static void fraction_add_test ();
-static void fraction_sub_test ();
-static void fraction_mult_test ();
-static void fraction_div_test ();
-static void fraction_cmp_test ();
+static void fraction_get_test (void);
+static void fraction_reduce_test (void);
+static void fraction_add_test (void);
+static void fraction_sub_test (void);
+static void fraction_mult_test (void);
+static void fraction_div_test (void);
+static void fraction_cmp_test (void);
 
-int main () {
+int main (void) {
 	fraction_get_test ();
 	fraction_reduce_test ();
 	fraction_add_test ();
@@ -24,7 +24,7 @@ int main () {
 	return 0;
 }
 
-static void fraction_get_test () {
+static void fraction_get_test (void) {
 	fraction_t f = fraction_get (10, 20);
 
 	assert (f.nominator == 1);
@@ -44,7 +44,7 @@ static void fraction_get_test () {
 	assert (!f.sign);
 }
 
-static void fraction_reduce_test () {
+static void fraction_reduce_test (void) {
 	fraction_t f = fraction_get (240, 360);
 	fraction_reduce (&f);
 
@@ -52,7 +52,7 @@ static void fraction_reduce_test () {
 	assert (f.denominator == 3);
 }
 
-static void fraction_add_test () {
+static void fraction_add_test (void) {
 	fraction_t a = fraction_get (2, 4);
 	fraction_t b = fraction_get (2, 6);
 
@@ -94,7 +94,7 @@ static void fraction_add_test () {
 	assert (f.sign);
 }
 
-static void fraction_sub_test () {
+static void fraction_sub_test (void) {
 	fraction_t a = fraction_get (2, 4);
 	fraction_t b = fraction_get (2, 6);
 
@@ -136,7 +136,7 @@ static void fraction_sub_test () {
 	assert (f.sign);
 }
 
-static void fraction_mult_test () {
+static void fraction_mult_test (void) {
 	fraction_t a = fraction_get (240, 360);
 	fraction_t b = fraction_get (600, 840);
 
@@ -158,7 +158,7 @@ static void fraction_mult_test () {
 	assert (f.sign);
 }
 
-static void fraction_div_test () {
+static void fraction_div_test (void) {
 	fraction_t a = fraction_get (240, 360);
 	fraction_t b = fraction_get (840, 600);
 
@@ -180,7 +180,7 @@ static void fraction_div_test () {
 	assert (f.sign);
 }
 
-static void fraction_cmp_test () {
+static void fraction_cmp_test (void) {
 	fraction_t a = fraction_get (251, 918);
 	fraction_t b = fraction_get (252, 918);
 	fraction_t c = fraction_get (-253, 918);

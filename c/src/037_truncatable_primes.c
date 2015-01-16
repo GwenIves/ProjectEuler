@@ -10,7 +10,7 @@
 
 static bool is_truncatable (bool *, int);
 
-int main () {
+int main (void) {
 	int limit = 1000;
 	int count = 0;
 	int sum = 0;

@@ -23,7 +23,7 @@ static int solve_by_deduction (int[9][9], size_t *, size_t *);
 static void find_possible_placements (int[9][9], bool *, size_t, size_t);
 static void copy_game (int[9][9], int[9][9]);
 
-int main () {
+int main (void) {
 	int sum = 0;
 
 	int game[9][9];

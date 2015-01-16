@@ -7,7 +7,7 @@
 
 #define FACT9	362880
 
-int main () {
+int main (void) {
 	int lowest_pow10 = 10;
 	int max_representable = FACT9;
 

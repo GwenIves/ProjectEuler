@@ -3,18 +3,18 @@
 #include "linked_list.h"
 #include "utils.h"
 
-static void linked_list_create_test ();
-static void linked_list_copy_test ();
-static void linked_list_add_test ();
-static void linked_list_add_sorted_test ();
-static void linked_list_append_test ();
-static void linked_list_insert_after_test ();
-static void linked_list_add_array_test ();
-static void linked_list_append_array_test ();
-static void linked_list_stop_iteration_test ();
-static void linked_list_delete_test ();
+static void linked_list_create_test (void);
+static void linked_list_copy_test (void);
+static void linked_list_add_test (void);
+static void linked_list_add_sorted_test (void);
+static void linked_list_append_test (void);
+static void linked_list_insert_after_test (void);
+static void linked_list_add_array_test (void);
+static void linked_list_append_array_test (void);
+static void linked_list_stop_iteration_test (void);
+static void linked_list_delete_test (void);
 
-int main () {
+int main (void) {
 	linked_list_create_test ();
 	linked_list_copy_test ();
 	linked_list_add_test ();
@@ -31,7 +31,7 @@ int main () {
 	return 0;
 }
 
-static void linked_list_create_test () {
+static void linked_list_create_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	assert (l != NULL);
@@ -39,7 +39,7 @@ static void linked_list_create_test () {
 	linked_list_free (l);
 }
 
-static void linked_list_copy_test () {
+static void linked_list_copy_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	int * p = NULL;
@@ -62,7 +62,7 @@ static void linked_list_copy_test () {
 	linked_list_free (c);
 }
 
-static void linked_list_add_test () {
+static void linked_list_add_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	linked_list_add (l, copy_int (123));
@@ -86,7 +86,7 @@ static void linked_list_add_test () {
 	linked_list_free (l);
 }
 
-static void linked_list_add_sorted_test () {
+static void linked_list_add_sorted_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	linked_list_add_sorted (l, copy_int (200), int_cmp, true);
@@ -131,7 +131,7 @@ static void linked_list_add_sorted_test () {
 	linked_list_free (l);
 }
 
-static void linked_list_append_test () {
+static void linked_list_append_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	linked_list_append (l, copy_int (123));
@@ -148,7 +148,7 @@ static void linked_list_append_test () {
 	linked_list_free (l);
 }
 
-static void linked_list_insert_after_test () {
+static void linked_list_insert_after_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	list_node_t * n_ptr = linked_list_append (l, copy_int (123));
@@ -168,7 +168,7 @@ static void linked_list_insert_after_test () {
 	linked_list_free (l);
 }
 
-static void linked_list_add_array_test () {
+static void linked_list_add_array_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	int * a = linked_list_add_empty_array (l, 2, int);
@@ -184,7 +184,7 @@ static void linked_list_add_array_test () {
 	linked_list_free (l);
 }
 
-static void linked_list_append_array_test () {
+static void linked_list_append_array_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	int * a = linked_list_append_empty_array (l, 2, int);
@@ -200,7 +200,7 @@ static void linked_list_append_array_test () {
 	linked_list_free (l);
 }
 
-static void linked_list_stop_iteration_test () {
+static void linked_list_stop_iteration_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	linked_list_add (l, copy_int (123));
@@ -219,7 +219,7 @@ static void linked_list_stop_iteration_test () {
 	linked_list_free (l);
 }
 
-static void linked_list_delete_test () {
+static void linked_list_delete_test (void) {
 	linked_list_t * l = linked_list_create ();
 
 	linked_list_append (l, copy_int (111));

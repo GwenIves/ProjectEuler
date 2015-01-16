@@ -55,14 +55,14 @@ bool next_number_non_decreasing (int *, int, int);
 bool next_permutation (char *);
 bool prev_permutation (char *);
 
-long next_fibonacci_num ();
-long next_triangle_num ();
-long next_square_num ();
-long next_pentagonal_num ();
+long next_fibonacci_num (void);
+long next_triangle_num (void);
+long next_square_num (void);
+long next_pentagonal_num (void);
 int next_generalised_pentagonal_num (bool);
-long next_hexagonal_num ();
-long next_heptagonal_num ();
-long next_octagonal_num ();
+long next_hexagonal_num (void);
+long next_heptagonal_num (void);
+long next_octagonal_num (void);
 long next_collatz_num (long);
 int next_digits_factorial_num (int);
 

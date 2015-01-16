@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int main () {
+int main (void) {
 	int base = 0;
 	int exponent = 0;
 	int lineno = 0;

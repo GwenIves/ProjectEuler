@@ -13,7 +13,7 @@ static int score_name (char *);
 static char ** read_names (int *);
 static void free_names (char **, size_t);
 
-int main () {
+int main (void) {
 	int names_count = 0;
 	char ** names = NULL;
 

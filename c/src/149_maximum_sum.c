@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "utils.h"
 
-static int next_lfg ();
+static int next_lfg (void);
 static int ** allocate_random_matrix (int);
 static int find_maximum (int **, int);
 static int find_maximum_row (int **, int, int);
@@ -151,7 +151,7 @@ static int ** allocate_random_matrix (int size) {
 
 #define MOD	1000000
 
-static int next_lfg () {
+static int next_lfg (void) {
 	static int previous_values[55];
 	static size_t cursor = 0;
 

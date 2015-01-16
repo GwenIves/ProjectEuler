@@ -7,7 +7,7 @@
 
 #define DIGITS_TO_CONSIDER	10
 
-int main () {
+int main (void) {
 	bignum_t * prime = bignum_pow (2, 7830457, DIGITS_TO_CONSIDER);
 
 	prime = bignum_mult_to (prime, 28433);

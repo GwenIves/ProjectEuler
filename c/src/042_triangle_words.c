@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include "math_utils.h"
 
-int main () {
+int main (void) {
 	char word[100 + 1];
 
 	int count = 0;

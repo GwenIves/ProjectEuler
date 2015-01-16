@@ -18,7 +18,7 @@ typedef struct {
 	size_t length;
 } word_t;
 
-static linked_list_t * load_words ();
+static linked_list_t * load_words (void);
 static void free_words (linked_list_t *);
 static linked_list_t * get_anagrams (word_t *, linked_list_t *);
 static bool next_substitution (int *, word_t *);
@@ -26,7 +26,7 @@ static bool are_anagrams (word_t *, word_t *);
 static int get_substitution_value (int *, word_t *);
 static int words_cmp (const void *, const void *);
 
-int main () {
+int main (void) {
 	linked_list_t * words = load_words ();
 
 	word_t * w_ptr = NULL;
@@ -71,7 +71,7 @@ int main () {
 	return 0;
 }
 
-static linked_list_t * load_words () {
+static linked_list_t * load_words (void) {
 	char word[100 + 1];
 
 	linked_list_t * words = linked_list_create ();

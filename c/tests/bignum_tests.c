@@ -2,20 +2,20 @@
 #include <stdio.h>
 #include "bignum.h"
 
-static void bignum_get_int_test ();
-static void bignum_get_str_test ();
-static void bignum_mult_test ();
-static void bignum_mult_to_test ();
-static void bignum_add_test ();
-static void bignum_add_to_test ();
-static void bignum_pow_test ();
-static void bignum_cmp_test ();
-static void bignum_is_digit_test ();
-static void bignum_is_palindrome_test ();
-static void bignum_reverse_test ();
-static void bignum_digits_sum_test ();
+static void bignum_get_int_test (void);
+static void bignum_get_str_test (void);
+static void bignum_mult_test (void);
+static void bignum_mult_to_test (void);
+static void bignum_add_test (void);
+static void bignum_add_to_test (void);
+static void bignum_pow_test (void);
+static void bignum_cmp_test (void);
+static void bignum_is_digit_test (void);
+static void bignum_is_palindrome_test (void);
+static void bignum_reverse_test (void);
+static void bignum_digits_sum_test (void);
 
-int main () {
+int main (void) {
 	bignum_get_int_test ();
 	bignum_get_str_test ();
 	bignum_mult_test ();
@@ -34,7 +34,7 @@ int main () {
 	return 0;
 }
 
-static void bignum_get_int_test () {
+static void bignum_get_int_test (void) {
 	bignum_t * num = bignum_get (876543210);
 
 	for (size_t i = 0; i < num->used; i++)
@@ -43,7 +43,7 @@ static void bignum_get_int_test () {
 	bignum_delete (num);
 }
 
-static void bignum_get_str_test () {
+static void bignum_get_str_test (void) {
 	bignum_t * num = bignum_get ("9876543210");
 
 	for (size_t i = 0; i < num->used; i++)
@@ -52,7 +52,7 @@ static void bignum_get_str_test () {
 	bignum_delete (num);
 }
 
-static void bignum_mult_test () {
+static void bignum_mult_test (void) {
 	bignum_t * a = bignum_get ("123456");
 	bignum_t * b = bignum_get ("456789");
 
@@ -73,7 +73,7 @@ static void bignum_mult_test () {
 	bignum_delete (c_known_neg);
 }
 
-static void bignum_mult_to_test () {
+static void bignum_mult_to_test (void) {
 	bignum_t * a = bignum_get ("123456789");
 	bignum_t * a_ref = bignum_get ("56296295784");
 
@@ -85,7 +85,7 @@ static void bignum_mult_to_test () {
 	bignum_delete (a_ref);
 }
 
-static void bignum_add_test () {
+static void bignum_add_test (void) {
 	bignum_t * a = bignum_get ("123456789");
 	bignum_t * b = bignum_get ("234567890");
 	bignum_t * b_neg = bignum_get ("-234567890");
@@ -108,7 +108,7 @@ static void bignum_add_test () {
 	bignum_delete (c_known_neg);
 }
 
-static void bignum_add_to_test () {
+static void bignum_add_to_test (void) {
 	bignum_t * a = bignum_get ("12345678");
 	bignum_t * a_ref = bignum_get ("23456789");
 
@@ -120,7 +120,7 @@ static void bignum_add_to_test () {
 	bignum_delete (a_ref);
 }
 
-static void bignum_pow_test () {
+static void bignum_pow_test (void) {
 	bignum_t * a_ref = bignum_get (0);
 	bignum_t * b_ref = bignum_get (1);
 	bignum_t * c_ref = bignum_get ("1073741824");
@@ -152,7 +152,7 @@ static void bignum_pow_test () {
 	bignum_delete (d_ref);
 }
 
-static void bignum_cmp_test () {
+static void bignum_cmp_test (void) {
 	bignum_t * a = bignum_get ("123456789");
 	bignum_t * b = bignum_get ("234567890");
 	bignum_t * c = bignum_get ("-234567890");
@@ -166,7 +166,7 @@ static void bignum_cmp_test () {
 	bignum_delete (c);
 }
 
-static void bignum_is_digit_test () {
+static void bignum_is_digit_test (void) {
 	bignum_t * a = bignum_get (1);
 	bignum_t * aa = bignum_get (10);
 
@@ -178,7 +178,7 @@ static void bignum_is_digit_test () {
 	bignum_delete (aa);
 }
 
-static void bignum_is_palindrome_test () {
+static void bignum_is_palindrome_test (void) {
 	bignum_t * a = bignum_get ("12345678987654321");
 	bignum_t * b = bignum_get ("123456789987654321");
 	bignum_t * c = bignum_get ("1234567897654321");
@@ -192,7 +192,7 @@ static void bignum_is_palindrome_test () {
 	bignum_delete (c);
 }
 
-static void bignum_reverse_test () {
+static void bignum_reverse_test (void) {
 	bignum_t * a = bignum_get ("123456");
 	bignum_t * b = bignum_reverse (a);
 	bignum_t * b_ref = bignum_get ("654321");
@@ -204,7 +204,7 @@ static void bignum_reverse_test () {
 	bignum_delete (b_ref);
 }
 
-static void bignum_digits_sum_test () {
+static void bignum_digits_sum_test (void) {
 	bignum_t * a = bignum_get ("123456789987654321");
 
 	assert (bignum_digits_sum (a) == 90);

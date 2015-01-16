@@ -3,11 +3,11 @@
 #include <string.h>
 #include "continued_fraction.h"
 
-static void cf_expand_sqrt_continued_fraction_test ();
-static void cf_sqrt_steps_identical_test ();
-static void cf_evaluate_test ();
+static void cf_expand_sqrt_continued_fraction_test (void);
+static void cf_sqrt_steps_identical_test (void);
+static void cf_evaluate_test (void);
 
-int main () {
+int main (void) {
 	cf_expand_sqrt_continued_fraction_test ();
 	cf_sqrt_steps_identical_test ();
 	cf_evaluate_test ();
@@ -17,7 +17,7 @@ int main () {
 	return 0;
 }
 
-static void cf_expand_sqrt_continued_fraction_test () {
+static void cf_expand_sqrt_continued_fraction_test (void) {
 	cf_sqrt_step_t frac;
 
 	frac.num = 23;
@@ -39,7 +39,7 @@ static void cf_expand_sqrt_continued_fraction_test () {
 	assert (frac.step == 3);
 }
 
-static void cf_sqrt_steps_identical_test () {
+static void cf_sqrt_steps_identical_test (void) {
 	cf_sqrt_step_t frac;
 
 	frac.num = 8;
@@ -61,7 +61,7 @@ static void cf_sqrt_steps_identical_test () {
 	assert (cf_sqrt_steps_identical (&frac, &saved));
 }
 
-static void cf_evaluate_test () {
+static void cf_evaluate_test (void) {
 	linked_list_t * coefficients = linked_list_create ();
 
 	int * c_ptr = NULL;

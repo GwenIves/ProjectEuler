@@ -9,7 +9,7 @@
 
 #define POLY_COUNT	6
 
-typedef long (* poly_func_t) ();
+typedef long (* poly_func_t) (void);
 
 static poly_func_t polygonal_functions[] = {
 	next_triangle_num,

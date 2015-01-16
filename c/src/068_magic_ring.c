@@ -21,7 +21,7 @@ static int char_value (char);
  * Indices SIZE .. 2 * SIZE - 1 hold the inner ring with index i connected to i + SIZE
  */
 
-int main () {
+int main (void) {
 	char representation[TARGET_LEN + 1] = "";
 
 	char digits[] = "123456789A";

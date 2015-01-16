@@ -12,7 +12,7 @@
 
 static int graph_weight (int **, int);
 
-int main () {
+int main (void) {
 	int vertex_count = 0;
 
 	int ** matrix = load_square (&vertex_count);

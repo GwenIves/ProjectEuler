@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include "geometry.h"
 
-static void point_line_cmp_test ();
-static void get_line_equation_test ();
+static void point_line_cmp_test (void);
+static void get_line_equation_test (void);
 
-int main () {
+int main (void) {
 	point_line_cmp_test ();
 	get_line_equation_test ();
 
@@ -14,7 +14,7 @@ int main () {
 	return 0;
 }
 
-static void point_line_cmp_test () {
+static void point_line_cmp_test (void) {
 	line_equation_t eq = {.a = 2, .b = 3, .c = 4};
 
 	point_t p1 = {.x = 1, .y = -2};
@@ -26,7 +26,7 @@ static void point_line_cmp_test () {
 	assert (point_line_cmp (&eq, &p3) < 0);
 }
 
-static void get_line_equation_test () {
+static void get_line_equation_test (void) {
 	point_t a1 = {.x = 3, .y = 1};
 	point_t b1 = {.x = 1, .y = 2};
 

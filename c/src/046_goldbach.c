@@ -9,7 +9,7 @@
 
 static bool goldbach_represent (int, bool *);
 
-int main () {
+int main (void) {
 	int size = 1000;
 
 	int candidate = 9;

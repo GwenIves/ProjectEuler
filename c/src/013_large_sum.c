@@ -7,7 +7,7 @@
 #include "bignum.h"
 #include "utils.h"
 
-int main () {
+int main (void) {
 	char * line = NULL;
 
 	bignum_t * sum = bignum_get (0);

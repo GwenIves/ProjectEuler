@@ -2,7 +2,7 @@
 #include "linked_list.h"
 #include "utils.h"
 
-linked_list_t * linked_list_create () {
+linked_list_t * linked_list_create (void) {
 	linked_list_t * l = x_malloc (sizeof (linked_list_t));
 
 	l->head = NULL;

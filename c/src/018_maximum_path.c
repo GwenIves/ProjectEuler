@@ -9,7 +9,7 @@
 #include "math_utils.h"
 #include "utils.h"
 
-int main () {
+int main (void) {
 	int rows = 0;
 
 	int ** triangle = load_triangle (&rows);

@@ -13,7 +13,7 @@
 
 static void update_costs (int **, linked_list_t *, bool **, int, int, int, int);
 
-int main () {
+int main (void) {
 	int rows = 0;
 
 	int ** matrix = load_square (&rows);

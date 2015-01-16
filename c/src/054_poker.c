@@ -40,7 +40,7 @@ static int rank_match (match_t *);
 static void rank_hand (hand_t *);
 static int value_cmp (const void *, const void *);
 
-int main () {
+int main (void) {
 	char * line = NULL;
 
 	int count = 0;

@@ -12,7 +12,7 @@ objects := $(subst .c,.o,$(sources))
 
 executables := $(subst .c,,$(main_sources) $(test_sources))
 
-WARNINGS := -Werror --pedantic -Wall -Wextra -Winit-self -Wswitch-default -Wfloat-equal -Wshadow -Wwrite-strings
+WARNINGS := -Werror --pedantic -Wall -Wextra -Winit-self -Wswitch-default -Wfloat-equal -Wshadow -Wwrite-strings -Wstrict-prototypes
 CFLAGS += $(WARNINGS) -std=c11
 CPPFLAGS += -Icommon/include -D_POSIX_C_SOURCE=200809L
 LDFLAGS += -L.

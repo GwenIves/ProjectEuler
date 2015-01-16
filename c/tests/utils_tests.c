@@ -4,24 +4,24 @@
 #include <string.h>
 #include "utils.h"
 
-static void malloc_test ();
-static void calloc_test ();
-static void realloc_test ();
-static void getline_test ();
-static void swap_chars_test ();
-static void array_len_test ();
-static void string_cmp_test ();
-static void char_cmp_test ();
-static void int_cmp_test ();
-static void long_cmp_test ();
-static void allocate_matrix_test ();
-static void allocate_array_test ();
-static void copy_int_test ();
-static void copy_long_test ();
+static void malloc_test (void);
+static void calloc_test (void);
+static void realloc_test (void);
+static void getline_test (void);
+static void swap_chars_test (void);
+static void array_len_test (void);
+static void string_cmp_test (void);
+static void char_cmp_test (void);
+static void int_cmp_test (void);
+static void long_cmp_test (void);
+static void allocate_matrix_test (void);
+static void allocate_array_test (void);
+static void copy_int_test (void);
+static void copy_long_test (void);
 
 #define ALLOC_SIZE	100
 
-int main () {
+int main (void) {
 	malloc_test ();
 	calloc_test ();
 	realloc_test ();
@@ -42,7 +42,7 @@ int main () {
 	return 0;
 }
 
-static void malloc_test () {
+static void malloc_test (void) {
 	int * p = x_malloc (ALLOC_SIZE * sizeof (int));
 
 	assert (p != NULL);
@@ -50,7 +50,7 @@ static void malloc_test () {
 	free (p);
 }
 
-static void calloc_test () {
+static void calloc_test (void) {
 	int * p = x_calloc (ALLOC_SIZE,  sizeof (int));
 
 	assert (p != NULL);
@@ -61,7 +61,7 @@ static void calloc_test () {
 	free (p);
 }
 
-static void realloc_test () {
+static void realloc_test (void) {
 	char * p = x_realloc (NULL, ALLOC_SIZE);
 
 	assert (p != NULL);
@@ -77,7 +77,7 @@ static void realloc_test () {
 	free (p);
 }
 
-static void getline_test () {
+static void getline_test (void) {
 	const char * filename = __FILE__;
 
 	if (strrchr (filename, '/'))
@@ -98,7 +98,7 @@ static void getline_test () {
 	fclose (f);
 }
 
-static void swap_chars_test () {
+static void swap_chars_test (void) {
 	char test_str[] = "ab";
 
 	swap (test_str, 0, 1);
@@ -106,13 +106,13 @@ static void swap_chars_test () {
 	assert (!strcmp (test_str, "ba"));
 }
 
-static void array_len_test () {
+static void array_len_test (void) {
 	int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 	assert (array_len (array) == 10);
 }
 
-static void string_cmp_test () {
+static void string_cmp_test (void) {
 	const char * strings[] = {"b", "a"};
 
 	qsort (strings, 2, sizeof (char *), string_cmp);
@@ -121,7 +121,7 @@ static void string_cmp_test () {
 	assert (!strcmp (strings[1], "b"));
 }
 
-static void char_cmp_test () {
+static void char_cmp_test (void) {
 	char string[] = "hello char";
 
 	qsort (string, strlen (string), 1, char_cmp);
@@ -129,7 +129,7 @@ static void char_cmp_test () {
 	assert (!strcmp (string, " acehhllor"));
 }
 
-static void int_cmp_test () {
+static void int_cmp_test (void) {
 	int ints[] = {5, 3, 8};
 
 	qsort (ints, array_len (ints), sizeof (int), int_cmp);
@@ -139,7 +139,7 @@ static void int_cmp_test () {
 	assert (ints[2] == 8);
 }
 
-static void long_cmp_test () {
+static void long_cmp_test (void) {
 	long longs[] = {5376528972765, 3237897640987, 8357123987649};
 
 	qsort (longs, array_len (longs), sizeof (long), long_cmp);
@@ -149,7 +149,7 @@ static void long_cmp_test () {
 	assert (longs[2] == 8357123987649);
 }
 
-static void allocate_matrix_test () {
+static void allocate_matrix_test (void) {
 	int ** im = allocate_matrix (10, 10, 1);
 
 	assert (im[0][0] == 1);
@@ -165,7 +165,7 @@ static void allocate_matrix_test () {
 	free_matrix (bm, 10);
 }
 
-static void allocate_array_test () {
+static void allocate_array_test (void) {
 	int * ia = allocate_array (10, 1);
 
 	assert (ia[0] == 1);
@@ -181,7 +181,7 @@ static void allocate_array_test () {
 	free (ba);
 }
 
-static void copy_int_test () {
+static void copy_int_test (void) {
 	int * i_ptr = copy_int (10);
 
 	assert (*i_ptr == 10);
@@ -189,7 +189,7 @@ static void copy_int_test () {
 	free (i_ptr);
 }
 
-static void copy_long_test () {
+static void copy_long_test (void) {
 	long * l_ptr = copy_long (9876543210);
 
 	assert (*l_ptr == 9876543210);

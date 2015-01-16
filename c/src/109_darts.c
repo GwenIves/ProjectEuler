@@ -12,7 +12,7 @@
 static int all_sections[SECTIONS_COUNT];
 static int double_sections[DOUBLES_COUNT];
 
-static void initialise ();
+static void initialise (void);
 static int darts_combinations (int);
 
 int main (int argc, char ** argv) {
@@ -38,7 +38,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static void initialise () {
+static void initialise (void) {
 	size_t section = 0;
 	size_t double_section = 0;
 

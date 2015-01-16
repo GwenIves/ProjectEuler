@@ -9,7 +9,7 @@
 static bool pair_qualifies (char *, char *);
 static bool die_contains_face (char *, int);
 
-int main () {
+int main (void) {
 	int count = 0;
 
 	char die1[DIGITS_COUNT + 1] = "0000111111";

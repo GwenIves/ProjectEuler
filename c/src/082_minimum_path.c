@@ -11,7 +11,7 @@
 
 static int down_cost (int **, int, int, int, int);
 
-int main () {
+int main (void) {
 	int rows = 0;
 
 	int ** matrix = load_square (&rows);

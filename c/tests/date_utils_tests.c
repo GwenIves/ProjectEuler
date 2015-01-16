@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include "date_utils.h"
 
-static void is_leap_year_test ();
+static void is_leap_year_test (void);
 
-int main () {
+int main (void) {
 	is_leap_year_test ();
 
 	printf ("All date util tests passed\n");
@@ -12,7 +12,7 @@ int main () {
 	return 0;
 }
 
-static void is_leap_year_test () {
+static void is_leap_year_test (void) {
 	assert (is_leap_year (2000) == 1);
 	assert (is_leap_year (1900) == 0);
 	assert (is_leap_year (1904) == 1);

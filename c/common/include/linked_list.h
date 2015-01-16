@@ -24,7 +24,7 @@ typedef struct {
 #define linked_list_free(l) linked_list_free_ (l, true)
 #define linked_list_copy(l,t) linked_list_copy_ (l, sizeof (t))
 
-linked_list_t * linked_list_create ();
+linked_list_t * linked_list_create (void);
 linked_list_t * linked_list_copy_ (linked_list_t *, size_t);
 list_node_t * linked_list_add (linked_list_t *, void *);
 list_node_t * linked_list_insert_after (linked_list_t *, list_node_t *, void *);

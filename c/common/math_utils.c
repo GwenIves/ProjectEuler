@@ -614,7 +614,7 @@ bool prev_permutation (char * seq) {
 	return true;
 }
 
-long next_fibonacci_num () {
+long next_fibonacci_num (void) {
 	static long f1 = 0;
 	static long f2 = 1;
 
@@ -626,7 +626,7 @@ long next_fibonacci_num () {
 	return f;
 }
 
-long next_triangle_num () {
+long next_triangle_num (void) {
 	static long last_index = 0;
 	static long last_num = 0;
 
@@ -636,7 +636,7 @@ long next_triangle_num () {
 	return last_num;
 }
 
-long next_square_num () {
+long next_square_num (void) {
 	static long last_index = 0;
 
 	last_index++;
@@ -644,7 +644,7 @@ long next_square_num () {
 	return last_index * last_index;
 }
 
-long next_pentagonal_num () {
+long next_pentagonal_num (void) {
 	static long last_index = 0;
 	static long last_num = 0;
 
@@ -676,7 +676,7 @@ int next_generalised_pentagonal_num (bool reset) {
 	return num;
 }
 
-long next_hexagonal_num () {
+long next_hexagonal_num (void) {
 	static long last_index = 0;
 	static long last_num = 0;
 
@@ -686,7 +686,7 @@ long next_hexagonal_num () {
 	return last_num;
 }
 
-long next_heptagonal_num () {
+long next_heptagonal_num (void) {
 	static long last_index = 0;
 	static long last_num = 0;
 
@@ -696,7 +696,7 @@ long next_heptagonal_num () {
 	return last_num;
 }
 
-long next_octagonal_num () {
+long next_octagonal_num (void) {
 	static long last_index = 0;
 	static long last_num = 0;
 

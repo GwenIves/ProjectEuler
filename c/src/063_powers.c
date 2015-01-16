@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include "bignum.h"
 
-int main () {
+int main (void) {
 	int count = 0;
 
 	for (int i = 1; i <= 9; i++) {

@@ -7,7 +7,7 @@
 
 static int search_solutions (int, int);
 
-int main () {
+int main (void) {
 	int dif = 0;
 	int limit = 10;
 

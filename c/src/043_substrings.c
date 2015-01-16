@@ -9,7 +9,7 @@
 
 #define SUBSTR_LEN	3
 
-int main () {
+int main (void) {
 	int primes[] = {-1, 2, 3, 5, 7, 11, 13, 17};
 
 	char digits[] = "0123456789";

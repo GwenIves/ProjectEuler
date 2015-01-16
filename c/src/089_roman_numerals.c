@@ -12,7 +12,7 @@ static int roman_digit_value (char);
 static int roman_to_arabic (char *);
 static char * arabic_to_roman (int);
 
-int main () {
+int main (void) {
 	char * line = NULL;
 	ssize_t len = 0;
 
