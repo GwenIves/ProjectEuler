@@ -6,7 +6,7 @@
 
 #define bignum_get(X) _Generic((X), \
 	int: bignum_get_int, \
-	char *: bignum_get_str)(X)
+	const char *: bignum_get_str)(X)
 
 #define bignum_mult(X,Y) _Generic((Y), \
 	int: bignum_mult_int, \
@@ -28,7 +28,7 @@ typedef struct {
 } bignum_t;
 
 bignum_t * bignum_get_int (int);
-bignum_t * bignum_get_str (char *);
+bignum_t * bignum_get_str (const char *);
 
 void bignum_delete (bignum_t *);
 void bignum_print (bignum_t *);

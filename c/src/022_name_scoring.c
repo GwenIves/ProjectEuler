@@ -11,7 +11,7 @@
 
 static int score_name (char *);
 static char ** read_names (int *);
-static void free_names (char **, int);
+static void free_names (char **, size_t);
 
 int main () {
 	int names_count = 0;
@@ -72,7 +72,7 @@ static char ** read_names (int * count) {
 	return names;
 }
 
-static void free_names (char ** names, int count) {
+static void free_names (char ** names, size_t count) {
 	free_array (names, count);
 	free (names);
 }

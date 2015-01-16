@@ -39,7 +39,7 @@ void * x_realloc (void * ptr, size_t size) {
 ssize_t x_getline (char ** line, FILE * file) {
 	size_t allocated = 0;
 
-	ssize_t len = getline (line, &allocated, file); 
+	ssize_t len = getline (line, &allocated, file);
 
 	if (len == -1) {
 		free (*line);
@@ -226,12 +226,12 @@ bool * allocate_array_bool (size_t size, bool init_value) {
 	return array;
 }
 
-void free_matrix_int (int ** matrix, int rows) {
+void free_matrix_int (int ** matrix, size_t rows) {
 	free_array (matrix, rows);
 	free (matrix);
 }
 
-void free_matrix_bool (bool ** matrix, int rows) {
+void free_matrix_bool (bool ** matrix, size_t rows) {
 	free_array (matrix, rows);
 	free (matrix);
 }

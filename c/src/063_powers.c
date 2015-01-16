@@ -18,7 +18,7 @@ int main () {
 			value = bignum_mult_to (value, i);
 			power++;
 
-			if (value->used == power)
+			if ((int) value->used == power)
 				count++;
 			else
 				break;

@@ -11,7 +11,7 @@
 static bool is_truncatable (bool *, int);
 
 int main () {
-	size_t limit = 1000;
+	int limit = 1000;
 	int count = 0;
 	int sum = 0;
 

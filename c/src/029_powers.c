@@ -19,7 +19,7 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	bignum_t * powers[(N - 1) * (N - 1)];
-	int powers_count = 0;
+	size_t powers_count = 0;
 
 	bool * primes = eratosthenes_sieve (N + 1);
 
@@ -41,7 +41,7 @@ int main (int argc, char ** argv) {
 
 			// Powers of a prime base cannot be duplicates
 			if (!primes[a])
-				for (int i = 0; i < powers_count; i++)
+				for (size_t i = 0; i < powers_count; i++)
 					if (bignum_cmp (powers[i], new_power) == 0) {
 						duplicate_at = i;
 						break;
@@ -57,7 +57,7 @@ int main (int argc, char ** argv) {
 		}
 	}
 
-	printf ("%d\n", powers_count);
+	printf ("%d\n", (int) powers_count);
 
 	bignum_free_array (powers, powers_count);
 	free (primes);

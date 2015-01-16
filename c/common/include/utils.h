@@ -52,7 +52,7 @@ bool ** allocate_matrix_bool (size_t, size_t, bool);
 int * allocate_array_int (size_t, int);
 bool * allocate_array_bool (size_t, bool);
 
-void free_matrix_int (int **, int);
-void free_matrix_bool (bool **, int);
+void free_matrix_int (int **, size_t);
+void free_matrix_bool (bool **, size_t);
 
 #endif

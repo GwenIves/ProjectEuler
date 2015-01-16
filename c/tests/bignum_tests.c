@@ -38,7 +38,7 @@ static void bignum_get_int_test () {
 	bignum_t * num = bignum_get (876543210);
 
 	for (size_t i = 0; i < num->used; i++)
-		assert (num->digits[i] == i);
+		assert (num->digits[i] == (int) i);
 
 	bignum_delete (num);
 }
@@ -47,7 +47,7 @@ static void bignum_get_str_test () {
 	bignum_t * num = bignum_get ("9876543210");
 
 	for (size_t i = 0; i < num->used; i++)
-		assert (num->digits[i] == i);
+		assert (num->digits[i] == (int) i);
 
 	bignum_delete (num);
 }

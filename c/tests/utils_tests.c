@@ -78,7 +78,7 @@ static void realloc_test () {
 }
 
 static void getline_test () {
-	char * filename = __FILE__;
+	const char * filename = __FILE__;
 
 	if (strrchr (filename, '/'))
 		filename = strrchr (filename, '/') + 1;
@@ -113,7 +113,7 @@ static void array_len_test () {
 }
 
 static void string_cmp_test () {
-	char * strings[] = {"b", "a"};
+	const char * strings[] = {"b", "a"};
 
 	qsort (strings, 2, sizeof (char *), string_cmp);
 

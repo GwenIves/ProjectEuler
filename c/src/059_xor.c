@@ -17,9 +17,9 @@
 #define COMMON_WORD	1
 #define OTHER_WORD	-1
 
-static char * common_words[] = {"the", "be", "to", "of", "and", "a", "in", "that", "have", "I"};
+static const char * common_words[] = {"the", "be", "to", "of", "and", "a", "in", "that", "have", "I"};
 
-static bool next_password (int *, int);
+static bool next_password (int *, size_t);
 static int check_letter (int);
 
 int main (int argc, char ** argv) {
@@ -40,7 +40,7 @@ int main (int argc, char ** argv) {
 	while (next_password (password, N)) {
 		int encrypted = 0;
 
-		size_t password_cursor = 0;
+		int password_cursor = 0;
 
 		int common_words_count = 0;
 		int other_words_count = 0;
@@ -82,7 +82,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static bool next_password (int * password, int len) {
+static bool next_password (int * password, size_t len) {
 	if (password[0] == 0) {
 		for (size_t i = 0; i < len; i++)
 			password[i] = 'a';

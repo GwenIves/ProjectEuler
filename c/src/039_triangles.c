@@ -44,7 +44,7 @@ int main (int argc, char ** argv) {
 	int max_count = 0;
 	int perimeter_when_max = 0;
 
-	for (int i = 0; i < array_len (counts); i++)
+	for (size_t i = 0; i < array_len (counts); i++)
 		if (counts[i] > max_count) {
 			max_count = counts[i];
 			perimeter_when_max = i;

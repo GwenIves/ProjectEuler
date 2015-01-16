@@ -61,7 +61,7 @@ int main (int argc, char ** argv) {
 
 	int count = 0;
 
-	for (size_t i = 0; i < N; i++)
+	for (int i = 0; i < N; i++)
 		if (representable[i])
 			count++;
 

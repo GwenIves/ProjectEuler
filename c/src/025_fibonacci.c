@@ -31,7 +31,7 @@ int main (int argc, char ** argv) {
 		fib = bignum_add (fib1, fib2);
 		term++;
 
-		if (fib->used == N) {
+		if ((int) fib->used == N) {
 			printf ("%d\n", term);
 			bignum_delete (fib);
 			break;

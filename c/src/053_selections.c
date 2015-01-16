@@ -31,8 +31,8 @@ int main (int argc, char ** argv) {
 
 	factorials[0] = bignum_get (LIMIT);
 
-	for (int i = 1; i < array_len (factorials); i++)
-		factorials[i] = bignum_mult (factorials[i - 1], i);
+	for (size_t i = 1; i < array_len (factorials); i++)
+		factorials[i] = bignum_mult (factorials[i - 1], (int) i);
 
 	int count = 0;
 

@@ -38,7 +38,7 @@ int main (int argc, char ** argv) {
 
 	long * p_ptr = NULL;
 
-	for (size_t i = 0; i < N; i++)
+	for (int i = 0; i < N; i++)
 		if ((p_ptr = linked_list_next (sequence, long)) == NULL)
 			return 1;
 

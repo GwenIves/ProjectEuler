@@ -26,7 +26,7 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	int sum = 0;
-	size_t search_limit = 1300; // Hand-picked so that we find the minium in one iteration for N <= 5, can be any number
+	int search_limit = 1300; // Hand-picked so that we find the minium in one iteration for N <= 5, can be any number
 	int boundary = 0;
 
 	while ((sum = find_minimum (N, search_limit, &boundary)) == 0)
@@ -140,7 +140,7 @@ static int get_min_sum (linked_list_t * tuples, size_t size, int * primes) {
 	while ((p = linked_list_next (tuples, int)) != NULL) {
 		int prefix_sum = 0;
 
-		for (int i = 0; i < size; i++)
+		for (size_t i = 0; i < size; i++)
 			prefix_sum += primes[p[i]];
 
 		if (min_prefix_sum == 0 || prefix_sum < min_prefix_sum)

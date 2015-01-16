@@ -200,7 +200,7 @@ static void is_prime_long_test () {
 	int * primes = x_malloc (primes_under * sizeof (int));
 	size_t primes_count = 0;
 
-	for (size_t i = 2; i < primes_under; i++)
+	for (int i = 2; i < primes_under; i++)
 		if (sieve[i])
 			primes[primes_count++] = i;
 

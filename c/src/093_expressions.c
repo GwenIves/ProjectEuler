@@ -19,7 +19,7 @@ enum eval_errors {DIV_BY_ZERO = 1};
 // Global variable set by evaluate () upon error
 static int g_evaluate_errno = 0;
 
-static bool next_set (int *, size_t, int);
+static bool next_set (int *, size_t, size_t);
 static linked_list_t * get_all_values (int *);
 static int get_sequence_length (linked_list_t *);
 static void evaluate_all (char *, int *, linked_list_t *);
@@ -153,7 +153,7 @@ static int get_sequence_length (linked_list_t * results) {
 	return expected_result - 1;
 }
 
-static bool next_set (int * set, size_t set_size, int element_max) {
+static bool next_set (int * set, size_t set_size, size_t element_max) {
 	static char * set_mask = NULL;
 
 	if (set_mask == NULL) {

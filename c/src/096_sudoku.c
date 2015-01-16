@@ -82,7 +82,7 @@ static int solve_by_deduction (int game[9][9], size_t * min_row, size_t * min_co
 	size_t blank_count = 0;
 	bool solving = false;
 
-	size_t min_solutions = -1;
+	int min_solutions = -1;
 	size_t min_i = 0;
 	size_t min_j = 0;
 
@@ -101,7 +101,7 @@ static int solve_by_deduction (int game[9][9], size_t * min_row, size_t * min_co
 
 				find_possible_placements (game, possible_placements, i, j);
 
-				size_t possible_count = 0;
+				int possible_count = 0;
 				size_t possible_at = 0;
 
 				for (size_t k = 1; k <= 9; k++)

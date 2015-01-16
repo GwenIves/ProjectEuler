@@ -45,9 +45,9 @@ int main (int argc, char ** argv) {
 
 	int sum = 0;
 
-	for (int i = 2; i < limit ; i++)
+	for (size_t i = 2; i < limit ; i++)
 		if (mins[i])
-			sum += i;
+			sum += (int) i;
 
 	printf ("%d\n", sum);
 

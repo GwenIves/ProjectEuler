@@ -35,16 +35,16 @@ int main (int argc, char ** argv) {
 
 	prev_row[0] = 0;
 
-	for (size_t i = 0; i < N; i++) {
+	for (int i = 0; i < N; i++) {
 		current_row[0] = 1;
 		current_row[i] = 1;
 
-		for (size_t j = 1; j < i; j++)
+		for (int j = 1; j < i; j++)
 			current_row[j] = prev_row[j - 1] + prev_row[j];
 
 		memcpy (prev_row, current_row, (i + 1) * sizeof (long));
 
-		for (size_t j = 0; j <= i / 2; j++) {
+		for (int j = 0; j <= i / 2; j++) {
 			long value = current_row[j];
 
 			if (is_square_free (value, prime_squares, primes_count))

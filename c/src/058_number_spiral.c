@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 	int numbers_count = 5;
 	int primes_count = 0;
 
-	size_t size = 1000;
+	int size = 1000;
 
 	while (true) {
 		bool * primes = eratosthenes_sieve (size);

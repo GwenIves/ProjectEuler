@@ -24,7 +24,7 @@ int main () {
 
 	vertex_connected[0] = true;
 
-	for (size_t pass = 1; pass < vertex_count; pass++) {
+	for (int pass = 1; pass < vertex_count; pass++) {
 		int minimum_edge = -1;
 		int min_i = 0;
 		int min_j = 0;

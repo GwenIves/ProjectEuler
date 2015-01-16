@@ -53,14 +53,15 @@ int * primes_under (bool * sieve, size_t limit, size_t * primes_count) {
 
 	count = 0;
 
-	for (int i = 2; i < limit; i++)
+	for (size_t i = 2; i < limit; i++)
 		if (sieve[i])
-			primes[count++] = i;
+			primes[count++] = (int) i;
 
 	if (should_free)
 		free (sieve);
 
 	*primes_count = count;
+
 	return primes;
 }
 
@@ -70,7 +71,7 @@ bool is_prime (int num, bool * primes, size_t primes_size) {
 		return false;
 	else if (num <= 3)
 		return true;
-	else if (num < primes_size)
+	else if (num < (int) primes_size)
 		return primes[num];
 	else if (num % 2 == 0)
 		return false;
@@ -97,7 +98,7 @@ bool is_prime_long (long num, bool * sieve, size_t sieve_size, int * primes, siz
 		return false;
 	else if (num <= 3)
 		return true;
-	else if (num < sieve_size)
+	else if (num < (int) sieve_size)
 		return sieve[num];
 	else if (num % 2 == 0)
 		return false;
@@ -152,7 +153,7 @@ static bool mr_test (long num, long r, long s, int tests) {
 
 	const long minus1_mod_num = num - 1;
 
-	if (tests > array_len (primes))
+	if (tests > (int) array_len (primes))
 		tests = array_len (primes);
 
 	for (int test = 0; test < tests; test++) {

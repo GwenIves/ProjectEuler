@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-static size_t primes_family_size (bool *, int, size_t);
+static int primes_family_size (bool *, int, size_t);
 static int replace_digits (char *, char *, int);
 static void fill_digit_mask (char *, size_t, size_t);
 
@@ -21,7 +21,7 @@ int main (int argc, char ** argv) {
 	if (N <= 0 || N > DIGITS_COUNT)
 		return 1;
 
-	size_t limit = 1000;
+	int limit = 1000;
 
 	int prime = 2;
 	size_t prime_digits = 1;
@@ -51,11 +51,11 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static size_t primes_family_size (bool * primes, int prime, size_t prime_digits) {
+static int primes_family_size (bool * primes, int prime, size_t prime_digits) {
 	char prime_str[prime_digits + 1];
 	sprintf (prime_str, "%d", prime);
 
-	size_t max_size = 0;
+	int max_size = 0;
 
 	for (size_t digits_to_mask = 1; digits_to_mask <= prime_digits; digits_to_mask++) {
 		char digit_mask[prime_digits + 1];
@@ -63,7 +63,7 @@ static size_t primes_family_size (bool * primes, int prime, size_t prime_digits)
 		fill_digit_mask (digit_mask, prime_digits, digits_to_mask);
 
 		do {
-			size_t family_size = 0;
+			int family_size = 0;
 			bool generating_prime_member = false;
 
 			for (int digit = 0; digit < DIGITS_COUNT; digit++) {

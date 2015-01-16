@@ -24,7 +24,7 @@ int main (int argc, char ** argv) {
 	while (N > modulo)
 		modulo *= 10;
 
-	size_t allocated = 1;
+	int allocated = 1;
 	long * partitions = x_malloc (allocated * sizeof (long));
 
 	partitions[0] = 1;

@@ -25,10 +25,10 @@ int main () {
 
 	long winning_rolls = 0;;
 
-	for (size_t i = 0; i < max_roll_b; i++) {
+	for (int i = 0; i < max_roll_b; i++) {
 		int sum = 0;
 
-		for (size_t j = i + 1; j < max_roll_a; j++)
+		for (int j = i + 1; j < max_roll_a; j++)
 			sum += roll_counts_a[j];
 
 		winning_rolls += roll_counts_b[i] * sum;

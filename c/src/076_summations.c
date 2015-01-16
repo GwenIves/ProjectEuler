@@ -20,8 +20,8 @@ int main (int argc, char ** argv) {
 
 	int values[N - 1];
 
-	for (int i = 0; i < array_len (values); i++)
-		values[i] = i + 1;
+	for (size_t i = 0; i < array_len (values); i++)
+		values[i] = (int) i + 1;
 
 	printf ("%d\n", count_representation_combinations (values, array_len (values) - 1, N));
 

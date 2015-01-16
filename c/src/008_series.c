@@ -26,11 +26,11 @@ int main (int argc, char ** argv) {
 	long prev_product = 0;
 	long max_product = 0;
 
-	for (size_t i = 0; i <= series_size - N; i++) {
+	for (ssize_t i = 0; i <= series_size - N; i++) {
 		long product = 0;
 
 		if (i == 0 || series[i - 1] == '0') {
-			for (size_t j = 0; j < N; j++) {
+			for (int j = 0; j < N; j++) {
 				int digit = series[i + j] - '0';
 
 				if (j == 0)

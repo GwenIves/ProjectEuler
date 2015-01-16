@@ -13,7 +13,7 @@ int main () {
 	bignum_t * sum = bignum_get (0);
 
 	while (x_getline (&line, stdin) != -1) {
-		sum = bignum_add_to (sum, bignum_get (line));
+		sum = bignum_add_to (sum, bignum_get ((const char *) line));
 
 		free (line);
 	}

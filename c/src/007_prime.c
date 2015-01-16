@@ -21,7 +21,7 @@ int main (int argc, char ** argv) {
 		return 0;
 	}
 
-	size_t size = prime_count_inverse (N);
+	int size = prime_count_inverse (N);
 
 	int prime = 3;
 	int prime_count = 1;

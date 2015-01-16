@@ -7,8 +7,8 @@
 #include <math.h>
 #include "math_utils.h"
 
-static long get_run_sum (char, int, int, int *, size_t);
-static void fill_candidate (char *, char, int, int *, int);
+static long get_run_sum (char, size_t, int, int *, size_t);
+static void fill_candidate (char *, char, size_t, int *, size_t);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -43,13 +43,13 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static long get_run_sum (char run_digit, int run_len, int N, int * primes, size_t primes_count) {
+static long get_run_sum (char run_digit, size_t run_len, int N, int * primes, size_t primes_count) {
 	long sum = 0;
 
 	char candidate[N + 1];
 	candidate[N] = '\0';
 
-	int rest_len = N - run_len;
+	size_t rest_len = N - run_len;
 
 	int rest_digits[rest_len];
 
@@ -73,7 +73,7 @@ static long get_run_sum (char run_digit, int run_len, int N, int * primes, size_
 	return sum;
 }
 
-static void fill_candidate (char * candidate, char run_digit, int run_len, int * rest_digits, int rest_len) {
+static void fill_candidate (char * candidate, char run_digit, size_t run_len, int * rest_digits, size_t rest_len) {
 	size_t i = 0;
 	size_t j = 0;
 

@@ -30,7 +30,7 @@ bignum_t * bignum_get_int (int value) {
 	return num;
 }
 
-bignum_t * bignum_get_str (char * value) {
+bignum_t * bignum_get_str (const char * value) {
 	bignum_t * num = x_malloc (sizeof (bignum_t));
 
 	bignum_init (num);
@@ -41,7 +41,7 @@ bignum_t * bignum_get_str (char * value) {
 	if (*value == '-')
 		num->sign = true;
 
-	char * tail_ptr = NULL;
+	const char * tail_ptr = NULL;
 
 	if (!*value)
 		tail_ptr = value;
@@ -130,7 +130,7 @@ bignum_t * bignum_pow (int num, int pow, int truncate) {
 		}
 
 		if (truncate >= 0)
-			result->used = MIN (truncate, result->used);
+			result->used = MIN (truncate, (int) result->used);
 
 		power_mask >>= 1;
 	}
