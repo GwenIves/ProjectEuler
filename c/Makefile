@@ -23,7 +23,7 @@ VPATH := common
 
 .PHONY: build
 build: CFLAGS += -O3
-build:  $(executables)
+build: $(executables)
 
 .PHONY: debug
 debug: CFLAGS += -O0 -g

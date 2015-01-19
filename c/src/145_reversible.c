@@ -102,7 +102,7 @@ static void get_limits (int N, int * count_out, int * start_at_out) {
 	}
 
 	if (N >= 1000000) {
-		 // Six digit solutions acefdb - similar to four digits
+		// Six digit solutions acefdb - similar to four digits
 		count += 20 * 30 * 30;
 		start_at = 1000000;
 	}

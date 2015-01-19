@@ -51,7 +51,7 @@ static void malloc_test (void) {
 }
 
 static void calloc_test (void) {
-	int * p = x_calloc (ALLOC_SIZE,  sizeof (int));
+	int * p = x_calloc (ALLOC_SIZE, sizeof (int));
 
 	assert (p != NULL);
 

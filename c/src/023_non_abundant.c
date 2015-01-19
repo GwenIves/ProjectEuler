@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "math_utils.h"
 
-#define KNOWN_UPPER_LIMIT	 28123
+#define KNOWN_UPPER_LIMIT	28123
 
 int main (void) {
 	long abundant_nums[KNOWN_UPPER_LIMIT];

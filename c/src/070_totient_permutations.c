@@ -130,7 +130,7 @@ static bool search_for_solutions (bool * sieve, size_t primes_count, int N, doub
 
 // Recursively build the list of all factorisations involving "primes" number of primes whose product is under "under" using primes larger or equal to "from"
 static void gather_factorisations (linked_list_t * factorisations, bool * sieve, size_t primes, int from, int under, linked_list_t * factorisation) {
-	int value =  1;
+	int value = 1;
 
 	if (factorisation)
 		value = factors_to_value (factorisation);

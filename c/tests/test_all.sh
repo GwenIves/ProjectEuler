@@ -46,7 +46,7 @@ assert_blank ()
 
 assert_fail ()
 {
-	eval $1 > /dev/null 2>&1 
+	eval $1 > /dev/null 2>&1
 
 	result=$?
 

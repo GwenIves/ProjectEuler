@@ -371,7 +371,7 @@ static int bignum_magnitude_cmp (bignum_t * a, bignum_t * b) {
 	else {
 		for (int i = a->used - 1; i >= 0; i--) {
 			int diff = a->digits[i] - b->digits[i];
-			
+
 			if (diff)
 				return diff;
 		}

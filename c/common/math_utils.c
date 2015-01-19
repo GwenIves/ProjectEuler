@@ -136,13 +136,13 @@ bool miller_rabin (long num) {
 		return mr_test (num, r, s, 1);
 	else if (num < 1373653L)
 		return mr_test (num, r, s, 2);
-	else if (num <  25326001L)
+	else if (num < 25326001L)
 		return mr_test (num, r, s, 3);
-	else if (num <  3215031751L)
+	else if (num < 3215031751L)
 		return mr_test (num, r, s, 4);
-	else if (num <  2152302898747L)
+	else if (num < 2152302898747L)
 		return mr_test (num, r, s, 5);
-	else if (num <  3474749660383L)
+	else if (num < 3474749660383L)
 		return mr_test (num, r, s, 6);
 	else
 		return mr_test (num, r, s, 7);
