@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "linked_list.h"
 
 static int max_remainder (int);
 
@@ -30,50 +29,24 @@ int main (int argc, char ** argv) {
 }
 
 static int max_remainder (int a) {
-	linked_list_t * remainders = linked_list_create ();
+	/*
+	 * When the powers in the sum are expanded using the binomial theorem, all terms with powers >= 2 are 0 mod (a^2), so:
+	 *  (a + 1) ^ n = n * a + 1 mod (a^2)
+	 *  (a - 1) ^ n = n * a - 1 mod (a^2) if n is odd
+	 *  (a - 1) ^ n = -n * a + 1 mod (a^2) if n is even
+	 *
+	 * Therefore, the remainder must be either 2 (when n is even) or 2n * a (when odd)
+	 *
+	 * The maximal remainder will then be the largest 2n * a < a^2
+	 * that is, 2n * a for max n, n < a / 2
+	 */
 
-	int a_less_1 = a - 1;
-	int a_plus_1 = a + 1;
-	int mod = a * a;
+	int max_n = 0;
 
-	int power_1 = a_less_1;
-	int power_2 = a_plus_1;
+	if (a % 2 == 0)
+		max_n = a / 2 - 1;
+	else
+		max_n = a / 2;
 
-	int max = (power_1 + power_2) % mod;
-
-	while (true) {
-		int new_power_1 = (power_1 * a_less_1) % mod;
-		int new_power_2 = (power_2 * a_plus_1) % mod;
-
-		bool encountered_before = false;
-
-		int * p_ptr = NULL;
-
-		while ((p_ptr = linked_list_next (remainders, int)) != NULL)
-			if (p_ptr[0] == new_power_1 && p_ptr[1] == new_power_2) {
-				encountered_before = true;
-
-				linked_list_stop_iteration (remainders);
-				break;
-			}
-
-		if (encountered_before)
-			break;
-
-		power_1 = new_power_1;
-		power_2 = new_power_2;
-
-		int sum = (power_1 + power_2) % mod;
-
-		if (sum > max)
-			max = sum;
-
-		p_ptr = linked_list_add_empty_array (remainders, 2, int);
-		p_ptr[0] = power_1;
-		p_ptr[1] = power_2;
-	}
-
-	linked_list_free (remainders);
-
-	return max;
+	return 2 * max_n * a;
 }
