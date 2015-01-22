@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "utils.h"
 #include "math_utils.h"
 #include "linked_list.h"
@@ -36,6 +37,13 @@ int main (int argc, char ** argv) {
 
 	if (N < OPERAND_COUNT)
 		return 1;
+	else if (N > CHAR_MAX) {
+		/*
+		 * Operands downcast to chars for processing by next_permutation ()
+		 * Extend next_permutatation () to handle arbitrary integer arrays if larger N needed
+		 */
+		return 1;
+	}
 
 	int max_length = 0;
 	int max_len_operands[OPERAND_COUNT];
