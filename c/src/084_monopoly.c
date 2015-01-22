@@ -19,7 +19,7 @@ enum positions {START = 0, A1, CC1, A2, T1, R1, B1, CH1, B2, B3,
 enum cc_cards {CC_GO = 0, CC_JAIL};
 enum ch_cards {CH_GO = 0, CH_JAIL, CH_C1, CH_E3, CH_H2, CH_R1, CH_NEXT_R1, CH_NEXT_R2, CH_NEXT_U, CH_BACK3};
 
-static int get_most_frequent (int *, int);
+static int get_most_frequent (const int *, int);
 static void shuffle_cards (int *, int);
 
 int main (int argc, char ** argv) {
@@ -146,7 +146,7 @@ static void shuffle_cards (int * deck, int count) {
 	}
 }
 
-static int get_most_frequent (int * frequencies, int size) {
+static int get_most_frequent (const int * frequencies, int size) {
 	int most_frequent = 0;
 
 	for (int i = 1; i < size; i++)

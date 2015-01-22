@@ -35,7 +35,7 @@ typedef struct {
 } match_t;
 
 static bool read_match (char *, match_t *);
-static bool parse_card_spec (char *, card_t *);
+static bool parse_card_spec (const char *, card_t *);
 static int rank_match (match_t *);
 static void rank_hand (hand_t *);
 static int value_cmp (const void *, const void *);
@@ -166,7 +166,7 @@ static bool read_match (char * match_spec, match_t * match) {
 	return true;
 }
 
-static bool parse_card_spec (char * spec, card_t * card) {
+static bool parse_card_spec (const char * spec, card_t * card) {
 	switch (spec[0]) {
 		case '2':
 		case '3':

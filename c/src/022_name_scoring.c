@@ -9,7 +9,7 @@
 #include <ctype.h>
 #include "utils.h"
 
-static int score_name (char *);
+static int score_name (const char *);
 static char ** read_names (int *);
 static void free_names (char **, size_t);
 
@@ -34,7 +34,7 @@ int main (void) {
 	return 0;
 }
 
-static int score_name (char * name) {
+static int score_name (const char * name) {
 	int alpha_value = 0;
 
 	while (*name) {

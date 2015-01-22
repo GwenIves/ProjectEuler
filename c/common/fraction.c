@@ -24,7 +24,7 @@ void fraction_reduce (fraction_t * f) {
 	}
 }
 
-fraction_t fraction_add (fraction_t * a, fraction_t * b) {
+fraction_t fraction_add (const fraction_t * a, const fraction_t * b) {
 	fraction_t c;
 
 	c.denominator = a->denominator * b->denominator;
@@ -50,13 +50,13 @@ fraction_t fraction_add (fraction_t * a, fraction_t * b) {
 	return c;
 }
 
-fraction_t fraction_sub (fraction_t * a, fraction_t * b) {
+fraction_t fraction_sub (const fraction_t * a, const fraction_t * b) {
 	fraction_t b_neg = {.nominator = b->nominator, .denominator = b->denominator, .sign = !b->sign};
 
 	return fraction_add (a, &b_neg);
 }
 
-fraction_t fraction_mult (fraction_t * a, fraction_t * b) {
+fraction_t fraction_mult (const fraction_t * a, const fraction_t * b) {
 	fraction_t c;
 
 	c.denominator = a->denominator * b->denominator;
@@ -69,13 +69,13 @@ fraction_t fraction_mult (fraction_t * a, fraction_t * b) {
 }
 
 // The caller must ensure b != 0
-fraction_t fraction_div (fraction_t * a, fraction_t * b) {
+fraction_t fraction_div (const fraction_t * a, const fraction_t * b) {
 	fraction_t b_inv = {.nominator = b->denominator, .denominator = b->nominator, .sign = b->sign};
 
 	return fraction_mult (a, &b_inv);
 }
 
-int fraction_cmp (fraction_t * a, fraction_t * b) {
+int fraction_cmp (const fraction_t * a, const fraction_t * b) {
 	if (a->sign ^ b->sign)
 		return b->sign ? 1 : -1;
 

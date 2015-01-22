@@ -25,7 +25,7 @@ typedef struct {
 } cf_convergent_t;
 
 bool cf_expand_sqrt_continued_fraction (cf_sqrt_step_t *);
-bool cf_sqrt_steps_identical (cf_sqrt_step_t *, cf_sqrt_step_t *);
+bool cf_sqrt_steps_identical (const cf_sqrt_step_t *, const cf_sqrt_step_t *);
 
 cf_convergent_t cf_evaluate (linked_list_t *);
 

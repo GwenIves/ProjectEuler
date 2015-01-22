@@ -8,7 +8,7 @@
 
 #define KNOWN_COUNT	11
 
-static bool is_truncatable (bool *, int);
+static bool is_truncatable (const bool *, int);
 
 int main (void) {
 	int limit = 1000;
@@ -42,7 +42,7 @@ int main (void) {
 	return 0;
 }
 
-static bool is_truncatable (bool * sieve, int prime) {
+static bool is_truncatable (const bool * sieve, int prime) {
 	int num = prime;
 
 	while (num > 0) {

@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-static int formula_primes (bool *, int, int);
+static int formula_primes (const bool *, int, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -52,7 +52,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static int formula_primes (bool * primes, int a, int b) {
+static int formula_primes (const bool * primes, int a, int b) {
 	int x = 0;
 	int primes_count = 0;
 

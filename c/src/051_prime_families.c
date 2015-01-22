@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-static int primes_family_size (bool *, int, size_t);
-static int replace_digits (char *, char *, int);
+static int primes_family_size (const bool *, int, size_t);
+static int replace_digits (const char *, const char *, int);
 static void fill_digit_mask (char *, size_t, size_t);
 
 int main (int argc, char ** argv) {
@@ -51,7 +51,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static int primes_family_size (bool * primes, int prime, size_t prime_digits) {
+static int primes_family_size (const bool * primes, int prime, size_t prime_digits) {
 	char prime_str[prime_digits + 1];
 	sprintf (prime_str, "%d", prime);
 
@@ -98,7 +98,7 @@ static void fill_digit_mask (char * mask, size_t size, size_t masked_size) {
 	mask[size] = '\0';
 }
 
-static int replace_digits (char * digits, char * mask, int replacement) {
+static int replace_digits (const char * digits, const char * mask, int replacement) {
 	int result = 0;
 
 	for (size_t i = 0; digits[i] != '\0'; i++) {

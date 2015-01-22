@@ -28,7 +28,7 @@ bool cf_expand_sqrt_continued_fraction (cf_sqrt_step_t * f) {
 	return true;
 }
 
-bool cf_sqrt_steps_identical (cf_sqrt_step_t * f1, cf_sqrt_step_t * f2) {
+bool cf_sqrt_steps_identical (const cf_sqrt_step_t * f1, const cf_sqrt_step_t * f2) {
 	if (f1->a != f2->a)
 		return false;
 	else if (f1->b != f2->b)

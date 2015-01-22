@@ -11,7 +11,7 @@
 #include "linked_list.h"
 
 static linked_list_t * read_subsequences (void);
-static void find_passcodes (char * prefix, linked_list_t *);
+static void find_passcodes (const char * prefix, linked_list_t *);
 
 int main (void) {
 	linked_list_t * subsequences = read_subsequences ();
@@ -27,7 +27,7 @@ int main (void) {
 }
 
 // Recursively build up prefix using all possible topological sortings of the subsequences
-static void find_passcodes (char * prefix, linked_list_t * subsequences) {
+static void find_passcodes (const char * prefix, linked_list_t * subsequences) {
 	char passcode[DIGITS_COUNT + 1];
 
 	strcpy (passcode, prefix);

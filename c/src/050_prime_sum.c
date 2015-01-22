@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-static int sum_primes (bool *, int *, int, int);
+static int sum_primes (const bool *, int *, int, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -44,7 +44,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static int sum_primes (bool * primes, int * count, int first, int under) {
+static int sum_primes (const bool * primes, int * count, int first, int under) {
 	int sum = 0;
 	int primes_added = 0;
 	int prime = first;

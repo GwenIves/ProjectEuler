@@ -12,8 +12,8 @@
 #define FULL_SEARCH_CUTOFF	500
 #define STEP_SIZE		0.8
 
-static bool search_for_solutions (bool *, size_t, int, double *, int *);
-static void gather_factorisations (linked_list_t *, bool *, size_t, int, int, linked_list_t *);
+static bool search_for_solutions (const bool *, size_t, int, double *, int *);
+static void gather_factorisations (linked_list_t *, const bool *, size_t, int, int, linked_list_t *);
 static int get_exhaustive_limit (double);
 static void free_factorisations (linked_list_t *);
 
@@ -60,7 +60,7 @@ int main (int argc, char ** argv) {
  * Searches for the best solution among products of prime_count-tuples. If it exists, it is passed to the caller via value_when_best
  * Returns an indicator whether the search should be continued among (prime_count + 1)-tuples
  */
-static bool search_for_solutions (bool * sieve, size_t primes_count, int N, double * best_ratio, int * value_when_best) {
+static bool search_for_solutions (const bool * sieve, size_t primes_count, int N, double * best_ratio, int * value_when_best) {
 	int search_start = pow (N, 1.0 / primes_count) * STEP_SIZE;
 
 	bool solution_found = false;
@@ -129,7 +129,7 @@ static bool search_for_solutions (bool * sieve, size_t primes_count, int N, doub
 }
 
 // Recursively build the list of all factorisations involving "primes" number of primes whose product is under "under" using primes larger or equal to "from"
-static void gather_factorisations (linked_list_t * factorisations, bool * sieve, size_t primes, int from, int under, linked_list_t * factorisation) {
+static void gather_factorisations (linked_list_t * factorisations, const bool * sieve, size_t primes, int from, int under, linked_list_t * factorisation) {
 	int value = 1;
 
 	if (factorisation)

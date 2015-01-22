@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-static int find_largest_prime (int *, size_t, size_t, int);
+static int find_largest_prime (const int *, size_t, size_t, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -47,7 +47,7 @@ int main (int argc, char ** argv) {
 }
 
 // Binary search for the largest prime <= max in the sorted array of primes between from and to
-static int find_largest_prime (int * primes, size_t from, size_t to, int max) {
+static int find_largest_prime (const int * primes, size_t from, size_t to, int max) {
 	while (from < to) {
 		size_t middle = (from + to) / 2;
 

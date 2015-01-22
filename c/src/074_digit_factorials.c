@@ -10,7 +10,7 @@
 
 #define CHAIN_LENGTH	60
 
-static bool is_a_cycle (int *, size_t, int);
+static bool is_a_cycle (const int *, size_t, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -63,7 +63,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static bool is_a_cycle (int * past_values, size_t count, int value) {
+static bool is_a_cycle (const int * past_values, size_t count, int value) {
 	for (size_t i = 0; i < count; i++)
 		if (past_values[i] == value)
 			return true;

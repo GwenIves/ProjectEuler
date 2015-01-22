@@ -6,8 +6,8 @@
 #include "utils.h"
 
 static void ensure_allocation (bignum_t *);
-static int bignum_magnitude_cmp (bignum_t *, bignum_t *);
-static bignum_t * bignum_sub_aux (bignum_t *, bignum_t *);
+static int bignum_magnitude_cmp (const bignum_t *, const bignum_t *);
+static bignum_t * bignum_sub_aux (const bignum_t *, const bignum_t *);
 static void bignum_init (bignum_t *);
 
 bignum_t * bignum_get_int (int value) {
@@ -73,7 +73,7 @@ void bignum_delete (bignum_t * num) {
 	}
 }
 
-void bignum_print (bignum_t * num) {
+void bignum_print (const bignum_t * num) {
 	if (num->sign)
 		printf ("-");
 
@@ -83,7 +83,7 @@ void bignum_print (bignum_t * num) {
 	printf ("\n");
 }
 
-int bignum_digits_sum (bignum_t * num) {
+int bignum_digits_sum (const bignum_t * num) {
 	int sum = 0;
 
 	for (size_t i = 0; i < num->used; i++)
@@ -154,7 +154,7 @@ bignum_t * bignum_mult_bignum_to (bignum_t * a, bignum_t * b) {
 	return c;
 }
 
-bignum_t * bignum_mult_int (bignum_t * a, int b) {
+bignum_t * bignum_mult_int (const bignum_t * a, int b) {
 	bignum_t * bb = bignum_get (b);
 
 	bignum_t * c = bignum_mult (a, bb);
@@ -164,7 +164,7 @@ bignum_t * bignum_mult_int (bignum_t * a, int b) {
 	return c;
 }
 
-bignum_t * bignum_mult_bignum (bignum_t * a, bignum_t * b) {
+bignum_t * bignum_mult_bignum (const bignum_t * a, const bignum_t * b) {
 	bignum_t * c = bignum_get (0);
 
 	if (bignum_is_digit (a, 0) || bignum_is_digit (b, 0))
@@ -221,7 +221,7 @@ bignum_t * bignum_add_to_ (bignum_t * a, bignum_t * b, bool clear_flag) {
 	return c;
 }
 
-bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
+bignum_t * bignum_add (const bignum_t * a, const bignum_t * b) {
 	bignum_t * c = bignum_get (0);
 
 	if ((a->sign ^ b->sign) == false) {
@@ -281,7 +281,7 @@ bignum_t * bignum_add (bignum_t * a, bignum_t * b) {
 	return c;
 }
 
-bool bignum_is_digit (bignum_t * num, int digit) {
+bool bignum_is_digit (const bignum_t * num, int digit) {
 	if (digit >= 0) {
 		if (!num->sign && num->used == 1 && num->digits[0] == digit)
 			return true;
@@ -293,7 +293,7 @@ bool bignum_is_digit (bignum_t * num, int digit) {
 	return false;
 }
 
-int bignum_cmp (bignum_t * a, bignum_t * b) {
+int bignum_cmp (const bignum_t * a, const bignum_t * b) {
 	if (b->sign && !a->sign)
 		return 1;
 	else if (a->sign && !b->sign)
@@ -302,7 +302,7 @@ int bignum_cmp (bignum_t * a, bignum_t * b) {
 		return bignum_magnitude_cmp (a, b);
 }
 
-bool bignum_is_palindrome (bignum_t * num) {
+bool bignum_is_palindrome (const bignum_t * num) {
 	for (size_t i = 0; i < num->used / 2; i++)
 		if (num->digits[i] != num->digits[num->used - 1 - i])
 			return false;
@@ -315,7 +315,7 @@ bool bignum_is_palindrome (bignum_t * num) {
  * |a| must be larger than |b|
  * Signs should be handled by the caller
  */
-static bignum_t * bignum_sub_aux (bignum_t * a, bignum_t * b) {
+static bignum_t * bignum_sub_aux (const bignum_t * a, const bignum_t * b) {
 	bignum_t * c = bignum_get (0);
 	c->used = 0;
 
@@ -363,7 +363,7 @@ static void ensure_allocation (bignum_t * num) {
 
 }
 
-static int bignum_magnitude_cmp (bignum_t * a, bignum_t * b) {
+static int bignum_magnitude_cmp (const bignum_t * a, const bignum_t * b) {
 	if (a->used > b->used)
 		return 1;
 	else if (a->used < b->used)

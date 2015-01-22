@@ -9,7 +9,7 @@
 #include "utils.h"
 
 static int roman_digit_value (char);
-static int roman_to_arabic (char *);
+static int roman_to_arabic (const char *);
 static char * arabic_to_roman (int);
 
 int main (void) {
@@ -91,11 +91,11 @@ static char * arabic_to_roman (int arabic) {
 	return roman;
 }
 
-static int roman_to_arabic (char * roman) {
+static int roman_to_arabic (const char * roman) {
 	int arabic = 0;
 	int prev_digit = 0;
 
-	char * tail_ptr = roman + strlen (roman) - 1;
+	const char * tail_ptr = roman + strlen (roman) - 1;
 
 	while (tail_ptr >= roman) {
 		int digit = roman_digit_value (*tail_ptr);

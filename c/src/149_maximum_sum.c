@@ -13,7 +13,7 @@ static int find_maximum_row (int **, int, int);
 static int find_maximum_column (int **, int, int);
 static int find_maximum_diagonal (int **, int, int, int);
 static int find_maximum_anti_diagonal (int **, int, int, int);
-static int find_max_subsequence (int *, int);
+static int find_max_subsequence (const int *, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -66,7 +66,7 @@ static int find_maximum (int ** matrix, int size) {
 	return maximum;
 }
 
-static int find_max_subsequence (int * values, int size) {
+static int find_max_subsequence (const int * values, int size) {
 	int max = values[0];
 	int new_max = 0;
 

@@ -11,7 +11,7 @@
 
 #define WILDCARD	'_'
 
-static bool matches_pattern (long, char *, char *);
+static bool matches_pattern (long, const char *, const char *);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -70,7 +70,7 @@ int main (int argc, char ** argv) {
 }
 
 // Compares num > 0 against a wildcard pattern
-static bool matches_pattern (long num, char * pattern, char * tail_ptr) {
+static bool matches_pattern (long num, const char * pattern, const char * tail_ptr) {
 	while (tail_ptr >= pattern) {
 		if (num == 0)
 			return false;

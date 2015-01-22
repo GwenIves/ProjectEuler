@@ -10,9 +10,9 @@
 #include "utils.h"
 
 static int find_minimum (int, size_t, int *);
-static bool is_a_prime_pair (int, int, bool *, size_t);
-static int get_boundary (size_t, int, int *);
-static int get_min_sum (linked_list_t *, size_t, int *);
+static bool is_a_prime_pair (int, int, const bool *, size_t);
+static int get_boundary (size_t, int, const int *);
+static int get_min_sum (linked_list_t *, size_t, const int *);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -132,7 +132,7 @@ static int find_minimum (int set_size, size_t candidates_limit, int * boundary) 
 	return min_sum;
 }
 
-static int get_min_sum (linked_list_t * tuples, size_t size, int * primes) {
+static int get_min_sum (linked_list_t * tuples, size_t size, const int * primes) {
 	int min_prefix_sum = 0;
 
 	int * p = NULL;
@@ -156,7 +156,7 @@ static int get_min_sum (linked_list_t * tuples, size_t size, int * primes) {
  * If there is a global solution above limit, it must share an n-1 long prefix with some already found n-tuple
  * Consequently, we can determine the largest primes to be used in the suffix so that the total sum is less than local_minimum
  */
-static int get_boundary (size_t set_size, int local_minimum, int * min_prefix_sums) {
+static int get_boundary (size_t set_size, int local_minimum, const int * min_prefix_sums) {
 	int max_boundary = 0;
 
 	for (size_t i = 2; i < set_size; i++) {
@@ -169,7 +169,7 @@ static int get_boundary (size_t set_size, int local_minimum, int * min_prefix_su
 	return max_boundary;
 }
 
-static bool is_a_prime_pair (int a, int b, bool * sieve, size_t sieve_size) {
+static bool is_a_prime_pair (int a, int b, const bool * sieve, size_t sieve_size) {
 	long c = concatenate (a, b);
 
 	if (!is_prime_long (c, sieve, sieve_size, NULL, 0))

@@ -20,10 +20,10 @@ typedef struct {
 
 static linked_list_t * load_words (void);
 static void free_words (linked_list_t *);
-static linked_list_t * get_anagrams (word_t *, linked_list_t *);
-static bool next_substitution (int *, word_t *);
-static bool are_anagrams (word_t *, word_t *);
-static int get_substitution_value (int *, word_t *);
+static linked_list_t * get_anagrams (const word_t *, linked_list_t *);
+static bool next_substitution (int *, const word_t *);
+static bool are_anagrams (const word_t *, const word_t *);
+static int get_substitution_value (const int *, const word_t *);
 static int words_cmp (const void *, const void *);
 
 int main (void) {
@@ -108,7 +108,7 @@ static void free_words (linked_list_t * words) {
 	linked_list_free (words);
 }
 
-static linked_list_t * get_anagrams (word_t * word, linked_list_t * words) {
+static linked_list_t * get_anagrams (const word_t * word, linked_list_t * words) {
 	linked_list_t * anagrams = NULL;
 
 	list_node_t * saved_cursor = words->cursor;
@@ -130,11 +130,11 @@ static linked_list_t * get_anagrams (word_t * word, linked_list_t * words) {
 	return anagrams;
 }
 
-static bool are_anagrams (word_t * a, word_t * b) {
+static bool are_anagrams (const word_t * a, const word_t * b) {
 	return strcmp (a->sorted_word, b->sorted_word) == 0;
 }
 
-static int get_substitution_value (int * substitution, word_t * word) {
+static int get_substitution_value (const int * substitution, const word_t * word) {
 	char * str = word->word;
 
 	int value = 0;
@@ -152,7 +152,7 @@ static int get_substitution_value (int * substitution, word_t * word) {
 	return value;
 }
 
-static bool next_substitution (int * substitution_out, word_t * word_in) {
+static bool next_substitution (int * substitution_out, const word_t * word_in) {
 	static char * word = NULL;
 	static size_t len = 0;
 

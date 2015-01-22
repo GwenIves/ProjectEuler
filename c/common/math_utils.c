@@ -66,7 +66,7 @@ int * primes_under (bool * sieve, size_t limit, size_t * primes_count) {
 }
 
 // Determines if a number is prime by divisor checking, the caller must guarantee the primes sieve contains entries at least up to sqrt (num) inclusive
-bool is_prime (int num, bool * primes, size_t primes_size) {
+bool is_prime (int num, const bool * primes, size_t primes_size) {
 	if (num < 2)
 		return false;
 	else if (num <= 3)
@@ -93,7 +93,7 @@ bool is_prime (int num, bool * primes, size_t primes_size) {
  * in which case the caller must guarantee that the array holds all primes up to and including sqrt (num)
  * Should be NULL otherwise
  */
-bool is_prime_long (long num, bool * sieve, size_t sieve_size, int * primes, size_t primes_size) {
+bool is_prime_long (long num, const bool * sieve, size_t sieve_size, const int * primes, size_t primes_size) {
 	if (num < 2)
 		return false;
 	else if (num <= 3)
@@ -500,7 +500,7 @@ bool pandigital_test_and_set_digits (char * digits, long value) {
 }
 
 // Test if the digit mask is 1..N pandigital
-bool pandigital_test_digits (char * digits, size_t N) {
+bool pandigital_test_digits (const char * digits, size_t N) {
 	for (size_t i = 1; i <= N; i++)
 		if (digits[i] == 0)
 			return false;

@@ -9,7 +9,7 @@
  * Computes the number of proper reduced fractions in the Stern-Brocot tree with denominators <= max_denominator and values between and excluding above and below
  * Both above and below must be nodes of some Stern-Brocot tree
  */
-long stern_brocot_count (long max_denominator, fraction_t * above, fraction_t * below) {
+long stern_brocot_count (long max_denominator, const fraction_t * above, const fraction_t * below) {
 	fraction_t mediant = fraction_get_ (above->nominator + below->nominator, above->denominator + below->denominator, false);
 
 	if (mediant.denominator > max_denominator)
@@ -125,7 +125,7 @@ char * calculate_sqrt (int num, size_t digits_to_calculate) {
  * Returns how many combinations exist of representing "sum" as a summation of values from the "values" array
  * using elements up to the "max_value" index
  */
-int count_representation_combinations_ (int * values, size_t max_value, int sum, int ** cache) {
+int count_representation_combinations_ (const int * values, size_t max_value, int sum, int ** cache) {
 	int combinations = 0;
 	bool allocated_cache = false;
 

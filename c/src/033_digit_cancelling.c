@@ -11,7 +11,7 @@
 
 static bool cancel_digit (int, int, int);
 static void fill_digits (int *, int);
-static int digits_to_num (int *, int, int);
+static int digits_to_num (const int *, int, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -88,7 +88,7 @@ static void fill_digits (int * digits, int value) {
 	} while (value > 0);
 }
 
-static int digits_to_num (int * digits, int len, int ignore_index) {
+static int digits_to_num (const int * digits, int len, int ignore_index) {
 	int num = 0;
 
 	for (int i = 0; i < len; i++) {

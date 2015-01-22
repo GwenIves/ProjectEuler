@@ -10,7 +10,7 @@
 #include "math_utils.h"
 #include "linked_list.h"
 
-static bool is_square_free (long, int *, size_t);
+static bool is_square_free (long, const int *, size_t);
 static void add_square_free (long, linked_list_t *);
 static int * get_prime_squares (int, size_t *);
 
@@ -66,7 +66,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static bool is_square_free (long num, int * squares, size_t squares_count) {
+static bool is_square_free (long num, const int * squares, size_t squares_count) {
 	for (size_t i = 0; i < squares_count; i++)
 		if (squares[i] > num)
 			break;

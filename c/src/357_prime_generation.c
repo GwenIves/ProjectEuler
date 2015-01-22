@@ -7,7 +7,7 @@
 #include <math.h>
 #include "math_utils.h"
 
-static bool is_generating (int, bool *);
+static bool is_generating (int, const bool *);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -47,7 +47,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static bool is_generating (int num, bool * sieve) {
+static bool is_generating (int num, const bool * sieve) {
 	int divisor_limit = sqrt (num);
 
 	for (int i = 2; i <= divisor_limit; i++) {

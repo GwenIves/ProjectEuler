@@ -11,8 +11,8 @@
 #define MAX_LEN		6 * SIZE
 #define TARGET_LEN	16
 
-static bool is_magic (char *);
-static char * get_representation (char *, size_t);
+static bool is_magic (const char *);
+static char * get_representation (const char *, size_t);
 static int char_value (char);
 
 /*
@@ -41,7 +41,7 @@ int main (void) {
 }
 
 // A pentagon is magic if all its defining triples (see comments for get_representation ()) have the same sum
-static bool is_magic (char * digits) {
+static bool is_magic (const char * digits) {
 	int sums[SIZE];
 
 	for (size_t i = 0; i < SIZE; i++) {
@@ -60,7 +60,7 @@ static bool is_magic (char * digits) {
  * The starting triple is the one with minimal i
  */
 
-static char * get_representation (char * digits, size_t len) {
+static char * get_representation (const char * digits, size_t len) {
 	static char representation[MAX_LEN + 1];
 
 	representation[0] = '\0';

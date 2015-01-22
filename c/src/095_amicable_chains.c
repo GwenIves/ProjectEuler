@@ -11,7 +11,7 @@
 #define INFINITY	-1
 
 static int * get_divisor_sums (int);
-static int get_solution (int *, int *, int);
+static int get_solution (const int *, const int *, int);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -79,7 +79,7 @@ static int * get_divisor_sums (int size) {
 	return divisor_sums;
 }
 
-static int get_solution (int * chain_lengths, int * divisor_sums, int size) {
+static int get_solution (const int * chain_lengths, const int * divisor_sums, int size) {
 	int longest_chain = 1;
 
 	for (int i = 2; i <= size; i++)

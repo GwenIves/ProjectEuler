@@ -18,7 +18,7 @@ typedef struct {
 	int c;
 } line_equation_t;
 
-line_equation_t get_line_equation (point_t *, point_t *);
-int point_line_cmp (line_equation_t *, point_t *);
+line_equation_t get_line_equation (const point_t *, const point_t *);
+int point_line_cmp (const line_equation_t *, const point_t *);
 
 #endif

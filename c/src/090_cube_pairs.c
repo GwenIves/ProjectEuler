@@ -6,8 +6,8 @@
 #include <string.h>
 #include "math_utils.h"
 
-static bool pair_qualifies (char *, char *);
-static bool die_contains_face (char *, int);
+static bool pair_qualifies (const char *, const char *);
+static bool die_contains_face (const char *, int);
 
 int main (void) {
 	int count = 0;
@@ -30,7 +30,7 @@ int main (void) {
 	return 0;
 }
 
-static bool pair_qualifies (char * die1, char * die2) {
+static bool pair_qualifies (const char * die1, const char * die2) {
 	for (int i = 1; i < 10; i++) {
 		int square = i * i;
 
@@ -48,7 +48,7 @@ static bool pair_qualifies (char * die1, char * die2) {
 	return true;
 }
 
-static bool die_contains_face (char * die, int face) {
+static bool die_contains_face (const char * die, int face) {
 	if (die[face] == '1')
 		return true;
 	else if (face == 6 && die[9] == '1')

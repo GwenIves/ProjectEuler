@@ -30,7 +30,7 @@ static void get_polygonals (linked_list_t **, int);
 static void free_polygonals (linked_list_t **);
 static bool is_valid_link (int);
 static void find_all_cycles (linked_list_t **, long, int, int, int);
-static void shuffle_order (char *, linked_list_t **, linked_list_t **);
+static void shuffle_order (const char *, linked_list_t **, linked_list_t **);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -62,7 +62,7 @@ int main (int argc, char ** argv) {
 	return 0;
 }
 
-static void shuffle_order (char * new_order, linked_list_t ** nodes, linked_list_t ** shuffled_nodes) {
+static void shuffle_order (const char * new_order, linked_list_t ** nodes, linked_list_t ** shuffled_nodes) {
 	for (int i = 0; i < POLY_COUNT; i++) {
 		int new_index = new_order[i] - '0';
 

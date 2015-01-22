@@ -7,7 +7,7 @@
 #include <math.h>
 #include "math_utils.h"
 
-static bool goldbach_represent (int, bool *);
+static bool goldbach_represent (int, const bool *);
 
 int main (void) {
 	int size = 1000;
@@ -35,7 +35,7 @@ int main (void) {
 	return 0;
 }
 
-static bool goldbach_represent (int num, bool * primes) {
+static bool goldbach_represent (int num, const bool * primes) {
 	for (int i = 3; i < num; i++) {
 		if (!primes[i])
 			continue;

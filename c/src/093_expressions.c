@@ -20,9 +20,9 @@ enum eval_errors {DIV_BY_ZERO = 1};
 static int g_evaluate_errno = 0;
 
 static bool next_set (int *, size_t, size_t);
-static linked_list_t * get_all_values (int *);
+static linked_list_t * get_all_values (const int *);
 static int get_sequence_length (linked_list_t *);
-static void evaluate_all (char *, int *, linked_list_t *);
+static void evaluate_all (const char *, const int *, linked_list_t *);
 static fraction_t evaluate (fraction_t, int, fraction_t);
 static void store_result (linked_list_t *, fraction_t);
 
@@ -101,8 +101,8 @@ static fraction_t evaluate (fraction_t a, int op, fraction_t b) {
 	}
 }
 
-static void evaluate_all (char * operands, int * operators, linked_list_t * results) {
-	int * op = operators;
+static void evaluate_all (const char * operands, const int * operators, linked_list_t * results) {
+	const int * op = operators;
 
 	fraction_t a[OPERAND_COUNT];
 
@@ -116,7 +116,7 @@ static void evaluate_all (char * operands, int * operators, linked_list_t * resu
 	store_result (results, evaluate (a[0], op[0], evaluate (a[1], op[1], evaluate (a[2], op[2], a[3]))));
 }
 
-static linked_list_t * get_all_values (int * operand_set) {
+static linked_list_t * get_all_values (const int * operand_set) {
 	linked_list_t * results = linked_list_create ();
 
 	char operands[OPERAND_COUNT + 1];

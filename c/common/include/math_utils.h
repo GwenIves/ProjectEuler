@@ -21,8 +21,8 @@ typedef struct {
 bool * eratosthenes_sieve (size_t);
 int * primes_under (bool *, size_t, size_t *);
 bool miller_rabin (long);
-bool is_prime (int, bool *, size_t);
-bool is_prime_long (long, bool *, size_t, int *, size_t);
+bool is_prime (int, const bool *, size_t);
+bool is_prime_long (long, const bool *, size_t, const int *, size_t);
 size_t prime_count_inverse (size_t);
 
 linked_list_t * factorise (long);
@@ -47,7 +47,7 @@ long reverse (long, int);
 
 bool is_pandigital (long, size_t);
 bool pandigital_test_and_set_digits (char *, long);
-bool pandigital_test_digits (char *, size_t);
+bool pandigital_test_digits (const char *, size_t);
 
 bool next_number (int *, int, int);
 bool next_number_non_decreasing (int *, int, int);
