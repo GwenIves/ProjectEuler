@@ -27,7 +27,7 @@ static int count_hamming_numbers (int max) {
 	size_t primes_count = 0;
 	int * primes = primes_under (NULL, HAMMING_TYPE + 1, &primes_count);
 
-	if (primes_count == 0 || max < primes[0])
+	if (primes_count == 0 || max < 1)
 		return 0;
 
 	linked_list_t * hamming_numbers = linked_list_create ();
