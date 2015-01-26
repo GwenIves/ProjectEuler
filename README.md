@@ -11,7 +11,7 @@ Unless noted otherwise in the language sections, every solution should be:
 
 
 ## Currently implemented problems:
-   * **C** - 121 problems
+   * **C** - 122 problems
 
 
 ## Performance report

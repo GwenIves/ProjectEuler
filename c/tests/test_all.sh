@@ -486,6 +486,9 @@ assert_fail "../src/125_palindromic_sums 0" $LINENO
 assert "$(../src/125_palindromic_sums 1000)" 4164 $LINENO
 assert "$(../src/125_palindromic_sums 100000000)" 2906969179 $LINENO $REFERENCE
 
+assert_fail "../src/134_prime_pairs 6" $LINENO
+assert "$(../src/134_prime_pairs 1000003)" 18613426663617118 $LINENO $REFERENCE
+
 assert "$(../src/145_reversible -1)" 0 $LINENO
 assert "$(../src/145_reversible 0)" 0 $LINENO
 assert "$(../src/145_reversible 1000)" 120 $LINENO
