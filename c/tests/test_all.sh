@@ -463,6 +463,10 @@ assert "$(../src/112_bouncy_numbers 50)" 538 $LINENO
 assert "$(../src/112_bouncy_numbers 90)" 21780 $LINENO
 assert "$(../src/112_bouncy_numbers 99)" 1587000 $LINENO $REFERENCE
 
+assert_fail "../src/118_prime_sets 0" $LINENO
+assert_fail "../src/118_prime_sets 10" $LINENO
+assert "$(../src/118_prime_sets 9)" 44680 $LINENO $REFERENCE
+
 assert_fail "../src/119_digit_power_sum 0" $LINENO
 assert "$(../src/119_digit_power_sum 2)" 512 $LINENO
 assert "$(../src/119_digit_power_sum 10)" 614656 $LINENO
