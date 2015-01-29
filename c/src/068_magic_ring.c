@@ -8,7 +8,7 @@
 #include "math_utils.h"
 
 #define SIZE		5
-#define MAX_LEN		6 * SIZE
+#define MAX_LEN		(6 * SIZE)
 #define TARGET_LEN	16
 
 static bool is_magic (const char *);

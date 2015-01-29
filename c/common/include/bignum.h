@@ -18,7 +18,7 @@
 
 #define bignum_add_to(A,B) bignum_add_to_ (A,B,true)
 
-#define bignum_free_array(A,L) for (size_t i = 0; i < L; i++) { bignum_delete (A[i]); }
+#define bignum_free_array(A,L) for (size_t i = 0; i < L; i++) { bignum_delete ((A)[i]); }
 
 typedef struct {
 	char * digits;

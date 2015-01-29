@@ -20,7 +20,7 @@
 	int: allocate_array_int, \
 	bool: allocate_array_bool)(S,I)
 
-#define array_len(A) (sizeof(A)/sizeof(A[0]))
+#define array_len(A) (sizeof(A)/sizeof((A)[0]))
 
 #define free_array(A,L) for (size_t i = 0; i < L; i++) { free ((A)[i]); }
 

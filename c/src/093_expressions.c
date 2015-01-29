@@ -12,7 +12,7 @@
 #include "fraction.h"
 
 #define OPERAND_COUNT	4
-#define OPERATOR_COUNT	OPERAND_COUNT - 1
+#define OPERATOR_COUNT	(OPERAND_COUNT - 1)
 
 enum operators {PLUS = 0, MINUS, MULTIPLY, DIVIDE};
 enum eval_errors {DIV_BY_ZERO = 1};

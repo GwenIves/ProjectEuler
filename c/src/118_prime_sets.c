@@ -7,8 +7,10 @@
 #include <math.h>
 #include "math_utils.h"
 
+#define count_sets_of_size(d,dl,set_size,s,sz) count_sets_of_size_ (d, dl, set_size, 0, s, sz)
+
 static int count_sets (int);
-static int count_sets_of_size (const char *, int, int, int, const bool *, int);
+static int count_sets_of_size_ (const char *, int, int, int, const bool *, int);
 
 #define MAX_SIEVE_SIZE	10000000
 
@@ -50,7 +52,7 @@ static int count_sets (int N) {
 			continue;
 
 		for (int set_size = 1; set_size <= N; set_size++)
-			count += count_sets_of_size (digits, N, set_size, 0, sieve, sieve_size);
+			count += count_sets_of_size (digits, N, set_size, sieve, sieve_size);
 	} while (next_permutation (digits));
 
 	free (sieve);
@@ -58,7 +60,7 @@ static int count_sets (int N) {
 	return count;
 }
 
-static int count_sets_of_size (const char * digits, int digits_len, int set_size, int prev_member, const bool * sieve, int sieve_size) {
+static int count_sets_of_size_ (const char * digits, int digits_len, int set_size, int prev_member, const bool * sieve, int sieve_size) {
 	int set_member = 0;
 
 	if (set_size > 1) {
@@ -76,7 +78,7 @@ static int count_sets_of_size (const char * digits, int digits_len, int set_size
 			if (!is_prime_long (set_member, sieve, sieve_size, NULL, 0))
 				continue;
 
-			count += count_sets_of_size (digits + len, digits_len - len, set_size - 1, set_member, sieve, sieve_size);
+			count += count_sets_of_size_ (digits + len, digits_len - len, set_size - 1, set_member, sieve, sieve_size);
 		}
 
 		return count;
