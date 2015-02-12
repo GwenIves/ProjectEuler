@@ -1,5 +1,6 @@
 #!/bin/env bash
 
+DATA_DIR=../../shared/data
 
 report_C ()
 {
@@ -24,7 +25,7 @@ report_C ()
 
 		echo "Running $COUNT C language solutions ($LOC lines of code)"
 
-		time eval "$COMMANDS" | while read p; do eval "$p"; done > /dev/null 2>&1
+		time eval "$COMMANDS" | while read p; do eval "$p"; done > /dev/null
 
 		echo
 	)
