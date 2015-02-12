@@ -25,6 +25,8 @@ bool is_prime (int, const bool *, size_t);
 bool is_prime_long (long, const bool *, size_t, const int *, size_t);
 size_t prime_count_inverse (size_t);
 
+int * get_totients_under (int, bool *);
+
 linked_list_t * factorise (long);
 int factors_count (long);
 long factors_to_value (linked_list_t *);

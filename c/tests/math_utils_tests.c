@@ -16,6 +16,7 @@ static void miller_rabin_test (void);
 static void is_prime_test (void);
 static void is_prime_long_test (void);
 static void prime_count_inverse_test (void);
+static void get_totients_under_test (void);
 static void factorise_test (void);
 static void factors_to_value_test (void);
 static void factors_to_totient_test (void);
@@ -67,6 +68,7 @@ int main (void) {
 	is_prime_test ();
 	is_prime_long_test ();
 	prime_count_inverse_test ();
+	get_totients_under_test ();
 	factorise_test ();
 	factors_to_value_test ();
 	factors_to_totient_test ();
@@ -223,6 +225,22 @@ static void is_prime_long_test (void) {
 static void prime_count_inverse_test (void) {
 	assert (prime_count_inverse (5) == 100);
 	assert (prime_count_inverse (10000) == 1000000);
+}
+
+static void get_totients_under_test (void) {
+	int * totients = get_totients_under (21, NULL);
+
+	assert (totients[1] == 1);
+	assert (totients[2] == 1);
+	assert (totients[3] == 2);
+	assert (totients[4] == 2);
+	assert (totients[5] == 4);
+	assert (totients[10] == 4);
+	assert (totients[11] == 10);
+	assert (totients[19] == 18);
+	assert (totients[20] == 8);
+
+	free (totients);
 }
 
 static void factorise_test (void) {
