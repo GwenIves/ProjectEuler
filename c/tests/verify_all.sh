@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+DATA_DIR=../../shared/data
+
 for p in *_tests
 do
 	valgrind -q --error-exitcode=1 --leak-check=full ./$p || exit 1
