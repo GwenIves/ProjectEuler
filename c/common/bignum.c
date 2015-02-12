@@ -170,7 +170,7 @@ bignum_t * bignum_mult_bignum (const bignum_t * a, const bignum_t * b) {
 	if (bignum_is_digit (a, 0) || bignum_is_digit (b, 0))
 		return c;
 
-	c->sign = a->sign ^ b->sign;
+	c->sign = a->sign != b->sign;
 
 	int carry = 0;
 
@@ -224,7 +224,7 @@ bignum_t * bignum_add_to_ (bignum_t * a, bignum_t * b, bool clear_flag) {
 bignum_t * bignum_add (const bignum_t * a, const bignum_t * b) {
 	bignum_t * c = bignum_get (0);
 
-	if ((a->sign ^ b->sign) == false) {
+	if (a->sign == b->sign) {
 		c->sign = a->sign;
 	} else {
 		int cmp = bignum_magnitude_cmp (a, b);

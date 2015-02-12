@@ -7,7 +7,7 @@ fraction_t fraction_get_ (int nom, int denom, bool should_reduce) {
 
 	f.nominator = ABS (nom);
 	f.denominator = ABS (denom);
-	f.sign = (nom < 0) ^ (denom < 0);
+	f.sign = (nom < 0) != (denom < 0);
 
 	if (should_reduce)
 		fraction_reduce (&f);
@@ -32,7 +32,7 @@ fraction_t fraction_add (const fraction_t * a, const fraction_t * b) {
 	int a_contrib = a->nominator * b->denominator;
 	int b_contrib =	b->nominator * a->denominator;
 
-	if (a->sign ^ b->sign) {
+	if (a->sign != b->sign) {
 		if (a_contrib > b_contrib) {
 			c.nominator = a_contrib - b_contrib;
 			c.sign = a->sign;
@@ -61,7 +61,7 @@ fraction_t fraction_mult (const fraction_t * a, const fraction_t * b) {
 
 	c.denominator = a->denominator * b->denominator;
 	c.nominator = a->nominator * b->nominator;
-	c.sign = a->sign ^ b->sign;
+	c.sign = a->sign != b->sign;
 
 	fraction_reduce (&c);
 
@@ -76,7 +76,7 @@ fraction_t fraction_div (const fraction_t * a, const fraction_t * b) {
 }
 
 int fraction_cmp (const fraction_t * a, const fraction_t * b) {
-	if (a->sign ^ b->sign)
+	if (a->sign != b->sign)
 		return b->sign ? 1 : -1;
 
 	int aa = a->nominator * b->denominator;
