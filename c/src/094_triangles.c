@@ -38,8 +38,8 @@ int main (int argc, char ** argv) {
 		if (get_perimeter (n + 1, n) >= N)
 			break;
 
-		if ((m = get_m (3 * n2, 0, 1)) == -1)
-			m = get_m (3 * n2, 0, -1);
+		if ((m = get_m (-1, 0, 3 * n2 + 1)) == -1)
+			m = get_m (-1, 0, 3 * n2 - 1);
 
 		if (m > 0) {
 			perimeter = get_perimeter (m, n);
@@ -85,15 +85,23 @@ static long get_perimeter (int m, int n) {
 }
 
 /*
- * Returns the larger root of the quadratic equation a*x^2 + bx + c = 0
+ * Returns the larger root of the quadratic equation a*x^2 + bx + c = 0, a != 0
  * if integral, otherwise returns -1
  *
  * Not generally applicable, in this problem, we know one root will be positive and the other negative
  */
 static int get_m (int a, int b, int c) {
-	if (b == 0)
-		return integer_sqrt (a + c);
-	else {
+	if (b == 0) {
+		if (c % a != 0)
+			return -1;
+
+		int div = -c / a;
+
+		if (div < 0)
+			return -1;
+		else
+			return integer_sqrt (div);
+	} else {
 		int d2 = b * b - 4 * a * c;
 		int d = 0;
 
