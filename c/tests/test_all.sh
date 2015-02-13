@@ -438,6 +438,9 @@ assert "$(../src/098_squares < $DATA_DIR/042_words.in)" 18769 $LINENO $REFERENCE
 assert_blank "../src/099_exponentials < /dev/null" $LINENO
 assert "$(../src/099_exponentials < $DATA_DIR/099_values.in)" 709 $LINENO $REFERENCE
 
+assert "$(../src/100_probability 20)" 15 $LINENO
+assert "$(../src/100_probability 1000000000000)" 756872327473 $LINENO $REFERENCE
+
 assert "$(../src/102_triangles < /dev/null)" 0 $LINENO
 assert "$(../src/102_triangles < $DATA_DIR/102_triangles.in)" 228 $LINENO $REFERENCE
 
