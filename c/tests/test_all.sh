@@ -441,6 +441,10 @@ assert "$(../src/099_exponentials < $DATA_DIR/099_values.in)" 709 $LINENO $REFER
 assert "$(../src/100_probability 20)" 15 $LINENO
 assert "$(../src/100_probability 1000000000000)" 756872327473 $LINENO $REFERENCE
 
+assert_fail "../src/101_interpolation" $LINENO
+assert "$(../src/101_interpolation 0 0 0 1)" 74 $LINENO
+assert "$(../src/101_interpolation 1 -1 1 -1 1 -1 1 -1 1 -1 1)" 37076114526 $LINENO $REFERENCE
+
 assert "$(../src/102_triangles < /dev/null)" 0 $LINENO
 assert "$(../src/102_triangles < $DATA_DIR/102_triangles.in)" 228 $LINENO $REFERENCE
 
