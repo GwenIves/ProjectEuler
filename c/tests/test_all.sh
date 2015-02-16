@@ -456,6 +456,10 @@ assert "$(../src/104_fibonacci 9)" 329468 $LINENO $REFERENCE
 assert_fail "../src/107_spanning_tree < /dev/null" $LINENO
 assert "$(../src/107_spanning_tree < $DATA_DIR/107_network.in)" 259679 $LINENO $REFERENCE
 
+assert "$(../src/108_reciprocals 0)" 1 $LINENO
+assert "$(../src/108_reciprocals 2)" 4 $LINENO
+assert "$(../src/108_reciprocals 1000)" 180180 $LINENO $REFERENCE
+
 assert_fail "../src/109_darts 0" $LINENO
 assert "$(../src/109_darts 100)" 38182 $LINENO $REFERENCE
 assert "$(../src/109_darts 171)" 42336 $LINENO
