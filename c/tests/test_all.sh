@@ -481,6 +481,10 @@ assert_fail "../src/116_tiles 0" $LINENO
 assert "$(../src/116_tiles 5)" 12 $LINENO
 assert "$(../src/116_tiles 50)" 20492570929 $LINENO $REFERENCE
 
+assert_fail "../src/117_tiles 0" $LINENO
+assert "$(../src/117_tiles 5)" 15 $LINENO
+assert "$(../src/117_tiles 50)" 100808458960497 $LINENO $REFERENCE
+
 assert_fail "../src/118_prime_sets 0" $LINENO
 assert_fail "../src/118_prime_sets 10" $LINENO
 assert "$(../src/118_prime_sets 9)" 44680 $LINENO $REFERENCE
