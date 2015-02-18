@@ -37,6 +37,7 @@ static void pandigital_test_and_set_digits_test (void);
 static void pandigital_test_digits_test (void);
 static void next_number_test (void);
 static void next_number_non_decreasing_test (void);
+static void permutations_count_test (void);
 static void next_permutation_test (void);
 static void prev_permutation_test (void);
 static void next_triangle_num_test (void);
@@ -89,6 +90,7 @@ int main (void) {
 	pandigital_test_digits_test ();
 	next_number_test ();
 	next_number_non_decreasing_test ();
+	permutations_count_test ();
 	next_permutation_test ();
 	prev_permutation_test ();
 	next_triangle_num_test ();
@@ -423,6 +425,19 @@ static void next_number_non_decreasing_test (void) {
 	assert (!next_number_non_decreasing (max_num, 3, 10));
 }
 
+static void permutations_count_test (void) {
+	int item_counts1[] = {5};
+
+	assert (permutations_count (item_counts1, 1) == 1);
+
+	int item_counts2[] = {5, 4};
+
+	assert (permutations_count (item_counts2, 2) == 126);
+
+	int item_counts3[] = {5, 4, 3};
+
+	assert (permutations_count (item_counts3, 3) == 27720);
+}
 
 static void next_permutation_test (void) {
 	char permutation[DIGITS_COUNT];

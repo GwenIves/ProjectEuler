@@ -6,6 +6,8 @@
 
 static void set_digits (char *, int);
 static bool mr_test (long, long, long, int);
+static void merge_factorisations (linked_list_t *, linked_list_t *, bool);
+static void merge_factorial_factorisations (linked_list_t *, int, bool);
 
 // Returns an Eratosthenes sieve checkable from 2 (inclusive) to size (non-inclusive)
 bool * eratosthenes_sieve (size_t size) {
@@ -570,6 +572,76 @@ bool next_number_non_decreasing (int * num, int digits, int base) {
 		num[j] = next_digit;
 
 	return true;
+}
+
+/*
+ * Calculates the number of combinations in a collection composed of "items" types
+ * of indistinguishable items, "item_counts" giving the respective counts of each type
+ */
+long permutations_count (const int * item_counts, size_t items) {
+	linked_list_t * factors = linked_list_create ();
+
+	int sum = 0;
+
+	for (size_t i = 0; i < items; i++) {
+		sum += item_counts[i];
+		merge_factorial_factorisations (factors, item_counts[i], false);
+	}
+
+	merge_factorial_factorisations (factors, sum, true);
+
+	long count = 1;
+
+	factor_t * f_ptr = NULL;
+
+	while ((f_ptr = linked_list_next (factors, factor_t)) != NULL)
+		count *= power (f_ptr->factor, f_ptr->power);
+
+	linked_list_free (factors);
+
+	return count;
+}
+
+static void merge_factorial_factorisations (linked_list_t * factors, int n, bool additive) {
+	for (int i = 2; i <= n; i++) {
+		linked_list_t * f = factorise (i);
+
+		merge_factorisations (factors, f, additive);
+
+		linked_list_free (f);
+	}
+}
+
+static void merge_factorisations (linked_list_t * dst, linked_list_t * src, bool additive) {
+	factor_t * fs_ptr = NULL;
+
+	while ((fs_ptr = linked_list_next (src, factor_t)) != NULL) {
+		factor_t * fd_ptr = NULL;
+		bool merged = false;
+
+		while ((fd_ptr = linked_list_next (dst, factor_t)) != NULL)
+			if (fs_ptr->factor == fd_ptr->factor) {
+				if (additive)
+					fd_ptr->power += fs_ptr->power;
+				else
+					fd_ptr->power -= fs_ptr->power;
+
+				linked_list_stop_iteration (dst);
+				merged = true;
+				break;
+			}
+
+		if (!merged) {
+			fd_ptr = linked_list_add_empty (dst, factor_t);
+
+			fd_ptr->factor = fs_ptr->factor;
+
+			if (additive)
+				fd_ptr->power = fs_ptr->power;
+			else
+				fd_ptr->power = -fs_ptr->power;
+		}
+	}
 }
 
 /*

@@ -54,6 +54,7 @@ bool pandigital_test_digits (const char *, size_t);
 bool next_number (int *, int, int);
 bool next_number_non_decreasing (int *, int, int);
 
+long permutations_count (const int *, size_t);
 bool next_permutation (char *);
 bool prev_permutation (char *);
 
