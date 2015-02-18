@@ -464,6 +464,9 @@ assert_fail "../src/109_darts 0" $LINENO
 assert "$(../src/109_darts 100)" 38182 $LINENO $REFERENCE
 assert "$(../src/109_darts 171)" 42336 $LINENO
 
+# Problem 110 can be solved reusing the code for problem 108
+assert "$(../src/108_reciprocals 4000000)" 9350130049860600 $LINENO $REFERENCE
+
 assert_fail "../src/111_prime_runs 0" $LINENO
 assert "$(../src/111_prime_runs 4)" 273700 $LINENO
 assert "$(../src/111_prime_runs 10)" 612407567715 $LINENO $REFERENCE
