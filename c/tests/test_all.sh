@@ -567,6 +567,11 @@ assert_fail "../src/214_totient_chains 10 1" $LINENO
 assert "$(../src/214_totient_chains 10 4)" 12 $LINENO
 assert "$(../src/214_totient_chains 40000000 25)" 1677366278943 $LINENO $REFERENCE
 
+assert_fail "../src/243_resilience 0 1" $LINENO
+assert_fail "../src/243_resilience 1 0" $LINENO
+assert "$(../src/243_resilience 4 10)" 12 $LINENO
+assert "$(../src/243_resilience 15499 94744)" 892371480 $LINENO $REFERENCE
+
 assert_fail "../src/357_prime_generation 1" $LINENO
 assert "$(../src/357_prime_generation 100000000)" 1739023853137 $LINENO $REFERENCE
 

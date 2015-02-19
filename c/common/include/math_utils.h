@@ -14,9 +14,10 @@ typedef struct {
 #define ABS(a) ((a)>0?(a):-(a))
 #define ROUND(a) ((a)>0?(int)(a+0.5):(int)(a-0.5))
 
-#define DIGITS_COUNT	10
+#define DIGITS_COUNT				10
 #define MILLER_RABIN_DETERMINISTIC_LIMIT	341550071728321L
-#define GOLDEN_RATIO	1.6180339887498949025257388711906969547271728515625
+#define GOLDEN_RATIO				1.6180339887498949025257388711906969547271728515625
+#define PRIMES_PRODUCT_LIMIT			54 // The product of primes under the limit exceeds ULONG_MAX
 
 bool * eratosthenes_sieve (size_t);
 int * primes_under (bool *, size_t, size_t *);

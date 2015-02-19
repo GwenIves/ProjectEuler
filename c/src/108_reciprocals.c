@@ -51,8 +51,7 @@ int main (int argc, char ** argv) {
 	int divisors_of_n2 = 1;
 	int primes_count = 0;
 
-	// The product of all primes under 100 is about 10^36 and well above LONG_MAX
-	bool * sieve = eratosthenes_sieve (100);
+	bool * sieve = eratosthenes_sieve (PRIMES_PRODUCT_LIMIT);
 
 	for (int i = 0;; i++) {
 		if (!sieve[i])
