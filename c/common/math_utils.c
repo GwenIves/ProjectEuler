@@ -943,3 +943,12 @@ long integer_sqrt (long num) {
 	else
 		return -1;
 }
+
+long factorial (int n) {
+	long f = 1;
+
+	while (n >= 2)
+		f *= n--;
+
+	return f;
+}

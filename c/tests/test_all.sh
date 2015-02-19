@@ -502,6 +502,10 @@ assert "$(../src/119_digit_power_sum 30)" 248155780267521 $LINENO $REFERENCE
 assert_fail "../src/120_remainders 2" $LINENO
 assert "$(../src/120_remainders 1000)" 333082500 $LINENO $REFERENCE
 
+assert_fail "../src/121_disc_game 0" $LINENO
+assert "$(../src/121_disc_game 4)" 10 $LINENO
+assert "$(../src/121_disc_game 15)" 2269 $LINENO $REFERENCE
+
 assert_fail "../src/123_remainders -1" $LINENO
 assert "$(../src/123_remainders 1000000000)" 7037 $LINENO
 assert "$(../src/123_remainders 10000000000)" 21035 $LINENO $REFERENCE

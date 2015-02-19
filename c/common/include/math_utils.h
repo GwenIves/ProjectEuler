@@ -81,4 +81,6 @@ bool euclid_pythagorean_triple (int, int, int *, int *, int *);
 
 long integer_sqrt (long);
 
+long factorial (int);
+
 #endif
