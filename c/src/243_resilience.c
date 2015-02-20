@@ -39,6 +39,7 @@ int main (int argc, char ** argv) {
 
 	long denominator = 1;
 	long totient = 1;
+	long upper_bound = 0;
 
 	for (int i = 2; i < PRIMES_PRODUCT_LIMIT; i++) {
 		if (!sieve[i])
@@ -48,6 +49,8 @@ int main (int argc, char ** argv) {
 		totient *= i - 1;
 
 		if (totient * N < (denominator - 1) * M) {
+			upper_bound = denominator;
+
 			denominator /= i;
 			totient /= i - 1;
 
@@ -58,6 +61,11 @@ int main (int argc, char ** argv) {
 	while (totient * N >= (denominator - 1) * M) {
 		totient *= 2;
 		denominator *= 2;
+
+		if (denominator > upper_bound) {
+			denominator = upper_bound;
+			break;
+		}
 	}
 
 	free (sieve);
