@@ -453,6 +453,9 @@ assert_fail "../src/104_fibonacci 10" $LINENO
 assert "$(../src/104_fibonacci 2)" 8 $LINENO
 assert "$(../src/104_fibonacci 9)" 329468 $LINENO $REFERENCE
 
+assert "$(../src/105_special_sum_sets < /dev/null)" 0 $LINENO
+assert "$(../src/105_special_sum_sets < $DATA_DIR/105_sets.in)" 73702 $LINENO $REFERENCE
+
 assert_fail "../src/107_spanning_tree < /dev/null" $LINENO
 assert "$(../src/107_spanning_tree < $DATA_DIR/107_network.in)" 259679 $LINENO $REFERENCE
 

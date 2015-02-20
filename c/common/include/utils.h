@@ -46,6 +46,8 @@ int ** load_matrix (int *, int *);
 int ** load_triangle (int *);
 int ** load_square (int *);
 
+int * csv_parse_int (FILE *, size_t *);
+
 int ** allocate_matrix_int (size_t, size_t, int);
 bool ** allocate_matrix_bool (size_t, size_t, bool);
 

@@ -182,6 +182,39 @@ int ** load_square (int * rows_out) {
 	}
 }
 
+int * csv_parse_int (FILE * f, size_t * size) {
+	char * line = NULL;
+
+	if (x_getline (&line, f) == -1) {
+		*size = 0;
+		return NULL;
+	}
+
+	size_t commas = 0;
+
+	for (char * l = line; *l; l++)
+		if (*l == ',')
+			commas++;
+
+	*size = commas + 1;
+	int * values = x_malloc (*size * sizeof (int));
+
+	char * l = line;
+
+	for (size_t i = 0; i < *size; i++) {
+		values[i] = atoi (l);
+
+		l = strchr (l, ',');
+
+		if (l)
+			l++;
+	}
+
+	free (line);
+
+	return values;
+}
+
 int ** allocate_matrix_int (size_t rows, size_t columns, int init_value) {
 	int ** matrix = x_malloc (rows * sizeof (int *));
 

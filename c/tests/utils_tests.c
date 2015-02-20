@@ -18,6 +18,7 @@ static void allocate_matrix_test (void);
 static void allocate_array_test (void);
 static void copy_int_test (void);
 static void copy_long_test (void);
+static void csv_parse_int_test (void);
 
 #define ALLOC_SIZE	100
 
@@ -36,6 +37,7 @@ int main (void) {
 	allocate_array_test ();
 	copy_int_test ();
 	copy_long_test ();
+	csv_parse_int_test ();
 
 	printf ("All util tests passed\n");
 
@@ -195,4 +197,28 @@ static void copy_long_test (void) {
 	assert (*l_ptr == 9876543210);
 
 	free (l_ptr);
+}
+
+static void csv_parse_int_test () {
+	FILE * f = fopen ("../../shared/data/105_sets.in", "r");
+
+	size_t size = 0;
+	int * val = csv_parse_int (f, &size);
+
+	assert (size == 8);
+	assert (val[0] == 81);
+	assert (val[7] == 65);
+
+	free (val);
+	fclose (f);
+
+	f = fopen ("/dev/null", "r");
+
+	size = 0;
+	val = csv_parse_int (f, &size);
+
+	assert (size == 0);
+	assert (val == NULL);
+
+	fclose (f);
 }
