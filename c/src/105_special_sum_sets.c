@@ -56,7 +56,7 @@ static bool is_special_sum_set (int * set, size_t size) {
 	 * Since we have already established that non-empty, disjoint subsets of different
 	 * magnitudes have different sums, we only need to check subsets of the same magnitude here
 	 */
-	for (size_t i = 1; i <= size / 2; i++) {
+	for (size_t i = 2; i <= size / 2; i++) {
 		char subsets_mask[size + 1];
 
 		for (size_t j = 0; j < i; j++)
