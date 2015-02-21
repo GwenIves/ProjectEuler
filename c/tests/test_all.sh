@@ -448,6 +448,15 @@ assert "$(../src/101_interpolation 1 -1 1 -1 1 -1 1 -1 1 -1 1)" 37076114526 $LIN
 assert "$(../src/102_triangles < /dev/null)" 0 $LINENO
 assert "$(../src/102_triangles < $DATA_DIR/102_triangles.in)" 228 $LINENO $REFERENCE
 
+assert_fail "../src/103_special_sum_sets 0" $LINENO
+assert "$(../src/103_special_sum_sets 1)" 1 $LINENO
+assert "$(../src/103_special_sum_sets 2)" 12 $LINENO
+assert "$(../src/103_special_sum_sets 3)" 234 $LINENO
+assert "$(../src/103_special_sum_sets 4)" 3567 $LINENO
+assert "$(../src/103_special_sum_sets 5)" 69111213 $LINENO
+assert "$(../src/103_special_sum_sets 6)" 111819202225 $LINENO
+assert "$(../src/103_special_sum_sets 7)" 20313839404245 $LINENO $REFERENCE
+
 assert_fail "../src/104_fibonacci 0" $LINENO
 assert_fail "../src/104_fibonacci 10" $LINENO
 assert "$(../src/104_fibonacci 2)" 8 $LINENO

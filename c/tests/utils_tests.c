@@ -19,6 +19,7 @@ static void allocate_array_test (void);
 static void copy_int_test (void);
 static void copy_long_test (void);
 static void csv_parse_int_test (void);
+static void sum_array_int_test (void);
 
 #define ALLOC_SIZE	100
 
@@ -38,6 +39,7 @@ int main (void) {
 	copy_int_test ();
 	copy_long_test ();
 	csv_parse_int_test ();
+	sum_array_int_test ();
 
 	printf ("All util tests passed\n");
 
@@ -221,4 +223,12 @@ static void csv_parse_int_test () {
 	assert (val == NULL);
 
 	fclose (f);
+}
+
+static void sum_array_int_test (void) {
+	assert (sum_array_int (NULL, 0) == 0);
+
+	int a[] = {-10, 0, 10, 11, 12, 13, 14, 100};
+
+	assert (sum_array_int (a, 8) == 150);
 }

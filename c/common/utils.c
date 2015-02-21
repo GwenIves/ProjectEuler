@@ -268,3 +268,12 @@ void free_matrix_bool (bool ** matrix, size_t rows) {
 	free_array (matrix, rows);
 	free (matrix);
 }
+
+int sum_array_int (const int * a, size_t size) {
+	int sum = 0;
+
+	for (size_t i = 0; i < size; i++)
+		sum += a[i];
+
+	return sum;
+}

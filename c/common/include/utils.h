@@ -57,4 +57,6 @@ bool * allocate_array_bool (size_t, bool);
 void free_matrix_int (int **, size_t);
 void free_matrix_bool (bool **, size_t);
 
+int sum_array_int (const int *, size_t);
+
 #endif

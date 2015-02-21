@@ -161,3 +161,61 @@ int count_representation_combinations_ (const int * values, size_t max_value, in
 
 	return combinations;
 }
+
+// "set" should be sorted in increasing order
+bool is_special_sum_set (const int * set, size_t size) {
+	if (size < 2)
+		return true;
+
+	/*
+	 * Establish whether for all non-empty, disjoint subsets A, B, |A| > |B| => S(A) > S(B)
+	 * Should this property hold for all A, B where A contains x smallest items and B
+	 * x - 1 largest items from the set, then it holds for all required subsets
+	 */
+	int sum_smallest = set[0];
+	int sum_largest = 0;
+
+	for (size_t i = 1, j = size - 1; i < j; i++, j--) {
+		sum_smallest += set[i];
+		sum_largest += set[j];
+
+		if (sum_smallest <= sum_largest)
+			return false;
+	}
+
+	/*
+	 * Establish whether for all non-empty, disjoint subsets A, B, S(A) != S(B)
+	 * Since we have already established that non-empty, disjoint subsets of different
+	 * magnitudes have different sums, we only need to check subsets of the same magnitude here
+	 */
+	for (size_t i = 2; i <= size / 2; i++) {
+		char subsets_mask[size + 1];
+
+		for (size_t j = 0; j < i; j++)
+			subsets_mask[j] = '2';
+
+		for (size_t j = i; j < i + i; j++)
+			subsets_mask[j] = '1';
+
+		for (size_t j = i + i; j < size; j++)
+			subsets_mask[j] = '0';
+
+		subsets_mask[size] = '\0';
+
+		do {
+			int sum1 = 0;
+			int sum2 = 0;
+
+			for (size_t j = 0; j < size; j++)
+				if (subsets_mask[j] == '1')
+					sum1 += set[j];
+				else if (subsets_mask[j] == '2')
+					sum2 += set[j];
+
+			if (sum1 == sum2)
+				return false;
+		} while (prev_permutation (subsets_mask));
+	}
+
+	return true;
+}

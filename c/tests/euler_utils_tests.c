@@ -1,18 +1,21 @@
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
+#include "utils.h"
 #include "euler_utils.h"
 
 static void stern_brocot_count_test (void);
 static void euclid_pythagorean_triple_perim_test (void);
 static void count_representation_combinations_test (void);
 static void calculate_sqrt_test (void);
+static void is_special_sum_set_test (void);
 
 int main (void) {
 	stern_brocot_count_test ();
 	euclid_pythagorean_triple_perim_test ();
 	count_representation_combinations_test ();
 	calculate_sqrt_test ();
+	is_special_sum_set_test ();
 
 	printf ("All euler utils tests passed\n");
 
@@ -45,4 +48,18 @@ static void calculate_sqrt_test (void) {
 	assert (!strcmp (sqrt_str, "1.4142135623730950488"));
 
 	free (sqrt_str);
+}
+
+static void is_special_sum_set_test (void) {
+	int set_1[] = {2, 3, 4};
+
+	assert (is_special_sum_set (set_1, array_len (set_1)));
+
+	int set_2[] = {2, 3, 6};
+
+	assert (!is_special_sum_set (set_2, array_len (set_2)));
+
+	int set_3[] = {42, 65, 75, 81, 84, 86, 87, 88};
+
+	assert (!is_special_sum_set (set_3, array_len (set_3)));
 }
