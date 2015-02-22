@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "linked_list.h"
 
 static int unit_fraction_cycle_len (int);
 
