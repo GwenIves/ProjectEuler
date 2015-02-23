@@ -9,6 +9,7 @@ static void euclid_pythagorean_triple_perim_test (void);
 static void count_representation_combinations_test (void);
 static void calculate_sqrt_test (void);
 static void is_special_sum_set_test (void);
+static void digits_sum_test (void);
 
 int main (void) {
 	stern_brocot_count_test ();
@@ -16,6 +17,7 @@ int main (void) {
 	count_representation_combinations_test ();
 	calculate_sqrt_test ();
 	is_special_sum_set_test ();
+	digits_sum_test ();
 
 	printf ("All euler utils tests passed\n");
 
@@ -62,4 +64,10 @@ static void is_special_sum_set_test (void) {
 	int set_3[] = {42, 65, 75, 81, 84, 86, 87, 88};
 
 	assert (!is_special_sum_set (set_3, array_len (set_3)));
+}
+
+static void digits_sum_test (void) {
+	assert (digits_sum (0) == 0);
+	assert (digits_sum (123456) == 21);
+	assert (digits_sum (-123456) == 21);
 }

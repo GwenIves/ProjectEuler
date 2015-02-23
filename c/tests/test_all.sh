@@ -584,6 +584,12 @@ assert_fail "../src/243_resilience 1 0" $LINENO
 assert "$(../src/243_resilience 4 10)" 12 $LINENO
 assert "$(../src/243_resilience 15499 94744)" 892371480 $LINENO $REFERENCE
 
+assert_fail "../src/315_clocks -1 3" $LINENO
+assert_fail "../src/315_clocks 0 2" $LINENO
+assert_fail "../src/315_clocks 3 2" $LINENO
+assert "$(../src/315_clocks 136 138)" 10 $LINENO
+assert "$(../src/315_clocks 10000000 20000000)" 13625242 $LINENO
+
 assert "$(../src/347_prime_divisors 5)" 0 $LINENO
 assert "$(../src/347_prime_divisors 100)" 2262 $LINENO
 assert "$(../src/347_prime_divisors 10000000)" 11109800204052 $LINENO $REFERENCE
