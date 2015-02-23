@@ -588,6 +588,10 @@ assert "$(../src/347_prime_divisors 5)" 0 $LINENO
 assert "$(../src/347_prime_divisors 100)" 2262 $LINENO
 assert "$(../src/347_prime_divisors 10000000)" 11109800204052 $LINENO $REFERENCE
 
+assert_fail "../src/348_square_and_cube 0 1" $LINENO
+assert_fail "../src/348_square_and_cube 1 0" $LINENO
+assert "$(../src/348_square_and_cube 4 5)" 1004195061 $LINENO $REFERENCE
+
 assert_fail "../src/357_prime_generation 1" $LINENO
 assert "$(../src/357_prime_generation 100000000)" 1739023853137 $LINENO $REFERENCE
 
