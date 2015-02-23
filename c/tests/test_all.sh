@@ -584,6 +584,10 @@ assert_fail "../src/243_resilience 1 0" $LINENO
 assert "$(../src/243_resilience 4 10)" 12 $LINENO
 assert "$(../src/243_resilience 15499 94744)" 892371480 $LINENO $REFERENCE
 
+assert "$(../src/347_prime_divisors 5)" 0 $LINENO
+assert "$(../src/347_prime_divisors 100)" 2262 $LINENO
+assert "$(../src/347_prime_divisors 10000000)" 11109800204052 $LINENO $REFERENCE
+
 assert_fail "../src/357_prime_generation 1" $LINENO
 assert "$(../src/357_prime_generation 100000000)" 1739023853137 $LINENO $REFERENCE
 
