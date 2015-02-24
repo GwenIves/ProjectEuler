@@ -12,5 +12,6 @@ int count_representation_combinations_ (const int *, size_t, int, int **);
 char * calculate_sqrt (int, size_t);
 bool is_special_sum_set (const int *, size_t);
 int digits_sum (long);
+long evaluate_factorisation (const int *, const int *, size_t);
 
 #endif

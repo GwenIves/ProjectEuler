@@ -10,6 +10,7 @@ static void count_representation_combinations_test (void);
 static void calculate_sqrt_test (void);
 static void is_special_sum_set_test (void);
 static void digits_sum_test (void);
+static void evaluate_factorisation_test (void);
 
 int main (void) {
 	stern_brocot_count_test ();
@@ -18,6 +19,7 @@ int main (void) {
 	calculate_sqrt_test ();
 	is_special_sum_set_test ();
 	digits_sum_test ();
+	evaluate_factorisation_test ();
 
 	printf ("All euler utils tests passed\n");
 
@@ -70,4 +72,14 @@ static void digits_sum_test (void) {
 	assert (digits_sum (0) == 0);
 	assert (digits_sum (123456) == 21);
 	assert (digits_sum (-123456) == 21);
+}
+
+static void evaluate_factorisation_test (void) {
+	int factors[] = {2, 5, 7};
+	int powers[] = {0, 0, 0};
+	int powers2[] = {2, 3, 1};
+
+	assert (evaluate_factorisation (factors, powers, 0) == 1);
+	assert (evaluate_factorisation (factors, powers, 3) == 1);
+	assert (evaluate_factorisation (factors, powers2, 3) == 3500);
 }

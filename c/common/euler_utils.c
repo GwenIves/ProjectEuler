@@ -233,3 +233,12 @@ int digits_sum (long n) {
 
 	return sum;
 }
+
+long evaluate_factorisation (const int * factors, const int * powers, size_t count) {
+	long val = 1;
+
+	for (size_t i = 0; i < count; i++)
+		val *= power (factors[i], powers[i]);
+
+	return val;
+}

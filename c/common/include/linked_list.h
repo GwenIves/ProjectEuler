@@ -38,4 +38,7 @@ void * linked_list_next_ (linked_list_t *);
 void linked_list_stop_iteration (linked_list_t *);
 void linked_list_delete (linked_list_t *, void *);
 
+long linked_list_sum_int (linked_list_t *);
+long linked_list_sum_long (linked_list_t *);
+
 #endif

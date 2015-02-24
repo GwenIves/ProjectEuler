@@ -7,9 +7,7 @@
 #include <math.h>
 #include "math_utils.h"
 #include "linked_list.h"
-
-static void add_palindrome (long, linked_list_t *);
-static long sum_palindromes (linked_list_t *);
+#include "utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -37,36 +35,13 @@ int main (int argc, char ** argv) {
 				break;
 
 			if (is_palindrome (candidate, 10))
-				add_palindrome (candidate, palindromes);
+				linked_list_add_sorted (palindromes, copy_long (candidate), long_cmp, true);
 		}
 	}
 
-	printf ("%ld\n", sum_palindromes (palindromes));
+	printf ("%ld\n", linked_list_sum_long (palindromes));
 
 	linked_list_free (palindromes);
 
 	return 0;
-}
-
-static void add_palindrome (long palindrome, linked_list_t * palindromes) {
-	long * p_ptr = NULL;
-
-	while ((p_ptr = linked_list_next (palindromes, long)) != NULL)
-		if (*p_ptr == palindrome) {
-			linked_list_stop_iteration (palindromes);
-			return;
-		}
-
-	linked_list_add_copy (palindromes, &palindrome, long);
-}
-
-static long sum_palindromes (linked_list_t * palindromes) {
-	long sum = 0;
-
-	long * p_ptr = NULL;
-
-	while ((p_ptr = linked_list_next (palindromes, long)) != NULL)
-		sum += *p_ptr;
-
-	return sum;
 }

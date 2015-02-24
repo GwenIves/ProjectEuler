@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "math_utils.h"
+#include "euler_utils.h"
 
-static long evaluate (const int *, const int *, int);
 static int count_divisors_of_a_square (const int *, int);
 static int next_prime_to_raise (const int *, int);
 
@@ -84,7 +84,7 @@ int main (int argc, char ** argv) {
 
 		do {
 			while (true) {
-				long val = evaluate (primes, powers, primes_count);
+				long val = evaluate_factorisation (primes, powers, primes_count);
 				int divisors = count_divisors_of_a_square (powers, primes_count);
 
 				if (val < n && (divisors + 1) / 2 <= N)
@@ -111,15 +111,6 @@ int main (int argc, char ** argv) {
 	printf ("%ld\n", n);
 
 	return 0;
-}
-
-static long evaluate (const int * primes, const int * powers, int primes_count) {
-	long val = 1;
-
-	for (int i = 0; i < primes_count; i++)
-		val *= power (primes[i], powers[i]);
-
-	return val;
 }
 
 static int count_divisors_of_a_square (const int * powers, int primes_count) {

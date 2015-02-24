@@ -13,6 +13,7 @@ static void linked_list_add_array_test (void);
 static void linked_list_append_array_test (void);
 static void linked_list_stop_iteration_test (void);
 static void linked_list_delete_test (void);
+static void linked_list_sum_test (void);
 
 int main (void) {
 	linked_list_create_test ();
@@ -25,6 +26,7 @@ int main (void) {
 	linked_list_append_array_test ();
 	linked_list_stop_iteration_test ();
 	linked_list_delete_test ();
+	linked_list_sum_test ();
 
 	printf ("All linked list tests passed\n");
 
@@ -248,4 +250,23 @@ static void linked_list_delete_test (void) {
 	assert (value == NULL);
 
 	linked_list_free (l);
+}
+
+static void linked_list_sum_test (void) {
+	linked_list_t * list = linked_list_create ();
+
+	for (int i = 1; i <= 100; i++)
+		linked_list_add_copy (list, &i, int);
+
+	assert (linked_list_sum_int (list) == 5050);
+
+	linked_list_free (list);
+	list = linked_list_create ();
+
+	for (long i = 1; i <= 100; i++)
+		linked_list_add_copy (list, &i, long);
+
+	assert (linked_list_sum_long (list) == 5050);
+
+	linked_list_free (list);
 }

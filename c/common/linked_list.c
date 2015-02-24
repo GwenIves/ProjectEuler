@@ -174,3 +174,25 @@ void linked_list_delete (linked_list_t * list, void * payload) {
 	free (node->payload);
 	free (node);
 }
+
+long linked_list_sum_int (linked_list_t * list) {
+	long sum = 0;
+
+	int * i_ptr = NULL;
+
+	while ((i_ptr = linked_list_next (list, int)) != NULL)
+		sum += *i_ptr;
+
+	return sum;
+}
+
+long linked_list_sum_long (linked_list_t * list) {
+	long sum = 0;
+
+	long * l_ptr = NULL;
+
+	while ((l_ptr = linked_list_next (list, long)) != NULL)
+		sum += *l_ptr;
+
+	return sum;
+}
