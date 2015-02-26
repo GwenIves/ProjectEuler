@@ -17,17 +17,10 @@ int main (int argc, char ** argv) {
 	if (N <= 0)
 		return 1;
 
-	// For each denominator there is exactly Totient (denominator) reduced proper fractions
-	int * totients = get_totients_under (N + 1);
-
-	long count = 0;
-
-	for (int i = 2; i <= N; i++)
-		count += totients[i];
+	// For each denominator, except 1, there is exactly Totient (denominator) reduced proper fractions
+	long count = totient_sum (N) - 1;
 
 	printf ("%ld\n", count);
-
-	free (totients);
 
 	return 0;
 }

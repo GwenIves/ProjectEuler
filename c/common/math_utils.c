@@ -8,6 +8,7 @@ static void set_digits (char *, int);
 static bool mr_test (long, long, long, int);
 static void merge_factorisations (linked_list_t *, linked_list_t *, bool);
 static void merge_factorial_factorisations (linked_list_t *, int, bool);
+static long totient_sum_aux (long, long *);
 
 // Returns an Eratosthenes sieve checkable from 2 (inclusive) to size (non-inclusive)
 bool * eratosthenes_sieve (size_t size) {
@@ -222,6 +223,48 @@ int * get_totients_under (int limit) {
 	}
 
 	return totients;
+}
+
+long totient_sum (long up_to) {
+	long * cache = allocate_array (up_to + 1, 0L);
+
+	long sum = totient_sum_aux (up_to, cache);
+
+	free (cache);
+
+	return sum;
+}
+
+/*
+ * totient_sum (N) will be the number of all coprime pairs i, j, 1 <= i <= j <= N
+ *
+ * This is equal to all pairs - all pairs i, j with gcd (i, j) == g for some g >= 2
+ * For a, b coprime, gcd (ga, gb) = g and the sum can be rearranged as
+ * all pairs (i, j) - all triplets (g, a, b), a, b coprime, 1 <= a <= b <= N / g, 2 <= g <= N
+ * which is all pairs - totient_sum (N / g), for all possible g
+ *
+ * For all g up to (excluding) sqrt (N), there will be a unique N / g value
+ * After that, the values start decreasing from sqrt (N) to 1
+ * For j < sqrt (N), N / i will be equal to j between N / (j + 1) and N / j
+ */
+static long totient_sum_aux (long n, long * cache) {
+	int limit = sqrt (n);
+
+	if (cache[n] > 0)
+		return cache[n];
+
+	long all_pairs = n * (n + 1) / 2;
+
+	for (int i = 2; i <= limit; i++)
+		all_pairs -= totient_sum_aux (n / i, cache);
+
+	for (int i = 1; i <= limit; i++)
+		if (n / i != i)
+			all_pairs -= (n / i - n / (i + 1)) * totient_sum_aux (i, cache);
+
+	cache[n] = all_pairs;
+
+	return all_pairs;
 }
 
 linked_list_t * factorise (long num) {

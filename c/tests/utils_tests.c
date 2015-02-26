@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 #include "utils.h"
 
 static void malloc_test (void);
@@ -176,6 +177,13 @@ static void allocate_array_test (void) {
 	assert (ia[9] == 1);
 
 	free (ia);
+
+	long * la = allocate_array (10, (long) INT_MAX);
+
+	assert (la[0] == INT_MAX);
+	assert (la[9] == INT_MAX);
+
+	free (la);
 
 	bool * ba = allocate_array (10, (bool) true);
 

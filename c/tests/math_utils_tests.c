@@ -17,6 +17,7 @@ static void is_prime_test (void);
 static void is_prime_long_test (void);
 static void prime_count_inverse_test (void);
 static void get_totients_under_test (void);
+static void totient_sum_test (void);
 static void factorise_test (void);
 static void factors_to_value_test (void);
 static void factors_to_totient_test (void);
@@ -71,6 +72,7 @@ int main (void) {
 	is_prime_long_test ();
 	prime_count_inverse_test ();
 	get_totients_under_test ();
+	totient_sum_test ();
 	factorise_test ();
 	factors_to_value_test ();
 	factors_to_totient_test ();
@@ -245,6 +247,13 @@ static void get_totients_under_test (void) {
 	assert (totients[20] == 8);
 
 	free (totients);
+}
+
+static void totient_sum_test (void) {
+	assert (totient_sum (0) == 0);
+	assert (totient_sum (1) == 1);
+	assert (totient_sum (10) == 32);
+	assert (totient_sum (100) == 3044);
 }
 
 static void factorise_test (void) {

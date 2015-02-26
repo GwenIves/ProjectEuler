@@ -606,6 +606,12 @@ assert_fail "../src/348_square_and_cube 0 1" $LINENO
 assert_fail "../src/348_square_and_cube 1 0" $LINENO
 assert "$(../src/348_square_and_cube 4 5)" 1004195061 $LINENO $REFERENCE
 
+assert_fail "../src/351_orchard -1" $LINENO
+assert "$(../src/351_orchard 5)" 30 $LINENO
+assert "$(../src/351_orchard 10)" 138 $LINENO
+assert "$(../src/351_orchard 1000)" 1177848 $LINENO
+assert "$(../src/351_orchard 100000000)" 11762187201804552 $LINENO $REFERENCE
+
 assert_fail "../src/357_prime_generation 1" $LINENO
 assert "$(../src/357_prime_generation 100000000)" 1739023853137 $LINENO $REFERENCE
 

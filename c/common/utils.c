@@ -250,6 +250,15 @@ int * allocate_array_int (size_t size, int init_value) {
 	return array;
 }
 
+long * allocate_array_long (size_t size, long init_value) {
+	long * array = x_malloc (size * sizeof (long));
+
+	for (size_t i = 0; i < size; i++)
+		array[i] = init_value;
+
+	return array;
+}
+
 bool * allocate_array_bool (size_t size, bool init_value) {
 	bool * array = x_malloc (size * sizeof (bool));
 

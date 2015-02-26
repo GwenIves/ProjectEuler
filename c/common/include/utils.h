@@ -18,6 +18,7 @@
 
 #define allocate_array(S,I) _Generic((I), \
 	int: allocate_array_int, \
+	long: allocate_array_long, \
 	bool: allocate_array_bool)(S,I)
 
 #define array_len(A) (sizeof(A)/sizeof((A)[0]))
@@ -52,6 +53,7 @@ int ** allocate_matrix_int (size_t, size_t, int);
 bool ** allocate_matrix_bool (size_t, size_t, bool);
 
 int * allocate_array_int (size_t, int);
+long * allocate_array_long (size_t, long);
 bool * allocate_array_bool (size_t, bool);
 
 void free_matrix_int (int **, size_t);
