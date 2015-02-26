@@ -209,14 +209,16 @@ int * get_totients_under (int limit) {
 	for (int i = 1; i < limit; i++)
 		totients[i] = i;
 
-	for (int i = 2; i < limit; i++) {
+	// Special handling for the only even prime
+	for (int i = 2; i < limit; i += 2)
+		totients[i] /= 2;
+
+	for (int i = 3; i < limit; i += 2) {
 		if (totients[i] != i)
 			continue;
 
-		for (int j = i; j < limit; j += i) {
-			totients[j] /= i;
-			totients[j] *= i - 1;
-		}
+		for (int j = i; j < limit; j += i)
+			totients[j] -= totients[j] / i;
 	}
 
 	return totients;
