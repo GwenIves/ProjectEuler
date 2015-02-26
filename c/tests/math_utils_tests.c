@@ -232,7 +232,7 @@ static void prime_count_inverse_test (void) {
 }
 
 static void get_totients_under_test (void) {
-	int * totients = get_totients_under (21, NULL);
+	int * totients = get_totients_under (21);
 
 	assert (totients[1] == 1);
 	assert (totients[2] == 1);

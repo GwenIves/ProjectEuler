@@ -203,21 +203,14 @@ size_t prime_count_inverse (size_t prime_count) {
 }
 
 // Totient (x) = x * Product (1 - 1 / p) for all primes p dividing x
-int * get_totients_under (int limit, bool * primes) {
-	bool should_free = false;
-
-	if (!primes) {
-		primes = eratosthenes_sieve (limit);
-		should_free = true;
-	}
-
+int * get_totients_under (int limit) {
 	int * totients = x_malloc (limit * sizeof (int));
 
 	for (int i = 1; i < limit; i++)
 		totients[i] = i;
 
 	for (int i = 2; i < limit; i++) {
-		if (!primes[i])
+		if (totients[i] != i)
 			continue;
 
 		for (int j = i; j < limit; j += i) {
@@ -225,9 +218,6 @@ int * get_totients_under (int limit, bool * primes) {
 			totients[j] *= i - 1;
 		}
 	}
-
-	if (should_free)
-		free (primes);
 
 	return totients;
 }

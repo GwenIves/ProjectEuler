@@ -21,7 +21,7 @@ int main (int argc, char ** argv) {
 	long sum = 0;
 
 	bool * sieve = eratosthenes_sieve (N);
-	int * totients = get_totients_under (N, sieve);
+	int * totients = get_totients_under (N);
 
 	for (int i = 2; i < N; i++) {
 		totients[i] = totients[totients[i]] + 1;

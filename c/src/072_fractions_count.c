@@ -18,7 +18,7 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	// For each denominator there is exactly Totient (denominator) reduced proper fractions
-	int * totients = get_totients_under (N + 1, NULL);
+	int * totients = get_totients_under (N + 1);
 
 	long count = 0;
 
