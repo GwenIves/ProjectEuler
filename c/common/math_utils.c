@@ -228,6 +228,15 @@ int * get_totients_under (int limit) {
 long totient_sum (long up_to) {
 	long * cache = allocate_array (up_to + 1, 0L);
 
+	// Sieving is more efficient than the recursive computation under approximately up_to^(2/3)
+	int limit = pow (up_to, 2.0 / 3.0);
+	int * totients = get_totients_under (limit + 1);
+
+	for (int i = 1; i <= limit; i++)
+		cache[i] = cache[i - 1] + totients[i];
+
+	free (totients);
+
 	long sum = totient_sum_aux (up_to, cache);
 
 	free (cache);

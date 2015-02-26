@@ -178,10 +178,10 @@ static void allocate_array_test (void) {
 
 	free (ia);
 
-	long * la = allocate_array (10, (long) INT_MAX);
+	long * la = allocate_array (10, LONG_MAX);
 
-	assert (la[0] == INT_MAX);
-	assert (la[9] == INT_MAX);
+	assert (la[0] == LONG_MAX);
+	assert (la[9] == LONG_MAX);
 
 	free (la);
 
