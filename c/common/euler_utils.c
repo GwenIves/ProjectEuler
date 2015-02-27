@@ -5,6 +5,8 @@
 #include "math_utils.h"
 #include "utils.h"
 
+static long p114_count_arrangements_aux (int, int, long *);
+
 /*
  * Computes the number of proper reduced fractions in the Stern-Brocot tree with denominators <= max_denominator and values between and excluding above and below
  * Both above and below must be nodes of some Stern-Brocot tree
@@ -241,4 +243,48 @@ long evaluate_factorisation (const int * factors, const int * powers, size_t cou
 		val *= power (factors[i], powers[i]);
 
 	return val;
+}
+
+/*
+ * Specialised routines useful for a series of related problems
+ * but of little general interest.
+ *
+ * All exported names are of the form:
+ * p<Euler problem number>_<function_name>
+ *
+ * See comments in the referenced problems for more details
+ */
+
+long p114_count_arrangements (int size, int min_block) {
+	long cache[size + 2];
+
+	for (int i = 0; i < size + 2; i++)
+		cache[i] = -1;
+
+	return p114_count_arrangements_aux (size + 1, min_block, cache);
+}
+
+/*
+ * We are going to calculate the count recursively noting that:
+ *   Rows shorter than min_block can only be filled in one way - all gaps
+ *   Longer rows can be formed by either appending a gap or a block of
+ *   any size plus a gap to a shorter row
+ * The algorithm will place one unnecessary gap in the last step, so
+ * the size passed to the initial call should be one above the required size
+ */
+static long p114_count_arrangements_aux (int size, int min_block, long * cache) {
+	if (size < min_block)
+		return 1;
+	else if (cache[size] != -1)
+		return cache[size];
+	else {
+		long count = p114_count_arrangements_aux (size - 1, min_block, cache);
+
+		for (int block_size = min_block + 1; block_size <= size; block_size++)
+			count += p114_count_arrangements_aux (size - block_size, min_block, cache);
+
+		cache[size] = count;
+
+		return count;
+	}
 }
