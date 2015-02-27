@@ -494,6 +494,10 @@ assert "$(../src/113_non_bouncy_numbers 6)" 12951 $LINENO
 assert "$(../src/113_non_bouncy_numbers 10)" 277032 $LINENO
 assert "$(../src/113_non_bouncy_numbers 100)" 51161058134250 $LINENO $REFERENCE
 
+assert_fail "../src/114_blocks 0" $LINENO
+assert "$(../src/114_blocks 7)" 17 $LINENO
+assert "$(../src/114_blocks 50)" 16475640049 $LINENO $REFERENCE
+
 assert_fail "../src/116_tiles 0" $LINENO
 assert "$(../src/116_tiles 5)" 12 $LINENO
 assert "$(../src/116_tiles 50)" 20492570929 $LINENO $REFERENCE
