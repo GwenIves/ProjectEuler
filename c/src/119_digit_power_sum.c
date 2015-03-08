@@ -4,13 +4,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <limits.h>
 #include "utils.h"
 #include "math_utils.h"
+#include "euler_utils.h"
 #include "linked_list.h"
-
-static int get_digit_sum (long);
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -32,7 +30,7 @@ int main (int argc, char ** argv) {
 			if (power < 10)
 				continue;
 
-			if (get_digit_sum (power) == digit_sum)
+			if (digits_sum (power) == digit_sum)
 				linked_list_add_sorted (sequence, copy_long (power), long_cmp, true);
 		}
 
@@ -47,15 +45,4 @@ int main (int argc, char ** argv) {
 	linked_list_free (sequence);
 
 	return 0;
-}
-
-static int get_digit_sum (long num) {
-	int sum = 0;
-
-	while (num > 0) {
-		sum += num % 10;
-		num /= 10;
-	}
-
-	return sum;
 }
