@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <limits.h>
-#include <math.h>
 #include "utils.h"
+#include "math_utils.h"
 #include "linked_list.h"
 
 static int get_digit_sum (long);
@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 	if (N < 1)
 		return 1;
 
-	int max_digit_sum = ((int) log10 (LONG_MAX) + 1) * 9;
+	int max_digit_sum = (integer_log10 (LONG_MAX) + 1) * 9;
 
 	linked_list_t * sequence = linked_list_create ();
 

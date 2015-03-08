@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "math_utils.h"
 
 static void rotate (char *);
@@ -22,7 +21,7 @@ int main (int argc, char ** argv) {
 		return 0;
 	}
 
-	int digits_count = log10 (N) + 1;
+	int digits_count = integer_log10 (N) + 1;
 	int upper_limit = power (10, digits_count);
 
 	bool * sieve = eratosthenes_sieve (upper_limit);

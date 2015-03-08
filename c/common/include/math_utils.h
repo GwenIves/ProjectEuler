@@ -82,6 +82,7 @@ long power (long, long);
 bool euclid_pythagorean_triple (int, int, int *, int *, int *);
 
 long integer_sqrt (long);
+int integer_log10 (long);
 
 long factorial (int);
 

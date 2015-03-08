@@ -988,6 +988,17 @@ long integer_sqrt (long num) {
 		return -1;
 }
 
+int integer_log10 (long n) {
+	int log_val = 0;
+
+	while (n >= 10) {
+		log_val++;
+		n /= 10;
+	}
+
+	return log_val;
+}
+
 long factorial (int n) {
 	long f = 1;
 

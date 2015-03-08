@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "math_utils.h"
 
 static void sum_two_base_palindromes (int *, int, int, bool);
@@ -22,7 +21,7 @@ int main (int argc, char ** argv) {
 
 	int sum = 0;
 
-	int upper_limit = power (10, (int) log10 (N) / 2);
+	int upper_limit = power (10, integer_log10 (N) / 2);
 
 	for (int seed = 1; seed < upper_limit; seed++) {
 		sum_two_base_palindromes (&sum, N, seed, true);

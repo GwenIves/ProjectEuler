@@ -58,6 +58,7 @@ static void mod_pow_test (void);
 static void power_test (void);
 static void euclid_pythagorean_triple_test (void);
 static void integer_sqrt_test (void);
+static void integer_log10_test (void);
 static void factorial_test (void);
 
 int main (void) {
@@ -113,6 +114,7 @@ int main (void) {
 	power_test ();
 	euclid_pythagorean_triple_test ();
 	integer_sqrt_test ();
+	integer_log10_test ();
 	factorial_test ();
 
 	printf ("All math util tests passed\n");
@@ -613,6 +615,14 @@ static void integer_sqrt_test (void) {
 	assert (integer_sqrt (1) == 1);
 	assert (integer_sqrt (625) == 25);
 	assert (integer_sqrt (624) == -1);
+}
+
+static void integer_log10_test (void) {
+	assert (integer_log10 (0) == 0);
+	assert (integer_log10 (9) == 0);
+	assert (integer_log10 (10) == 1);
+	assert (integer_log10 (99) == 1);
+	assert (integer_log10 (100) == 2);
 }
 
 static void factorial_test (void) {
