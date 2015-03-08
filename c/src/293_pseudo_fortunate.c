@@ -58,17 +58,16 @@ int main (int argc, char ** argv) {
 }
 
 static int next_prime (const int * primes, int * powers, size_t count, int limit) {
-	static size_t start = 0;
+	size_t start = 0;
 
 	while (start < count) {
 		powers[start] += 1;
 
 		long prime = evaluate_factorisation (primes, powers, count);
 
-		if (prime < limit) {
-			start = 0;
+		if (prime < limit)
 			return prime;
-		} else {
+		else {
 			for (size_t i = 0; i <= start; i++)
 				powers[i] = 1;
 

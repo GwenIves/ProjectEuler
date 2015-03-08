@@ -618,6 +618,11 @@ bool next_number_non_decreasing (int * num, int digits, int base) {
 	return true;
 }
 
+// Returns a choose b for 0 <= b <= a
+long binomial_coefficient (int a, int b) {
+	return factorial (a) / (factorial (b) * factorial (a - b));
+}
+
 /*
  * Calculates the number of combinations in a collection composed of "items" types
  * of indistinguishable items, "item_counts" giving the respective counts of each type
@@ -1000,6 +1005,15 @@ int integer_log10 (long n) {
 }
 
 long factorial (int n) {
+	static const long factorials[] = {
+		1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800,
+		39916800L, 479001600L, 6227020800L, 87178291200L, 1307674368000L, 20922789888000L,
+		355687428096000L, 6402373705728000L, 121645100408832000L, 2432902008176640000L
+	};
+
+	if (n <= 20)
+		return factorials[n];
+
 	long f = 1;
 
 	while (n >= 2)

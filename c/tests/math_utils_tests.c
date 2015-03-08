@@ -38,6 +38,7 @@ static void pandigital_test_and_set_digits_test (void);
 static void pandigital_test_digits_test (void);
 static void next_number_test (void);
 static void next_number_non_decreasing_test (void);
+static void binomial_coefficient_test (void);
 static void permutations_count_test (void);
 static void next_permutation_test (void);
 static void prev_permutation_test (void);
@@ -94,6 +95,7 @@ int main (void) {
 	pandigital_test_digits_test ();
 	next_number_test ();
 	next_number_non_decreasing_test ();
+	binomial_coefficient_test ();
 	permutations_count_test ();
 	next_permutation_test ();
 	prev_permutation_test ();
@@ -436,6 +438,14 @@ static void next_number_non_decreasing_test (void) {
 	int max_num[] = {9, 9, 9};
 
 	assert (!next_number_non_decreasing (max_num, 3, 10));
+}
+
+static void binomial_coefficient_test (void) {
+	assert (binomial_coefficient (10, 0) == 1);
+	assert (binomial_coefficient (10, 1) == 10);
+	assert (binomial_coefficient (10, 2) == 45);
+	assert (binomial_coefficient (10, 9) == 10);
+	assert (binomial_coefficient (10, 10) == 1);
 }
 
 static void permutations_count_test (void) {

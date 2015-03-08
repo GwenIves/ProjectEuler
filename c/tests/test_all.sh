@@ -628,5 +628,9 @@ assert "$(../src/387_harshad 9)" 0 $LINENO
 assert "$(../src/387_harshad 10000)" 90619 $LINENO
 assert "$(../src/387_harshad 100000000000000)" 696067597313468 $LINENO $REFERENCE
 
+assert_fail "../src/493_rainbow 10 -1" $LINENO
+assert_fail "../src/493_rainbow 1 8" $LINENO
+assert "$(../src/493_rainbow 10 20)" 6.818741802 $LINENO $REFERENCE
+
 echo "All tests passed"
 exit 0
