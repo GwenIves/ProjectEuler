@@ -6,6 +6,7 @@ echo "Running library unit tests"
 
 ./utils_tests || exit 1
 ./linked_list_tests || exit 1
+./hash_table_tests || exit 1
 ./math_utils_tests || exit 1
 ./euler_utils_tests || exit 1
 ./date_utils_tests || exit 1
@@ -609,6 +610,9 @@ assert_fail "../src/315_clocks 0 2" $LINENO
 assert_fail "../src/315_clocks 3 2" $LINENO
 assert "$(../src/315_clocks 136 138)" 10 $LINENO
 assert "$(../src/315_clocks 10000000 20000000)" 13625242 $LINENO $REFERENCE
+
+assert_fail "../src/345_matrix_sum < /dev/null" $LINENO
+assert "$(../src/345_matrix_sum < $DATA_DIR/345_matrix.in)" 13938 $LINENO $REFERENCE
 
 assert "$(../src/347_prime_divisors 5)" 0 $LINENO
 assert "$(../src/347_prime_divisors 100)" 2262 $LINENO

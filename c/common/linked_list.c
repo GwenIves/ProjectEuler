@@ -8,6 +8,7 @@ linked_list_t * linked_list_create (void) {
 	l->head = NULL;
 	l->tail = NULL;
 	l->cursor = NULL;
+	l->destructor = free;
 
 	return l;
 }
@@ -70,7 +71,7 @@ void linked_list_add_sorted (linked_list_t * list, void * payload, int (*compara
 		int cmp = comparator (where->payload, payload);
 
 		if (cmp == 0 && unique) {
-			free (payload);
+			list->destructor (payload);
 			return;
 		} else if (cmp <= 0) {
 			prev = where;
@@ -112,6 +113,10 @@ void * linked_list_add_copy_ (linked_list_t * list, void * payload, size_t size)
 	return n->payload;
 }
 
+void linked_list_set_destructor (linked_list_t * list, void (* destructor) (void *)) {
+	list->destructor = destructor;
+}
+
 void linked_list_free_ (linked_list_t * list, bool free_payload) {
 	if (!list)
 		return;
@@ -120,7 +125,7 @@ void linked_list_free_ (linked_list_t * list, bool free_payload) {
 		list_node_t * t = list->head->next;
 
 		if (free_payload)
-			free (list->head->payload);
+			list->destructor (list->head->payload);
 
 		free (list->head);
 
@@ -171,7 +176,7 @@ void linked_list_delete (linked_list_t * list, void * payload) {
 	else
 		list->head = list->head->next;
 
-	free (node->payload);
+	list->destructor (node->payload);
 	free (node);
 }
 

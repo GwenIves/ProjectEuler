@@ -13,6 +13,7 @@ typedef struct {
 	list_node_t * head;
 	list_node_t * tail;
 	list_node_t * cursor;
+	void (* destructor) (void *);
 } linked_list_t;
 
 #define linked_list_next(l,t) (t *) linked_list_next_ (l)
@@ -33,6 +34,7 @@ void * linked_list_add_copy_ (linked_list_t *, void *, size_t);
 list_node_t * linked_list_append (linked_list_t *, void *);
 void * linked_list_append_empty_ (linked_list_t *, size_t);
 void linked_list_add_sorted (linked_list_t *, void *, int (*) (const void *, const void *), bool);
+void linked_list_set_destructor (linked_list_t *, void (*) (void *));
 void linked_list_free_ (linked_list_t *, bool);
 void * linked_list_next_ (linked_list_t *);
 void linked_list_stop_iteration (linked_list_t *);
