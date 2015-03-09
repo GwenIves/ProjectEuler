@@ -597,6 +597,9 @@ assert "$(../src/293_pseudo_fortunate -1)" 0 $LINENO
 assert "$(../src/293_pseudo_fortunate 0)" 0 $LINENO
 assert "$(../src/293_pseudo_fortunate 1000000000)" 2209 $LINENO $REFERENCE
 
+assert_fail "../src/301_nim -1" $LINENO
+assert "$(../src/301_nim 30)" 2178309 $LINENO $REFERENCE
+
 assert_fail "../src/313_sliding_game 2" $LINENO
 assert "$(../src/313_sliding_game 100)" 5482 $LINENO
 assert "$(../src/313_sliding_game 1000000)" 2057774861813004 $LINENO $REFERENCE
