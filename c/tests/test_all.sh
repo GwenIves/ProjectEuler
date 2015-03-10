@@ -614,6 +614,10 @@ assert "$(../src/315_clocks 10000000 20000000)" 13625242 $LINENO $REFERENCE
 assert_fail "../src/345_matrix_sum < /dev/null" $LINENO
 assert "$(../src/345_matrix_sum < $DATA_DIR/345_matrix.in)" 13938 $LINENO $REFERENCE
 
+assert "$(../src/346_repunits 0)" 0 $LINENO
+assert "$(../src/346_repunits 1000)" 15864 $LINENO
+assert "$(../src/346_repunits 1000000000000)" 336108797689259276 $LINENO $REFERENCE
+
 assert "$(../src/347_prime_divisors 5)" 0 $LINENO
 assert "$(../src/347_prime_divisors 100)" 2262 $LINENO
 assert "$(../src/347_prime_divisors 10000000)" 11109800204052 $LINENO $REFERENCE
