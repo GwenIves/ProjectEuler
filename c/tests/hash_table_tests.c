@@ -48,18 +48,8 @@ static void hash_table_insert_test (void) {
 
 	assert (!hash_table_insert (hash_table, 5, strdup ("five")));
 
-	/*
-	 * FIXME: workarounds for gcc C11 type-generics code generation being too long for assert
-	 *
-	 * assert (!strcmp (hash_table_fetch (hash_table, 4, const char), "four"));
-	 * assert (!strcmp (hash_table_fetch (hash_table, 5, const char), "five"));
-	 */
-
-	if (strcmp (hash_table_fetch (hash_table, 4, const char), "four"))
-		exit (EXIT_FAILURE);
-
-	if (strcmp (hash_table_fetch (hash_table, 5, const char), "five"))
-		exit (EXIT_FAILURE);
+	assert (!strcmp (hash_table_fetch (hash_table, 4, const char), "four"));
+	assert (!strcmp (hash_table_fetch (hash_table, 5, const char), "five"));
 
 	hash_table_free (hash_table);
 }
