@@ -811,6 +811,22 @@ bool prev_permutation (char * seq) {
 	return true;
 }
 
+long tribonacci_num (int n) {
+	long t1 = 0;
+	long t2 = 1;
+	long t3 = 1;
+
+	while (n-- > 0) {
+		long t = t1 + t2 + t3;
+
+		t1 = t2;
+		t2 = t3;
+		t3 = t;
+	}
+
+	return t3;
+}
+
 long next_fibonacci_num (void) {
 	static long f1 = 0;
 	static long f2 = 1;

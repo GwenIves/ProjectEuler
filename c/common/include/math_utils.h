@@ -64,6 +64,8 @@ long permutations_count (const int *, size_t);
 bool next_permutation (char *);
 bool prev_permutation (char *);
 
+long tribonacci_num (int);
+
 long next_fibonacci_num (void);
 long next_triangle_num (void);
 long next_square_num (void);

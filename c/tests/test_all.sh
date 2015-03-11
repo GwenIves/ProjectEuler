@@ -571,6 +571,10 @@ assert "$(../src/187_semiprimes 4)" 0 $LINENO
 assert "$(../src/187_semiprimes 30)" 10 $LINENO
 assert "$(../src/187_semiprimes 100000000)" 17427258 $LINENO $REFERENCE
 
+assert_fail "../src/191_attendance 0" $LINENO
+assert "$(../src/191_attendance 4)" 43 $LINENO
+assert "$(../src/191_attendance 30)" 1918080160 $LINENO $REFERENCE
+
 assert_fail "../src/203_square_free 0" $LINENO
 assert "$(../src/203_square_free 8)" 105 $LINENO
 assert "$(../src/203_square_free 51)" 34029210557338 $LINENO $REFERENCE
