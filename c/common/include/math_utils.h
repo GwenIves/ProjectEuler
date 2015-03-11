@@ -37,6 +37,8 @@ long factors_to_totient (linked_list_t *);
 long proper_divisors_sum (long);
 int divisors_count (long);
 long gcd (long, long);
+void egcd (long, long, long *, long *, long *);
+long modinv (long, long);
 
 int make_palindrome (int, int, bool);
 bool is_palindrome (long, int);

@@ -422,6 +422,52 @@ long gcd (long val_a, long val_b) {
 	return a;
 }
 
+/*
+ * The extended Euclidean algorithm
+ * For a, b > 0, set the output values so that a * ox + b * oy = og = gcd (a, b)
+ */
+void egcd (long a, long b, long * og, long * ox, long * oy) {
+	long x = 0;
+	long y = 1;
+	long u = 1;
+	long v = 0;
+
+	while (a != 0) {
+		long div = b / a;
+		long rem = b % a;
+
+		long m = x - u * div;
+		long n = y - v * div;
+
+		b = a;
+		a = rem;
+		x = u;
+		y = v;
+		u = m;
+		v = n;
+	}
+
+	*og = b;
+	*ox = x;
+	*oy = y;
+}
+
+long modinv (long num, long mod) {
+	long g = 0;
+	long x = 0;
+	long y = 0;
+
+	egcd (num, mod, &g, &x, &y);
+
+	if (g == 1) {
+		if (x < 0)
+			x += mod;
+
+		return x;
+	} else
+		return 0;
+}
+
 // Seed abc can generate two palindromes: abccba and abcba, odd_len controls which one is returned
 int make_palindrome (int seed, int base, bool odd_len) {
 	int palindrome = seed;

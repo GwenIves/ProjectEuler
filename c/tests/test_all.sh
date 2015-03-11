@@ -635,6 +635,10 @@ assert "$(../src/351_orchard 100000000)" 11762187201804552 $LINENO $REFERENCE
 assert_fail "../src/357_prime_generation 1" $LINENO
 assert "$(../src/357_prime_generation 100000000)" 1739023853137 $LINENO $REFERENCE
 
+assert_fail "../src/381_factorial 5" $LINENO
+assert "$(../src/381_factorial 100)" 480 $LINENO
+assert "$(../src/381_factorial 100000000)" 139602943319822 $LINENO $REFERENCE
+
 assert "$(../src/387_harshad 9)" 0 $LINENO
 assert "$(../src/387_harshad 10000)" 90619 $LINENO
 assert "$(../src/387_harshad 100000000000000)" 696067597313468 $LINENO $REFERENCE

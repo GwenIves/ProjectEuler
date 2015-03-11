@@ -25,6 +25,8 @@ static void factors_count_test (void);
 static void proper_divisors_sum_test (void);
 static void divisors_count_test (void);
 static void gcd_test (void);
+static void egcd_test (void);
+static void modinv_test (void);
 static void make_palindrome_test (void);
 static void is_palindrome_test (void);
 static void is_permutation_test (void);
@@ -82,6 +84,8 @@ int main (void) {
 	proper_divisors_sum_test ();
 	divisors_count_test ();
 	gcd_test ();
+	egcd_test ();
+	modinv_test ();
 	make_palindrome_test ();
 	is_palindrome_test ();
 	is_permutation_test ();
@@ -332,6 +336,23 @@ static void gcd_test (void) {
 	assert (gcd (12, 60) == 12);
 	assert (gcd (90, 12) == 6);
 	assert (gcd (-90, 12) == 6);
+}
+
+static void egcd_test (void) {
+	long g = 0;
+	long x = 0;
+	long y = 0;
+
+	egcd (240, 46, &g, &x, &y);
+
+	assert (g == 2);
+	assert (x == -9);
+	assert (y == 47);
+}
+
+static void modinv_test () {
+	assert (modinv (255, 1000) == 0);
+	assert (modinv (257, 1000) == 393);
 }
 
 static void make_palindrome_test (void) {
