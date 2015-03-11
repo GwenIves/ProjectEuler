@@ -8,10 +8,10 @@
 #include <stdbool.h>
 #include <math.h>
 #include "math_utils.h"
-#include "linked_list.h"
+#include "hash_table.h"
+#include "utils.h"
 
 static bool is_square_free (long, const int *, size_t);
-static void add_square_free (long, linked_list_t *);
 static int * get_prime_squares (int, size_t *);
 
 int main (int argc, char ** argv) {
@@ -28,12 +28,14 @@ int main (int argc, char ** argv) {
 	size_t primes_count = 0;
 	int * prime_squares = get_prime_squares (N, &primes_count);
 
-	linked_list_t * square_frees = linked_list_create ();
+	hash_table_t * square_frees = hash_table_create (1000);
 
 	long current_row[N];
 	long prev_row[N];
 
 	prev_row[0] = 0;
+
+	long sum = 0;
 
 	for (int i = 0; i < N; i++) {
 		current_row[0] = 1;
@@ -47,20 +49,16 @@ int main (int argc, char ** argv) {
 		for (int j = 0; j <= i / 2; j++) {
 			long value = current_row[j];
 
-			if (is_square_free (value, prime_squares, primes_count))
-				add_square_free (value, square_frees);
+			if (is_square_free (value, prime_squares, primes_count)) {
+				if (hash_table_insert (square_frees, value, copy_int (value)))
+					sum += value;
+			}
 		}
 	}
 
-	long sum = 0;
-	long * l_ptr = NULL;
-
-	while ((l_ptr = linked_list_next (square_frees, long)) != NULL)
-		sum += *l_ptr;
-
 	printf ("%ld\n", sum);
 
-	linked_list_free (square_frees);
+	hash_table_free (square_frees);
 	free (prime_squares);
 
 	return 0;
@@ -74,22 +72,6 @@ static bool is_square_free (long num, const int * squares, size_t squares_count)
 			return false;
 
 	return true;
-}
-
-static void add_square_free (long num, linked_list_t * list) {
-	bool duplicate = false;
-
-	long * l_ptr = NULL;
-
-	while ((l_ptr = linked_list_next (list, long)) != NULL)
-		if (*l_ptr == num) {
-			duplicate = true;
-			linked_list_stop_iteration (list);
-			break;
-		}
-
-	if (!duplicate)
-		linked_list_add_copy (list, &num, long);
 }
 
 static int * get_prime_squares (int max_triangle_row, size_t * count) {

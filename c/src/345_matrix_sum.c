@@ -20,7 +20,7 @@ int main (void) {
 
 	int max_sum = 0;
 
-	hash_table_t * max_sums = hash_table_create (rows * 100);
+	hash_table_t * max_sums = hash_table_create (rows * 1000);
 
 	for (int row = 0; row < rows; row++) {
 		char free_columns[rows + 1];

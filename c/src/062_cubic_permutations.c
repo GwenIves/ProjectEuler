@@ -1,5 +1,5 @@
 /*
- * Find the smallest cube of whose digit permutaions exactly N are cubes
+ * Find the smallest cube of whose digit permutations exactly N are cubes
  */
 
 #include <stdio.h>
@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "utils.h"
-#include "linked_list.h"
+#include "hash_table.h"
 
 #define MAX_DIGITS	20
 
@@ -34,10 +34,11 @@ int main (int argc, char ** argv) {
 	long next_digit_at = 10;
 
 	while (true) {
-		linked_list_t * cubes = linked_list_create ();
+		hash_table_t * cubes = hash_table_create (1000);
 		cube_permutation_t * p = NULL;
 
 		int limit = cbrt (next_digit_at);
+		long min_cube = -1;
 
 		while (i < limit) {
 			long cube = i * i * i;
@@ -47,37 +48,27 @@ int main (int argc, char ** argv) {
 			snprintf (digits, 20, "%ld", cube);
 			qsort (digits, strlen (digits), 1, char_cmp);
 
-			bool is_permutation = false;
-
-			while ((p = linked_list_next (cubes, cube_permutation_t)) != NULL)
-				if (!strcmp (digits, p->digits)) {
-					p->count++;
-					is_permutation = true;
-
-					linked_list_stop_iteration (cubes);
-					break;
-				}
-
-			if (!is_permutation) {
-				p = linked_list_add_empty (cubes, cube_permutation_t);
+			if ((p = hash_table_fetch (cubes, digits, cube_permutation_t)) != NULL)
+				p->count++;
+			else {
+				p = x_malloc (sizeof (cube_permutation_t));
 
 				strcpy (p->digits, digits);
 				p->min_cube = cube;
 				p->count = 1;
+
+				hash_table_insert (cubes, digits, p);
 			}
 
-			i++;
-		}
-
-		long min_cube = -1;
-
-		while ((p = linked_list_next (cubes, cube_permutation_t)) != NULL)
 			if (p->count == N) {
 				if (min_cube == -1 || p->min_cube < min_cube)
 					min_cube = p->min_cube;
 			}
 
-		linked_list_free (cubes);
+			i++;
+		}
+
+		hash_table_free (cubes);
 
 		if (min_cube > -1) {
 			printf ("%ld\n", min_cube);

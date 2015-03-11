@@ -6,7 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "math_utils.h"
-#include "linked_list.h"
+#include "hash_table.h"
+#include "utils.h"
 
 int main (int argc, char ** argv) {
 	if (argc != 2) {
@@ -20,7 +21,7 @@ int main (int argc, char ** argv) {
 		return 1;
 
 	char digits[DIGITS_COUNT];
-	linked_list_t * products = linked_list_create ();
+	hash_table_t * products = hash_table_create (1000);
 	int sum = 0;
 
 	int max_mult = power (10, N / 2) - 1;
@@ -43,30 +44,15 @@ int main (int argc, char ** argv) {
 			else if (!pandigital_test_and_set_digits(new_digits, new_product))
 				continue;
 			else if (pandigital_test_digits (new_digits, N)) {
-				bool duplicate = false;
-
-				int * product = NULL;
-
-				while ((product = linked_list_next (products, int)) != NULL) {
-					if (*product == new_product) {
-						duplicate = true;
-						linked_list_stop_iteration (products);
-						break;
-					}
-				}
-
-				if (!duplicate) {
-					linked_list_add_copy (products, &new_product, int);
-
+				if (hash_table_insert (products, new_product, copy_int (new_product)))
 					sum += new_product;
-				}
 			}
 		}
 	}
 
 	printf ("%d\n", sum);
 
-	linked_list_free (products);
+	hash_table_free (products);
 
 	return 0;
 }
