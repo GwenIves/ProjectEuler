@@ -19,6 +19,8 @@ typedef struct {
 #define GOLDEN_RATIO				1.6180339887498949025257388711906969547271728515625
 #define PRIMES_PRODUCT_LIMIT			54 // The product of primes under the limit exceeds ULONG_MAX
 
+extern int mult_digits[DIGITS_COUNT][DIGITS_COUNT];
+
 bool * eratosthenes_sieve (size_t);
 int * primes_under (bool *, size_t, size_t *);
 bool miller_rabin (long);

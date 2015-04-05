@@ -4,6 +4,19 @@
 #include "utils.h"
 #include "math_utils.h"
 
+int mult_digits[DIGITS_COUNT][DIGITS_COUNT] = {
+	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 1, 0, 7, 0, 0, 0, 3, 0, 9},
+	{0, 2, 0, 4, 0, 0, 0, 6, 0, 8},
+	{0, 3, 0, 1, 0, 0, 0, 9, 0, 7},
+	{0, 4, 0, 8, 0, 0, 0, 2, 0, 6},
+	{0, 5, 0, 5, 0, 0, 0, 5, 0, 5},
+	{0, 6, 0, 2, 0, 0, 0, 8, 0, 4},
+	{0, 7, 0, 9, 0, 0, 0, 1, 0, 3},
+	{0, 8, 0, 6, 0, 0, 0, 4, 0, 2},
+	{0, 9, 0, 3, 0, 0, 0, 7, 0, 1},
+};
+
 static void set_digits (char *, int);
 static bool mr_test (long, long, long, int);
 static void merge_factorisations (linked_list_t *, linked_list_t *, bool);

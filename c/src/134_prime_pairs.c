@@ -57,19 +57,6 @@ static long find_multiple (int suffix, int divisor) {
  * then need to be filled in mult_digits[][]
  */
 static int get_multiplier (int suffix_in, int divisor) {
-	static int mult_digits[DIGITS_COUNT][DIGITS_COUNT] = {
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 1, 0, 7, 0, 0, 0, 3, 0, 9},
-		{0, 2, 0, 4, 0, 0, 0, 6, 0, 8},
-		{0, 3, 0, 1, 0, 0, 0, 9, 0, 7},
-		{0, 4, 0, 8, 0, 0, 0, 2, 0, 6},
-		{0, 5, 0, 5, 0, 0, 0, 5, 0, 5},
-		{0, 6, 0, 2, 0, 0, 0, 8, 0, 4},
-		{0, 7, 0, 9, 0, 0, 0, 1, 0, 3},
-		{0, 8, 0, 6, 0, 0, 0, 4, 0, 2},
-		{0, 9, 0, 3, 0, 0, 0, 7, 0, 1},
-	};
-
 	int order = 1;
 
 	int multiple = 0;
