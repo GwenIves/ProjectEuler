@@ -11,6 +11,7 @@ static void calculate_sqrt_test (void);
 static void is_special_sum_set_test (void);
 static void digits_sum_test (void);
 static void evaluate_factorisation_test (void);
+static void get_repunit_len_test (void);
 static void p114_test (void);
 
 int main (void) {
@@ -21,6 +22,7 @@ int main (void) {
 	is_special_sum_set_test ();
 	digits_sum_test ();
 	evaluate_factorisation_test ();
+	get_repunit_len_test ();
 	p114_test ();
 
 	printf ("All euler utils tests passed\n");
@@ -84,6 +86,14 @@ static void evaluate_factorisation_test (void) {
 	assert (evaluate_factorisation (factors, powers, 0) == 1);
 	assert (evaluate_factorisation (factors, powers, 3) == 1);
 	assert (evaluate_factorisation (factors, powers2, 3) == 3500);
+}
+
+static void get_repunit_len_test () {
+	assert (get_repunit_len (98) == 0);
+	assert (get_repunit_len (125) == 0);
+	assert (get_repunit_len (111) == 3);
+	assert (get_repunit_len (7) == 6);
+	assert (get_repunit_len (41) == 5);
 }
 
 static void p114_test () {

@@ -553,6 +553,10 @@ assert "$(../src/129_repunit 0)" 1 $LINENO
 assert "$(../src/129_repunit 10)" 17 $LINENO
 assert "$(../src/129_repunit 1000000)" 1000023 $LINENO $REFERENCE
 
+assert_fail "../src/130_repunit -1" $LINENO
+assert "$(../src/130_repunit 5)" 1985 $LINENO
+assert "$(../src/130_repunit 25)" 149253 $LINENO $REFERENCE
+
 assert_fail "../src/134_prime_pairs 6" $LINENO
 assert "$(../src/134_prime_pairs 1000003)" 18613426663617118 $LINENO $REFERENCE
 

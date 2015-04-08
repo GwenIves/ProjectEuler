@@ -5,6 +5,8 @@
 #include "math_utils.h"
 #include "utils.h"
 
+static void extend_repunit (int *, int *, int, int);
+static bool is_repunit (int);
 static long p114_count_arrangements_aux (int, int, long *);
 
 /*
@@ -243,6 +245,85 @@ long evaluate_factorisation (const int * factors, const int * powers, size_t cou
 		val *= power (factors[i], powers[i]);
 
 	return val;
+}
+
+/*
+ * Find the shortest repunit that is a multiple of 'divisor'
+ *
+ * Keep determining a quotient longhand division style walking through the
+ * repunit digits until the remainder is 0
+ */
+int get_repunit_len (int divisor) {
+	if (divisor % 2 == 0 || divisor % 5 == 0)
+		return 0;
+	else if (is_repunit (divisor))
+		return integer_log10 (divisor) + 1;
+
+	int last_divisor_digit = divisor % 10;
+
+	int repunit = 1;
+	int prev_repunit = -1;
+	int len = 1;
+
+	while (repunit % divisor != 0) {
+		int quotient_digit = mult_digits[repunit % 10][last_divisor_digit];
+		int product = quotient_digit * divisor;
+
+		if (repunit < product) {
+			extend_repunit (&repunit, &len, product, prev_repunit);
+			prev_repunit = repunit;
+		}
+
+		repunit -= product;
+
+		repunit /= 10;
+		prev_repunit /= 10;
+	}
+
+	return len;
+}
+
+static void extend_repunit (int * cur_repunit, int * len, int product, int prev_repunit) {
+	int order = 1;
+	int extension = 1;
+
+	if (prev_repunit < 0)
+		while (order <= *cur_repunit)
+			order *= 10;
+	else
+		while (prev_repunit > 0) {
+			prev_repunit /= 10;
+			order *= 10;
+		}
+
+	int repunit = order;
+
+	while (repunit + *cur_repunit < product) {
+		order *= 10;
+		repunit += order;
+		extension++;
+	}
+
+	*cur_repunit += repunit;
+	*len += extension;
+}
+
+static bool is_repunit (int num) {
+	switch (num) {
+		case 1:
+		case 11:
+		case 111:
+		case 1111:
+		case 11111:
+		case 111111:
+		case 1111111:
+		case 11111111:
+		case 111111111:
+		case 1111111111:
+			return true;
+		default:
+			return false;
+	}
 }
 
 /*
