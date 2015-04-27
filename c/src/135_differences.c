@@ -32,7 +32,7 @@ int main (int argc, char ** argv) {
 	int * div_counts = allocate_array (N, 0);
 
 	for (int x = 1; x < 3 * N / 4; x++)
-		for (int k = x / 3; x + k < N; k++) {
+		for (int k = x / 3;; k++) {
 			long n = (x + k) * (long) (3 * k - x);
 
 			if (n < 0)

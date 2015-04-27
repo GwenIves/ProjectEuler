@@ -570,6 +570,9 @@ assert_fail "../src/135_differences 1 1" $LINENO
 assert "$(../src/135_differences 10 1156)" 1 $LINENO
 assert "$(../src/135_differences 10 1000000)" 4989 $LINENO $REFERENCE
 
+# Problem 136 can be solved reusing the code for problem 135
+assert "$(../src/135_differences 1 50000000)" 2544559 $LINENO $REFERENCE
+
 assert "$(../src/145_reversible -1)" 0 $LINENO
 assert "$(../src/145_reversible 0)" 0 $LINENO
 assert "$(../src/145_reversible 1000)" 120 $LINENO
