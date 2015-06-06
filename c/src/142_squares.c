@@ -30,13 +30,14 @@ int main (void) {
 		for (int a = 3; a < limit; a++) {
 			int a2 = a * a;
 
-			for (int c = 2; c < a; c++) {
+			// Make sure a^2, b^2 and c^2 are all odd or all even, for the calculation of x, y, z
+			for (int c = (a % 2) + 2; c < a; c += 2) {
 				int c2 = c * c;
 
 				if (integer_sqrt (a2 - c2 /* f^2 */) == -1)
 					continue;
 
-				for (int b = 1; b < c; b++) {
+				for (int b = a % 2 ? 1 : 2; b < c; b += 2) {
 					int b2 = b * b;
 
 					if (integer_sqrt (c2 - b2 /* e^2 */) == -1)
@@ -49,12 +50,6 @@ int main (void) {
 					int z = c2 - x;
 
 					if (z < 0)
-						continue;
-					else if (integer_sqrt (x + y /* a^2 */) == -1)
-						continue;
-					else if (integer_sqrt (x - y /* b^2 */) == -1)
-						continue;
-					else if (integer_sqrt (x + z /* c^2 */) == -1)
 						continue;
 
 					int sum = x + y + z;
