@@ -34,30 +34,33 @@ bool hash_table_insert_str (hash_table_t * hash_table, const char * key, void * 
 		return false;
 	}
 
+	size_t hash = hash_function (key) % hash_table->size;
+	ensure_list_exists (hash_table, hash);
+
 	hash_table_node_t * n_ptr = x_malloc (sizeof (hash_table_node_t));
 	n_ptr->key_str = strdup (key);
 	n_ptr->payload = data;
 
-	linked_list_add (hash_table->base[hash_function (key) % hash_table->size], n_ptr);
+	linked_list_add (hash_table->base[hash], n_ptr);
 
 	return true;
 }
 
 bool hash_table_insert_long (hash_table_t * hash_table, long key, void * data) {
-	if (key < 0)
-		key = -key;
-
 	if (hash_table_fetch (hash_table, key, long)) {
 		free (data);
 		return false;
 	}
+
+	size_t hash = ABS (key) % hash_table->size;
+	ensure_list_exists (hash_table, hash);
 
 	hash_table_node_t * n_ptr = x_malloc (sizeof (hash_table_node_t));
 	n_ptr->key_str = NULL;
 	n_ptr->key_long = key;
 	n_ptr->payload = data;
 
-	linked_list_add (hash_table->base[key % hash_table->size], n_ptr);
+	linked_list_add (hash_table->base[hash], n_ptr);
 
 	return true;
 }
@@ -65,9 +68,11 @@ bool hash_table_insert_long (hash_table_t * hash_table, long key, void * data) {
 void * hash_table_fetch_str (hash_table_t * hash_table, const char * key) {
 	size_t hash = hash_function (key) % hash_table->size;
 
-	ensure_list_exists (hash_table, hash);
-
 	linked_list_t * list = hash_table->base[hash];
+
+	if (!list)
+		return NULL;
+
 	hash_table_node_t * n_ptr = NULL;
 
 	while ((n_ptr = linked_list_next (list, hash_table_node_t)) != NULL)
@@ -80,14 +85,13 @@ void * hash_table_fetch_str (hash_table_t * hash_table, const char * key) {
 }
 
 void * hash_table_fetch_long (hash_table_t * hash_table, long key) {
-	if (key < 0)
-		key = -key;
-
-	size_t hash = key % hash_table->size;
-
-	ensure_list_exists (hash_table, hash);
+	size_t hash = ABS (key) % hash_table->size;
 
 	linked_list_t * list = hash_table->base[hash];
+
+	if (!list)
+		return NULL;
+
 	hash_table_node_t * n_ptr = NULL;
 
 	while ((n_ptr = linked_list_next (list, hash_table_node_t)) != NULL)
