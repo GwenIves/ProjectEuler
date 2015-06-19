@@ -8,6 +8,7 @@ static void fraction_add_test (void);
 static void fraction_sub_test (void);
 static void fraction_mult_test (void);
 static void fraction_div_test (void);
+static void fraction_invert_test (void);
 static void fraction_cmp_test (void);
 
 int main (void) {
@@ -17,6 +18,7 @@ int main (void) {
 	fraction_sub_test ();
 	fraction_mult_test ();
 	fraction_div_test ();
+	fraction_invert_test ();
 	fraction_cmp_test ();
 
 	printf ("All fraction tests passed\n");
@@ -178,6 +180,20 @@ static void fraction_div_test (void) {
 	assert (f.nominator == 10);
 	assert (f.denominator == 21);
 	assert (f.sign);
+}
+
+static void fraction_invert_test (void) {
+	fraction_t a = fraction_get (5, 6);
+	fraction_t b = fraction_get (-5, 6);
+
+	fraction_t a_ref = fraction_get (6, 5);
+	fraction_t b_ref = fraction_get (-6, 5);
+
+	fraction_t a_i = fraction_invert (&a);
+	fraction_t b_i = fraction_invert (&b);
+
+	assert (!fraction_cmp (&a_i, &a_ref));
+	assert (!fraction_cmp (&b_i, &b_ref));
 }
 
 static void fraction_cmp_test (void) {

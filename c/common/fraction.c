@@ -75,6 +75,13 @@ fraction_t fraction_div (const fraction_t * a, const fraction_t * b) {
 	return fraction_mult (a, &b_inv);
 }
 
+fraction_t fraction_invert (const fraction_t * a) {
+	fraction_t inv = fraction_get_ (a->denominator, a->nominator, false);
+	inv.sign = a->sign;
+
+	return inv;
+}
+
 int fraction_cmp (const fraction_t * a, const fraction_t * b) {
 	if (a->sign != b->sign)
 		return b->sign ? 1 : -1;

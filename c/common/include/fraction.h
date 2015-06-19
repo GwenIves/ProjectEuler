@@ -17,6 +17,7 @@ fraction_t fraction_add (const fraction_t *, const fraction_t *);
 fraction_t fraction_sub (const fraction_t *, const fraction_t *);
 fraction_t fraction_mult (const fraction_t *, const fraction_t *);
 fraction_t fraction_div (const fraction_t *, const fraction_t *);
+fraction_t fraction_invert (const fraction_t *);
 int fraction_cmp (const fraction_t *, const fraction_t *);
 
 #endif
