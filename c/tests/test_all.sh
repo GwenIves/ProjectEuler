@@ -631,6 +631,9 @@ assert "$(../src/205_dice_game)" 0.5731441 $LINENO $REFERENCE
 assert "$(../src/206_square 625)" 25 $LINENO
 assert "$(../src/206_square 1_2_3_4_5_6_7_8_9_0)" 1389019170 $LINENO $REFERENCE
 
+assert_fail "../src/211_divisor_square_sum 1" $LINENO
+assert "$(../src/211_divisor_square_sum 64000000)" 1922364685 $LINENO $REFERENCE
+
 assert_fail "../src/214_totient_chains 2 4" $LINENO
 assert_fail "../src/214_totient_chains 10 1" $LINENO
 assert "$(../src/214_totient_chains 10 4)" 12 $LINENO
