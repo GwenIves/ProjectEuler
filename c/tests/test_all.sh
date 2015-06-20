@@ -605,6 +605,10 @@ assert "$(../src/179_divisors 3)" 1 $LINENO
 assert "$(../src/179_divisors 15)" 2 $LINENO
 assert "$(../src/179_divisors 10000000)" 986262 $LINENO $REFERENCE
 
+assert_fail "../src/186_calls -1" $LINENO
+assert_fail "../src/186_calls 101" $LINENO
+assert "$(../src/186_calls 99)" 2325629 $LINENO $REFERENCE
+
 assert "$(../src/187_semiprimes -1)" 0 $LINENO
 assert "$(../src/187_semiprimes 4)" 0 $LINENO
 assert "$(../src/187_semiprimes 30)" 10 $LINENO

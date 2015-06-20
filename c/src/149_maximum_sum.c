@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "random.h"
 
-static int next_lfg (void);
 static int ** allocate_random_matrix (int);
 static int find_maximum (int **, int);
 static int find_maximum_row (int **, int, int);
@@ -141,39 +141,10 @@ static int ** allocate_random_matrix (int size) {
 		int * row = x_malloc (size * sizeof (int));
 
 		for (int j = 0; j < size; j++)
-			row[j] = next_lfg ();
+			row[j] = next_lfg_s ();
 
 		matrix[i] = row;
 	}
 
 	return matrix;
-}
-
-#define MOD	1000000
-
-static int next_lfg (void) {
-	static int previous_values[55];
-	static size_t cursor = 0;
-
-	static int i = 1;
-
-	int next_val = 0;
-
-	if (i <= 55) {
-		next_val = (100003L + i * (-200003L + 300007L * i * i)) % MOD - 500000L;
-	} else {
-		size_t i_24 = (cursor + 31) % 55;
-		size_t i_55 = cursor;
-
-		next_val = (previous_values[i_24] + previous_values[i_55] + 1000000) % MOD - 500000;
-	}
-
-	previous_values[cursor++] = next_val;
-
-	if (cursor >= 55)
-		cursor = 0;
-
-	i++;
-
-	return next_val;
 }

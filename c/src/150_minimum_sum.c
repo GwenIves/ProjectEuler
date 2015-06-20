@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "random.h"
 
-static int next_lcg (void);
 static int ** allocate_random_triangle (int);
 static int ** precompute_sums (int **, int);
 static long find_minimum (int **, int);
@@ -93,15 +93,4 @@ static int ** precompute_sums (int ** triangle, int size) {
 	}
 
 	return sums;
-}
-
-#define MOD	(1 << 20)
-#define SUB	(1 << 19)
-
-static int next_lcg (void) {
-	static int t = 0;
-
-	t = (615949L * t + 797807) % MOD;
-
-	return t - SUB;
 }
