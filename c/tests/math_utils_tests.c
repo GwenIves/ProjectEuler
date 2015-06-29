@@ -190,49 +190,45 @@ static void primes_under_test (void) {
 }
 
 static void miller_rabin_test (void) {
-	static const int primes_under = 1000000;
+	static const int limit = 1000000;
 
-	bool * sieve = eratosthenes_sieve (primes_under);
+	bool * sieve = eratosthenes_sieve (limit);
 
-	for (int i = 3; i < primes_under; i++)
+	for (int i = 3; i < limit; i++)
 		assert (miller_rabin (i) == sieve[i]);
 
 	free (sieve);
 }
 
 static void is_prime_test (void) {
-	static const int primes_under = 798;
+	static const int limit = 798;
 
-	bool * sieve = eratosthenes_sieve (primes_under);
+	bool * sieve = eratosthenes_sieve (limit);
 
-	assert (!is_prime (797 * 797, sieve, primes_under));
-	assert (is_prime (336533, sieve, primes_under));
+	assert (!is_prime (797 * 797, sieve, limit));
+	assert (is_prime (336533, sieve, limit));
 
 	free (sieve);
 }
 
 static void is_prime_long_test (void) {
-	static const int primes_under = 18481074;
+	static const int limit = 18481074;
 
-	bool * sieve = eratosthenes_sieve (primes_under);
-	int * primes = x_malloc (primes_under * sizeof (int));
 	size_t primes_count = 0;
+	bool * sieve = eratosthenes_sieve (limit);
+	int * primes = primes_under (sieve, limit, &primes_count);
 
-	for (int i = 2; i < primes_under; i++)
-		if (sieve[i])
-			primes[primes_count++] = i;
+	// Through Eratosthenes sieve (num < limit)
+	assert (!is_prime_long (635209, sieve, limit, NULL, 0));
+	assert (is_prime_long (336533L, sieve, limit, NULL, 0));
 
-	// Through Eratosthenes sieve (num < primes_under)
-	assert (!is_prime_long (635209, sieve, primes_under, NULL, 0));
-	assert (is_prime_long (336533L, sieve, primes_under, NULL, 0));
-
-	// Through determinist Miller-Rabin (primes_under >= num < MILLER_RABIN_DETERMINISTIC_LIMIT)
-	assert (is_prime_long (20786669, sieve, primes_under, NULL, 0));
-	assert (!is_prime_long (20786671, sieve, primes_under, NULL, 0));
+	// Through determinist Miller-Rabin (limit >= num < MILLER_RABIN_DETERMINISTIC_LIMIT)
+	assert (is_prime_long (20786669, sieve, limit, NULL, 0));
+	assert (!is_prime_long (20786671, sieve, limit, NULL, 0));
 
 	// Through divisor checking (MILLER_RABIN_DETERMINISTIC_LIMIT <= num)
-	assert (is_prime_long (341550071728361L, sieve, primes_under, primes, primes_count));
-	assert (!is_prime_long (MILLER_RABIN_DETERMINISTIC_LIMIT, sieve, primes_under, primes, primes_count));
+	assert (is_prime_long (341550071728361L, sieve, limit, primes, primes_count));
+	assert (!is_prime_long (MILLER_RABIN_DETERMINISTIC_LIMIT, sieve, limit, primes, primes_count));
 
 	free (sieve);
 	free (primes);

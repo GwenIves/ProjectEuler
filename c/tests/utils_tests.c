@@ -145,13 +145,13 @@ static void int_cmp_test (void) {
 }
 
 static void long_cmp_test (void) {
-	long longs[] = {5376528972765, 3237897640987, 8357123987649};
+	long longs[] = {5376528972765L, 3237897640987L, 8357123987649L};
 
 	qsort (longs, array_len (longs), sizeof (long), long_cmp);
 
-	assert (longs[0] == 3237897640987);
-	assert (longs[1] == 5376528972765);
-	assert (longs[2] == 8357123987649);
+	assert (longs[0] == 3237897640987L);
+	assert (longs[1] == 5376528972765L);
+	assert (longs[2] == 8357123987649L);
 }
 
 static void allocate_matrix_test (void) {
@@ -202,9 +202,9 @@ static void copy_int_test (void) {
 }
 
 static void copy_long_test (void) {
-	long * l_ptr = copy_long (9876543210);
+	long * l_ptr = copy_long (9876543210L);
 
-	assert (*l_ptr == 9876543210);
+	assert (*l_ptr == 9876543210L);
 
 	free (l_ptr);
 }
@@ -238,5 +238,5 @@ static void sum_array_int_test (void) {
 
 	int a[] = {-10, 0, 10, 11, 12, 13, 14, 100};
 
-	assert (sum_array_int (a, 8) == 150);
+	assert (sum_array_int (a, array_len (a)) == 150);
 }
