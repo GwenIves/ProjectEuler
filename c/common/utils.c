@@ -201,7 +201,7 @@ int * csv_parse_int (FILE * f, size_t * size) {
 
 	char * l = line;
 
-	for (size_t i = 0; i < *size; i++) {
+	for (size_t i = 0; i <= commas ; i++) {
 		values[i] = atoi (l);
 
 		l = strchr (l, ',');
