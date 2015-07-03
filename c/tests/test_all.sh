@@ -639,6 +639,10 @@ assert_fail "../src/214_totient_chains 10 1" $LINENO
 assert "$(../src/214_totient_chains 10 4)" 12 $LINENO
 assert "$(../src/214_totient_chains 40000000 25)" 1677366278943 $LINENO $REFERENCE
 
+assert "$(../src/229_squares 0)" 0 $LINENO
+assert "$(../src/229_squares 10000000)" 75373 $LINENO
+assert "$(../src/229_squares 2000000000)" 11325263 $LINENO $REFERENCE
+
 assert_fail "../src/243_resilience 0 1" $LINENO
 assert_fail "../src/243_resilience 1 0" $LINENO
 assert "$(../src/243_resilience 4 10)" 12 $LINENO
