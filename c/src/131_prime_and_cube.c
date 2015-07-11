@@ -28,30 +28,26 @@ int main (int argc, char ** argv) {
 	 *
 	 * Therefore, we are looking for primes p that are equal to a difference between cubes
 	 *
-	 * The upper limit for the search will be given by consecutive cubes that are N or more units apart:
-	 * (a + 1)^3 - a^3 = 3a^2 + 3a + a < N => limit will surely be under sqrt (N / 3)
+	 * Since a^3 - b^3 = (a - b) * (a^2 + ab + b^2), (a - b) has to be 1 in order for the difference
+	 * to be prime and we only have to check consecutive cube pairs
 	 */
-
-	int limit = sqrt (N / 3);
-
-	int cubes[limit + 1];
-
-	for (int i = 0; i <= limit; i++)
-		cubes[i] = i * i * i;
 
 	bool * sieve = eratosthenes_sieve (N);
 
 	int count = 0;
+	int prev_cube = 1;
 
-	for (int i = 0; i <= limit; i++)
-		for (int j = i + 1; j <= limit; j++) {
-			int diff = cubes[j] - cubes[i];
+	for (int i = 2;; i++) {
+		int cube = i * i * i;
 
-			if (diff >= N)
-				break;
-			else if (sieve[diff])
-				count++;
-		}
+		int diff = cube - prev_cube;
+		prev_cube = cube;
+
+		if (diff >= N)
+			break;
+		else if (sieve[diff])
+			count++;
+	}
 
 	printf ("%d\n", count);
 
