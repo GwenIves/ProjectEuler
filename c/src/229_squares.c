@@ -7,6 +7,8 @@
  * for some integers a, b, c, d, e, f, g, h
  */
 
+// FIXME: Major performance issue, non-brute force algorithm required
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

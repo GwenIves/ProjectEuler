@@ -2,6 +2,8 @@
  * Find M ^^ N mod MOD
  */
 
+// FIXME: Unfortunately, this solution works only accidentaly, and has to be reworked
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "math_utils.h"
