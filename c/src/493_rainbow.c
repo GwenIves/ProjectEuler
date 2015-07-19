@@ -15,7 +15,7 @@ static long count_partitions_ (int, int, int, long);
 
 int main (int argc, char ** argv) {
 	if (argc != 3) {
-		fprintf (stderr, "usage: %s <N>\n", argv[0]);
+		fprintf (stderr, "usage: %s <M> <N>\n", argv[0]);
 		return 1;
 	}
 
