@@ -87,8 +87,9 @@ long arithmetic_sequence_sum (long, long, long);
 long mod_pow (long, long, long);
 long power (long, long);
 
-bool euclid_pythagorean_triple (int, int, int *, int *, int *);
+bool euclid_pythagorean_triple (int, int, long *, long *, long *);
 
+bool integer_solve_quadratic (long, long, long, long *, long *);
 long integer_sqrt (long);
 int integer_log10 (long);
 

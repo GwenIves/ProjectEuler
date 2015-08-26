@@ -22,10 +22,10 @@ long stern_brocot_count (long max_denominator, const fraction_t * above, const f
 		return stern_brocot_count (max_denominator, above, &mediant) + stern_brocot_count (max_denominator, &mediant, below) + 1;
 }
 
-int euclid_pythagorean_triple_perim (int m, int n) {
-	int a = 0;
-	int b = 0;
-	int c = 0;
+long euclid_pythagorean_triple_perim (int m, int n) {
+	long a = 0;
+	long b = 0;
+	long c = 0;
 
 	if (euclid_pythagorean_triple (m, n, &a, &b, &c))
 		return a + b + c;

@@ -1038,20 +1038,65 @@ long power (long num, long pow) {
  * If m, n generate a primitive triplet, returns true and sets a, b, c to the triplet's values
  * Otherwise, returns false and leaves a, b, c unchanged
  */
-bool euclid_pythagorean_triple (int m, int n, int * a, int * b, int * c) {
+bool euclid_pythagorean_triple (int m, int n, long * a, long * b, long * c) {
 	if (gcd (m, n) > 1)
 		return false;
 	else if ((m - n) % 2 == 0)
 		return false;
 
-	int m2 = m * m;
-	int n2 = n * n;
+	long m2 = (long) m * m;
+	long n2 = (long) n * n;
 
 	*a = m2 - n2;
 	*b = 2 * m * n;
 	*c = m2 + n2;
 
 	return true;
+}
+
+/*
+ * Find integral roots x1, x2, x1 <= x2, of the quadratic equation a*x^2 + bx + c = 0, a != 0
+ * Returns false if they do not exist
+ */
+bool integer_solve_quadratic (long a, long b, long c, long * x1, long * x2) {
+	if (b == 0) {
+		if (c % a != 0)
+			return false;
+
+		long div = -c / a;
+
+		if (div < 0)
+			return false;
+		else {
+			long root = integer_sqrt (div);
+
+			*x1 = -root;
+			*x2 = root;
+
+			return true;
+		}
+	} else {
+		long d2 = b * b - 4 * a * c;
+		long d = 0;
+
+		if ((d = integer_sqrt (d2)) != -1) {
+			long nom1 = -b - d;
+			long nom2 = -b + d;
+			long denom = 2 * a;
+
+			if (nom1 % denom != 0)
+				return false;
+			else if (nom2 % denom != 0)
+				return false;
+
+			*x1 = nom1 / denom;
+			*x2 = nom2 / denom;
+
+			return true;
+		}
+
+		return false;
+	}
 }
 
 long integer_sqrt (long num) {

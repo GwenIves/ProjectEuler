@@ -28,7 +28,7 @@ int main (int argc, char ** argv) {
 			solutions_possible = false;
 
 			for (int m = n + 1;; m++) {
-				int sides[3];
+				long sides[3];
 
 				if (!euclid_pythagorean_triple (m, n, sides, sides + 1, sides + 2))
 					continue;

@@ -61,6 +61,7 @@ static void arithmetic_sequence_sum_test (void);
 static void mod_pow_test (void);
 static void power_test (void);
 static void euclid_pythagorean_triple_test (void);
+static void integer_solve_quadratic_test (void);
 static void integer_sqrt_test (void);
 static void integer_log10_test (void);
 static void factorial_test (void);
@@ -121,6 +122,7 @@ int main (void) {
 	mod_pow_test ();
 	power_test ();
 	euclid_pythagorean_triple_test ();
+	integer_solve_quadratic_test ();
 	integer_sqrt_test ();
 	integer_log10_test ();
 	factorial_test ();
@@ -633,9 +635,9 @@ static void power_test (void) {
 }
 
 static void euclid_pythagorean_triple_test (void) {
-	int a = 0;
-	int b = 0;
-	int c = 0;
+	long a = 0;
+	long b = 0;
+	long c = 0;
 
 	assert (!euclid_pythagorean_triple (9, 6, &a, &b, &c));
 	assert (!euclid_pythagorean_triple (9, 7, &a, &b, &c));
@@ -645,6 +647,22 @@ static void euclid_pythagorean_triple_test (void) {
 	assert (a == 3);
 	assert (b == 4);
 	assert (c == 5);
+}
+
+static void integer_solve_quadratic_test (void) {
+	long x1 = 0;
+	long x2 = 0;
+
+	assert (!integer_solve_quadratic (2, 0, 7, &x1, &x2));
+	assert (!integer_solve_quadratic (2, 0, 8, &x1, &x2));
+	assert (integer_solve_quadratic (2, 0, -8, &x1, &x2));
+	assert (x1 == -2);
+	assert (x2 == 2);
+
+	assert (!integer_solve_quadratic (2, 5, -2, &x1, &x2));
+	assert (integer_solve_quadratic (1, -6, 5, &x1, &x2));
+	assert (x1 == 1);
+	assert (x2 == 5);
 }
 
 static void integer_sqrt_test (void) {

@@ -73,7 +73,7 @@ int main (int argc, char ** argv) {
  * can the almost-equilateral criterion be met
  */
 static long get_perimeter (int m, int n) {
-	int sides[3];
+	long sides[3];
 
 	if (!euclid_pythagorean_triple (m, n, sides, sides + 1, sides + 2))
 		return 0;
@@ -84,32 +84,12 @@ static long get_perimeter (int m, int n) {
 	return 2 * longest_side + 2 * shortes_side;
 }
 
-/*
- * Returns the larger root of the quadratic equation a*x^2 + bx + c = 0, a != 0
- * if integral, otherwise returns -1
- *
- * Not generally applicable, in this problem, we know one root will be positive and the other negative
- */
 static int get_m (int a, int b, int c) {
-	if (b == 0) {
-		if (c % a != 0)
-			return -1;
+	long x1 = 0;
+	long x2 = 0;
 
-		int div = -c / a;
-
-		if (div < 0)
-			return -1;
-		else
-			return integer_sqrt (div);
-	} else {
-		int d2 = b * b - 4 * a * c;
-		int d = 0;
-
-		if ((d = integer_sqrt (d2)) != -1) {
-			if (d % 2 == 0)
-				return (-b + d) / 2;
-		}
-
+	if (integer_solve_quadratic (a, b, c, &x1, &x2))
+		return x2;
+	else
 		return -1;
-	}
 }
