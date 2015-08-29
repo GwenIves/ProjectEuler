@@ -665,6 +665,8 @@ assert_fail "../src/231_binomial 0 -1" $LINENO
 assert "$(../src/231_binomial 10 3)" 14 $LINENO
 assert "$(../src/231_binomial 20000000 15000000)" 7526965179680 $LINENO $REFERENCE
 
+assert "$(../src/235_arithmetico_geometric)" 1.002322108633 $LINENO $REFERENCE
+
 assert_fail "../src/243_resilience 0 1" $LINENO
 assert_fail "../src/243_resilience 1 0" $LINENO
 assert "$(../src/243_resilience 4 10)" 12 $LINENO
