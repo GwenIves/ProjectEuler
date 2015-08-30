@@ -467,6 +467,12 @@ static void binomial_coefficient_test (void) {
 	assert (binomial_coefficient (10, 2) == 45);
 	assert (binomial_coefficient (10, 9) == 10);
 	assert (binomial_coefficient (10, 10) == 1);
+
+	assert (binomial_coefficient2 (10, 0) == 1);
+	assert (binomial_coefficient2 (10, 1) == 10);
+	assert (binomial_coefficient2 (10, 2) == 45);
+	assert (binomial_coefficient2 (10, 9) == 10);
+	assert (binomial_coefficient2 (10, 10) == 1);
 }
 
 static void permutations_count_test (void) {

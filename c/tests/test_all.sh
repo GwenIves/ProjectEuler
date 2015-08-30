@@ -598,6 +598,9 @@ assert "$(../src/149_maximum_sum 2000)" 52852124 $LINENO $REFERENCE
 assert_fail "../src/150_minimum_sum 0" $LINENO
 assert "$(../src/150_minimum_sum 1000)" -271248680 $LINENO $REFERENCE
 
+assert_fail "../src/158_strings 0" $LINENO
+assert "$(../src/158_strings 26)" 409511334375 $LINENO $REFERENCE
+
 assert_fail "../src/162_hexadecimals 0" $LINENO
 assert "$(../src/162_hexadecimals 16)" 3D58725572C62302 $LINENO $REFERENCE
 

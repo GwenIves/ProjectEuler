@@ -61,6 +61,7 @@ bool next_number (int *, int, int);
 bool next_number_non_decreasing (int *, int, int);
 
 long binomial_coefficient (int, int);
+long binomial_coefficient2 (int, int);
 
 long permutations_count (const int *, size_t);
 bool next_permutation (char *);

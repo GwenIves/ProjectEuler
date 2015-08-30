@@ -677,9 +677,22 @@ bool next_number_non_decreasing (int * num, int digits, int base) {
 	return true;
 }
 
-// Returns a choose b for 0 <= b <= a
+// Returns a choose b for 0 <= b <= a, factorial formula
 long binomial_coefficient (int a, int b) {
 	return factorial (a) / (factorial (b) * factorial (a - b));
+}
+
+// Multiplicative formula, slower but allows for a larger n given a small enough k
+long binomial_coefficient2 (int n, int k) {
+	if (k > n - k)
+		k = n - k;
+
+	long coeff = 1;
+
+	for (int i = 0; i < k; i++)
+		coeff *= n--;
+
+	return coeff / factorial (k);
 }
 
 /*
