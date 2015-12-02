@@ -12,6 +12,7 @@ Unless noted otherwise in the language sections, every solution should be:
 
 ## Currently implemented problems:
    * **C** - 170 problems
+   * **Python** - 1 problem
 
 
 ## Performance report
@@ -42,3 +43,15 @@ Build by running make from the top of the c/ directory tree
 
 ##### Limitations
 Does not check for numeric overflows, consequently a number of the solutions will produce incorrect answers for very large input parameters
+
+### python/ subdirectory --- Python 3.5
+
+An example of a rich-featured, interpreted, object-oriented language approach.
+
+The top of the python/ directory tree should be in PYTHONPATH
+
+	make tests      // runs all tests
+	make verify     // pylint the source code
+	make clean      // deletes compilation related generated files
+	make distclean  // deletes all generated files
+	make tags       // creates a single ctags database with symbol lookups

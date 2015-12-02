@@ -1,6 +1,38 @@
 #!/bin/env bash
 
-DATA_DIR=../../shared/data
+SHARED=../../shared
+DATA_DIR=${SHARED}/data
+SCRIPTS_DIR=${SHARED}/scripts
+
+EXECUTABLES="grep \\\$REFERENCE ${SCRIPTS_DIR}/test_solutions.sh | cut -f2 -d\\\" | cut -f1 -d' '"
+COMMANDS="grep \\\$REFERENCE ${SCRIPTS_DIR}/test_solutions.sh | cut -f2 -d\\\""
+
+get_count ()
+{
+	count=0
+
+	for executable in $(eval "$EXECUTABLES")
+	do
+		if [ -f $executable ]
+		then
+			((count++))
+		fi
+	done
+
+	echo $count
+}
+
+# Parameters: <Language> <LOC>
+do_report ()
+{
+	cd tests
+
+	echo "Running $(get_count) $1 language solutions ($2 lines of code)"
+
+	time eval "$COMMANDS" | while read p; do eval "$p"; done > /dev/null 2>&1
+
+	echo
+}
 
 report_C ()
 {
@@ -17,19 +49,20 @@ report_C ()
 
 		LOC=$(wc -l src/*.c common/*.c common/include/*.h tests/*.c | tail -1 | awk '{print $1;}')
 
-		cd tests
-
-		COMMANDS="grep \\\$REFERENCE test_all.sh | cut -f2 -d\( | cut -f1 -d\)"
-
-		COUNT=$(eval "$COMMANDS" | wc -l)
-
-		echo "Running $COUNT C language solutions ($LOC lines of code)"
-
-		time eval "$COMMANDS" | while read p; do eval "$p"; done > /dev/null
-
-		echo
+		do_report C $LOC
 	)
 }
 
+report_Python ()
+{
+	(
+		cd python
 
+		LOC=$(wc -l src/* common/*.py tests/*.py | tail -1 | awk '{print $1;}')
+
+		do_report Python $LOC
+	)
+}
+
+report_Python
 report_C

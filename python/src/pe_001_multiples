@@ -1,0 +1,21 @@
+#!/bin/env python3
+
+import sys
+
+from common import math_utils
+
+def main():
+    if len(sys.argv) != 2:
+        print("usage: {} <N>".format(sys.argv[0], file=sys.stderr))
+        sys.exit(1)
+
+    N = int(sys.argv[1])
+
+    sum3 = math_utils.arithmetic_sequence_sum(0, N, 3)
+    sum5 = math_utils.arithmetic_sequence_sum(0, N, 5)
+    sum15 = math_utils.arithmetic_sequence_sum(0, N, 15)
+
+    print(sum3 + sum5 - sum15)
+
+if __name__ == "__main__":
+    main()
